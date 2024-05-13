@@ -55,6 +55,7 @@ export class HomeComponent implements OnInit {
     this.provinceService.findWard(ward_id).then(
       res=>{
         this.wards = res['results'] as Ward[];
+        console.log(this.wards)
       },
       error=>{
         console.log(error)

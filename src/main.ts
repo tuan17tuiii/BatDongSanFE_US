@@ -3,5 +3,5 @@ import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
 import { TestComponent } from './app/test.component';
 
-bootstrapApplication(TestComponent, appConfig)
+bootstrapApplication(AppComponent, appConfig)
   .catch((err) => console.error('loi'));
