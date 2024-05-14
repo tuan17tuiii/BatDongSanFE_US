@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   wards : Ward[]
   provinces: Province[]
   districts: District[]
+  data_input1:string
   constructor(
     private provinceService: ProvinceAPIService,
     private http: HttpClient
@@ -61,6 +62,9 @@ export class HomeComponent implements OnInit {
         console.log(error)
       }
     )
+  }
+  changeinput(){
+
   }
 }
 

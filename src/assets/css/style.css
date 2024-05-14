@@ -1,6 +1,6 @@
 /********** Template CSS **********/
 :root {
-    --primary: #00B98E;
+    --primary: hsl(166, 100%, 36%);
     --secondary: #FF6922;
     --light: #EFFDF5;
     --dark: #0E2E50;
@@ -13,8 +13,169 @@
     bottom: 45px;
     z-index: 99;
 }
+.floating-panel {
+    display: none; /* Ẩn panel ban đầu */
+    position:absolute; /* Panel nổi cố định trên màn hình */
+    border: 2px solid #000; /* Viền */
+    background-color: rgba(255, 255, 255, 0.9); /* Nền trong suốt */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Đổ bóng */
+    z-index: 1000; /* Đảm bảo panel nằm trên các phần tử khác */
+    width: 310px;
+    top:128px;
+    margin: 0px 0;
 
+}
+.floating-panel1 {
+    display: none; /* Ẩn panel ban đầu */
+    position:absolute; /* Panel nổi cố định trên màn hình */
+    border: 2px solid #000; /* Viền */
+    background-color: rgba(255, 255, 255, 0.9); /* Nền trong suốt */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Đổ bóng */
+    z-index: 1000; /* Đảm bảo panel nằm trên các phần tử khác */
+    width: 310px;
+    top:128px;
+    left: 427px;
+    margin: 0px 0;
 
+}
+.floating-panel2 {
+    display: none; /* Ẩn panel ban đầu */
+    position:absolute; /* Panel nổi cố định trên màn hình */
+    border: 2px solid #000; /* Viền */
+    background-color: rgba(255, 255, 255, 0.9); /* Nền trong suốt */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Đổ bóng */
+    z-index: 1000; /* Đảm bảo panel nằm trên các phần tử khác */
+    width: 310px;
+    left: 741px;
+    top:128px;
+    margin: 0px 0;
+
+}
+.abc{
+    margin-top: 25px;
+}
+.seach_task input{
+    width: 100%;
+    display: block;
+    margin:10px 0;
+    left: 100px;
+    height: 40px;
+}
+.seach_task4{
+  width: 304px;
+  margin: 5px;
+}
+
+.index {
+    position: absolute;
+    top: 250px;
+    z-index: 100; /* Đảm bảo nằm trên phần tử .banner */
+    border: 1px solid #00fbff; /* Thiết lập viền */
+    background-color:hsla(166, 100%, 36%, 0.471); /* Nền trong suốt */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box; /* Bao gồm cả viền trong kích thước */
+}
+.index1 {
+    z-index: 100; /* Đảm bảo nằm trên phần tử .banner */
+    border: 1px solid #00ffff; /* Thiết lập viền */
+    background-color: hsla(166, 100%, 36%, 0.541); /* Nền trong suốt */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box; /* Bao gồm cả viền trong kích thước */
+}
+
+.banner-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    height: 600px; /* Điều chỉnh chiều cao của banner */
+}
+.banner-container img {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+}
+.banner-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: opacity 1s ease-in-out;
+}
+.banner-slide.banner1 {
+    z-index: 2; /* Initial higher value */
+    opacity: 1;
+}
+.banner-slide.banner2 {
+    z-index: 1; /* Initial lower value */
+    opacity: 0;
+}
+@keyframes fadeInn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+.fadeInn {
+    animation-name: fadeInn;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+.box {
+    --primary: #275efe;
+    --headline: #3F4656;
+    --text: #99A3BA;
+    width: 100%;
+    max-width: 312px;
+    padding: 36px 32px 48px 32px;
+    background: #fff;
+    border-radius: 9px;
+    box-shadow: 0 1px 4px rgba(18, 22, 33, .12);
+    h3 {
+        font-family: inherit;
+        font-size: 32px;
+        font-weight: 700;
+        margin: 0 0 20px 0;
+        color: var(--headline);
+        span {
+            font-weight: 500;
+        }
+    }
+    .values,
+    small {
+        div {
+            display: inline-block;
+            vertical-align: top;
+        }
+    }
+    .values {
+        margin: 0;
+        font-weight: 500;
+        color: var(--primary);
+        & > div {
+            &:first-child {
+                margin-right: 2px;
+            }
+            &:last-child {
+                margin-left: 2px;
+            }
+        }
+    }
+    small {
+        color: var(--text);
+        display: block;
+        margin-top: 8px;
+        font-size: 14px;
+    }
+    .slider {
+        margin-top: 40px;
+    }
+}
 /*** Spinner ***/
 #spinner {
     opacity: 0;
@@ -28,6 +189,7 @@
     visibility: visible;
     opacity: 1;
 }
+
 
 
 /*** Button ***/
