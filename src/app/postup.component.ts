@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { ProvinceAPIService } from "./services/provinceapi.service";
 import { Province } from './entities/province.entities';
 import { error } from 'console';
@@ -8,13 +8,23 @@ import { District } from './entities/district.entities';
 import { Ward } from './entities/ward.entities';
 import { TypeRealState } from './entities/typerealstate.entities';
 import { TypeRealStateAPIService } from './services/typerealstate.service';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule,Validators   } from '@angular/forms';
 import { RealStateAPIService } from './services/realstate.service';
 import { RealState } from './entities/realstate.entities';
+import { ButtonModule } from 'primeng/button';
+import { ToastModule } from 'primeng/toast';
+import { ConfirmationService, MessageService } from "primeng/api";
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    ButtonModule,
+    ToastModule],
+  providers: [ConfirmationService, MessageService],
+
+
   templateUrl: './postup.component.html',
 
 })
@@ -36,16 +46,31 @@ export class PostUpComponent implements OnInit {
     private provinceService: ProvinceAPIService,
     private realstateService: RealStateAPIService,
     private http: HttpClient,
-    private typeRealStateService: TypeRealStateAPIService
+    private typeRealStateService: TypeRealStateAPIService,
+    private messageService: MessageService,
+    private confirmService: ConfirmationService,
+    private router : Router
   ) { }
   ngOnInit(): void {//khi nhan ve thì là nhận về chuỗi hết nên phải khai báo chuỗi k là lỗi
     this.formGroup = this.formBuilder.group({
       title: '',
-      bathrooms: '',
-      bedrooms: '',
+      bathrooms: ['',[
+        Validators.required,
+        Validators.pattern('^[0-9]+$')
+      ]],
+      bedrooms: ['',[
+        Validators.required,
+        Validators.pattern('^[0-9]+$')
+      ]],
       describe: '',
-      price: '',
-      acreage: '',
+      price: ['',[
+        Validators.required,
+        Validators.pattern('^[0-9]+$')
+      ]],
+      acreage: ['',[
+        Validators.required,
+        Validators.pattern('^[0-9]+$')
+      ]],
 
     })
 
@@ -126,18 +151,33 @@ export class PostUpComponent implements OnInit {
     realstate.status = false
     this.realstateService.create(realstate).then(
       res => {
-        if(res['result']){
-          console.log('Succes')
-      }else{
+        if (res['result']) {
+          this.show()
+          this.router.navigate(['post-up'])
+        } else {
           this.msg = 'Failed'
-      } 
+        }
       },
       error => {
         console.log(error)
       }
     )
-    
-
   }
+  show() {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Done',
+      detail: 'Add Success',
+
+    })
+  }
+  error(){
+    this.messageService.add({
+        severity : 'error',
+        summary: 'Error!',
+        detail : 'Faild',
+        
+    })
+}
 }
 
