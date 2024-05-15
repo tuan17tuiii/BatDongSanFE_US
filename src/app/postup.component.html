@@ -1,71 +1,71 @@
 <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
     <div class="container">
         <div class="row g-2">
-            <div class="col-md-12">
-                <div class="row g-2">
-                    <div class="col-md-4">
-                        <select class="form-control border-0 py-3" id='provinces' (change)="find_districts($event)">
-                            <option value="" disabled selected hidden>Select City</option>
-                            @for(province of provinces ; track province){
-                            <option [value]="province.province_id">{{province.province_name}}</option>
-                            }
-                        </select>
+            <form [formGroup]="formGroup" (ngSubmit)="save()">
+                <div class="col-md-12">
+                    <div class="row g-2">
+                        <div class="col-md-4">
+                            <select  class="form-control border-0 py-3" id='provinces' (change)="find_districts($event)">
+                                <option value="" disabled selected hidden>Select City</option>
+                                @for(province of provinces ; track province){
+                                <option [value]="province.province_id">{{province.province_name}}</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <select class="form-select border-0 py-3" (change)="find_ward($event)">
+                                <option value="" disabled selected hidden>Select District</option>
+                                @for(district of districts ; track district){
+                                <option [value]="district.district_id">{{district.district_name}}</option>
+                                }
+                            </select>
+                        </div> 
+                        <div class="col-md-4">
+                            <select class="form-select border-0 py-3" (change)="find_Name_Ward($event)">
+                                <option value="" disabled selected hidden>Select Ward</option>
+                                @for(ward of wards ; track ward){
+                                <option>{{ward.ward_name}}</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control border-0 py-3" placeholder="Tiêu đề" formControlName="title" />
+                        </div>
+                        <div class="col-md-4">
+                            <input type="number" class="form-control border-0 py-3" placeholder="Số phòng ngủ" min="0" formControlName="bedrooms" />
+                        </div>
+                        
+                        <div class="col-md-4"> 
+                            <input type="number" class="form-control border-0 py-3" placeholder="Số phòng tắm" min="0" formControlName="bathrooms" />
+                        </div>
+                        <div class="col-md-4">
+                            <select  class="form-select border-0 py-3" (change)="selectType($event)">
+                                <option value="" disabled selected hidden>Loại BĐS</option>
+                                @for(typerealstate of typerealstates ; track typerealstate){
+                                    <option [value]="typerealstate.id">{{typerealstate.type}}</option>
+                                }
+                                <!-- Thêm các loại BĐS khác nếu cần -->
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="number" class="form-control border-0 py-3" placeholder="Diện tích (m2)" min="0"formControlName="acreage" />
+                        </div>
+                        <div class="col-md-4">
+                            <input type="number" class="form-control border-0 py-3" placeholder="Giá" min="0" formControlName="price" />
+                        </div>
+                        <div class="col-md-4">
+                            <textarea class="form-control border-0 py-3" name="" id=""placeholder="Mô tả" formControlName="describe"></textarea >
+                            
+                        </div>
+                        
                     </div>
-                    <div class="col-md-4">
-                        <select class="form-select border-0 py-3" (change)="find_ward($event)">
-                            <option value="" disabled selected hidden>Select District</option>
-                            @for(district of districts ; track district){
-                            <option [value]="district.district_id">{{district.district_name}}</option>
-                            }
-                        </select>
-                    </div> 
-                    <div class="col-md-4">
-                        <select class="form-select border-0 py-3">
-                            <option value="" disabled selected hidden>Select Ward</option>
-                            @for(ward of wards ; track ward){
-                            <option>{{ward.ward_name}}</option>
-                            }
-                        </select>
+                    <div class="row g-2">
+                        <div class="col-md-2 offset-md-10">
+                            <button type="submit" class="btn btn-dark border-0 w-100 py-3">Search</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-        </div>
-        <br>
-        <div class="row g-2">
-            <div class="col-md-4">
-                <input type="text" class="form-control border-0 py-3" placeholder="Tiêu đề" />
-            </div>
-            <div class="col-md-4">
-                <input type="text" class="form-control border-0 py-3" placeholder="Mô tả" />
-            </div>
-            <div class="col-md-4">
-                <input type="number" class="form-control border-0 py-3" placeholder="Giá" min="0" />
-            </div>
-            <div class="col-md-4">
-                <select class="form-select border-0 py-3">
-                    <option value="" disabled selected hidden>Loại BĐS</option>
-                    @for(typerealstate of typerealstates ; track typerealstate){
-                        <option [value]="typerealstate.id">{{typerealstate.type}}</option>
-                    }
-                    <!-- Thêm các loại BĐS khác nếu cần -->
-                </select>
-            </div>
-            <div class="col-md-4">
-                <input type="number" class="form-control border-0 py-3" placeholder="Diện tích (m2)" min="0" />
-            </div>
-            <div class="col-md-4">
-                <input type="number" class="form-control border-0 py-3" placeholder="Số phòng tắm" min="0" />
-            </div>
-            <div class="col-md-4">
-                <input type="number" class="form-control border-0 py-3" placeholder="Số phòng ngủ" min="0" />
-            </div>
-        </div>
-        <br>
-        <div class="row g-2">
-            <div class="col-md-2 offset-md-10">
-                <button class="btn btn-dark border-0 w-100 py-3">Search</button>
-            </div>
+            </form>
         </div>
     </div>
 </div>
