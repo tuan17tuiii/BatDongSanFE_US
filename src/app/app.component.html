@@ -21,13 +21,13 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto">
                     <a href="index.html" class="nav-item nav-link active">Home</a>
-                    <a href="about.html" class="nav-item nav-link">About</a>
+                    <a [routerLink]="['/about']" class="nav-item nav-link">About</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Property</a>
                         <div class="dropdown-menu rounded-0 m-0">
-                            <a href="property-list.html" class="dropdown-item">Property List</a>
-                            <a href="property-type.html" class="dropdown-item">Property Type</a>
-                            <a href="property-agent.html" class="dropdown-item">Property Agent</a>
+                            <a [routerLink]="['/property_list']" class="dropdown-item">Property List</a>
+                            <a [routerLink]="['/property_type']"  class="dropdown-item">Property Type</a>
+                            <a [routerLink]="['/property_agent']"  class="dropdown-item">Property Agent</a>
                         </div>
                     </div>
                     <div class="nav-item dropdown">
@@ -37,7 +37,7 @@
                             <a href="404.html" class="dropdown-item">404 Error</a>
                         </div>
                     </div>
-                    <a href="contact.html" class="nav-item nav-link">Contact</a>
+                    <a [routerLink]="['/contact']" class="nav-item nav-link">Contact</a>
                 </div>
                 <a [routerLink]="['/post-up']" class="btn btn-primary px-3 d-none d-lg-flex">Đăng Tin</a>
             </div>

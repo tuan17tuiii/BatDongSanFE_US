@@ -12,6 +12,49 @@
         }, 1);
     };
     spinner();
+
+    $(document).ready(function() {
+        $('#number-list li').removeClass('selected');
+    // Đặt giá trị của input có ID là 'ress' thành rỗng
+   
+        // Thêm sự kiện click cho mỗi mục trong danh sách có id 'number-list'
+        $('#number-list li').each(function() {
+            $(this).on('click', function() {
+                // Xóa class 'selected' khỏi tất cả các mục
+                $('#number-list li').removeClass('selected');
+                // Thêm class 'selected' vào mục đã nhấp
+                $(this).addClass('selected');
+                // Lấy giá trị từ thuộc tính data-value
+                var selectedValue = $(this).attr('data-value');
+                // Cập nhật giá trị đã chọn
+                $('#selected-value').text(selectedValue);
+                // In giá trị đã chọn vào thẻ span có ID là 'spaner'
+                $('#spaner').text(selectedValue);
+                // Cập nhật giá trị của input có ID là 'ress'
+                $('#ress').val(selectedValue);
+                // Lưu giá trị đã chọn vào localStorage
+                localStorage.setItem('selectedNumber', selectedValue);
+            });
+        });
+    
+        // Khôi phục giá trị đã lưu khi tải trang
+        var savedValue = localStorage.getItem('selectedNumber');
+        if (savedValue) {
+            var selectedItem = $('#number-list li[data-value="' + savedValue + '"]');
+            if (selectedItem.length > 0) {
+                selectedItem.addClass('selected');
+                $('#selected-value').text(savedValue);
+                // In giá trị đã chọn vào thẻ span có ID là 'spaner'
+                $('#spaner').text(savedValue);
+                // Cập nhật giá trị của input có ID là 'ress'
+                $('#ress').val(savedValue);
+            }
+        }
+        $('#ress').val('1234');
+    });
+    
+    
+    
     $(document).ready(function() {
         $(".slider").each(function() {
             var slider = $(this),
@@ -35,10 +78,14 @@
                     $(slider.data("value-0")).html(ui.values[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, "&thinsp;"));
                     $(slider.data("value-1")).html(ui.values[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, "&thinsp;"));
                     $(slider.data("range")).html((ui.values[1] - ui.values[0]).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "&thinsp;"));
+    
+                    // Ghi giá trị của slider vào input có id là "inputt"
+                    $("#ress").val(ui.values.join(" - "));
                 }
             });
         });
     });
+    
     
     
     $(document).ready(function () {

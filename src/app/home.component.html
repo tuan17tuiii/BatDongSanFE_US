@@ -1,15 +1,19 @@
 <div class="container-fluid  mb-5 wow fadeIn index" data-wow-delay="0.1s" style="padding: 35px;">
     <div class="container">
-        <div class="container">
-
-
-        </div>
         <div class="row g-2">
             <div class="col-md-12">
-                <div class="row g-2">
-                    <div class="col-md-12 seach_task"> <input type="text" name="" id=""></div>
+                <div class="row g-2 bo">
+                    <div class="col-md-12 seach_task">
+                        <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon">
+                              <i class="pi pi-search"></i>
+                            </span>
+                            <input type="text" class="p-inputtext" placeholder="Seach : Property .....">
+                          </div>
+                          
+                    </div>
                 </div>
-                <div class="row g-2">
+                <div class="row g-2 bo">
                     <input class="col-md-4 toggleButton seach_task4" type="button" value="address">
                     <div id="panel" class="floating-panel">
                         <div class="row">
@@ -51,7 +55,7 @@
                             </div>
                         </div>
                     </div>
-                    <input class="col-md-4 toggleButton1 seach_task4" type="button" value="select price ">
+                    <input class="col-md-4 toggleButton1 seach_task4" type="button" id="ress" value="select price ">
                     <div id="panel1" class="floating-panel1">
                         <div class="row">
                             <div class="col-md-12">
@@ -60,13 +64,12 @@
                                         <div>$<span id="first">1800</span></div> - <div>$<span id="second">7800</span></div>
                                     </div>
                                     <div id="slider" class="slider" data-value-0="#first" data-value-1="#second" data-range="#third"></div>
-                                    <hr>
-                                 <ul>
-                                    <li>1000</li>
-                                    <li>100</li>
-                                    <li>222</li>
-                                    <li>3455</li>
-                                 </ul>
+                                    <ul id="number-list">
+                                        <li data-value="1000">1000</li>
+                                        <li data-value="100">100</li>
+                                        <li data-value="222">222</li>
+                                        <li data-value="3455">3455</li>
+                                    </ul>
                                 </div>
                                 
                             </div>

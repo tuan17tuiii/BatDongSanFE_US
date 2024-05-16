@@ -13,6 +13,20 @@
     bottom: 45px;
     z-index: 99;
 }
+#number-list{
+    list-style-type: none;
+    padding: 0;
+}
+#number-list li {
+    padding: 10px;
+    border-top: 1px solid #d2d2d2;
+    margin: 5px 0;
+    cursor: pointer;
+}
+#number-list li.selected {
+    font-weight: bold;
+    background-color: #e0f7fa;
+}
 .floating-panel {
     display: none; /* Ẩn panel ban đầu */
     position:absolute; /* Panel nổi cố định trên màn hình */
@@ -20,9 +34,10 @@
     background-color: rgba(255, 255, 255, 0.9); /* Nền trong suốt */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Đổ bóng */
     z-index: 1000; /* Đảm bảo panel nằm trên các phần tử khác */
-    width: 310px;
-    top:128px;
+    width: 306px;
+    top:118px;
     margin: 0px 0;
+    left: 58px;
 
 }
 .floating-panel1 {
@@ -32,9 +47,9 @@
     background-color: rgba(255, 255, 255, 0.9); /* Nền trong suốt */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Đổ bóng */
     z-index: 1000; /* Đảm bảo panel nằm trên các phần tử khác */
-    width: 310px;
-    top:128px;
-    left: 427px;
+    width: 306px;
+    top:118px;
+    left: 373px;
     margin: 0px 0;
 
 }
@@ -45,9 +60,9 @@
     background-color: rgba(255, 255, 255, 0.9); /* Nền trong suốt */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Đổ bóng */
     z-index: 1000; /* Đảm bảo panel nằm trên các phần tử khác */
-    width: 310px;
-    left: 741px;
-    top:128px;
+    width: 306px;
+    left: 687px;
+    top:118px;
     margin: 0px 0;
 
 }
@@ -55,6 +70,7 @@
     margin-top: 25px;
 }
 .seach_task input{
+    border-radius: 10px;
     width: 100%;
     display: block;
     margin:10px 0;
@@ -62,25 +78,31 @@
     height: 40px;
 }
 .seach_task4{
+    border-radius: 10px;
   width: 304px;
   margin: 5px;
 }
-
 .index {
+    border-radius: 10px;
     position: absolute;
-    top: 250px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 100; /* Đảm bảo nằm trên phần tử .banner */
-    border: 1px solid #00fbff; /* Thiết lập viền */
-    background-color:hsla(166, 100%, 36%, 0.471); /* Nền trong suốt */
+    border: 1px solid #000000; /* Thiết lập viền */
+    background-color: hsla(0, 0%, 34%, 0.34); /* Nền trong suốt */
     display: flex;
     justify-content: center;
     align-items: center;
     box-sizing: border-box; /* Bao gồm cả viền trong kích thước */
+    width: 90%;
+    height: 150px;
 }
+
 .index1 {
     z-index: 100; /* Đảm bảo nằm trên phần tử .banner */
-    border: 1px solid #00ffff; /* Thiết lập viền */
-    background-color: hsla(166, 100%, 36%, 0.541); /* Nền trong suốt */
+    border: 1px solid #000000; /* Thiết lập viền */
+    background-color: hsla(0, 0%, 40%, 0.371); /* Nền trong suốt */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -91,11 +113,11 @@
     position: relative;
     width: 100%;
     overflow: hidden;
-    height: 600px; /* Điều chỉnh chiều cao của banner */
+    height: 500px; /* Điều chỉnh chiều cao của banner */
 }
 .banner-container img {
     width: 100%;
-    height: 600px;
+    height: 500px;
     object-fit: cover;
 }
 .banner-slide {
