@@ -50,7 +50,46 @@
                 $('#ress').val(savedValue);
             }
         }
-        $('#ress').val('1234');
+        $('#ress').val('price');
+    });
+    $(document).ready(function() {
+        $('#number-list-2 li').removeClass('selected');
+    // Đặt giá trị của input có ID là 'ress' thành rỗng
+   
+        // Thêm sự kiện click cho mỗi mục trong danh sách có id 'number-list'
+        $('#number-list-2 li').each(function() {
+            $(this).on('click', function() {
+                // Xóa class 'selected' khỏi tất cả các mục
+                $('#number-list-2 li').removeClass('selected');
+                // Thêm class 'selected' vào mục đã nhấp
+                $(this).addClass('selected');
+                // Lấy giá trị từ thuộc tính data-value
+                var selectedValue = $(this).attr('data-value2');
+                // Cập nhật giá trị đã chọn
+                $('#selected-value2').text(selectedValue);
+                // In giá trị đã chọn vào thẻ span có ID là 'spaner'
+                $('#spaner2').text(selectedValue);
+                // Cập nhật giá trị của input có ID là 'ress'
+                $('#resss').val(selectedValue);
+                // Lưu giá trị đã chọn vào localStorage
+                localStorage.setItem('selectedNumber2', selectedValue);
+            });
+        });
+    
+        // Khôi phục giá trị đã lưu khi tải trang
+        var savedValue = localStorage.getItem('selectedNumber2');
+        if (savedValue) {
+            var selectedItem = $('#number-list-2 li[data-value2="' + savedValue + '"]');
+            if (selectedItem.length > 0) {
+                selectedItem.addClass('selected2');
+                $('#selected-value2').text(savedValue);
+                // In giá trị đã chọn vào thẻ span có ID là 'spaner'
+              
+                // Cập nhật giá trị của input có ID là 'ress'
+                $('#resss').val(savedValue);
+            }
+        }
+        $('#resss').val('area');
     });
     
     
@@ -86,6 +125,37 @@
         });
     });
     
+    
+    $(document).ready(function() {
+        $(".slider1").each(function() {
+            var slider = $(this),
+                handle,
+                handleObj;
+    
+            slider.slider({
+                range: true,
+                values: [30, 500],
+                min: 30,
+                step: 5,
+                minRange: 10,
+                max: 500,
+                create(event, ui) {
+                    var values = slider.slider("valuess");
+                    $(slider.data("value-2")).html(values[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, "&thinsp;"));
+                    $(slider.data("value-3")).html(values[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, "&thinsp;"));
+                    $(slider.data("range")).html((values[1] - values[0]).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "&thinsp;"));
+                },
+                slide(event, ui) {
+                    $(slider.data("value-2")).html(ui.values[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, "&thinsp;"));
+                    $(slider.data("value-3")).html(ui.values[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, "&thinsp;"));
+                    $(slider.data("range")).html((ui.values[1] - ui.values[0]).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "&thinsp;"));
+    
+                    // Ghi giá trị của slider vào input có id là "inputt"
+                    $("#resss").val(ui.values.join(" - "));
+                }
+            });
+        });
+    });
     
     
     $(document).ready(function () {
@@ -163,6 +233,25 @@
 
     // Header carousel
   
+// ham inkq iput tinh tp
+$(document).ready(function() {
+    $('#panel select').change(function() {
+        // Kiểm tra xem tất cả các select box đã được chọn chưa
+        if ($('#provinces').val() && $('#districts').val() && $('#wards').val()) {
+            // Lấy giá trị của các select box đã chọn
+            var provinceName = $('#provinces option:selected').text();
+            var districtName = $('#districts option:selected').text();
+            var wardName = $('#wards option:selected').text();
+            
+            // Tạo địa chỉ từ các giá trị đã chọn
+            var address = provinceName + ", " + districtName + ", " + wardName;
+            
+            // Gán địa chỉ vào input có id là "ress"
+            $('#ress1').val(address);
+        }
+    });
+});
+
 
     // Testimonials carousel
 })(jQuery);

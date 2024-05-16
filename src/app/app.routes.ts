@@ -7,6 +7,7 @@ import { ContacComponent } from './contact.component';
 import { Property_listComponent } from './property_list.component';
 import { Property_typeComponent } from './property_type.component';
 import { Property_agentComponent } from './property_agent.component';
+import { InforComponent } from './infor.component';
 
 export const routes: Routes = [
    {
@@ -36,6 +37,10 @@ export const routes: Routes = [
      {
       path:"property_agent",
       component:Property_agentComponent
+     },
+     {
+      path:"information",
+      component:InforComponent
      }
 ];
 

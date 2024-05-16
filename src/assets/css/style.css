@@ -13,20 +13,25 @@
     bottom: 45px;
     z-index: 99;
 }
-#number-list{
+#number-list,
+#number-list-2
+{
     list-style-type: none;
     padding: 0;
 }
+#number-list-2 li,
 #number-list li {
     padding: 10px;
     border-top: 1px solid #d2d2d2;
     margin: 5px 0;
     cursor: pointer;
 }
+#number-list-2 li.selected,
 #number-list li.selected {
     font-weight: bold;
     background-color: #e0f7fa;
 }
+
 .floating-panel {
     display: none; /* Ẩn panel ban đầu */
     position:absolute; /* Panel nổi cố định trên màn hình */
@@ -77,6 +82,29 @@
     left: 100px;
     height: 40px;
 }
+.p-inputgroup {
+    position: relative;
+}
+
+.p-inputgroup-addon {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.p-inputgroup-addon i {
+    display: block;
+    width: 20px; /* Đảm bảo kích thước icon đúng */
+    height: 20px;
+    font-size: 16px; /* Kích thước của icon */
+}
+
+.p-inputgroup-addon i::before {
+    content: "\f002"; /* Unicode for the search icon, adjust as needed */
+    font-family: "FontAwesome"; /* Assuming you're using FontAwesome */
+}
+
 .seach_task4{
     border-radius: 10px;
   width: 304px;
@@ -168,14 +196,14 @@
             font-weight: 500;
         }
     }
-    .values,
+    .values,.valuess,
     small {
         div {
             display: inline-block;
             vertical-align: top;
         }
     }
-    .values {
+    .valuess,.values {
         margin: 0;
         font-weight: 500;
         color: var(--primary);
@@ -194,7 +222,7 @@
         margin-top: 8px;
         font-size: 14px;
     }
-    .slider {
+    .slider,.slider1 {
         margin-top: 40px;
     }
 }
@@ -555,7 +583,12 @@
 
 
 /*** Footer ***/
+.footer{
+    position: relative;
+    z-index: 1000;
+}
 .footer .btn.btn-social {
+    z-index: 1000;
     margin-right: 5px;
     width: 35px;
     height: 35px;
@@ -569,11 +602,13 @@
 }
 
 .footer .btn.btn-social:hover {
+    z-index: 1000;
     color: var(--primary);
     border-color: var(--light);
 }
 
 .footer .btn.btn-link {
+    z-index: 1000;
     display: block;
     margin-bottom: 5px;
     padding: 0;
@@ -585,6 +620,7 @@
 }
 
 .footer .btn.btn-link::before {
+    z-index: 1000;
     position: relative;
     content: "\f105";
     font-family: "Font Awesome 5 Free";
@@ -593,32 +629,91 @@
 }
 
 .footer .btn.btn-link:hover {
+    z-index: 1000;
     letter-spacing: 1px;
     box-shadow: none;
 }
 
 .footer .form-control {
+    z-index: 1000;
     border-color: rgba(255,255,255,0.5);
 }
 
 .footer .copyright {
+    z-index: 1000;
     padding: 25px 0;
     font-size: 15px;
     border-top: 1px solid rgba(256, 256, 256, .1);
 }
 
 .footer .copyright a {
+    z-index: 1000;
     color: var(--light);
 }
 
 .footer .footer-menu a {
+    z-index: 1000;
     margin-right: 15px;
     padding-right: 15px;
     border-right: 1px solid rgba(255, 255, 255, .1);
 }
 
 .footer .footer-menu a:last-child {
+    z-index: 1000;
     margin-right: 0;
     padding-right: 0;
     border-right: none;
+}
+/* banvg tin */
+/* Thiết lập chiều cao cho menu dọc */
+.sidebar {
+    overflow-y: auto;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    bottom: 0;
+    padding: 48px 0 0; /* padding ở đây là khoảng cách giữa phần đầu và phần nội dung của menu */
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+/* Thiết lập chiều rộng cho menu dọc */
+.sidebar-sticky {
+    z-index: 10;
+    top: 0;
+    height: calc(100vh - 48px); /* chiều cao của menu dọc */
+    padding-top: 0.5rem;
+    width: 200px;
+
+}
+
+/* Thiết lập chiều rộng và vị trí cho nội dung chính */
+.main {
+    overflow-y: auto;
+    margin-left: 250px; /* Chiều rộng của menu dọc */
+    padding: 20px;
+   
+}
+
+/* Thiết lập chiều cao cho tiêu đề */
+.page-header {
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+/* Thiết lập độ rộng cho các khối nội dung */
+.post-container {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* Thiết lập độ rộng của hình ảnh trong khối nội dung */
+.post-content img {
+    width:100% ;
+}
+
+/* Tùy chỉnh nội dung nằm bên phải của trang */
+.content-right {
+    padding: 20px;
 }
