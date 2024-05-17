@@ -22,8 +22,11 @@
                 <div class="navbar-nav ms-auto">
                     <a [routerLink]="['/home']" class="nav-item nav-link active">Home</a>
                     <a [routerLink]="['/about']" class="nav-item nav-link">About</a>
+
                     <a [routerLink]="['/blogbuy']" class="nav-item nav-link">BlogBuy</a>
-                    <a [routerLink]="['/blog']" class="nav-item nav-link">Blog</a>
+                    
+                    <a [routerLink]="['/blogbuy']" class="nav-item nav-link">BlogBuy2</a>
+                    <a [routerLink]="['/blognew']" class="nav-item nav-link">Blog</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Property</a>
                         <div class="dropdown-menu rounded-0 m-0">
@@ -32,17 +35,10 @@
                             <a [routerLink]="['/property_agent']"  class="dropdown-item">Property Agent</a>
                         </div>
                     </div>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                        <div class="dropdown-menu rounded-0 m-0">
-                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                            <a href="404.html" class="dropdown-item">404 Error</a>
-                        </div>
-                    </div>
-                    <a [routerLink]="['/contact']" class="nav-item nav-link">Contact</a>
                 </div>
               &nbsp;
-               <a [routerLink]="['/information']"> <i class="pi pi-user" style="font-size: 1.2rem"></i></a>
+              <div class="name"> <a [routerLink]="['/information']"> <img src="../assets/img/header.jpg
+                " alt="Profile Image" class="profile-img" >Tên user</a></div>
             </div>
         </nav>
     </div>
@@ -134,6 +130,7 @@
                             <a href="">Cookies</a>
                             <a href="">Help</a>
                             <a href="">FQAs</a>
+                            <a [routerLink]="['/contact']">Contact</a>
                         </div>
                     </div>
                 </div>

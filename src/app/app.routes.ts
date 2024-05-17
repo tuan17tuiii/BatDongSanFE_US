@@ -9,6 +9,7 @@ import { Property_typeComponent } from './property_type.component';
 import { Property_agentComponent } from './property_agent.component';
 import { InforComponent } from './infor.component';
 import { BlogbuyComponent } from './blogbuy.component';
+import { BlognewComponent } from './blognew.component';
 
 export const routes: Routes = [
    {
@@ -54,6 +55,10 @@ export const routes: Routes = [
    ,{
       path: "blogbuy",
       component: BlogbuyComponent
+   },
+   {
+      path: "blognew",
+      component: BlognewComponent
    }
 ];
 

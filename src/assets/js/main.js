@@ -140,7 +140,7 @@
                 minRange: 10,
                 max: 500,
                 create(event, ui) {
-                    var values = slider.slider("valuess");
+                    var values = slider.slider("values");
                     $(slider.data("value-2")).html(values[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, "&thinsp;"));
                     $(slider.data("value-3")).html(values[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, "&thinsp;"));
                     $(slider.data("range")).html((values[1] - values[0]).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "&thinsp;"));
@@ -161,32 +161,30 @@
     $(document).ready(function () {
         $('.toggleButton').click(function () {
             $('#panel').fadeToggle();
-            if ($(this).text() === "Show Panel") {
-
-            } else {
-
-            }
+           
+                $('#panel1').fadeOut();
+                $('#panel2').fadeOut();
+              
+         
         });
     });
 
     $(document).ready(function () {
         $('.toggleButton1').click(function () {
             $('#panel1').fadeToggle();
-            if ($(this).text() === "Show Panel") {
-
-            } else {
-
-            }
+           
+                $('#panel').fadeOut();
+                $('#panel2').fadeOut();
+         
         });
     });
     $(document).ready(function () {
         $('.toggleButton2').click(function () {
             $('#panel2').fadeToggle();
-            if ($(this).text() === "Show Panel") {
-
-            } else {
-
-            }
+        
+                $('#panel1').fadeOut();
+                $('#panel').fadeOut();
+          
         });
     });
 

@@ -239,4 +239,69 @@ body {
 .menu ul li a i {
     margin-right: 5px; /* Khoảng cách giữa icon và văn bản */
 }
+/*  blognew  */
 
+ /* CSS cho tiêu đề báo */
+ header {
+    background-color: #ff000057;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+  }
+  /* CSS cho phần content bài báo */
+  .contentn {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  /* CSS cho phần bài báo */
+  .article {
+    width: 60%;
+    border-radius: 5px;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+  }
+  /* CSS cho hình ảnh bài báo */
+  .article img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto 10px;
+  }
+  /* CSS cho phần sidebar */
+  .sidebarn {
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    width: 30%;
+    border-radius: 5px;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+  }
+  /* CSS cho danh sách các bài báo liên quan */
+  .related-articles {
+    margin-top: 20px;
+    overflow-x: auto; /* Thêm thanh trượt ngang nếu nội dung vượt quá kích thước */
+    white-space: nowrap; /* Ngăn các phần tử con xuống dòng */
+  }
+  /* CSS cho từng bài báo */
+  .related-article {
+    width: calc(20% - 10px);
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    display: inline-block; /* Hiển thị các phần tử liên tiếp nhau trên cùng một hàng */
+    vertical-align: top; /* Đảm bảo các phần tử hiển thị theo chiều dọc */
+    margin-right: 10px; /* Khoảng cách giữa các phần tử */
+    white-space: normal; /* Khôi phục phong cách xuống dòng cho nội dung */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Đổ bóng */
+  }
+  /* CSS cho hình ảnh bài báo */
+  .related-article img {
+    max-width: 100%;
+    height: auto;
+  }

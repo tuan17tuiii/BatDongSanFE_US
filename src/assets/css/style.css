@@ -33,42 +33,40 @@
 }
 
 .floating-panel {
-    display: none; /* Ẩn panel ban đầu */
+   display: none;
     position:absolute; /* Panel nổi cố định trên màn hình */
     border: 2px solid #000; /* Viền */
     background-color: rgba(255, 255, 255, 0.9); /* Nền trong suốt */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Đổ bóng */
     z-index: 1000; /* Đảm bảo panel nằm trên các phần tử khác */
     width: 306px;
-    top:118px;
-    margin: 0px 0;
-    left: 58px;
+    /* top:118px; */
+    /* left: 58px; */
 
 }
 .floating-panel1 {
-    display: none; /* Ẩn panel ban đầu */
+    display: none;
     position:absolute; /* Panel nổi cố định trên màn hình */
     border: 2px solid #000; /* Viền */
     background-color: rgba(255, 255, 255, 0.9); /* Nền trong suốt */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Đổ bóng */
     z-index: 1000; /* Đảm bảo panel nằm trên các phần tử khác */
     width: 306px;
-    top:118px;
-    left: 373px;
-    margin: 0px 0;
+    /* top:118px;
+    left: 373px; */
 
 }
 .floating-panel2 {
-    display: none; /* Ẩn panel ban đầu */
+    display: none;
     position:absolute; /* Panel nổi cố định trên màn hình */
     border: 2px solid #000; /* Viền */
     background-color: rgba(255, 255, 255, 0.9); /* Nền trong suốt */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Đổ bóng */
     z-index: 1000; /* Đảm bảo panel nằm trên các phần tử khác */
     width: 306px;
-    left: 687px;
-    top:118px;
-    margin: 0px 0;
+    /* left: 687px;
+    top:118px; */
+
 
 }
 .abc{
@@ -104,7 +102,11 @@
     content: "\f002"; /* Unicode for the search icon, adjust as needed */
     font-family: "FontAwesome"; /* Assuming you're using FontAwesome */
 }
-
+.md4{
+    display: flex;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+}
 .seach_task4{
     border-radius: 10px;
   width: 304px;
@@ -123,7 +125,7 @@
     justify-content: center;
     align-items: center;
     box-sizing: border-box; /* Bao gồm cả viền trong kích thước */
-    width: 90%;
+    width: 80%;
     height: 150px;
 }
 
