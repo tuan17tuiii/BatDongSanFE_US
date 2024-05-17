@@ -1,0 +1,242 @@
+
+/*Pannnel*/
+.logo-img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.panel {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    /* Đặt lề phải của panel */
+    background-color: #f9f9f9;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.panel a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    /* Căn lề phải cho các phần tử trong panel */
+    text-align: right;
+    /* hoặc margin-left: auto; */
+}
+
+.panel a:hover {
+    background-color: #f1f1f1;
+}
+
+/*Pannnel*/
+.search-container {
+    position: relative;
+}
+
+.search-container input[type="text"] {
+    padding-right: 30px;
+}
+
+.search-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background-image: url('search.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container-fluid {
+    width: 98%;
+    margin: 0 auto;
+    padding: 15px;
+}
+
+.navbar {
+    height: 20vh;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.nav-item {
+    padding: 0 10px;
+}
+
+.nav-link {
+    color: #000000 !important;
+}
+
+.profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+}
+
+.search-icon {
+    color: #000000;
+}
+
+/*---------------------*/
+.img {
+    width: 100%;
+    height: 245px;
+
+  
+    background-color: rgba(0, 0, 0, 0.092); /* Màu đen xám */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cimg {
+    max-width: 100%;
+    height: 245px;
+    
+}
+
+
+.content-frame {
+    width: 100%;
+    max-width: 800px;
+    margin: 10px 0px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.content {
+    padding: 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+.content .profile-img {
+    max-width: 100%;
+    height: auto;
+   margin-bottom: 10px;
+    border: 1px solid #ccc;
+  
+}
+
+.name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+
+
+.show-more {
+    cursor: pointer;
+    color: rgba(99, 99, 103, 0.603);
+    text-decoration: none;
+
+}
+
+.wrapcontent {
+    overflow-y: hidden;
+    /* Ngăn chặn main content cuộn */
+}
+
+.scrollable-content {
+    max-height: 150px;
+    overflow-y: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.main-content {
+    max-height: calc(100vh - 20vh);
+    /* Đặt chiều cao tối đa cho main content, trừ đi chiều cao của navbar */
+    overflow-y: auto;
+    /* Tạo thanh cuộn dọc chỉ cho main content */
+}
+/* profile */
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.profile {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+}
+.profile img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+.profile h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+}
+.profile p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #666;
+    text-align: center;
+}
+.icon {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.icon a {
+    color: #666;
+    margin: 0 10px;
+    font-size: 20px;
+}
+/* menu sibar */
+/* CSS for menu items */
+.menu ul {
+    list-style-type: none;
+    padding: 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.menu ul li {
+    padding: 10px;
+   
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    align-items: center;
+}
+
+.menu ul li a:hover {
+    background-color: #f0f0f0; /* Màu nền khi di chuột qua */
+}
+
+.menu ul li a i {
+    margin-right: 5px; /* Khoảng cách giữa icon và văn bản */
+}
+
