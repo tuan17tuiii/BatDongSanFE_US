@@ -10,6 +10,8 @@ import { Property_agentComponent } from './property_agent.component';
 import { InforComponent } from './infor.component';
 import { BlogbuyComponent } from './blogbuy.component';
 import { BlognewComponent } from './blognew.component';
+import { InfordetailsComponent } from './infordetails.component';
+import { InforhomeComponent } from './inforhome.component';
 
 export const routes: Routes = [
    {
@@ -46,7 +48,18 @@ export const routes: Routes = [
    },
    {
       path: "information",
-      component: InforComponent
+      component: InforComponent,
+      children:[
+         {
+            path:"details",
+            component:InfordetailsComponent
+         },
+         {
+            path:"home",
+            component:InforhomeComponent
+         }
+      ]
+      
    },
    {
       path: "blog",

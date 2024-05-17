@@ -159,35 +159,48 @@
     
     
     $(document).ready(function () {
-        $('.toggleButton').click(function () {
-            $('#panel').fadeToggle();
-           
-                $('#panel1').fadeOut();
-                $('#panel2').fadeOut();
-              
-         
+        $('.toggleButton').click(function (event) {
+            var mouseX = event.pageX;
+            var mouseY = event.pageY;
+    
+            $('#panel').css({
+                top: mouseY-240,
+                left: mouseX-300
+            }).fadeToggle();
+    
+            $('#panel1').fadeOut();
+            $('#panel2').fadeOut();
         });
     });
 
     $(document).ready(function () {
-        $('.toggleButton1').click(function () {
-            $('#panel1').fadeToggle();
-           
-                $('#panel').fadeOut();
-                $('#panel2').fadeOut();
-         
+        $('.toggleButton1').click(function (event) {
+            var mouseX = event.pageX;
+            var mouseY = event.pageY;
+    
+            $('#panel1').css({
+                top: mouseY-240,
+                left: mouseX-300
+            }).fadeToggle();
+    
+            $('#panel').fadeOut();
+            $('#panel2').fadeOut();
         });
     });
     $(document).ready(function () {
-        $('.toggleButton2').click(function () {
-            $('#panel2').fadeToggle();
-        
-                $('#panel1').fadeOut();
-                $('#panel').fadeOut();
-          
+        $('.toggleButton2').click(function (event) {
+            var mouseX = event.pageX;
+            var mouseY = event.pageY;
+    
+            $('#panel2').css({
+                top: mouseY-240,
+                left: mouseX-300
+            }).fadeToggle();
+    
+            $('#panel1').fadeOut();
+            $('#panel').fadeOut();
         });
     });
-
     // Initiate the wowjs
     new WOW().init();
 

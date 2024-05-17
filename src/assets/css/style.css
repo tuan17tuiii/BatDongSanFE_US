@@ -32,30 +32,8 @@
     background-color: #e0f7fa;
 }
 
-.floating-panel {
-   display: none;
-    position:absolute; /* Panel nổi cố định trên màn hình */
-    border: 2px solid #000; /* Viền */
-    background-color: rgba(255, 255, 255, 0.9); /* Nền trong suốt */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Đổ bóng */
-    z-index: 1000; /* Đảm bảo panel nằm trên các phần tử khác */
-    width: 306px;
-    /* top:118px; */
-    /* left: 58px; */
-
-}
-.floating-panel1 {
-    display: none;
-    position:absolute; /* Panel nổi cố định trên màn hình */
-    border: 2px solid #000; /* Viền */
-    background-color: rgba(255, 255, 255, 0.9); /* Nền trong suốt */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Đổ bóng */
-    z-index: 1000; /* Đảm bảo panel nằm trên các phần tử khác */
-    width: 306px;
-    /* top:118px;
-    left: 373px; */
-
-}
+.floating-panel,
+.floating-panel1 ,
 .floating-panel2 {
     display: none;
     position:absolute; /* Panel nổi cố định trên màn hình */
@@ -72,45 +50,60 @@
 .abc{
     margin-top: 25px;
 }
-.seach_task input{
-    border-radius: 10px;
-    width: 100%;
-    display: block;
-    margin:10px 0;
-    left: 100px;
-    height: 40px;
+.seach_task {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    margin-top: 5px;
 }
+
 .p-inputgroup {
-    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+}
+
+.p-inputtext {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    border-radius:15px 0 0 15px;
 }
 
 .p-inputgroup-addon {
-    position: absolute;
-    right: 5px;
-    top: 50%;
-    transform: translateY(-50%);
+    background-color: #ff9900;
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+    border-radius:0 15px 15px 0;
+    height: 50px;
 }
 
 .p-inputgroup-addon i {
-    display: block;
-    width: 20px; /* Đảm bảo kích thước icon đúng */
-    height: 20px;
-    font-size: 16px; /* Kích thước của icon */
+    color: white;
+    font-size: 20px;
 }
 
-.p-inputgroup-addon i::before {
-    content: "\f002"; /* Unicode for the search icon, adjust as needed */
-    font-family: "FontAwesome"; /* Assuming you're using FontAwesome */
+.p-inputgroup-addon:hover {
+    background-color: #e68a00;
 }
 .md4{
     display: flex;
     justify-content: center; /* Căn giữa theo chiều ngang */
-    align-items: center; /* Căn giữa theo chiều dọc */
 }
 .seach_task4{
     border-radius: 10px;
-  width: 304px;
-  margin: 5px;
+    width: 304px;
+    margin: 5px;
+    display: flex;
+    justify-content: center; /* Căn giữa theo chiều ngang */
 }
 .index {
     border-radius: 10px;
@@ -118,15 +111,17 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 100; /* Đảm bảo nằm trên phần tử .banner */
+    z-index: 100; /* Đảm bảo nằm trên phần tử khác */
     border: 1px solid #000000; /* Thiết lập viền */
     background-color: hsla(0, 0%, 34%, 0.34); /* Nền trong suốt */
     display: flex;
     justify-content: center;
     align-items: center;
     box-sizing: border-box; /* Bao gồm cả viền trong kích thước */
-    width: 80%;
-    height: 150px;
+    width: 50%; /* Chiều rộng theo phần trăm */
+    max-width: 1100px; /* Chiều rộng tối đa */
+    min-width: 300px; /* Chiều rộng tối thiểu */
+    height: 150px; /* Chiều cao cố định */
 }
 
 .index1 {
@@ -284,7 +279,6 @@
 /*** Navbar ***/
 .nav-bar {
     position: relative;
-    margin-top: 45px;
     padding: 0 3rem;
     transition: .5s;
     z-index: 9999;
@@ -292,7 +286,6 @@
 
 .nav-bar.sticky-top {
     position: sticky;
-    padding: 0;
     z-index: 9999;
 }
 
@@ -304,14 +297,13 @@
     border: none;
     content: "\f107";
     font-family: "Font Awesome 5 Free";
-    font-weight: 900;
+    font-weight: 1000;
     vertical-align: middle;
-    margin-left: 5px;
     transition: .5s;
 }
 
 .navbar .dropdown-toggle[aria-expanded=true]::after {
-    transform: rotate(-180deg);
+    transform: rotate(-170deg);
 }
 
 .navbar-light .navbar-nav .nav-link {
@@ -328,7 +320,7 @@
     color: var(--primary);
 }
 
-@media (max-width: 991.98px) {
+@media (max-width: 990.98px) {
     .nav-bar {
         margin: 0;
         padding: 0;
@@ -669,14 +661,18 @@
 /* banvg tin */
 /* Thiết lập chiều cao cho menu dọc */
 .sidebar {
+    margin: 0px 0px 0px 13px;
+    top:100px;
+    border-right: 1px solid #fcfbfb; /* Thêm border bên phải */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Thêm box-shadow */
     overflow-y: auto;
     position: fixed;
-    top: 70px;
-    left: 0;
+    left:auto;
     bottom: 0;
     padding: 48px 0 0; /* padding ở đây là khoảng cách giữa phần đầu và phần nội dung của menu */
     box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
     z-index: 10;
+    width: 250px;
 }
 
 /* Thiết lập chiều rộng cho menu dọc */

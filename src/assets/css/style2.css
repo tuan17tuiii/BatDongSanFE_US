@@ -305,3 +305,73 @@ body {
     max-width: 100%;
     height: auto;
   }
+ 
+/* Thêm border và box-shadow cho sidebar *
+  /* Hiệu ứng hover cho mục trong sidebar */
+ .a .nav-link:hover {
+    background-color: #9b9b9b; /* Thay đổi màu nền khi hover */
+  }
+  
+  /* Margin và padding cho mỗi mục trong sidebar */
+  .nav-item {
+    margin-bottom: 10px; /* Khoảng cách giữa các mục */
+  }
+  
+  /* Thay đổi font chữ và kích thước */
+  .a .nav-link {
+    font-family: Arial, sans-serif; /* Chọn font chữ */
+    font-size: 16px; /* Chọn kích thước font chữ */
+    color: #333; /* Màu chữ */
+  }
+  label {
+    font-weight: bold;
+}
+
+/* CSS cho input và textarea */
+.ip input[type="text"], textarea {
+    width: calc(100% - 20px); /* Đặt chiều rộng */
+    padding: 10px;
+    margin-bottom: 20px; /* Khoảng cách giữa các trường */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* CSS cho hình ảnh */
+.profile-image1 {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px; /* Khoảng cách dưới của hình ảnh */
+}
+
+/* CSS cho nút cập nhật */
+.btn-update {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    width: 100%; /* Chiếm toàn bộ chiều rộng */
+}
+
+.btn-update:hover {
+    background-color: #45a049;
+}
+.bannerh2 {
+    background: linear-gradient(45deg, #ff9900, #ff5f6d); /* Gradient màu nền */
+    color: white; /* Màu chữ */
+    text-align: center; /* Canh giữa văn bản */
+    padding: 15px; /* Khoảng cách giữa lề và nội dung */
+    font-size: 20px; /* Kích thước chữ */
+    border-radius: 10px; /* Bo tròn góc */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Đổ bóng */
+    border: 2px solid #fff; /* Đường viền trắng */
+}
+
+/* Hiệu ứng hover */
+.bannerh2:hover {
+    transform: scale(1.05); /* Phóng to khi rê chuột vào */
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3); /* Tăng độ sắc nét của đổ bóng */
+}
