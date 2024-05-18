@@ -662,8 +662,8 @@
 /* Thiết lập chiều cao cho menu dọc */
 .sidebar {
     margin: 0px 0px 0px 13px;
-    top:100px;
-    border-right: 1px solid #fcfbfb; /* Thêm border bên phải */
+    top:200px;
+    border-right: 1px solid #313131; /* Thêm border bên phải */
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Thêm box-shadow */
     overflow-y: auto;
     position: fixed;
@@ -673,17 +673,29 @@
     box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
     z-index: 10;
     width: 250px;
+    background-color: #ffffff;
 }
 
 /* Thiết lập chiều rộng cho menu dọc */
 .sidebar-sticky {
     z-index: 10;
     top: 0;
-    height: calc(100vh - 48px); /* chiều cao của menu dọc */
+    height: calc(100vh - 0px); /* chiều cao của menu dọc */
     padding-top: 0.5rem;
     width: 200px;
 
 }
+.sidebar-sticky ul li{
+
+   
+   font-weight: bold;
+   border-bottom: 1px solid rgb(187, 187, 187);
+
+}
+.sidebar-sticky ul li a{
+    font-size: 60px;
+}
+    
 
 /* Thiết lập chiều rộng và vị trí cho nội dung chính */
 .main {

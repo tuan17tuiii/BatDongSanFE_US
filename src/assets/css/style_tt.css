@@ -1,0 +1,74 @@
+.container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.form-group {
+
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    color: #555;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="file"] {
+    border: 2px dashed #aaa; /* Đường viền đứt đoạn */
+border-radius: 8px; /* Bo tròn góc */
+background-size: cover; /* Hiển thị hình ảnh mà không biến dạng */
+background-position: center; /* Căn giữa hình ảnh */
+background-repeat: no-repeat; /* Không lặp lại hình ảnh */
+cursor: pointer; /* Con trỏ chuột thành dấu nhấn khi di chuột qua */
+}
+input[typy="file"]:hover{
+    border-color: #007bff;
+}
+input[typy="file"].drag-over{
+    border-color: #000000;
+}
+button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+.img_fg{
+    display: flex;
+    justify-content: center; /* Căn giữa các phần tử con theo chiều ngang */
+align-items: center;
+}
+.preview-image {
+margin-top: 10px;
+width: 140px;
+height: 110px;
+
+}

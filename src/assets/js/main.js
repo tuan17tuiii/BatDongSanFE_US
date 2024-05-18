@@ -175,26 +175,33 @@
 
     $(document).ready(function () {
         $('.toggleButton1').click(function (event) {
+            // Lấy vị trí của chuột
             var mouseX = event.pageX;
             var mouseY = event.pageY;
     
+            
+            // Thiết lập vị trí và hiển thị #panel1
             $('#panel1').css({
-                top: mouseY-240,
-                left: mouseX-300
+                top:  mouseY-360,
+                left: mouseX-400
             }).fadeToggle();
     
+            // Ẩn các panel khác
             $('#panel').fadeOut();
             $('#panel2').fadeOut();
         });
     });
+    
+    
     $(document).ready(function () {
         $('.toggleButton2').click(function (event) {
             var mouseX = event.pageX;
+            console.log("day la x"+mouseX);
             var mouseY = event.pageY;
     
             $('#panel2').css({
-                top: mouseY-240,
-                left: mouseX-300
+                top: mouseY,
+                left: mouseX
             }).fadeToggle();
     
             $('#panel1').fadeOut();
