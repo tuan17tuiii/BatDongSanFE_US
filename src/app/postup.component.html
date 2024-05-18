@@ -4,6 +4,7 @@
             <form [formGroup]="formGroup" (ngSubmit)="save()">
                 <div class="col-md-12">
                     <div class="row g-2">
+                        <h3>Thông Tin Cơ Bản</h3>
                         <div class="col-md-4">
                             <select class="form-control border-0 py-3" id='provinces' (change)="find_districts($event)">
                                 <option value="" disabled selected hidden>Select City</option>
@@ -32,9 +33,6 @@
                             <input type="text" class="form-control border-0 py-3" placeholder="Title"
                                 formControlName="title" />
                             <p-toast />
-
-
-
                         </div>
                         <div class="col-md-4">
                             <input type="number" class="form-control border-0 py-3" placeholder="Bedrooms" min="0"
@@ -47,7 +45,6 @@
                                     }
                                 }
                         </div>
-
                         <div class="col-md-4">
                             <input type="number" class="form-control border-0 py-3" placeholder="Bathrooms" min="0"
                                 formControlName="bathrooms" />
@@ -91,11 +88,10 @@
                             }
                         </div>
                         <div class="col-md-4">
-                            <textarea class="form-control border-0 py-3" name="" id="" placeholder="Mô tả"
+                            <textarea class="form-control border-0 py-3" name="" id="" placeholder="Describe"
                                 formControlName="describe"></textarea>
-
                         </div>
-
+                        <h3>Thông Tin Bài Viết</h3>
                     </div>
                     <div class="row g-2">
                         <div class="col-md-2 offset-md-10">
