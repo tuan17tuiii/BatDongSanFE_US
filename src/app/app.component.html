@@ -20,26 +20,25 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto">
-                    <a href="index.html" class="nav-item nav-link active">Home</a>
-                    <a href="about.html" class="nav-item nav-link">About</a>
+                    <a [routerLink]="['/home']" class="nav-item nav-link active">Home</a>
+                    <a [routerLink]="['/about']" class="nav-item nav-link">About</a>
+
+                    <a [routerLink]="['/blogbuy']" class="nav-item nav-link">BlogBuy</a>
+                    
+                    <a [routerLink]="['/blogbuy']" class="nav-item nav-link">BlogBuy2</a>
+                    <a [routerLink]="['/blognew']" class="nav-item nav-link">Blog</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Property</a>
                         <div class="dropdown-menu rounded-0 m-0">
-                            <a href="property-list.html" class="dropdown-item">Property List</a>
-                            <a href="property-type.html" class="dropdown-item">Property Type</a>
-                            <a href="property-agent.html" class="dropdown-item">Property Agent</a>
+                            <a [routerLink]="['/property_list']" class="dropdown-item">Property List</a>
+                            <a [routerLink]="['/property_type']"  class="dropdown-item">Property Type</a>
+                            <a [routerLink]="['/property_agent']"  class="dropdown-item">Property Agent</a>
                         </div>
                     </div>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                        <div class="dropdown-menu rounded-0 m-0">
-                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                            <a href="404.html" class="dropdown-item">404 Error</a>
-                        </div>
-                    </div>
-                    <a href="contact.html" class="nav-item nav-link">Contact</a>
                 </div>
-                <a [routerLink]="['/post-up']" class="btn btn-primary px-3 d-none d-lg-flex">Đăng Tin</a>
+              &nbsp;
+              <div class="name"> <a [routerLink]="['/information']"> <img src="../assets/img/header.jpg
+                " alt="Profile Image" class="profile-img" >Tên user</a></div>
             </div>
         </nav>
     </div>
@@ -47,17 +46,7 @@
 
 
     <!-- Header Start -->
-    <div class="container-fluid header bg-white p-0 fadeInn">
-        <div class="banner-container">
-            <div class="banner-slide banner1">
-                <img src="assets/img/carousel-1.jpg" alt="Image 1">
-            </div>
-            <div class="banner-slide banner2">
-                <img src="assets/img/carousel-2.jpg" alt="Image 2">
-            </div>
-        </div>
-    </div>
-
+   
 
     <!-- Header End -->
 
@@ -141,6 +130,7 @@
                             <a href="">Cookies</a>
                             <a href="">Help</a>
                             <a href="">FQAs</a>
+                            <a [routerLink]="['/contact']">Contact</a>
                         </div>
                     </div>
                 </div>

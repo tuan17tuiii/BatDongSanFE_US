@@ -13,74 +13,121 @@
     bottom: 45px;
     z-index: 99;
 }
-.floating-panel {
-    display: none; /* Ẩn panel ban đầu */
-    position:absolute; /* Panel nổi cố định trên màn hình */
-    border: 2px solid #000; /* Viền */
-    background-color: rgba(255, 255, 255, 0.9); /* Nền trong suốt */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Đổ bóng */
-    z-index: 1000; /* Đảm bảo panel nằm trên các phần tử khác */
-    width: 310px;
-    top:128px;
-    margin: 0px 0;
-
+#number-list,
+#number-list-2
+{
+    list-style-type: none;
+    padding: 0;
 }
-.floating-panel1 {
-    display: none; /* Ẩn panel ban đầu */
-    position:absolute; /* Panel nổi cố định trên màn hình */
-    border: 2px solid #000; /* Viền */
-    background-color: rgba(255, 255, 255, 0.9); /* Nền trong suốt */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Đổ bóng */
-    z-index: 1000; /* Đảm bảo panel nằm trên các phần tử khác */
-    width: 310px;
-    top:128px;
-    left: 427px;
-    margin: 0px 0;
-
+#number-list-2 li,
+#number-list li {
+    padding: 10px;
+    border-top: 1px solid #d2d2d2;
+    margin: 5px 0;
+    cursor: pointer;
 }
+#number-list-2 li.selected,
+#number-list li.selected {
+    font-weight: bold;
+    background-color: #e0f7fa;
+}
+
+.floating-panel,
+.floating-panel1 ,
 .floating-panel2 {
-    display: none; /* Ẩn panel ban đầu */
+    display: none;
     position:absolute; /* Panel nổi cố định trên màn hình */
     border: 2px solid #000; /* Viền */
     background-color: rgba(255, 255, 255, 0.9); /* Nền trong suốt */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Đổ bóng */
     z-index: 1000; /* Đảm bảo panel nằm trên các phần tử khác */
-    width: 310px;
-    left: 741px;
-    top:128px;
-    margin: 0px 0;
+    width: 306px;
+    /* left: 687px;
+    top:118px; */
+
 
 }
 .abc{
     margin-top: 25px;
 }
-.seach_task input{
-    width: 100%;
-    display: block;
-    margin:10px 0;
-    left: 100px;
-    height: 40px;
-}
-.seach_task4{
-  width: 304px;
-  margin: 5px;
+.seach_task {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    margin-top: 5px;
 }
 
+.p-inputgroup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+}
+
+.p-inputtext {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    border-radius:15px 0 0 15px;
+}
+
+.p-inputgroup-addon {
+    background-color: #ff9900;
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+    border-radius:0 15px 15px 0;
+    height: 50px;
+}
+
+.p-inputgroup-addon i {
+    color: white;
+    font-size: 20px;
+}
+
+.p-inputgroup-addon:hover {
+    background-color: #e68a00;
+}
+.md4{
+    display: flex;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+}
+.seach_task4{
+    border-radius: 10px;
+    width: 304px;
+    margin: 5px;
+    display: flex;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+}
 .index {
+    border-radius: 10px;
     position: absolute;
-    top: 250px;
-    z-index: 100; /* Đảm bảo nằm trên phần tử .banner */
-    border: 1px solid #00fbff; /* Thiết lập viền */
-    background-color:hsla(166, 100%, 36%, 0.471); /* Nền trong suốt */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100; /* Đảm bảo nằm trên phần tử khác */
+    border: 1px solid #000000; /* Thiết lập viền */
+    background-color: hsla(0, 0%, 34%, 0.34); /* Nền trong suốt */
     display: flex;
     justify-content: center;
     align-items: center;
     box-sizing: border-box; /* Bao gồm cả viền trong kích thước */
+    width: 50%; /* Chiều rộng theo phần trăm */
+    max-width: 1100px; /* Chiều rộng tối đa */
+    min-width: 300px; /* Chiều rộng tối thiểu */
+    height: 150px; /* Chiều cao cố định */
 }
+
 .index1 {
     z-index: 100; /* Đảm bảo nằm trên phần tử .banner */
-    border: 1px solid #00ffff; /* Thiết lập viền */
-    background-color: hsla(166, 100%, 36%, 0.541); /* Nền trong suốt */
+    border: 1px solid #000000; /* Thiết lập viền */
+    background-color: hsla(0, 0%, 40%, 0.371); /* Nền trong suốt */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -91,11 +138,11 @@
     position: relative;
     width: 100%;
     overflow: hidden;
-    height: 600px; /* Điều chỉnh chiều cao của banner */
+    height: 500px; /* Điều chỉnh chiều cao của banner */
 }
 .banner-container img {
     width: 100%;
-    height: 600px;
+    height: 500px;
     object-fit: cover;
 }
 .banner-slide {
@@ -146,14 +193,14 @@
             font-weight: 500;
         }
     }
-    .values,
+    .values,.valuess,
     small {
         div {
             display: inline-block;
             vertical-align: top;
         }
     }
-    .values {
+    .valuess,.values {
         margin: 0;
         font-weight: 500;
         color: var(--primary);
@@ -172,7 +219,7 @@
         margin-top: 8px;
         font-size: 14px;
     }
-    .slider {
+    .slider,.slider1 {
         margin-top: 40px;
     }
 }
@@ -232,7 +279,6 @@
 /*** Navbar ***/
 .nav-bar {
     position: relative;
-    margin-top: 45px;
     padding: 0 3rem;
     transition: .5s;
     z-index: 9999;
@@ -240,7 +286,6 @@
 
 .nav-bar.sticky-top {
     position: sticky;
-    padding: 0;
     z-index: 9999;
 }
 
@@ -252,14 +297,13 @@
     border: none;
     content: "\f107";
     font-family: "Font Awesome 5 Free";
-    font-weight: 900;
+    font-weight: 1000;
     vertical-align: middle;
-    margin-left: 5px;
     transition: .5s;
 }
 
 .navbar .dropdown-toggle[aria-expanded=true]::after {
-    transform: rotate(-180deg);
+    transform: rotate(-170deg);
 }
 
 .navbar-light .navbar-nav .nav-link {
@@ -276,7 +320,7 @@
     color: var(--primary);
 }
 
-@media (max-width: 991.98px) {
+@media (max-width: 990.98px) {
     .nav-bar {
         margin: 0;
         padding: 0;
@@ -533,7 +577,12 @@
 
 
 /*** Footer ***/
+.footer{
+    position: relative;
+    z-index: 1000;
+}
 .footer .btn.btn-social {
+    z-index: 1000;
     margin-right: 5px;
     width: 35px;
     height: 35px;
@@ -547,11 +596,13 @@
 }
 
 .footer .btn.btn-social:hover {
+    z-index: 1000;
     color: var(--primary);
     border-color: var(--light);
 }
 
 .footer .btn.btn-link {
+    z-index: 1000;
     display: block;
     margin-bottom: 5px;
     padding: 0;
@@ -563,6 +614,7 @@
 }
 
 .footer .btn.btn-link::before {
+    z-index: 1000;
     position: relative;
     content: "\f105";
     font-family: "Font Awesome 5 Free";
@@ -571,32 +623,95 @@
 }
 
 .footer .btn.btn-link:hover {
+    z-index: 1000;
     letter-spacing: 1px;
     box-shadow: none;
 }
 
 .footer .form-control {
+    z-index: 1000;
     border-color: rgba(255,255,255,0.5);
 }
 
 .footer .copyright {
+    z-index: 1000;
     padding: 25px 0;
     font-size: 15px;
     border-top: 1px solid rgba(256, 256, 256, .1);
 }
 
 .footer .copyright a {
+    z-index: 1000;
     color: var(--light);
 }
 
 .footer .footer-menu a {
+    z-index: 1000;
     margin-right: 15px;
     padding-right: 15px;
     border-right: 1px solid rgba(255, 255, 255, .1);
 }
 
 .footer .footer-menu a:last-child {
+    z-index: 1000;
     margin-right: 0;
     padding-right: 0;
     border-right: none;
+}
+/* banvg tin */
+/* Thiết lập chiều cao cho menu dọc */
+.sidebar {
+    margin: 0px 0px 0px 13px;
+    top:100px;
+    border-right: 1px solid #fcfbfb; /* Thêm border bên phải */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Thêm box-shadow */
+    overflow-y: auto;
+    position: fixed;
+    left:auto;
+    bottom: 0;
+    padding: 48px 0 0; /* padding ở đây là khoảng cách giữa phần đầu và phần nội dung của menu */
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    width: 250px;
+}
+
+/* Thiết lập chiều rộng cho menu dọc */
+.sidebar-sticky {
+    z-index: 10;
+    top: 0;
+    height: calc(100vh - 48px); /* chiều cao của menu dọc */
+    padding-top: 0.5rem;
+    width: 200px;
+
+}
+
+/* Thiết lập chiều rộng và vị trí cho nội dung chính */
+.main {
+    overflow-y: auto;
+    margin-left: 250px; /* Chiều rộng của menu dọc */
+    padding: 20px;
+   
+}
+
+/* Thiết lập chiều cao cho tiêu đề */
+.page-header {
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+/* Thiết lập độ rộng cho các khối nội dung */
+.post-container {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* Thiết lập độ rộng của hình ảnh trong khối nội dung */
+.post-content img {
+    width:100% ;
+}
+
+/* Tùy chỉnh nội dung nằm bên phải của trang */
+.content-right {
+    padding: 20px;
 }
