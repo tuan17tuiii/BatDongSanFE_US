@@ -12,6 +12,9 @@ import { BlogbuyComponent } from './blogbuy.component';
 import { BlognewComponent } from './blognew.component';
 import { InfordetailsComponent } from './infordetails.component';
 import { InforhomeComponent } from './inforhome.component';
+import { InforupdateComponent } from './inforupdate.component';
+import { InforviewComponent } from './inforview.component';
+import { InforformrgsComponent } from './inforformrgs.component';
 
 export const routes: Routes = [
    {
@@ -49,23 +52,41 @@ export const routes: Routes = [
    {
       path: "information",
       component: InforComponent,
-      children:[
+      children: [
          {
-            path:"details",
-            component:InfordetailsComponent
+            path: "",
+            component: InfordetailsComponent
          },
          {
-            path:"home",
-            component:InforhomeComponent
+            path: "details",
+            component: InfordetailsComponent
+         },
+         {
+            path: "update",
+            component: InforupdateComponent
+         },
+         {
+            path: "home",
+            component: InforhomeComponent
+         },
+         {
+            path: "formrgs",
+            component: InforformrgsComponent
          }
+         
+
       ]
-      
+
+   }, 
+   {
+      path: "inforview",
+      component: InforviewComponent
    },
    {
       path: "blog",
       component: InforComponent//
    }
-   ,{
+   , {
       path: "blogbuy",
       component: BlogbuyComponent
    },

@@ -375,3 +375,168 @@ body {
     transform: scale(1.05); /* Phóng to khi rê chuột vào */
     box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3); /* Tăng độ sắc nét của đổ bóng */
 }
+/* menu khu vuc */
+.menu-filter {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    height: auto;
+}
+
+.search-bar {
+    display: flex;
+    flex: 1;
+    min-width: 200px;
+}
+
+.search-bar input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px 0 0 4px;
+}
+
+.search-bar button {
+    padding: 8px 12px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+
+.search-bar button:hover {
+    background-color: #0056b3;
+}
+
+.select-filters {
+    display: flex;
+    gap: 10px;
+    flex: 1;
+    min-width: 200px;
+}
+
+.select-filters select {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.checkbox-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    flex: 1;
+    min-width: 200px;
+}
+
+.checkbox-filters label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.checkbox-filters input[type="checkbox"] {
+    margin: 0;
+}
+
+
+.container2 {
+    width: 80%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.user-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.user-info h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.user-info p {
+    margin: 5px 0;
+}
+
+.featured-posts {
+    margin-top: 20px;
+}
+
+.featured-posts h3 {
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+
+.post {
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.post h4 {
+    margin: 0 0 10px;
+    font-size: 18px;
+}
+
+.post p {
+    margin: 0;
+}
+/* CSS từ trước */
+.container {
+    /* CSS từ trước */
+    padding-bottom: 20px; /* Thêm padding dưới để tránh việc bị che mất phần nội dung */
+}
+
+.featured-posts {
+    /* CSS từ trước */
+    overflow-x: auto; /* Thêm thanh cuộn ngang khi nội dung vượt quá chiều rộng */
+    white-space: nowrap; /* Đảm bảo các bài viết nằm trên cùng một dòng */
+}
+
+.post {
+    /* CSS từ trước */
+    display: inline-block; /* Hiển thị các bài viết theo hàng ngang */
+    margin-right: 20px; /* Tạo khoảng cách giữa các bài viết */
+}
+.img-dt {
+    width:100%; /* Đảm bảo hình ảnh không vượt quá kích thước của khung chứa */
+    height:200px ;/* Giữ tỷ lệ khung hình khi thay đổi kích thước */
+    border-radius: 8px; /* Bo tròn góc cho hình ảnh */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Đổ bóng cho hình ảnh */
+}
+.back-button {
+    display: inline-block;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #007bff;
+    transition: transform 0.3s ease;
+}
+
+.back-button:hover {
+    transform: translateX(-5px);
+    cursor: pointer;
+}
