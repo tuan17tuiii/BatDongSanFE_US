@@ -1,0 +1,102 @@
+<div class="wrap">
+    <div class="container container-custom">
+        <h2>Thong tin co ban</h2>
+        <div class="tabs">
+            <div class="tab active">Bán</div>
+            <div class="tab">Cho thuê</div>
+        </div>
+        <div class="form-group">
+            <label for="loai-bds">Loại bất động sản *</label>
+            <input type="text" class="form-control" id="loai-bds" placeholder="VD: Nhà riêng">
+        </div>
+        <div class="form-group">
+            <label for="dia-chi">Chọn nhanh địa chỉ</label>
+            <div class="search-group">
+                <input type="text" class="form-control" id="dia-chi" placeholder="Ví dụ: Vinhomes Golden Bason">
+                <button class="btn btn-custom"><i class="fas fa-search"></i> Tìm kiếm</button>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="tinh-thanh-pho">Tỉnh, thành phố *</label>
+                <select id="tinh-thanh-pho" class="form-control">
+                    <option value="">Chọn</option>
+                    <!-- Thêm các tùy chọn khác -->
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="quan-huyen">Quận, huyện *</label>
+                <select id="quan-huyen" class="form-control">
+                    <option value="">Chọn</option>
+                    <!-- Thêm các tùy chọn khác -->
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="phuong-xa">Phường, xã *</label>
+                <select id="phuong-xa" class="form-control">
+                    <option value="">Chọn</option>
+                    <!-- Thêm các tùy chọn khác -->
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="duong-pho">Đường, phố</label>
+                <select id="duong-pho" class="form-control">
+                    <option value="">Chọn</option>
+                    <!-- Thêm các tùy chọn khác -->
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="du-an">Dự án</label>
+            <input type="text" class="form-control" id="du-an">
+        </div>
+    </div>
+    <div class="container container-custom">
+        <h2>Thong tin bai viet</h2>
+        <div class="form-group">
+            <label for="loai-bds">Tieu de</label>
+            <input type="text" class="form-control" id="loai-bds" placeholder="VD: Nhà riêng">
+        </div>
+        <div class="form-group">
+            <label for="Nd">noi dung</label>
+            <textarea name="" id="Nd" class="form-control" cols="30" rows="10" placeholder="tieu de"></textarea>
+        </div>
+
+    </div>
+    <div class="container container-custom">
+        <h2>Thong tin BDS</h2>
+
+        <div class="form-group">
+            <label for="dt">Dien Tich</label>
+            <input type="text" class="form-control" id="dt" placeholder="VD: 1000 m2">
+        </div>
+        <div class="form-group">
+            <label for="tinh-thanh-pho">Muc gia</label>
+            <input type="text" class="form-control" id="dt" placeholder="VD: 1 000 000">
+        </div>
+
+
+        <div class="form-group">
+            <button class="btn btn-preview">Xem trước giao diện</button>
+            <button class="btn btn-custom">Tiếp tục</button>
+        </div>
+    </div>
+    <div class="container container-custom">
+        <h2>Hinh Anh</h2>
+        <div class="form-group">
+            <label for="cccd">Ảnh 9</label>
+            <input type="file" id="cccd" name="cccd" accept="image/*" required
+                onchange="previewImage(this, 'cccdPreview')">
+            <div class="img_fg"><img id="cccdPreview" src="#" alt="Preview Image" class="preview-image"></div>
+        </div>
+        <div class="form-group">
+            <label for="otherDocs">Anh Details</label>
+            <input type="file" id="otherDocs" name="otherDocs[]" accept="image/*" multiple required
+                onchange="previewImage(this, 'otherDocsPreview')">
+            <div id="otherDocsPreview" class="other-docs-preview"></div>
+        </div>
+
+    </div>
+</div>

@@ -2,7 +2,7 @@
     <div class="banner-container">
         <div class="banner-slide banner1">
             <img src="assets/img/carousel-1.jpg" alt="Image 1">
-        </div>
+        </div>   
         <div class="banner-slide banner2">
             <img src="assets/img/carousel-2.jpg" alt="Image 2">
         </div>
@@ -139,7 +139,7 @@
         </div>
         <div class="row g-4">
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                <a class="cat-item d-block bg-light text-center rounded p-3"  [routerLink]="['/blogsellerdetails']">
                     <div class="rounded p-4">
                         <div class="icon mb-3">
                             <img class="img-fluid" src="assets/img/icon-apartment.png" alt="Icon">
@@ -150,7 +150,7 @@
                 </a>
             </div>
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                <a class="cat-item d-block bg-light text-center rounded p-3"  >
                     <div class="rounded p-4">
                         <div class="icon mb-3">
                             <img class="img-fluid" src="assets/img/icon-villa.png" alt="Icon">
@@ -161,7 +161,7 @@
                 </a>
             </div>
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                <a class="cat-item d-block bg-light text-center rounded p-3"  [routerLink]="['/blogsellerdetails']">
                     <div class="rounded p-4">
                         <div class="icon mb-3">
                             <img class="img-fluid" src="assets/img/icon-house.png" alt="Icon">
@@ -172,7 +172,7 @@
                 </a>
             </div>
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                <a class="cat-item d-block bg-light text-center rounded p-3"  [routerLink]="['/blogsellerdetails']">
                     <div class="rounded p-4">
                         <div class="icon mb-3">
                             <img class="img-fluid" src="assets/img/icon-housing.png" alt="Icon">
@@ -183,7 +183,7 @@
                 </a>
             </div>
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                <a class="cat-item d-block bg-light text-center rounded p-3" [routerLink]="['/blogsellerdetails']">
                     <div class="rounded p-4">
                         <div class="icon mb-3">
                             <img class="img-fluid" src="assets/img/icon-building.png" alt="Icon">
@@ -194,7 +194,7 @@
                 </a>
             </div>
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                <a class="cat-item d-block bg-light text-center rounded p-3" [routerLink]="['/blogsellerdetails']">
                     <div class="rounded p-4">
                         <div class="icon mb-3">
                             <img class="img-fluid" src="assets/img/icon-neighborhood.png" alt="Icon">
@@ -205,7 +205,7 @@
                 </a>
             </div>
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                <a class="cat-item d-block bg-light text-center rounded p-3" [routerLink]="['/blogsellerdetails']">
                     <div class="rounded p-4">
                         <div class="icon mb-3">
                             <img class="img-fluid" src="assets/img/icon-condominium.png" alt="Icon">
@@ -216,7 +216,7 @@
                 </a>
             </div>
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                <a class="cat-item d-block bg-light text-center rounded p-3" [routerLink]="['/blogsellerdetails']">
                     <div class="rounded p-4">
                         <div class="icon mb-3">
                             <img class="img-fluid" src="assets/img/icon-luxury.png" alt="Icon">
@@ -288,7 +288,7 @@
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="property-item rounded overflow-hidden">
                             <div class="position-relative overflow-hidden">
-                                <a href=""><img class="img-fluid" src="assets/img/property-1.jpg" alt=""></a>
+                                <a [routerLink]="['/blogsellerdetails']"><img class="img-fluid" src="assets/img/property-1.jpg" alt=""></a>
                                 <div
                                     class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
                                     For Sell</div>
@@ -298,7 +298,7 @@
                             </div>
                             <div class="p-4 pb-0">
                                 <h5 class="text-primary mb-3">$12,345</h5>
-                                <a class="d-block h5 mb-2" href="">Golden Urban House For Sell</a>
+                                <a class="d-block h5 mb-2" [routerLink]="['/blogsellerdetails']">Golden Urban House For Sell</a>
                                 <p><i class="fa fa-map-marker-alt text-primary me-2"></i>123 Street, New York,
                                     USA</p>
                             </div>
@@ -315,7 +315,7 @@
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                         <div class="property-item rounded overflow-hidden">
                             <div class="position-relative overflow-hidden">
-                                <a href=""><img class="img-fluid" src="assets/img/property-2.jpg" alt=""></a>
+                                <a [routerLink]="['/blogsellerdetails']"><img class="img-fluid" src="assets/img/property-2.jpg" alt=""></a>
                                 <div
                                     class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
                                     For Rent</div>
@@ -325,7 +325,7 @@
                             </div>
                             <div class="p-4 pb-0">
                                 <h5 class="text-primary mb-3">$12,345</h5>
-                                <a class="d-block h5 mb-2" href="">Golden Urban House For Sell</a>
+                                <a class="d-block h5 mb-2" [routerLink]="['/blogsellerdetails']">Golden Urban House For Sell</a>
                                 <p><i class="fa fa-map-marker-alt text-primary me-2"></i>123 Street, New York,
                                     USA</p>
                             </div>
@@ -342,7 +342,7 @@
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                         <div class="property-item rounded overflow-hidden">
                             <div class="position-relative overflow-hidden">
-                                <a href=""><img class="img-fluid" src="assets/img/property-3.jpg" alt=""></a>
+                                <a [routerLink]="['/blogsellerdetails']"href=""><img class="img-fluid" src="assets/img/property-3.jpg" alt=""></a>
                                 <div
                                     class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
                                     For Sell</div>

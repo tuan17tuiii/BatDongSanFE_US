@@ -1,0 +1,81 @@
+.thumbnail-gallery {
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.product-details {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.contact-info {
+    border: 1px solid #ddd;
+    padding: 20px;
+}
+
+.contact-info h2 {
+    margin-top: 0;
+}
+.features {
+border: 2px solid #ddd;
+}
+/* Tùy chỉnh border cho hình ảnh */
+.product-image {
+border: 2px solid #ddd;
+padding: 5px;
+margin-bottom: 10px;
+width: 650px;
+height: 340px;
+text-align: center; /* Để căn giữa nội dung theo chiều ngang */
+}
+
+.product-image img {
+
+padding: 5px;
+margin-bottom: 10px;
+width: 630px;
+height: 320px;
+display: block; /* Để tránh các khoảng trống phía dưới của hình ảnh */
+margin: auto; /* Căn giữa hình ảnh theo cả hai chiều */
+}
+
+
+/* Tùy chỉnh khoảng cách giữa các phần */
+.spacing {
+    margin-top: 20px;
+}
+
+.related-article {
+    width: 150px;
+    margin-bottom: 20px;
+    padding: 3px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    display: inline-block;
+    /* Hiển thị các phần tử liên tiếp nhau trên cùng một hàng */
+    vertical-align: top;
+    /* Đảm bảo các phần tử hiển thị theo chiều dọc */
+    margin-right: 5px;
+    /* Khoảng cách giữa các phần tử */
+    white-space: normal;
+    /* Khôi phục phong cách xuống dòng cho nội dung */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Đổ bóng */
+}
+
+/* CSS cho hình ảnh bài báo */
+.related-article img {
+    max-width: 150px;
+    height: 100px;
+}
+.head{
+font-size: 18px;
+font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.cont{
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}

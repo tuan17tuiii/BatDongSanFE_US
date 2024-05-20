@@ -269,7 +269,19 @@ $(document).ready(function() {
         }
     });
 });
+$(document).ready(function () {
+    // Sự kiện click trên hình ảnh phụ
+    $(".change-main-image").click(function () {
+        // Lấy đường dẫn của hình ảnh phụ
+        var clickedImageSrc = $(this).attr("src");
 
+        // Thực hiện hiệu ứng trước khi thay đổi hình ảnh chính
+        $("#main-image").fadeOut(400, function () {
+            // Sau khi hoàn thành hiệu ứng, thay đổi src của hình ảnh chính
+            $(this).attr("src", clickedImageSrc).fadeIn(400);
+        });
+    });
+});
 
     // Testimonials carousel
 })(jQuery);
