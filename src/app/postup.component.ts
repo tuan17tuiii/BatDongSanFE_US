@@ -8,12 +8,13 @@ import { District } from './entities/district.entities';
 import { Ward } from './entities/ward.entities';
 import { TypeRealState } from './entities/typerealstate.entities';
 import { TypeRealStateAPIService } from './services/typerealstate.service';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule,Validators   } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RealStateAPIService } from './services/realstate.service';
 import { RealState } from './entities/realstate.entities';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmationService, MessageService } from "primeng/api";
+import { ImageRealStateAPIService } from './services/image.service';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -29,11 +30,13 @@ import { ConfirmationService, MessageService } from "primeng/api";
 
 })
 export class PostUpComponent implements OnInit {
+  newrealstate: number
+  files: File[]
+  fileNames: string[]
   province: any
   district: any
   ward: any
   type: any
-
   formGroup: FormGroup
   id: string
   msg: string
@@ -49,25 +52,26 @@ export class PostUpComponent implements OnInit {
     private typeRealStateService: TypeRealStateAPIService,
     private messageService: MessageService,
     private confirmService: ConfirmationService,
-    private router : Router
+    private router: Router,
+    private imageService: ImageRealStateAPIService
   ) { }
   ngOnInit(): void {//khi nhan ve thì là nhận về chuỗi hết nên phải khai báo chuỗi k là lỗi
     this.formGroup = this.formBuilder.group({
       title: '',
-      bathrooms: ['',[
+      bathrooms: ['', [
         Validators.required,
         Validators.pattern('^[0-9]+$')
       ]],
-      bedrooms: ['',[
+      bedrooms: ['', [
         Validators.required,
         Validators.pattern('^[0-9]+$')
       ]],
       describe: '',
-      price: ['',[
+      price: ['', [
         Validators.required,
         Validators.pattern('^[0-9]+$')
       ]],
-      acreage: ['',[
+      acreage: ['', [
         Validators.required,
         Validators.pattern('^[0-9]+$')
       ]],
@@ -86,7 +90,7 @@ export class PostUpComponent implements OnInit {
     this.typeRealStateService.findAll().then(
       res => {
         this.typerealstates = res as TypeRealState[]
-
+        console.log(this.typerealstates)
       },
       error => {
         console.log(error)
@@ -149,10 +153,28 @@ export class PostUpComponent implements OnInit {
     realstate.street = this.ward
     realstate.type = this.type
     realstate.status = false
+
     this.realstateService.create(realstate).then(
       res => {
         if (res['result']) {
           this.show()
+
+          this.newrealstate = res['productId']
+          console.log(this.newrealstate)
+          let formData = new FormData();
+          formData.append('id', this.newrealstate.toString());
+          console.log(this.fileNames);
+          for (let i = 0; i < this.fileNames.length; i++) {
+            formData.append('fileNames[]', this.fileNames[i]);
+          }
+          this.imageService.uploads(formData).then(
+            res => {
+
+            },
+            err => {
+              console.log(err);
+            }
+          )
           this.router.navigate(['post-up'])
         } else {
           this.msg = 'Failed'
@@ -162,6 +184,7 @@ export class PostUpComponent implements OnInit {
         console.log(error)
       }
     )
+
   }
   show() {
     this.messageService.add({
@@ -171,13 +194,33 @@ export class PostUpComponent implements OnInit {
 
     })
   }
-  error(){
+  error() {
     this.messageService.add({
-        severity : 'error',
-        summary: 'Error!',
-        detail : 'Faild',
-        
+      severity: 'error',
+      summary: 'Error!',
+      detail: 'Faild',
+
     })
-}
+  }
+  selectFiles(evt: any) {
+    this.files = evt.target.files;
+    let formData = new FormData();
+
+    for (let i = 0; i < this.files.length; i++) {
+      formData.append('files', this.files[i])
+    }
+    this.imageService.select(formData).then(
+      res => {
+        this.fileNames = res['fileNames'];
+        console.log(this.fileNames)
+      },
+      err => {
+        this.error()
+      }
+    )
+  }
+  uploads() {
+
+  }
 }
 

@@ -5,5 +5,5 @@ import { Injectable } from "@angular/core";
 })//su dung injection
 
 export class BaseUrlService  {
-   public BaseUrl : string = 'https://localhost:7195/'
+   public BaseUrl : string = 'http://localhost:5194/'
 }

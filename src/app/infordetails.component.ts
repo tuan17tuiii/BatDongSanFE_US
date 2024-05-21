@@ -11,7 +11,7 @@ import { Ward } from './entities/ward.entities';
   standalone: true,
   imports: [RouterOutlet,RouterLink],
   templateUrl: './infordetails.component.html',
-  host: { 'collision-id': 'HomeComponent' },
+  
 })
 export class InfordetailsComponent implements OnInit {
 
