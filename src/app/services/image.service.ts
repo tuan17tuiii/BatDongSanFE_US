@@ -20,5 +20,8 @@ export class ImageRealStateAPIService  {
     async select(formData : FormData){
         return lastValueFrom(this.httpClient.post(this.baseUrlService.BaseUrl + 'image/select',formData))
     }
+    async findAll() {
+        return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl + 'image/findAll'))
+      }
     
 }

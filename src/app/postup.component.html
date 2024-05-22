@@ -143,9 +143,9 @@
                                 <input type="file" class="file-input" (change)="selectFiles($event)" multiple>
                             </div>
                         </div>
-                        <div class="image-preview">
+                        <div  class="image-preview" cdkDropList (cdkDropListDropped)="onDrop($event)">
                             @for(fileName of fileNames ; track fileName){
-                                <img src="{{fileName}}">
+                                <img  src="{{fileName}}" cdkDrag>
                             }
                         </div>
                     </div>

@@ -6,6 +6,11 @@ import { error } from 'console';
 import { HttpClient } from "@angular/common/http";
 import { District } from './entities/district.entities';
 import { Ward } from './entities/ward.entities';
+import { Image } from './entities/image.entities';
+import { ImageRealStateAPIService } from './services/image.service';
+import { RealStateAPIService } from './services/realstate.service';
+import { RealState } from './entities/realstate.entities';
+import { BaseUrlService } from './services/baseurl.service';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -16,24 +21,48 @@ import { Ward } from './entities/ward.entities';
 export class HomeComponent implements OnInit {
   id : string 
   msg: string
+  imageUrl : string 
+  realstates : RealState[]
+  images : Image[]
   wards : Ward[]
   provinces: Province[]
   districts: District[]
   data_input1:string
   constructor(
     private provinceService: ProvinceAPIService,
+    private imageService : ImageRealStateAPIService ,
+    private realstateService : RealStateAPIService , 
+    private baseUrlService : BaseUrlService,
     private http: HttpClient
   ) { }
-  ngOnInit(): void {//khi nhan ve thì là nhận về chuỗi hết nên phải khai báo chuỗi k là lỗi
-
+  ngOnInit(): void {
+    this.imageUrl = this.baseUrlService.ImageUrl ; 
     this.provinceService.findAll().then(
       res => {
         this.provinces = res['results'] as Province[];
-        console.log(this.provinces)
+        
       },
       error => {
         console.log(error)
       }
+    )
+    this.imageService.findAll().then(
+      res=>{
+        this.images = res as Image[];
+        console.log(this.images)
+       },
+       error => {
+         console.log(error)
+       }
+    )
+    this.realstateService.findAll().then(
+      res=>{
+        this.realstates = res as RealState[];
+        console.log(this.realstates)
+       },
+       error => {
+         console.log(error)
+       }
     )
   }
   find_districts(evt: any) {
