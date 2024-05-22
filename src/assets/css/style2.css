@@ -175,14 +175,15 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: auto;
+    width: 100%;
 }
 .profile {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 300px;
+    padding: 5px;
+    width: 600px;
 }
 .profile img {
     width: 100px;
@@ -243,7 +244,7 @@ body {
 
  /* CSS cho tiêu đề báo */
  header {
-    background-color: #ff000057;
+    background-color: #00d3a6c1;
     color: #fff;
     padding: 10px;
     text-align: center;
@@ -350,7 +351,7 @@ body {
     color: white;
     padding: 12px 24px;
     border: none;
-    border-radius: 5px;
+    border-radius: 5Hpx;
     cursor: pointer;
     display: block;
     width: 100%; /* Chiếm toàn bộ chiều rộng */

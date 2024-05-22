@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet,NavigationEnd } from '@angular/router';
 import { ProvinceAPIService } from "./services/provinceapi.service";
 import { Province } from './entities/province.entities';
 import { error } from 'console';
@@ -22,10 +22,15 @@ export class HomeComponent implements OnInit {
   data_input1:string
   constructor(
     private provinceService: ProvinceAPIService,
-    private http: HttpClient
+    private http: HttpClient,
+    private router:Router
   ) { }
   ngOnInit(): void {//khi nhan ve thì là nhận về chuỗi hết nên phải khai báo chuỗi k là lỗi
-
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        window.scrollTo(0, 0);
+      }
+    });
     this.provinceService.findAll().then(
       res => {
         this.provinces = res['results'] as Province[];

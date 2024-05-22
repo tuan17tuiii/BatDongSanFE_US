@@ -1,9 +1,10 @@
 .container {
-    max-width: 600px;
-    margin: 20px auto;
+    max-width: 800px;
+    margin: 0px auto 10px;
     padding: 20px;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
+    box-shadow: #000000;
     border-radius: 8px;
 }
 
@@ -68,7 +69,6 @@ align-items: center;
 }
 .preview-image {
 margin-top: 10px;
-width: 140px;
-height: 110px;
-
+width: auto;
+max-height: 200px;
 }

@@ -17,6 +17,8 @@ import { InforviewComponent } from './inforview.component';
 import { InforformrgsComponent } from './inforformrgs.component';
 import { BlogsellerdetailsComponent } from './blogsellerdetails.component';
 import { BlogupstoryComponent } from './blogupstory.component';
+import { SelectadvComponent } from './selectadv.component';
+import { InforuserComponent } from './inforuser.component';
 
 export const routes: Routes = [
    {
@@ -74,6 +76,14 @@ export const routes: Routes = [
          {
             path: "formrgs",
             component: InforformrgsComponent
+         },
+         {
+            path: "selectadv",
+            component: SelectadvComponent
+         },
+         {
+            path: "inforuser",
+            component: InforuserComponent
          }
       ]
    },

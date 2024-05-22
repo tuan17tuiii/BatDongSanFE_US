@@ -4,9 +4,12 @@
 }
 
 .product-details {
+    position: relative;
     border: 1px solid #ddd;
-    padding: 20px;
+    padding: 10px;
     margin-bottom: 20px;
+    justify-items: center;
+    align-items: center;
 }
 
 .contact-info {
@@ -22,16 +25,17 @@ border: 2px solid #ddd;
 }
 /* Tùy chỉnh border cho hình ảnh */
 .product-image {
+position: relative;
 border: 2px solid #ddd;
 padding: 5px;
 margin-bottom: 10px;
-width: 650px;
+width: auto;
 height: 340px;
 text-align: center; /* Để căn giữa nội dung theo chiều ngang */
 }
 
 .product-image img {
-
+position: relative;
 padding: 5px;
 margin-bottom: 10px;
 width: 630px;
