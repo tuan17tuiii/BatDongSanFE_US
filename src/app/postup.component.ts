@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
+
+
 import { Router, RouterOutlet } from '@angular/router';
 import { ProvinceAPIService } from "./services/provinceapi.service";
 import { Province } from './entities/province.entities';
@@ -15,6 +18,9 @@ import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmationService, MessageService } from "primeng/api";
 import { ImageRealStateAPIService } from './services/image.service';
+
+
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -22,7 +28,10 @@ import { ImageRealStateAPIService } from './services/image.service';
     FormsModule,
     ReactiveFormsModule,
     ButtonModule,
-    ToastModule],
+    ToastModule,
+    DragDropModule
+  ],
+
   providers: [ConfirmationService, MessageService],
 
 
@@ -32,7 +41,7 @@ import { ImageRealStateAPIService } from './services/image.service';
 export class PostUpComponent implements OnInit {
   newrealstate: number
   files: File[]
-  fileNames: string[]
+  fileNames: string[] = null
   province: any
   district: any
   ward: any
@@ -158,24 +167,38 @@ export class PostUpComponent implements OnInit {
       res => {
         if (res['result']) {
           this.show()
-
           this.newrealstate = res['productId']
-          console.log(this.newrealstate)
-          let formData = new FormData();
-          formData.append('id', this.newrealstate.toString());
-          console.log(this.fileNames);
-          for (let i = 0; i < this.fileNames.length; i++) {
-            formData.append('fileNames[]', this.fileNames[i]);
-          }
-          this.imageService.uploads(formData).then(
-            res => {
-
-            },
-            err => {
-              console.log(err);
+          if (this.fileNames != null) {
+            let formData = new FormData();
+            formData.append('id', this.newrealstate.toString());
+            for (let i = 0; i < this.fileNames.length; i++) {
+              formData.append('fileNames[]', this.fileNames[i]);
             }
-          )
-          this.router.navigate(['post-up'])
+            this.imageService.uploads(formData).then(
+              res => {
+
+              },
+              err => {
+                console.log(err);
+              }
+            )
+            this.router.navigate(['post-up'])
+          }else{
+            console.log('File Name Null')
+            let formData = new FormData();
+            formData.append('id', this.newrealstate.toString());
+            formData.append('fileNames[]', null);
+            this.imageService.uploads(formData).then(
+              res => {
+
+              },
+              err => {
+                console.log(err);
+              }
+            )
+            this.router.navigate(['post-up'])
+          }
+
         } else {
           this.msg = 'Failed'
         }
@@ -221,6 +244,9 @@ export class PostUpComponent implements OnInit {
   }
   uploads() {
 
+  }
+  onDrop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.fileNames, event.previousIndex, event.currentIndex);
   }
 }
 
