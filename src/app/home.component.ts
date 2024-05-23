@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet,NavigationEnd } from '@angular/router';
 import { ProvinceAPIService } from "./services/provinceapi.service";
 import { Province } from './entities/province.entities';
 import { error } from 'console';
@@ -33,9 +33,15 @@ export class HomeComponent implements OnInit {
     private imageService : ImageRealStateAPIService ,
     private realstateService : RealStateAPIService , 
     private baseUrlService : BaseUrlService,
-    private http: HttpClient
+    private http: HttpClient,
+    private router:Router
   ) { }
   ngOnInit(): void {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        window.scrollTo(0, 0);
+      }
+    });
     this.imageUrl = this.baseUrlService.ImageUrl ; 
     this.provinceService.findAll().then(
       res => {
