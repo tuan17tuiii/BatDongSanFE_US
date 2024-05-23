@@ -4,51 +4,27 @@
         <div class="col-8 wrapcontent">
             <!-- Main content -->
             <div class="main-content">
-                <div class="content-frame">
-                    <div class="content">
-                        <div class="name"><img src="anhderemon.png
-                            " alt="Profile Image" class="profile-img" >Tên người đăng</div>
-                        <div class="scrollable-content" id="scrollable-content">
-                            <!-- Nội dung của thẻ content -->
-                            <p>Đây là nội dung.</p>
-                            <p>Đây là nội dung khác.</p>
-                            <p>Đây là nội dung khác nữa.</p>
-                            <p>Đây là nội dung.</p>
-                            <p>Đây là nội dung khác.</p>
-                            <p>Đây là nội dung khác nữa.</p>
-                            <p>Đây là nội dung.</p>
-                            <p>Đây là nội dung khác.</p>
-                            <p>Đây là nội dung khác nữa.</p>
-                        </div>
-                        <div class="show-more" id="show-more">Xemthem</div>
-                        <div class="img">
-                            <div class="image-container">
-                                <img class="cimg" styles="width: 345px;height: 255px;" src="download.jpg" alt="Ảnh">
+                @for(realstate of realstates;track realstate ){
+                    <div class="content-frame">
+                        <div class="content">
+                            <div class="name"><img src=""
+                                 alt="Profile Image" class="profile-img" >Tên người đăng</div>
+                            <div class="scrollable-content" id="scrollable-content">
+                                <!-- Nội dung của thẻ content -->
+                                <p>Đây là nội dung.</p>
+                              
+                            </div>
+                            <div class="show-more" id="show-more">Xemthem</div>
+                            <div class="img">
+                                <div class="image-container">
+                                    <img class="cimg" styles="width: 345px;height: 255px;" src="download.jpg" alt="Ảnh">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="content-frame">
-                    <div class="content">
-                        <div class="name"><img src="anhderemon.png
-                            " alt="Profile Image" class="profile-img" >Tên người đăng</div>
-                        <div class="scrollable-content" id="scrollable-content">
-                            <!-- Nội dung của thẻ content -->
-                            <p>Đây là nội dung.</p>
-                            <p>Đây là nội dung khác.</p>
-                            <p>Đây là nội dung khác nữa.</p>
-                            <p>Đây là nội dung khác nữa.</p>
-                            <p>Đây là nội dung khác nữa.</p>
-                        </div>
-                        <div class="show-more" id="show-more">Xemthem</div>
-                        <div class="img">
-                            <div class="image-container">
-                                <img class="cimg" src="meoo.jpg" alt="Ảnh">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Thêm các content frame khác tương tự cho các thẻ content khác -->
+                }
+             
+              
                 
             </div>
         </div>
