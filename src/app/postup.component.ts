@@ -18,6 +18,8 @@ import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmationService, MessageService } from "primeng/api";
 import { ImageRealStateAPIService } from './services/image.service';
+import { CommonModule } from '@angular/common';
+import { eventNames } from 'process';
 
 
 
@@ -29,7 +31,8 @@ import { ImageRealStateAPIService } from './services/image.service';
     ReactiveFormsModule,
     ButtonModule,
     ToastModule,
-    DragDropModule
+    DragDropModule,
+    CommonModule
   ],
 
   providers: [ConfirmationService, MessageService],
@@ -41,7 +44,7 @@ import { ImageRealStateAPIService } from './services/image.service';
 export class PostUpComponent implements OnInit {
   newrealstate: number
   files: File[]
-  fileNames: string[] = null
+  fileNames: string[] = []
   province: any
   district: any
   ward: any
@@ -53,6 +56,8 @@ export class PostUpComponent implements OnInit {
   wards: Ward[]
   provinces: Province[]
   districts: District[]
+  images: string[] = []
+  vitribandau:any
   constructor(
     private formBuilder: FormBuilder,
     private provinceService: ProvinceAPIService,
@@ -90,7 +95,7 @@ export class PostUpComponent implements OnInit {
     this.provinceService.findAll().then(
       res => {
         this.provinces = res['results'] as Province[];
-        console.log(this.provinces)
+        
       },
       error => {
         console.log(error)
@@ -99,7 +104,7 @@ export class PostUpComponent implements OnInit {
     this.typeRealStateService.findAll().then(
       res => {
         this.typerealstates = res as TypeRealState[]
-        console.log(this.typerealstates)
+        
       },
       error => {
         console.log(error)
@@ -154,6 +159,19 @@ export class PostUpComponent implements OnInit {
   selectType(evt: any) {
     this.type = evt.target.value;
   }
+  selectFiles(event: any) {
+    this.files = event.target.files;
+    for (let i = 0; i < this.files.length; i++) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.images.push(reader.result as string);
+      };
+      reader.readAsDataURL(this.files[i]);
+      this.fileNames[i] = this.files[i].name
+    }
+    console.log(this.files)
+    
+  }
   save() {
 
     let realstate: RealState = this.formGroup.value as RealState;
@@ -168,35 +186,29 @@ export class PostUpComponent implements OnInit {
         if (res['result']) {
           this.show()
           this.newrealstate = res['productId']
-          if (this.fileNames != null) {
+          console.log(this.newrealstate)
+          if (this.fileNames == null) {
+            console.log("Not Found")
+          } else {
             let formData = new FormData();
-            formData.append('id', this.newrealstate.toString());
-            for (let i = 0; i < this.fileNames.length; i++) {
-              formData.append('fileNames[]', this.fileNames[i]);
+            for (let i = 0; i < this.files.length; i++) {
+              formData.append('files', this.files[i]);
+              
             }
+            console.log(formData)
+            formData.append('id',this.newrealstate.toString())
             this.imageService.uploads(formData).then(
               res => {
 
-              },
-              err => {
-                console.log(err);
-              }
-            )
-            this.router.navigate(['post-up'])
-          }else{
-            console.log('File Name Null')
-            let formData = new FormData();
-            formData.append('id', this.newrealstate.toString());
-            formData.append('fileNames[]', null);
-            this.imageService.uploads(formData).then(
-              res => {
+                this.fileNames = res['fileNames'];
+                this.show()
+                this.router.navigate([''])
 
               },
               err => {
-                console.log(err);
+                this.error()
               }
             )
-            this.router.navigate(['post-up'])
           }
 
         } else {
@@ -225,28 +237,44 @@ export class PostUpComponent implements OnInit {
 
     })
   }
-  selectFiles(evt: any) {
-    this.files = evt.target.files;
+  uploads() {
     let formData = new FormData();
-
     for (let i = 0; i < this.files.length; i++) {
-      formData.append('files', this.files[i])
+      formData.append('files', this.files[i]);
+      
     }
-    this.imageService.select(formData).then(
+    console.log(formData)
+    formData.append('id','155')
+    this.imageService.uploads(formData).then(
       res => {
+
         this.fileNames = res['fileNames'];
-        console.log(this.fileNames)
+        this.show()
+        
+
       },
       err => {
-        this.error()
+        this.error
       }
     )
   }
-  uploads() {
-
-  }
   onDrop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.fileNames, event.previousIndex, event.currentIndex);
-  }
+    moveItemInArray(this.images, event.previousIndex, event.currentIndex);
+
+    // Swap file positions in the files array
+    const filesArray = Array.from(this.files);
+    const tempFile = filesArray[event.currentIndex];
+    filesArray[event.currentIndex] = filesArray[event.previousIndex];
+    filesArray[event.previousIndex] = tempFile;
+
+    // Convert back to FileList
+    const dataTransfer = new DataTransfer();
+    filesArray.forEach(file => dataTransfer.items.add(file));
+    this.files = Array.from(dataTransfer.files);
+    console.log(this.files);
+}
+
+
+
 }
 

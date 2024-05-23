@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit {
     this.imageService.findAll().then(
       res=>{
         this.images = res as Image[];
-        console.log(this.images)
+        
        },
        error => {
          console.log(error)
@@ -64,7 +64,7 @@ export class HomeComponent implements OnInit {
     this.realstateService.findAll().then(
       res=>{
         this.realstates = res as RealState[];
-        console.log(this.realstates)
+        
        },
        error => {
          console.log(error)
@@ -75,7 +75,7 @@ export class HomeComponent implements OnInit {
 
     var district_id = evt.target.value;
     this.id = district_id
-    console.log(district_id)
+    
     this.provinceService.findDistrict(district_id).then(
       res => {
         this.districts = res['results'] as District[];
@@ -91,7 +91,7 @@ export class HomeComponent implements OnInit {
     this.provinceService.findWard(ward_id).then(
       res=>{
         this.wards = res['results'] as Ward[];
-        console.log(this.wards)
+        
       },
       error=>{
         console.log(error)
