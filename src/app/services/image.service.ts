@@ -23,5 +23,8 @@ export class ImageRealStateAPIService  {
     async findAll() {
         return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl + 'image/findAll'))
       }
+      async findByRealStateId(id : number){
+        return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl +  'image/findByRealstateId/' + id))
+    }
     
 }

@@ -20,5 +20,8 @@ export class RealStateAPIService  {
     async create(realstate : RealState){
         return lastValueFrom(this.httpClient.post(this.baseUrlService.BaseUrl + 'realstate/create' , realstate))
     }
+    async findById(id : number ){
+        return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl +  'realstate/findById/'+ id))
+    }
     
 }

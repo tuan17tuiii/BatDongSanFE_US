@@ -297,7 +297,7 @@
                             <div class="position-relative overflow-hidden">
                                 @for(image of images; track image){
                                 @if(realstate.id == image.realestateId){
-                                <a [routerLink]="['/blogsellerdetails']"><img style="height: 200px; width: 400px;" class="img-fluid"
+                                <a [routerLink]="['/blogsellerdetails',{id:realstate.id}]"><img style="height: 200px; width: 400px;" class="img-fluid"
                                         src="{{imageUrl}}{{image.urlImage}}" alt=""></a>
 
                                 }
@@ -307,7 +307,7 @@
                                     For Sell</div>
                                 <div
                                     class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                                    Appartment</div>
+                                    {{realstate.typeRealState}}</div>
                             </div>
                             <div class="p-4 pb-0">
                                 <h5 class="text-primary mb-3">{{realstate.price}} VND</h5>
