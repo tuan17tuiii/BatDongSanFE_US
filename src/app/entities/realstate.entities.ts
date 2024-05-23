@@ -1,3 +1,4 @@
+import { TypeRealState } from "./typerealstate.entities";
 
 
 export class RealState{
@@ -13,5 +14,6 @@ export class RealState{
     created : Date;
     city : string ; 
     street : string ; 
-    region : string 
+    region : string ; 
+    typeRealState : TypeRealState ; 
 }
