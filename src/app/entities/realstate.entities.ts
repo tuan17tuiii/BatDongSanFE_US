@@ -1,3 +1,4 @@
+import { Image } from "./image.entities";
 import { TypeRealState } from "./typerealstate.entities";
 
 
@@ -16,4 +17,6 @@ export class RealState{
     street : string ; 
     region : string ; 
     typeRealState : TypeRealState ; 
+    nameusersell:string;
+    image:Image[]
 }
