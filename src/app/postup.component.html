@@ -140,12 +140,13 @@
                         <div class="d-flex justify-content-center align-items-center" style="height: 100px;">
                             <div class="file-input-wrapper">
                                 <i class="pi pi-upload file-input-label"></i>
-                                <input type="file" class="file-input"  (change)="selectFiles($event)" multiple>
+                                <input type="file" class="file-input" (change)="selectFiles($event)" multiple>
                             </div>
                         </div>
                         <div class="image-preview" cdkDropList (cdkDropListDropped)="onDrop($event)">
                             <img *ngFor="let image of images" [src]="image" cdkDrag width="200px">
                         </div>
+                        
                     </div>
                     <div class="row g-2">
                         <div class="col-md-2 offset-md-10">

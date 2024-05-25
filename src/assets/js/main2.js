@@ -1,8 +1,8 @@
-function previewImage(input, previewId) {
+
+function previewImage(file, previewId) {
     const preview = document.getElementById(previewId);
-    const file = input.files[0];
     const reader = new FileReader();
-    preview.innerHTML=''
+    preview.innerHTML = '';
     reader.onloadend = function () {
         preview.src = reader.result;
     }
@@ -13,3 +13,4 @@ function previewImage(input, previewId) {
         preview.src = "";
     }
 }
+

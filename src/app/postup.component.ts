@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
-
-
 import { Router, RouterOutlet } from '@angular/router';
 import { ProvinceAPIService } from "./services/provinceapi.service";
 import { Province } from './entities/province.entities';
@@ -34,10 +32,7 @@ import { eventNames } from 'process';
     DragDropModule,
     CommonModule
   ],
-
   providers: [ConfirmationService, MessageService],
-
-
   templateUrl: './postup.component.html',
 
 })
@@ -57,7 +52,7 @@ export class PostUpComponent implements OnInit {
   provinces: Province[]
   districts: District[]
   images: string[] = []
-  vitribandau:any
+  vitribandau: any
   constructor(
     private formBuilder: FormBuilder,
     private provinceService: ProvinceAPIService,
@@ -95,7 +90,7 @@ export class PostUpComponent implements OnInit {
     this.provinceService.findAll().then(
       res => {
         this.provinces = res['results'] as Province[];
-        
+
       },
       error => {
         console.log(error)
@@ -104,7 +99,7 @@ export class PostUpComponent implements OnInit {
     this.typeRealStateService.findAll().then(
       res => {
         this.typerealstates = res as TypeRealState[]
-        
+
       },
       error => {
         console.log(error)
@@ -170,7 +165,7 @@ export class PostUpComponent implements OnInit {
       this.fileNames[i] = this.files[i].name
     }
     console.log(this.files)
-    
+
   }
   save() {
 
@@ -180,46 +175,52 @@ export class PostUpComponent implements OnInit {
     realstate.street = this.ward
     realstate.type = this.type
     realstate.status = false
+    for (let i = 0; i < this.files.length; i++) {
+      if (this.files[i].size > 15000) {
+        this.error("Failed", "One or more files exceed the size limit of 15000 bytes.");
+        return; // Ngăn chặn việc tiếp tục nếu có file lớn hơn 15000 byte
+      }
+    }
+    if (this.files.length <= 4) {
+      
+      this.realstateService.create(realstate).then(
+        res => {
+          if (res['result']) {
+            this.show()
+            this.newrealstate = res['productId']
+            console.log(this.newrealstate)
 
-    this.realstateService.create(realstate).then(
-      res => {
-        if (res['result']) {
-          this.show()
-          this.newrealstate = res['productId']
-          console.log(this.newrealstate)
-          if (this.fileNames == null) {
-            console.log("Not Found")
-          } else {
-            let formData = new FormData();
+
+            let formData = new FormData();//tao form data
             for (let i = 0; i < this.files.length; i++) {
               formData.append('files', this.files[i]);
-              
+              console.log(formData)
+              formData.append('id', this.newrealstate.toString())
+              this.imageService.uploads(formData).then(
+                res => {
+                  this.fileNames = res['fileNames'];
+                  this.show()
+                  this.router.navigate([''])//quay ve trang home
+                },
+                err => {
+                  this.error("Faild","An error has occurred")
+                }
+              )
             }
-            console.log(formData)
-            formData.append('id',this.newrealstate.toString())
-            this.imageService.uploads(formData).then(
-              res => {
 
-                this.fileNames = res['fileNames'];
-                this.show()
-                this.router.navigate([''])
 
-              },
-              err => {
-                this.error()
-              }
-            )
+
+          } else {
+            this.msg = 'Failed'
           }
-
-        } else {
-          this.msg = 'Failed'
+        },
+        error => {
+          console.log(error)
         }
-      },
-      error => {
-        console.log(error)
-      }
-    )
-
+      )
+    } else {
+      this.error("Faild","Please choose 4 photos!")
+    }
   }
   show() {
     this.messageService.add({
@@ -229,52 +230,40 @@ export class PostUpComponent implements OnInit {
 
     })
   }
-  error() {
+  error(summary: string, detail: string): void {
     this.messageService.add({
       severity: 'error',
-      summary: 'Error!',
-      detail: 'Faild',
-
-    })
+      summary: summary,
+      detail: detail,
+    });
   }
   uploads() {
-    let formData = new FormData();
-    for (let i = 0; i < this.files.length; i++) {
-      formData.append('files', this.files[i]);
-      
+    for(let i = 0 ; i < this.files.length ; i ++){
+      console.log(this.files[i].size)
     }
-    console.log(formData)
-    formData.append('id','155')
-    this.imageService.uploads(formData).then(
-      res => {
-
-        this.fileNames = res['fileNames'];
-        this.show()
-        
-
-      },
-      err => {
-        this.error
-      }
-    )
   }
   onDrop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.images, event.previousIndex, event.currentIndex);
 
-    // Swap file positions in the files array
-    const filesArray = Array.from(this.files);
-    const tempFile = filesArray[event.currentIndex];
-    filesArray[event.currentIndex] = filesArray[event.previousIndex];
-    filesArray[event.previousIndex] = tempFile;
+    if (!event.isPointerOverContainer) {
+      // Người dùng chưa thả chuột, không cần cập nhật
+      return;
+    }
 
-    // Convert back to FileList
-    const dataTransfer = new DataTransfer();
-    filesArray.forEach(file => dataTransfer.items.add(file));
-    this.files = Array.from(dataTransfer.files);
+    // Kéo và thả từ vùng khác vào, cần cập nhật vị trí của các files, images và fileNames
+    const filesCopy = [...this.files];
+    moveItemInArray(filesCopy, event.previousIndex, event.currentIndex);
+    this.files = filesCopy;
+
+    const imagesCopy = [...this.images];
+    moveItemInArray(imagesCopy, event.previousIndex, event.currentIndex);
+    this.images = imagesCopy;
+
+    const fileNamesCopy = [...this.fileNames];
+    moveItemInArray(fileNamesCopy, event.previousIndex, event.currentIndex);
+    this.fileNames = fileNamesCopy;
+
     console.log(this.files);
-}
 
-
-
+  }
 }
 
