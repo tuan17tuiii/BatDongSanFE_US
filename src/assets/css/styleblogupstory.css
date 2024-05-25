@@ -44,23 +44,18 @@
     display: flex;
     flex-wrap: wrap;
     margin-top: 20px;
-    
-    /* Ngăn nội dung vượt quá kích thước khu vực hiển thị */
-
 }
 
 
 .image-preview img {
-    width: 260px;
+    width: 250px;
     height: 120px;
     object-fit: cover;
     margin-right: 10px;
     margin-bottom: 10px;
     border-radius: 10%;
-    
-    /* Thêm thuộc tính border-radius */
-
 }
+
 
 .btn-custom {
     display: inline-block;

@@ -55,5 +55,9 @@ export class BlogsellerdetailsComponent implements OnInit {
       }
     )
   }
-  
+  srcImg(imageUrl: string) {
+    this.images.unshift();
+
+}
+
 }

@@ -21,7 +21,7 @@
                 
                       @for(image of images ; track image){
                         <div class="related-article col-3">
-                            <img src="{{imageUrl}}{{image.urlImage}}" class="img-fluid change-main-image">
+                            <img src="{{imageUrl}}{{image.urlImage}}" (click)="srcImg(image.urlImage)" class="img-fluid change-main-image">
                         </div>
                       }
                       

@@ -269,19 +269,17 @@ $(document).ready(function() {
         }
     });
 });
-$(document).ready(function () {
-    // Sự kiện click trên hình ảnh phụ
-    $(".change-main-image").click(function () {
-        // Lấy đường dẫn của hình ảnh phụ
-        var clickedImageSrc = $(this).attr("src");
-
-        // Thực hiện hiệu ứng trước khi thay đổi hình ảnh chính
-        $("#main-image").fadeOut(400, function () {
-            // Sau khi hoàn thành hiệu ứng, thay đổi src của hình ảnh chính
-            $(this).attr("src", clickedImageSrc).fadeIn(400);
-        });
+$(document).ready(function(){
+    // Xử lý khi click vào ảnh phụ
+    $('.change-main-image').click(function(){
+        console.log("Hihihihihi")
+        // Lấy đường dẫn của ảnh được click
+        var newImageSrc = $(this).attr('src');
+        // Thay đổi đường dẫn của ảnh chính
+        $('#main-image').attr('src', newImageSrc);
     });
 });
+
 
     // Testimonials carousel
 })(jQuery);

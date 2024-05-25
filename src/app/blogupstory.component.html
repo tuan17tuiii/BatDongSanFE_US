@@ -126,11 +126,12 @@
                 </div>
             </div>
             <div class="image-preview" cdkDropList (cdkDropListDropped)="onDrop($event)">
-                <div *ngFor="let image of images; let i = index" cdkDrag>
+                <div *ngFor="let image of images; let i = index" class="image-container" cdkDrag>
                     <img [src]="image" width="200px">
                     <button class="close-button" (click)="removeImage(i)">×</button>
                 </div>
             </div>
+            
             <div>
                 <button type="button" (click)="uploads()">Upload</button>
             </div>
