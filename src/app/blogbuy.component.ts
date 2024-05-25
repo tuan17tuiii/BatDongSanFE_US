@@ -28,7 +28,7 @@ this.realstates
   
     this.realstatesv.findAll().then(
       res => {  
-        this.realstates = res['$values'] as RealState[]; // Gán mảng dữ liệu vào this.realstates
+        this.realstates = res as RealState[]; // Gán mảng dữ liệu vào this.realstates
         console.log(this.realstates);
       },
       err => {

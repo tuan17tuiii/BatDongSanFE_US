@@ -7,18 +7,18 @@
                 @for(realstate of realstates;track realstate ){
                     <div class="content-frame">
                         <div class="content">
-                            <div class="name"><img src="{{ imgsvs + realstate.image['$values'][0].urlImage }}"
+                            <div class="name"><img src="{{ imgsvs + realstate.image[0].urlImage }}"
                                  alt="Profile Image" class="profile-img" >{{ realstate.nameusersell }}</div>
                             <div class="scrollable-content" id="scrollable-content">
                                 <!-- Nội dung của thẻ content -->
                                 <p>{{ realstate.describe }} </p>
-                                <a href="">{{realstate.image['$values'][0].urlImage  }}</a>
+                                <a href="">{{imgsvs + realstate.image[0].urlImage}}</a>
                               
                             </div>
                             <div class="show-more" id="show-more">Xemthem</div>
                             <div class="img">
                                 <div class="image-container">
-                                    <img class="cimg" styles="width: 345px;height: 255px;" src="{{ imgsvs + realstate.image['$values'][0].urlImage }}" alt="Ảnh">
+                                    <img class="cimg" styles="width: 345px;height: 255px;" src="{{ imgsvs + realstate.image[0].urlImage }}" alt="Ảnh">
                                 </div>
                             </div>
                         </div>
