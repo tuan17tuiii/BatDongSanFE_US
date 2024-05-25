@@ -19,11 +19,12 @@ import { BlogsellerdetailsComponent } from './blogsellerdetails.component';
 import { BlogupstoryComponent } from './blogupstory.component';
 import { SelectadvComponent } from './selectadv.component';
 import { InforuserComponent } from './inforuser.component';
+import { Logincomponet } from './login.component';
 
 export const routes: Routes = [
    {
       path: '',
-      component: HomeComponent
+      component: Logincomponet
    },
    {
       path: 'home',
