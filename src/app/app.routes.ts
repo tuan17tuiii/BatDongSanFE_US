@@ -66,6 +66,7 @@ export const routes: Routes = [
          {
             path: "information",
             component: InforComponent,
+            canActivate: [UserSecurity],
             children: [
                {
                   path: "",

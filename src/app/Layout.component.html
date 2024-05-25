@@ -38,9 +38,9 @@
                 </div>
                 &nbsp;
                 <div class="name"> <a [routerLink]="['/information']"> <img src="../assets/img/header.jpg
-                " alt="Profile Image" class="profile-img">Tên user</a></div>
+                " alt="Profile Image" class="profile-img">{{username}}</a></div>
                 &nbsp;
-                <div class="name"> <a [routerLink]="['/blogupstory']" href=""
+                <div class="name"> <a [routerLink]="['/blogupstory']" (click)="reload()"
                         class="btn btn-primary px-3 d-none d-lg-flex">Đăng Tin</a></div>
             </div>
         </nav>

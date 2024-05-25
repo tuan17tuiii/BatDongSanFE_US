@@ -37,6 +37,7 @@ export class RegisterComponent implements OnInit {
     this.userServices.Register(user).then(
       res => {
         if(res){
+          var result = alert('Register Successful! Please go to your Email and Verify the account !');
           this.router.navigate(['Login']);
         }
       },
