@@ -1,106 +1,202 @@
+<style>
+    .image-container {
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+}
+
+.close-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    font-size: 20px;
+    text-align: center;
+    line-height: 25px;
+    cursor: pointer;
+}
+
+    .file-input-wrapper {
+        position: relative;
+        display: inline-block;
+    }
+
+    .file-input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .file-input-label {
+        font-size: 50px;
+        cursor: pointer;
+    }
+
+    .image-preview {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 20px;
+    }
+
+    .image-preview img {
+        width: 250px;
+        height: 150px;
+        object-fit: cover;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        border-radius: 10%; /* Thêm thuộc tính border-radius */
+
+    }
+</style>
 <div class="wrap">
-    <div class="container container-custom">
-        <h2>Thong tin co ban</h2>
-        <div class="tabs">
-            <div class="tab active">Bán</div>
-            <div class="tab">Cho thuê</div>
-        </div>
-        <div class="form-group">
-            <label for="loai-bds">Loại bất động sản *</label>
-           nha <input type="radio"  id="loai-bds" name="loai-bds" >
-         chung cu   <input type="radio" id="loai-bds" name="loai-bds" >
-          biet thu  <input type="radio"  id="loai-bds" name="loai-bds">
-           ... <input type="radio"  id="loai-bds" name="loai-bds">
-           ...  <input type="radio" id="loai-bds" name="loai-bds">
-        </div>
-        <div class="form-group">
-            <label for="dia-chi">Chọn nhanh địa chỉ</label>
-            <div class="search-group">
-                <input type="text" class="form-control" id="dia-chi" placeholder="Ví dụ: Vinhomes Golden Bason">
-                <button class="btn btn-custom"><i class="fas fa-search"></i> Tìm kiếm</button>
+    <form [formGroup]="formGroup" (ngSubmit)="save()">
+        <div class="container container-custom">
+            <h2>Thong tin co ban</h2>
+            <div class="tabs">
+                <div class="tab active">Bán</div>
+                <div class="tab">Cho thuê</div>
             </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-md-6">
-                <label for="tinh-thanh-pho">Tỉnh, thành phố *</label>
-                <select id="tinh-thanh-pho" class="form-control">
-                    <option value="">Chọn</option>
-                    <!-- Thêm các tùy chọn khác -->
+            <div class="form-group">
+                <label for="loai-bds">Loại bất động sản *</label>
+                <select class="form-select border-0 py-3" (change)="selectType($event)">
+                    <option value="" disabled selected hidden>Loại BĐS</option>
+                    @for(typerealstate of typerealstates ; track typerealstate){
+                    <option [value]="typerealstate.id">{{typerealstate.type}}</option>
+                    }
+                    <!-- Thêm các loại BĐS khác nếu cần -->
                 </select>
             </div>
-            <div class="form-group col-md-6">
-                <label for="quan-huyen">Quận, huyện *</label>
-                <select id="quan-huyen" class="form-control">
-                    <option value="">Chọn</option>
-                    <!-- Thêm các tùy chọn khác -->
-                </select>
+            
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="tinh-thanh-pho">Tỉnh, thành phố *</label>
+                    <select class="form-control border-0 py-3" id='provinces' (change)="find_districts($event)">
+                        <option value="" disabled selected hidden>Select City</option>
+                        @for(province of provinces ; track province){
+                        <option [value]="province.province_id">{{province.province_name}}</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="quan-huyen">Quận, huyện *</label>
+                    <select class="form-select border-0 py-3" (change)="find_ward($event)">
+                        <option value="" disabled selected hidden>Select District</option>
+                        @for(district of districts ; track district){
+                        <option [value]="district.district_id">{{district.district_name}}</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="phuong-xa">Phường, xã *</label>
+                    <select class="form-select border-0 py-3" (change)="find_Name_Ward($event)">
+                        <option value="" disabled selected hidden>Select Ward</option>
+                        @for(ward of wards ; track ward){
+                        <option>{{ward.ward_name}}</option>
+                        }
+                    </select>
+                </div>
+                
+            </div>
+            
+        </div>
+        <div class="container container-custom">
+            <h2>Thong tin bai viet</h2>
+            <div class="form-group">
+                <label for="loai-bds">Tieu de</label>
+                <input type="text" class="form-control" id="loai-bds" formControlName="title" placeholder="VD: Nhà riêng">
+            </div>
+            <div class="form-group">
+                <label for="Nd">noi dung</label>
+                <textarea name="" id="Nd" class="form-control" cols="30" rows="10" placeholder="tieu de" formControlName="describe"></textarea>
+            </div>
+            
+        </div>
+        <div class="container container-custom">
+            <h2>Thong tin BDS</h2>
+    
+            <div class="form-group">
+                <label for="dt">Dien Tich</label>
+                <input type="text" class="form-control" id="dt" placeholder="VD: 1000 m2" formControlName="acreage">
+            </div>
+            <div class="form-group">
+                <label for="tinh-thanh-pho">Muc gia</label>
+                <input type="text" class="form-control" id="dt" placeholder="VD: 1 000 000" formControlName="price">
+            </div>
+            <div class="col-md-4">
+                <label for="dt">Bedrooms</label>
+                <input type="number" class="form-control" id="dt"  min="0"
+                    formControlName="bedrooms" />
+                <br>
+                @if(formGroup.get('bedrooms').touched){
+                @if(formGroup.hasError('pattern',['bedrooms'])){
+                <Span style="color: red;">Invalid value
+                </Span>
+                }
+                }
+            </div>
+            <div class="col-md-4">
+                <label for="dt">Bathrooms</label>
+                <input type="number" class="form-control" id="dt"  min="0"
+                    formControlName="bathrooms" />
+                <br>
+                @if(formGroup.get('bathrooms').touched){
+                @if(formGroup.hasError('pattern',['bathrooms'])){
+                <Span style="color: red;">Invalid value
+                </Span>
+                }
+                }
+            </div>
+    
+            <div class="form-group">
+                <button class="btn btn-preview">Xem trước giao diện</button>
+                <button class="btn btn-custom">Tiếp tục</button>
             </div>
         </div>
-        <div class="row">
-            <div class="form-group col-md-6">
-                <label for="phuong-xa">Phường, xã *</label>
-                <select id="phuong-xa" class="form-control">
-                    <option value="">Chọn</option>
-                    <!-- Thêm các tùy chọn khác -->
-                </select>
+        <div class="container container-custom">
+            <h2>Hinh Anh</h2>
+            <div>
+                <ul>
+                    <li> <b>Đăng tối thiểu 4 ảnh thường với tin VIP</b></li>
+                    <li><b>Hãy dùng ảnh thật, không trùng, không chèn SĐT</b></li>
+                    <li><b>Mỗi ảnh kích thước tối thiểu 100x100 px, tối đa 15 MB</b></li>
+                    
+                </ul>
             </div>
-            <div class="form-group col-md-6">
-                <label for="duong-pho">Đường, phố</label>
-                <select id="duong-pho" class="form-control">
-                    <option value="">Chọn</option>
-                    <!-- Thêm các tùy chọn khác -->
-                </select>
+            <div class="d-flex justify-content-center align-items-center" style="height: 100px;">
+                <div class="file-input-wrapper">
+                    <i class="pi pi-upload file-input-label"></i>
+                    <input type="file" class="file-input" (change)="selectFiles($event)" multiple>
+                </div>
+            </div>
+            <div class="image-preview" cdkDropList (cdkDropListDropped)="onDrop($event)">
+                <div *ngFor="let image of images; let i = index" class="image-container" cdkDrag>
+                    <img [src]="image" width="200px">
+                    <button class="close-button" (click)="removeImage(i)">×</button>
+                </div>
+            </div>
+            <div>
+                <button type="button" (click)="uploads()">Upload</button>
+            </div>
+            <div class="row g-2">
+                <div class="col-md-2 offset-md-10">
+                    <button [disabled]="formGroup.invalid || images.length === 0"
+                        class="btn btn-dark border-0 w-100 py-3">Đăng Tin</button>
+                        <p-toast />
+                </div>
             </div>
         </div>
-        <div class="form-group">
-            <label for="du-an">Dự án</label>
-            <input type="text" class="form-control" id="du-an">
-        </div>
-    </div>
-    <div class="container container-custom">
-        <h2>Thong tin bai viet</h2>
-        <div class="form-group">
-            <label for="loai-bds">Tieu de</label>
-            <input type="text" class="form-control" id="loai-bds" placeholder="VD: Nhà riêng">
-        </div>
-        <div class="form-group">
-            <label for="Nd">noi dung</label>
-            <textarea name="" id="Nd" class="form-control" cols="30" rows="10" placeholder="tieu de"></textarea>
-        </div>
-
-    </div>
-    <div class="container container-custom">
-        <h2>Thong tin BDS</h2>
-
-        <div class="form-group">
-            <label for="dt">Dien Tich</label>
-            <input type="text" class="form-control" id="dt" placeholder="VD: 1000 m2">
-        </div>
-        <div class="form-group">
-            <label for="tinh-thanh-pho">Muc gia</label>
-            <input type="text" class="form-control" id="dt" placeholder="VD: 1 000 000">
-        </div>
-
-
-        <div class="form-group">
-            <button class="btn btn-preview">Xem trước giao diện</button>
-            <button class="btn btn-custom">Tiếp tục</button>
-        </div>
-    </div>
-    <div class="container container-custom">
-        <h2>Hinh Anh</h2>
-        <div class="form-group">
-            <label for="cccd">Ảnh 9</label>
-            <input type="file" id="cccd" name="cccd" accept="image/*" required
-                onchange="previewImage(this, 'cccdPreview')">
-            <div class="img_fg" align="center"><img  id="cccdPreview" src="#" alt="Preview Image" class="preview-image" width="auto" height="400px"></div>
-        </div>
-        <div class="form-group">
-            <label for="otherDocs">Anh Details</label>
-            <input type="file" id="otherDocs" name="otherDocs[]" accept="image/*" multiple required
-                onchange="previewImage(this, 'otherDocsPreview')">
-            <div id="otherDocsPreview" class="other-docs-preview"></div>
-        </div>
-
-    </div>
+    </form>
+    
+    
 </div>

@@ -6,21 +6,28 @@
             <div class="main-content">
                 @for(realstate of realstates;track realstate ){
                     <div class="content-frame">
-                        <div class="content">
-                            <div class="name"><img src="{{ imgsvs + realstate.image[0].urlImage }}"
-                                 alt="Profile Image" class="profile-img" >{{ realstate.nameusersell }}</div>
-                            <div class="scrollable-content" id="scrollable-content">
-                                <!-- Nội dung của thẻ content -->
-                                <p>{{ realstate.describe }} </p>
-                                <a href="">{{imgsvs + realstate.image[0].urlImage}}</a>
-                              
-                            </div>
-                            <div class="show-more" id="show-more">Xemthem</div>
+                        <div class="content">                          
                             <div class="img">
                                 <div class="image-container">
                                     <img class="cimg" styles="width: 345px;height: 255px;" src="{{ imgsvs + realstate.image[0].urlImage }}" alt="Ảnh">
                                 </div>
                             </div>
+                            <div class="scrollable-content" id="scrollable-content">
+                            
+                                <h2><p> {{ realstate.describe }} </p></h2> 
+                                <h6><p> <span class="menustyle"> Loai </span> : {{realstate.city  }} | <span class="menustyle"> Gia </span> : $ {{realstate.price  }} USD| <span class="menustyle"> Vi tri </span> : {{realstate.city  }}</p></h6>
+                                <p></p>
+                         
+                              
+                            </div>
+                            <div class="name">
+                                <img src="{{ imgsvs + realstate.image[0].urlImage }}" alt="Profile Image" class="profile-img">
+                                <span class="user-name">{{ realstate.nameusersell }}abc</span>
+                                <span class="heart-icon"><button type="button" class="btn btn-default"> <i class="pi pi-heart" icon=""></i></button></span>
+                              </div>
+                              
+
+                          
                         </div>
                     </div>
                 }
