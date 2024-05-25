@@ -20,95 +20,103 @@ import { BlogupstoryComponent } from './blogupstory.component';
 import { SelectadvComponent } from './selectadv.component';
 import { InforuserComponent } from './inforuser.component';
 import { Logincomponet } from './login.component';
+import { AppComponent } from './app.component';
+import { LayoutComponent } from './Layout.component';
 
 export const routes: Routes = [
    {
-      path: '',
-      component: Logincomponet
-   },
-   {
-      path: 'home',
-      component: HomeComponent
-   },
-   {
-      path: 'post-up',
-      component: PostUpComponent
-   },
-   {
-      path: "about",
-      component: AboutComponent
-   },
-   {
-      path: "contact",
-      component: ContacComponent
-   },
-   {
-      path: "property_list",
-      component: Property_listComponent
-   },
-   {
-      path: "property_type",
-      component: Property_typeComponent
-   },
-   {
-      path: "property_agent",
-      component: Property_agentComponent
-   },
-   {
-      path: "information",
-      component: InforComponent,
+      path: 'bds',
+      component: LayoutComponent,
       children: [
          {
-            path: "",
-            component: InfordetailsComponent
+            path: 'home',
+            component: HomeComponent
          },
          {
-            path: "details",
-            component: InfordetailsComponent
+            path: 'post-up',
+            component: PostUpComponent
          },
          {
-            path: "update",
-            component: InforupdateComponent
+            path: "about",
+            component: AboutComponent
          },
          {
-            path: "home",
-            component: InforhomeComponent
+            path: "contact",
+            component: ContacComponent
          },
          {
-            path: "formrgs",
-            component: InforformrgsComponent
+            path: "property_list",
+            component: Property_listComponent
          },
          {
-            path: "selectadv",
-            component: SelectadvComponent
+            path: "property_type",
+            component: Property_typeComponent
          },
          {
-            path: "inforuser",
-            component: InforuserComponent
+            path: "property_agent",
+            component: Property_agentComponent
+         },
+         {
+            path: "information",
+            component: InforComponent,
+            children: [
+               {
+                  path: "",
+                  component: InfordetailsComponent
+               },
+               {
+                  path: "details",
+                  component: InfordetailsComponent
+               },
+               {
+                  path: "update",
+                  component: InforupdateComponent
+               },
+               {
+                  path: "home",
+                  component: InforhomeComponent
+               },
+               {
+                  path: "formrgs",
+                  component: InforformrgsComponent
+               },
+               {
+                  path: "selectadv",
+                  component: SelectadvComponent
+               },
+               {
+                  path: "inforuser",
+                  component: InforuserComponent
+               }
+            ]
+         },
+         {
+            path: "inforview",
+            component: InforviewComponent
+         },
+         {
+            path: "blog",
+            component: InforComponent//
+         }
+         , {
+            path: "blogbuy",
+            component: BlogbuyComponent
+         },
+         {
+            path: "blognew",
+            component: BlognewComponent
+         }, {
+            path: "blogsellerdetails",
+            component: BlogsellerdetailsComponent
+         }, {
+            path: "blogupstory",
+            component: BlogupstoryComponent
          }
       ]
    },
    {
-      path: "inforview",
-      component: InforviewComponent
+      path: "",
+      component: Logincomponet
    },
-   {
-      path: "blog",
-      component: InforComponent//
-   }
-   , {
-      path: "blogbuy",
-      component: BlogbuyComponent
-   },
-   {
-      path: "blognew",
-      component: BlognewComponent
-   }, {
-      path: "blogsellerdetails",
-      component: BlogsellerdetailsComponent
-   }, {
-      path: "blogupstory",
-      component: BlogupstoryComponent
-   }
 ];
 
