@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
     this.userServices.Register(user).then(
       res => {
         if(res){
-          this.router.navigate(['']);
+          this.router.navigate(['Login']);
         }
       },
       err => {
