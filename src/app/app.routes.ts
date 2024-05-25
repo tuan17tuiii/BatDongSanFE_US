@@ -22,95 +22,186 @@ import { InforuserComponent } from './inforuser.component';
 import { Logincomponet } from './login.component';
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './Layout.component';
+import { UserSecurity } from './services/Security.Services';
+import { RegisterComponent } from './register.component';
+import { VerifyWebComponent } from './VerifyWeb.component';
 
 export const routes: Routes = [
    {
       path: 'bds',
       component: LayoutComponent,
+      canActivate: [UserSecurity],
+      data: {
+         role: 'user'
+     },
       children: [
          {
             path: 'home',
-            component: HomeComponent
+            component: HomeComponent,
+            canActivate: [UserSecurity],
+            data: {
+               role: 'user'
+           },
          },
          {
             path: 'post-up',
-            component: PostUpComponent
+            component: PostUpComponent,
+            canActivate: [UserSecurity],
+            data: {
+               role: 'user'
+           },
          },
          {
             path: "about",
-            component: AboutComponent
+            component: AboutComponent,
+            canActivate: [UserSecurity],
+            data: {
+               role: 'user'
+           },
          },
          {
             path: "contact",
-            component: ContacComponent
+            component: ContacComponent,
+            canActivate: [UserSecurity],
+            data: {
+               role: 'user'
+           },
          },
          {
             path: "property_list",
-            component: Property_listComponent
+            component: Property_listComponent,
+            canActivate: [UserSecurity],
+            data: {
+               role: 'user'
+           },
          },
          {
             path: "property_type",
-            component: Property_typeComponent
+            component: Property_typeComponent,
+            canActivate: [UserSecurity],
+            data: {
+               role: 'user'
+           },
          },
          {
             path: "property_agent",
-            component: Property_agentComponent
+            component: Property_agentComponent,
+            canActivate: [UserSecurity],
+            data: {
+               role: 'user'
+           },
          },
          {
             path: "information",
             component: InforComponent,
+            canActivate: [UserSecurity],
+            data: {
+               role: 'user'
+           },
             children: [
                {
                   path: "",
-                  component: InfordetailsComponent
+                  component: InfordetailsComponent,
+                  canActivate: [UserSecurity],
+                  data: {
+                     role: 'user'
+                 },
                },
                {
                   path: "details",
-                  component: InfordetailsComponent
+                  component: InfordetailsComponent,
+                  canActivate: [UserSecurity],
+                  data: {
+                     role: 'user'
+                 },
                },
                {
                   path: "update",
-                  component: InforupdateComponent
+                  component: InforupdateComponent,
+                  canActivate: [UserSecurity],
+                  data: {
+                     role: 'user'
+                 },
                },
                {
                   path: "home",
-                  component: InforhomeComponent
+                  component: InforhomeComponent,
+                  canActivate: [UserSecurity],
+                  data: {
+                     role: 'user'
+                 },
                },
                {
                   path: "formrgs",
-                  component: InforformrgsComponent
+                  component: InforformrgsComponent,
+                  canActivate: [UserSecurity],
+                  data: {
+                     role: 'user'
+                 },
                },
                {
                   path: "selectadv",
-                  component: SelectadvComponent
+                  component: SelectadvComponent,
+                  canActivate: [UserSecurity],
+                  data: {
+                     role: 'user'
+                 },
                },
                {
                   path: "inforuser",
-                  component: InforuserComponent
+                  component: InforuserComponent,
+                  canActivate: [UserSecurity],
+                  data: {
+                     role: 'user'
+                 },
                }
             ]
          },
          {
             path: "inforview",
-            component: InforviewComponent
+            component: InforviewComponent,
+            canActivate: [UserSecurity],
+            data: {
+               role: 'user'
+           },
          },
          {
             path: "blog",
-            component: InforComponent//
+            component: InforComponent,
+            canActivate: [UserSecurity],
+            data: {
+               role: 'user'
+           },
          }
          , {
             path: "blogbuy",
-            component: BlogbuyComponent
+            component: BlogbuyComponent,
+            canActivate: [UserSecurity],
+            data: {
+               role: 'user'
+           },
          },
          {
             path: "blognew",
-            component: BlognewComponent
+            component: BlognewComponent,
+            canActivate: [UserSecurity],
+            data: {
+               role: 'user'
+           },
          }, {
             path: "blogsellerdetails",
-            component: BlogsellerdetailsComponent
+            component: BlogsellerdetailsComponent,
+            canActivate: [UserSecurity],
+            data: {
+               role: 'user'
+           },
          }, {
             path: "blogupstory",
-            component: BlogupstoryComponent
+            component: BlogupstoryComponent,
+            canActivate: [UserSecurity],
+            data: {
+               role: 'user'
+           },
          }
       ]
    },
@@ -118,5 +209,13 @@ export const routes: Routes = [
       path: "",
       component: Logincomponet
    },
+   {
+      path: "Register",
+      component: RegisterComponent
+   },
+   {
+      path: 'verify',
+      component: VerifyWebComponent
+  },
 ];
 
