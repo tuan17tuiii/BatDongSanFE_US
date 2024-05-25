@@ -1,4 +1,26 @@
 <style>
+    .image-container {
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+}
+
+.close-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    font-size: 20px;
+    text-align: center;
+    line-height: 25px;
+    cursor: pointer;
+}
+
     .file-input-wrapper {
         position: relative;
         display: inline-block;
@@ -26,7 +48,7 @@
     }
 
     .image-preview img {
-        width: 270px;
+        width: 250px;
         height: 150px;
         object-fit: cover;
         margin-right: 10px;
@@ -158,19 +180,23 @@
                 </div>
             </div>
             <div class="image-preview" cdkDropList (cdkDropListDropped)="onDrop($event)">
-                <img *ngFor="let image of images" [src]="image" cdkDrag width="200px">
+                <div *ngFor="let image of images; let i = index" class="image-container" cdkDrag>
+                    <img [src]="image" width="200px">
+                    <button class="close-button" (click)="removeImage(i)">×</button>
+                </div>
             </div>
             <div>
                 <button type="button" (click)="uploads()">Upload</button>
             </div>
             <div class="row g-2">
                 <div class="col-md-2 offset-md-10">
-                    <button [disabled]="formGroup.invalid" type="submit"
+                    <button [disabled]="formGroup.invalid || images.length === 0"
                         class="btn btn-dark border-0 w-100 py-3">Đăng Tin</button>
                         <p-toast />
                 </div>
             </div>
         </div>
     </form>
+    
     
 </div>

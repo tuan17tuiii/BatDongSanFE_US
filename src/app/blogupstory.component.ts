@@ -32,10 +32,10 @@ import { eventNames } from 'process';
 
   providers: [ConfirmationService, MessageService],
   templateUrl: 'blogupstory.component.html',
-  styleUrl:'../assets/css/styleblogupstory.css'
-  
+  styleUrl: '../assets/css/styleblogupstory.css'
+
 })
-export class BlogupstoryComponent implements OnInit{
+export class BlogupstoryComponent implements OnInit {
   newrealstate: number
   files: File[]
   fileNames: string[] = []
@@ -51,7 +51,7 @@ export class BlogupstoryComponent implements OnInit{
   provinces: Province[]
   districts: District[]
   images: string[] = []
-  
+
   constructor(
     private formBuilder: FormBuilder,
     private provinceService: ProvinceAPIService,
@@ -154,47 +154,51 @@ export class BlogupstoryComponent implements OnInit{
     this.type = evt.target.value;
   }
   selectFiles(event: any) {
-    this.files = event.target.files;
+    const selectedFiles: File[] = Array.from(event.target.files) as File[]; // Chuyển FileList thành mảng File[]
+    this.files = selectedFiles; // Gán mảng vào this.files
+
     for (let i = 0; i < this.files.length; i++) {
       const reader = new FileReader();
       reader.onload = () => {
         this.images.push(reader.result as string);
       };
       reader.readAsDataURL(this.files[i]);
-      this.fileNames[i] = this.files[i].name
+      this.fileNames[i] = this.files[i].name;
     }
-    console.log(this.files)
+    console.log(this.files);
 
   }
+
   save() {
-    for(var i = 0 ; i < this.files.length ; i ++){
-      console.log(this.files[i].size)
-    }
-    let realstate: RealState = this.formGroup.value as RealState;
-    realstate.city = this.province[0].province_name
-    realstate.region = this.district.district_name
-    realstate.street = this.ward
-    realstate.type = this.type
-    realstate.status = false
-    for (let i = 0; i < this.files.length; i++) {
-      if (this.files[i].size > 1000000) {
-        this.error("Failed", "One or more files exceed the size limit of 15000 bytes.");
-        return; // Ngăn chặn việc tiếp tục nếu có file lớn hơn 15000 byte
+    console.log(this.files.length)
+    if (this.files.length > 0) {
+      let realstate: RealState = this.formGroup.value as RealState;
+      realstate.city = this.province[0].province_name
+      realstate.region = this.district.district_name
+      realstate.street = this.ward
+      realstate.type = this.type
+      realstate.status = false
+      for (let i = 0; i < this.files.length; i++) {
+        if (this.files[i].size > 1000000) {
+          this.error("Failed", "One or more files exceed the size limit of 15000 bytes.");
+          return; // Ngăn chặn việc tiếp tục nếu có file lớn hơn 15000 byte
+        }
       }
-    }
-    if (this.files.length <= 4) {
-      
-      this.realstateService.create(realstate).then(
-        res => {
-          if (res['result']) {
-            this.show()
-            this.newrealstate = res['productId']
-            console.log(this.newrealstate)
-            let formData = new FormData();//tao form data
-            for (let i = 0; i < this.files.length; i++) {
-              formData.append('files', this.files[i]);
-              console.log(formData)
-              formData.append('id', this.newrealstate.toString())
+      if (this.files.length <= 4) {
+
+        this.realstateService.create(realstate).then(
+          res => {
+            if (res['result']) {
+              this.show()
+              this.newrealstate = res['productId']
+              console.log(this.newrealstate)
+              let formData = new FormData();//tao form data
+              for (let i = 0; i < this.files.length; i++) {
+                formData.append('files', this.files[i]);
+                console.log(formData)
+                formData.append('id', this.newrealstate.toString())
+
+              }
               this.imageService.uploads(formData).then(
                 res => {
                   this.fileNames = res['fileNames'];
@@ -202,24 +206,27 @@ export class BlogupstoryComponent implements OnInit{
                   this.router.navigate([''])//quay ve trang home
                 },
                 err => {
-                  this.error("Faild","An error has occurred")
+                  this.error("Faild", "An error has occurred")
                 }
               )
+
+
+
+            } else {
+              this.msg = 'Failed'
             }
-
-
-
-          } else {
-            this.msg = 'Failed'
+          },
+          error => {
+            console.log(error)
           }
-        },
-        error => {
-          console.log(error)
-        }
-      )
+        )
+      } else {
+        this.error("Faild", "Please choose 4 photos!")
+      }
     } else {
-      this.error("Faild","Please choose 4 photos!")
+      this.error("Faild", "No Image")
     }
+
   }
   show() {
     this.messageService.add({
@@ -237,16 +244,13 @@ export class BlogupstoryComponent implements OnInit{
     });
   }
   uploads() {
-    let realstate: RealState = this.formGroup.value as RealState;
-    realstate.city = this.province[0].province_name
-    realstate.region = this.district.district_name
-    realstate.street = this.ward
-    realstate.type = this.type
-    console.log(realstate)
     console.log(this.files.length)
-    for(var i = 0 ; i < this.files.length ; i ++){
-      console.log(this.files[i].size)
-    }
+  }
+  removeImage(index: number) {
+    this.images.splice(index, 1);
+    this.files.splice(index, 1);
+    this.fileNames.splice(index, 1);
+    console.log(this.files);
   }
   onDrop(event: CdkDragDrop<string[]>) {
 
@@ -269,7 +273,5 @@ export class BlogupstoryComponent implements OnInit{
     this.fileNames = fileNamesCopy;
 
     console.log(this.files);
-
-  
   }
 }
