@@ -13,4 +13,19 @@ function previewImage(file, previewId) {
         preview.src = "";
     }
 }
+document.addEventListener("DOMContentLoaded", function() {
+    var tabs = document.querySelectorAll(".tab");
+
+    tabs.forEach(function(tab) {
+        tab.addEventListener("click", function() {
+            // Remove 'active' class from all tabs
+            tabs.forEach(function(tab) {
+                tab.classList.remove("active");
+            });
+
+            // Add 'active' class to the clicked tab
+            this.classList.add("active");
+        });
+    });
+});
 

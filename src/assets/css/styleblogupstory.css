@@ -23,6 +23,7 @@
 
 .tab.active {
     border-bottom: 3px solid #333;
+    
 }
 
 .search-group {
@@ -33,6 +34,32 @@
 .search-group input {
     flex: 1;
     margin-right: 10px;
+}
+.file-input-label {
+    font-size: 50px;
+    cursor: pointer;
+}
+
+.image-preview {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    
+    /* Ngăn nội dung vượt quá kích thước khu vực hiển thị */
+
+}
+
+
+.image-preview img {
+    width: 260px;
+    height: 120px;
+    object-fit: cover;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border-radius: 10%;
+    
+    /* Thêm thuộc tính border-radius */
+
 }
 
 .btn-custom {
@@ -49,4 +76,41 @@
 .btn-preview {
     background-color: #ddd;
     color: black;
+}
+
+.image-container {
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+}
+
+.close-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    font-size: 20px;
+    text-align: center;
+    line-height: 25px;
+    cursor: pointer;
+}
+
+.file-input-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.file-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
 }

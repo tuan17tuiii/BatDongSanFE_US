@@ -36,6 +36,8 @@ import { eventNames } from 'process';
 
 })
 export class BlogupstoryComponent implements OnInit {
+  selectedTab: string // Set mặc định cho tab "Cho thuê"
+
   newrealstate: number
   files: File[]
   fileNames: string[] = []
@@ -107,6 +109,11 @@ export class BlogupstoryComponent implements OnInit {
     )
 
   }
+  selectTab(tab: string): void {
+    this.selectedTab = tab;
+    console.log(this.selectedTab);
+  }
+  
   find_districts(evt: any) {
     var district_id = evt.target.value;
     this.id = district_id

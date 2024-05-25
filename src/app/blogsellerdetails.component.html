@@ -1,3 +1,4 @@
+
 <div class="container">
   <div class="row">
       <!-- Phần trái -->
@@ -6,7 +7,11 @@
           <div class="product-details">
               <div class="product-image">
                   
-                    <img id="main-image" src="{{imageUrl}}{{images[0].urlImage}}" alt="Hình ảnh chính" class="img-fluid mb-3">
+                    @if(images != null){
+                        <img id="main-image" src="{{imageUrl}}{{images[0].urlImage}}" alt="Hình ảnh chính" class="img-fluid mb-3">
+                    }
+                        
+                    
                   
               </div>
               <!-- Hình ảnh phụ -->
@@ -16,7 +21,7 @@
                 
                       @for(image of images ; track image){
                         <div class="related-article col-3">
-                            <img src="{{imageUrl}}{{image.urlImage}}" alt="Hình ảnh phụ 1" class="img-fluid change-main-image">
+                            <img src="{{imageUrl}}{{image.urlImage}}" class="img-fluid change-main-image">
                         </div>
                       }
                       
@@ -73,3 +78,4 @@
       </div>
   </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

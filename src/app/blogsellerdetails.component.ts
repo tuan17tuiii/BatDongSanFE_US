@@ -20,6 +20,7 @@ export class BlogsellerdetailsComponent implements OnInit {
   id: any;
   realState : RealState
   images : Image[]
+  imagechinh : string  
   imageUrl : string 
   constructor(
     private imageService: ImageRealStateAPIService,
@@ -28,26 +29,31 @@ export class BlogsellerdetailsComponent implements OnInit {
     private baseUrlService : BaseUrlService,
   ) { }
   ngOnInit(): void {
+
     this.imageUrl = this.baseUrlService.ImageUrl ; 
     this.activatedRoute.paramMap.subscribe(p => {
       this.id = p.get('id');
-      console.log(this.id);
+      
     })
     this.imageService.findByRealStateId(this.id).then(
       res => {
         this.images = res as Image[]
         console.log(this.images)
+
       }, error => {
         console.log(error)
       }
     )
+    
+    
     this.realstateService.findById(this.id).then(
       res => {
         this.realState = res as RealState
-        console.log(this.realState)
+        
       }, error => {
         console.log(error)
       }
     )
   }
+  
 }
