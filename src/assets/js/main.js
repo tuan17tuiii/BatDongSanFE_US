@@ -13,13 +13,13 @@
     };
     spinner();
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('#number-list li').removeClass('selected');
-    // Đặt giá trị của input có ID là 'ress' thành rỗng
-   
+        // Đặt giá trị của input có ID là 'ress' thành rỗng
+
         // Thêm sự kiện click cho mỗi mục trong danh sách có id 'number-list'
-        $('#number-list li').each(function() {
-            $(this).on('click', function() {
+        $('#number-list li').each(function () {
+            $(this).on('click', function () {
                 // Xóa class 'selected' khỏi tất cả các mục
                 $('#number-list li').removeClass('selected');
                 // Thêm class 'selected' vào mục đã nhấp
@@ -36,7 +36,7 @@
                 localStorage.setItem('selectedNumber', selectedValue);
             });
         });
-    
+
         // Khôi phục giá trị đã lưu khi tải trang
         var savedValue = localStorage.getItem('selectedNumber');
         if (savedValue) {
@@ -52,13 +52,13 @@
         }
         $('#ress').val('price');
     });
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('#number-list-2 li').removeClass('selected');
-    // Đặt giá trị của input có ID là 'ress' thành rỗng
-   
+        // Đặt giá trị của input có ID là 'ress' thành rỗng
+
         // Thêm sự kiện click cho mỗi mục trong danh sách có id 'number-list'
-        $('#number-list-2 li').each(function() {
-            $(this).on('click', function() {
+        $('#number-list-2 li').each(function () {
+            $(this).on('click', function () {
                 // Xóa class 'selected' khỏi tất cả các mục
                 $('#number-list-2 li').removeClass('selected');
                 // Thêm class 'selected' vào mục đã nhấp
@@ -75,7 +75,7 @@
                 localStorage.setItem('selectedNumber2', selectedValue);
             });
         });
-    
+
         // Khôi phục giá trị đã lưu khi tải trang
         var savedValue = localStorage.getItem('selectedNumber2');
         if (savedValue) {
@@ -84,22 +84,22 @@
                 selectedItem.addClass('selected2');
                 $('#selected-value2').text(savedValue);
                 // In giá trị đã chọn vào thẻ span có ID là 'spaner'
-              
+
                 // Cập nhật giá trị của input có ID là 'ress'
                 $('#resss').val(savedValue);
             }
         }
         $('#resss').val('area');
     });
-    
-    
-    
-    $(document).ready(function() {
-        $(".slider").each(function() {
+
+
+
+    $(document).ready(function () {
+        $(".slider").each(function () {
             var slider = $(this),
                 handle,
                 handleObj;
-    
+
             slider.slider({
                 range: true,
                 values: [1800, 7800],
@@ -117,21 +117,21 @@
                     $(slider.data("value-0")).html(ui.values[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, "&thinsp;"));
                     $(slider.data("value-1")).html(ui.values[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, "&thinsp;"));
                     $(slider.data("range")).html((ui.values[1] - ui.values[0]).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "&thinsp;"));
-    
+
                     // Ghi giá trị của slider vào input có id là "inputt"
                     $("#ress").val(ui.values.join(" - "));
                 }
             });
         });
     });
-    
-    
-    $(document).ready(function() {
-        $(".slider1").each(function() {
+
+
+    $(document).ready(function () {
+        $(".slider1").each(function () {
             var slider = $(this),
                 handle,
                 handleObj;
-    
+
             slider.slider({
                 range: true,
                 values: [30, 500],
@@ -149,25 +149,25 @@
                     $(slider.data("value-2")).html(ui.values[0].toString().replace(/\B(?=(\d{3})+(?!\d))/g, "&thinsp;"));
                     $(slider.data("value-3")).html(ui.values[1].toString().replace(/\B(?=(\d{3})+(?!\d))/g, "&thinsp;"));
                     $(slider.data("range")).html((ui.values[1] - ui.values[0]).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "&thinsp;"));
-    
+
                     // Ghi giá trị của slider vào input có id là "inputt"
                     $("#resss").val(ui.values.join(" - "));
                 }
             });
         });
     });
-    
-    
+
+
     $(document).ready(function () {
         $('.toggleButton').click(function (event) {
             var mouseX = event.pageX;
             var mouseY = event.pageY;
-    
+
             $('#panel').css({
-                top: mouseY-240,
-                left: mouseX-300
+                top: mouseY - 240,
+                left: mouseX - 300
             }).fadeToggle();
-    
+
             $('#panel1').fadeOut();
             $('#panel2').fadeOut();
         });
@@ -178,32 +178,32 @@
             // Lấy vị trí của chuột
             var mouseX = event.pageX;
             var mouseY = event.pageY;
-    
-            
+
+
             // Thiết lập vị trí và hiển thị #panel1
             $('#panel1').css({
-                top:  mouseY-360,
-                left: mouseX-400
+                top: mouseY - 360,
+                left: mouseX - 400
             }).fadeToggle();
-    
+
             // Ẩn các panel khác
             $('#panel').fadeOut();
             $('#panel2').fadeOut();
         });
     });
-    
-    
+
+
     $(document).ready(function () {
         $('.toggleButton2').click(function (event) {
             var mouseX = event.pageX;
-            console.log("day la x"+mouseX);
+            console.log("day la x" + mouseX);
             var mouseY = event.pageY;
-    
+
             $('#panel2').css({
                 top: mouseY,
                 left: mouseX
             }).fadeToggle();
-    
+
             $('#panel1').fadeOut();
             $('#panel').fadeOut();
         });
@@ -250,36 +250,44 @@
     });
 
     // Header carousel
-  
-// ham inkq iput tinh tp
-$(document).ready(function() {
-    $('#panel select').change(function() {
-        // Kiểm tra xem tất cả các select box đã được chọn chưa
-        if ($('#provinces').val() && $('#districts').val() && $('#wards').val()) {
-            // Lấy giá trị của các select box đã chọn
-            var provinceName = $('#provinces option:selected').text();
-            var districtName = $('#districts option:selected').text();
-            var wardName = $('#wards option:selected').text();
-            
-            // Tạo địa chỉ từ các giá trị đã chọn
-            var address = provinceName + ", " + districtName + ", " + wardName;
-            
-            // Gán địa chỉ vào input có id là "ress"
-            $('#ress1').val(address);
-        }
-    });
-});
-$(document).ready(function(){
-    // Xử lý khi click vào ảnh phụ
-    $('.change-main-image').click(function(){
-        console.log("Hihihihihi")
-        // Lấy đường dẫn của ảnh được click
-        var newImageSrc = $(this).attr('src');
-        // Thay đổi đường dẫn của ảnh chính
-        $('#main-image').attr('src', newImageSrc);
-    });
-});
 
+    // ham inkq iput tinh tp
+    $(document).ready(function () {
+        $('#panel select').change(function () {
+            // Kiểm tra xem tất cả các select box đã được chọn chưa
+            if ($('#provinces').val() && $('#districts').val() && $('#wards').val()) {
+                // Lấy giá trị của các select box đã chọn
+                var provinceName = $('#provinces option:selected').text();
+                var districtName = $('#districts option:selected').text();
+                var wardName = $('#wards option:selected').text();
+
+                // Tạo địa chỉ từ các giá trị đã chọn
+                var address = provinceName + ", " + districtName + ", " + wardName;
+
+                // Gán địa chỉ vào input có id là "ress"
+                $('#ress1').val(address);
+            }
+        });
+    });
+    $(document).ready(function() {
+        console.log("Document is ready");
+    
+        // Sử dụng sự kiện ủy quyền
+        $(document).on('click', '.change_main_image', function() {
+          console.log("Thumbnail clicked");
+    
+          // Lấy đường dẫn của ảnh được click
+          var newImageSrc = $(this).attr('src');
+          console.log("New image source: " + newImageSrc);
+    
+          // Thay đổi đường dẫn của ảnh chính
+          $('#main-image').fadeOut(300, function() {
+            $(this).attr('src', newImageSrc).fadeIn(300);
+          });
+        });
+      });
+    
+    
 
     // Testimonials carousel
 })(jQuery);

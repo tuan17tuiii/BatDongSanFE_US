@@ -23,4 +23,10 @@ export class LayoutComponent implements OnInit {
     sessionStorage.removeItem('username');
     this.router.navigate(['']);
   }
+  reload(){
+    this.router.navigate(["/bds/blogupstory"]).then(p=>{
+      window.location.reload();
+    })
+
+  }
 }

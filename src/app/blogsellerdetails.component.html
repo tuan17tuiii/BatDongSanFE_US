@@ -15,13 +15,13 @@
                   
               </div>
               <!-- Hình ảnh phụ -->
-
+<button class="huy">Heello</button>
               <div class="row">
               <div class="thumbnail-gallery">
                 
                       @for(image of images ; track image){
                         <div class="related-article col-3">
-                            <img src="{{imageUrl}}{{image.urlImage}}" (click)="srcImg(image.urlImage)" class="img-fluid change-main-image">
+                            <img src="{{imageUrl}}{{image.urlImage}}" class="img-fluid change_main_image">
                         </div>
                       }
                       
@@ -78,4 +78,4 @@
       </div>
   </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+

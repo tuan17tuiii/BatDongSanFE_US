@@ -66,6 +66,7 @@ export class BlogupstoryComponent implements OnInit {
     private imageService: ImageRealStateAPIService
   ) { }
   ngOnInit(): void {
+    
     this.formGroup = this.formBuilder.group({
       title: '',
       bathrooms: ['', [
@@ -110,6 +111,7 @@ export class BlogupstoryComponent implements OnInit {
 
   }
   selectTab(tab: string): void {
+    
     this.selectedTab = tab;
     console.log(this.selectedTab);
   }
