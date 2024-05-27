@@ -12,7 +12,7 @@
 
             <div class="form-group">
                 <label for="loai-bds">Loại bất động sản *</label>
-                <select class="form-select border-0 py-3" (change)="selectType($event)">
+                <select class="form-control" (change)="selectType($event)">
                     <option value="" disabled selected hidden>Loại BĐS</option>
                     @for(typerealstate of typerealstates ; track typerealstate){
                     <option [value]="typerealstate.id">{{typerealstate.type}}</option>
@@ -24,7 +24,7 @@
             <div class="row">
                 <div class="form-group col-md-6">
                     <label for="tinh-thanh-pho">Tỉnh, thành phố *</label>
-                    <select class="form-control border-0 py-3" id='provinces' (change)="find_districts($event)">
+                    <select class="form-control" id='provinces' (change)="find_districts($event)">
                         <option value="" disabled selected hidden>Select City</option>
                         @for(province of provinces ; track province){
                         <option [value]="province.province_id">{{province.province_name}}</option>
@@ -33,7 +33,7 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="quan-huyen">Quận, huyện *</label>
-                    <select class="form-select border-0 py-3" (change)="find_ward($event)">
+                    <select class="form-control" (change)="find_ward($event)">
                         <option value="" disabled selected hidden>Select District</option>
                         @for(district of districts ; track district){
                         <option [value]="district.district_id">{{district.district_name}}</option>
@@ -44,7 +44,7 @@
             <div class="row">
                 <div class="form-group col-md-6">
                     <label for="phuong-xa">Phường, xã *</label>
-                    <select class="form-select border-0 py-3" (change)="find_Name_Ward($event)">
+                    <select class="form-control" (change)="find_Name_Ward($event)">
                         <option value="" disabled selected hidden>Select Ward</option>
                         @for(ward of wards ; track ward){
                         <option>{{ward.ward_name}}</option>

@@ -25,6 +25,8 @@ import { LayoutComponent } from './Layout.component';
 import { UserSecurity } from './services/Security.Services';
 import { RegisterComponent } from './register.component';
 import { VerifyWebComponent } from './VerifyWeb.component';
+import { PaypalButtonComponent } from './paypal-button/paypal-button.component';
+
 
 export const routes: Routes = [
    {
@@ -133,6 +135,10 @@ export const routes: Routes = [
    {
       path: 'verify',
       component: VerifyWebComponent
-  },
+  }, 
+  {
+      path : 'paypal',
+      component : PaypalButtonComponent
+  }
 ];
 

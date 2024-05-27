@@ -36,10 +36,5 @@ export class LayoutComponent implements OnInit {
       window.location.reload();
     });
   }
-  reload(){
-    this.router.navigate(["/bds/blogupstory"]).then(p=>{
-      window.location.reload();
-    })
-
-  }
+  
 }

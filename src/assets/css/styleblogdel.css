@@ -83,3 +83,59 @@ font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: bold;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+.product-image {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* Tỷ lệ 16:9 */
+    overflow: hidden;
+    background-color: #f0f0f0; /* Màu nền cho ảnh */
+  }
+  
+  .product-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Đảm bảo ảnh đầy đủ khung mà không bị méo */
+  }
+  
+  .thumbnail-gallery {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .related-article img {
+    width: 100%;
+    object-fit: cover; /* Đảm bảo ảnh đầy đủ khung mà không bị méo */
+  }
+  
+  .features .head, .features .cont {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+  }
+  
+  .features .head div, .features .cont div {
+    text-align: center;
+  }
+  .description {
+    overflow-wrap: break-word;
+  }
+  .description {
+    white-space: pre-wrap;
+  }
+  .product-details,
+.contact-info {
+  border-radius: 10px; /* Điều chỉnh giá trị để thay đổi độ bo tròn */
+  border: 1px solid #ddd; /* Đảm bảo border vẫn hiển thị */
+  padding: 20px; /* Điều chỉnh padding nếu cần */
+}
+.contact-info {
+  background-color: #f2f2f2; /* Màu xám nhẹ */
+  border-radius: 10px; /* Điều chỉnh giá trị để thay đổi độ bo tròn */
+  border: 1px solid #ddd; /* Đảm bảo border vẫn hiển thị */
+  padding: 20px; /* Điều chỉnh padding nếu cần */
+}
+
+  
