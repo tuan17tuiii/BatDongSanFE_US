@@ -17,7 +17,7 @@ export class SecurityServices{
 
         if (typeof window !== "undefined" && typeof window.sessionStorage !== "undefined") {
             if(sessionStorage.getItem('username') == null){
-                this.router.navigate(['']);
+                this.router.navigate(['Login']);
                 return false;
             }
         }    

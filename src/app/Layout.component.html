@@ -9,7 +9,7 @@
     <!-- Navbar Start -->
     <div class="container-fluid nav-bar bg-transparent">
         <nav class="navbar navbar-expand-lg bg-white navbar-light py-0 px-4">
-            <a [routerLink]="['/bds/home']" class="navbar-brand d-flex align-items-center text-center">
+            <a [routerLink]="['/home']" class="navbar-brand d-flex align-items-center text-center">
                 <div class="icon p-2 me-2">
                     <img class="img-fluid" src="assets/img/icon-deal.png" alt="Icon" style="width: 30px; height: 30px;">
                 </div>
@@ -20,25 +20,25 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto">
-                    <a [routerLink]="['/bds/home']" class="nav-item nav-link active">Home</a>
-                    <a [routerLink]="['/bds/about']" class="nav-item nav-link">About</a>
+                    <a [routerLink]="['/home']" class="nav-item nav-link active">Home</a>
+                    <a [routerLink]="['/about']" class="nav-item nav-link">About</a>
 
-                    <a [routerLink]="['/bds/blogbuy']" class="nav-item nav-link">BlogBuy</a>
+                    <a [routerLink]="['/blogbuy']" class="nav-item nav-link">BlogBuy</a>
 
-                    <a [routerLink]="['/bds/blogbuy']" class="nav-item nav-link">BlogBuy2</a>
-                    <a [routerLink]="['/bds/blognew']" class="nav-item nav-link">Blog</a>
+                    <a [routerLink]="['/blogbuy']" class="nav-item nav-link">BlogBuy2</a>
+                    <a [routerLink]="['/blognew']" class="nav-item nav-link">Blog</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Property</a>
                         <div class="dropdown-menu rounded-0 m-0">
-                            <a [routerLink]="['/bds/property_list']" class="dropdown-item">Property List</a>
-                            <a [routerLink]="['/bds/property_type']" class="dropdown-item">Property Type</a>
-                            <a [routerLink]="['/bds/property_agent']" class="dropdown-item">Property Agent</a>
+                            <a [routerLink]="['/property_list']" class="dropdown-item">Property List</a>
+                            <a [routerLink]="['/property_type']" class="dropdown-item">Property Type</a>
+                            <a [routerLink]="['/property_agent']" class="dropdown-item">Property Agent</a>
                         </div>
                     </div>
                 </div>
                 &nbsp;
-                <div class="name"> <a [routerLink]="['/bds/information']"> <img src="../assets/img/header.jpg
-                " alt="Profile Image" class="profile-img">Tên user</a></div>
+                <div class="name"> <a [routerLink]="['/information']"> <img src="../assets/img/header.jpg
+                " alt="Profile Image" class="profile-img">{{username}}</a></div>
                 &nbsp;
                 <div class="name"> <a (click)="reload()"
                         class="btn btn-primary px-3 d-none d-lg-flex">Đăng Tin</a></div>
@@ -133,7 +133,7 @@
                             <a href="">Cookies</a>
                             <a href="">Help</a>
                             <a href="">FQAs</a>
-                            <a [routerLink]="['/bds/contact']">Contact</a>
+                            <a [routerLink]="['/contact']">Contact</a>
                         </div>
                     </div>
                 </div>
