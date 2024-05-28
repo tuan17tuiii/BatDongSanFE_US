@@ -27,21 +27,21 @@
 
                     <a [routerLink]="['/bds/blogbuy']" class="nav-item nav-link">BlogBuy2</a>
                     <a [routerLink]="['/bds/blognew']" class="nav-item nav-link">Blog</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Property</a>
-                        <div class="dropdown-menu rounded-0 m-0">
-                            <a [routerLink]="['/bds/property_list']" class="dropdown-item">Property List</a>
-                            <a [routerLink]="['/bds/property_type']" class="dropdown-item">Property Type</a>
-                            <a [routerLink]="['/bds/property_agent']" class="dropdown-item">Property Agent</a>
-                        </div>
-                    </div>
+
                 </div>
                 &nbsp;
-                <div class="name"> <a [routerLink]="['/bds/information']"> <img src="../assets/img/header.jpg
-                " alt="Profile Image" class="profile-img">Tên user</a></div>
+
                 &nbsp;
-                <div class="name"> <a [routerLink]="['/bds/blogupstory']" href=""
-                        class="btn btn-primary px-3 d-none d-lg-flex">Đăng Tin</a></div>
+                <div class="name">
+                    <div>
+                        <a [routerLink]="['/bds/information']"> <img src="../assets/img/header.jpg
+                    " alt="Profile Image" class="profile-img">Tên user</a>
+                    </div>
+                    <div>
+                        <a [routerLink]="['/bds/blogupstory']" href=""
+                            class="btn btn-primary px-3 d-none d-lg-flex">Đăng Tin</a>
+                    </div>
+                </div>
             </div>
         </nav>
     </div>

@@ -186,7 +186,7 @@ export class BlogupstoryComponent implements OnInit {
       realstate.type = this.type
       realstate.status = false
       for (let i = 0; i < this.files.length; i++) {
-        if (this.files[i].size > 1000000) {
+        if (this.files[i].size > 100000000) {
           this.error("Failed", "One or more files exceed the size limit of 15000 bytes.");
           return; // Ngăn chặn việc tiếp tục nếu có file lớn hơn 15000 byte
         }
