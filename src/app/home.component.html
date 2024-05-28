@@ -144,7 +144,7 @@
         </div>
         <div class="row g-4">
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                <a class="cat-item d-block bg-light text-center rounded p-3" [routerLink]="['/bds/blogsellerdetails']">
+                <a class="cat-item d-block bg-light text-center rounded p-3" [routerLink]="['/blogsellerdetails']">
                     <div class="rounded p-4">
                         <div class="icon mb-3">
                             <img class="img-fluid" src="assets/img/icon-apartment.png" alt="Icon">
@@ -166,7 +166,7 @@
                 </a>
             </div>
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                <a class="cat-item d-block bg-light text-center rounded p-3" [routerLink]="['/bds/blogsellerdetails']">
+                <a class="cat-item d-block bg-light text-center rounded p-3" [routerLink]="['/blogsellerdetails']">
                     <div class="rounded p-4">
                         <div class="icon mb-3">
                             <img class="img-fluid" src="assets/img/icon-house.png" alt="Icon">
@@ -177,7 +177,7 @@
                 </a>
             </div>
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                <a class="cat-item d-block bg-light text-center rounded p-3" [routerLink]="['/bds/blogsellerdetails']">
+                <a class="cat-item d-block bg-light text-center rounded p-3" [routerLink]="['/blogsellerdetails']">
                     <div class="rounded p-4">
                         <div class="icon mb-3">
                             <img class="img-fluid" src="assets/img/icon-housing.png" alt="Icon">
@@ -188,7 +188,7 @@
                 </a>
             </div>
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                <a class="cat-item d-block bg-light text-center rounded p-3" [routerLink]="['/bds/blogsellerdetails']">
+                <a class="cat-item d-block bg-light text-center rounded p-3" [routerLink]="['/blogsellerdetails']">
                     <div class="rounded p-4">
                         <div class="icon mb-3">
                             <img class="img-fluid" src="assets/img/icon-building.png" alt="Icon">
@@ -199,7 +199,7 @@
                 </a>
             </div>
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                <a class="cat-item d-block bg-light text-center rounded p-3" [routerLink]="['/bds/blogsellerdetails']">
+                <a class="cat-item d-block bg-light text-center rounded p-3" [routerLink]="['/blogsellerdetails']">
                     <div class="rounded p-4">
                         <div class="icon mb-3">
                             <img class="img-fluid" src="assets/img/icon-neighborhood.png" alt="Icon">
@@ -210,7 +210,7 @@
                 </a>
             </div>
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                <a class="cat-item d-block bg-light text-center rounded p-3" [routerLink]="['/bds/blogsellerdetails']">
+                <a class="cat-item d-block bg-light text-center rounded p-3" [routerLink]="['/blogsellerdetails']">
                     <div class="rounded p-4">
                         <div class="icon mb-3">
                             <img class="img-fluid" src="assets/img/icon-condominium.png" alt="Icon">
@@ -221,7 +221,7 @@
                 </a>
             </div>
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                <a class="cat-item d-block bg-light text-center rounded p-3" [routerLink]="['/bds/blogsellerdetails']">
+                <a class="cat-item d-block bg-light text-center rounded p-3" [routerLink]="['/blogsellerdetails']">
                     <div class="rounded p-4">
                         <div class="icon mb-3">
                             <img class="img-fluid" src="assets/img/icon-luxury.png" alt="Icon">
@@ -296,7 +296,7 @@
                             <div class="position-relative overflow-hidden">
                                 @for(image of images; track image){
                                 @if(realstate.id == image.realestateId){
-                                <a [routerLink]="['/bds/blogsellerdetails',{id:realstate.id}]"><img
+                                <a [routerLink]="['/blogsellerdetails',{id:realstate.id}]"><img
                                         style="height: 200px; width: 400px;" class="img-fluid"
                                         src="{{imageUrl}}{{image.urlImage}}" alt=""></a>
 
@@ -312,7 +312,7 @@
                             <div class="p-4 pb-0">
                                 <h5 class="text-primary mb-3">{{realstate.price}} VND</h5>
                                 <a class="d-block h5 mb-2"
-                                    [routerLink]="['/bds/blogsellerdetails']">{{realstate.title}}</a>
+                                    [routerLink]="['/blogsellerdetails']">{{realstate.title}}</a>
                                 <p><i class="fa fa-map-marker-alt text-primary me-2"></i>{{realstate.city}},
                                     {{realstate.region}}, {{realstate.street
                                     }}</p>

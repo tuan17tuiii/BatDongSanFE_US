@@ -13,19 +13,25 @@ function previewImage(file, previewId) {
         preview.src = "";
     }
 }
-document.addEventListener("DOMContentLoaded", function() {
-    var tabs = document.querySelectorAll(".tab");
 
-    tabs.forEach(function(tab) {
-        tab.addEventListener("click", function() {
+
+document.addEventListener("DOMContentLoaded", function() {
+    var tabContainer = document.querySelector(".tabs");
+    
+    tabContainer.addEventListener("click", function(event) {
+        if (event.target.classList.contains("tab")) {
             // Remove 'active' class from all tabs
+            var tabs = document.querySelectorAll(".tab");
             tabs.forEach(function(tab) {
                 tab.classList.remove("active");
             });
 
             // Add 'active' class to the clicked tab
-            this.classList.add("active");
-        });
+            event.target.classList.add("active");
+        }
     });
 });
+
+
+
 

@@ -30,7 +30,8 @@
               "node_modules/primeng/resources/primeng.min.css"
             ],
             "scripts": [
-              "node_modules/quill/dist/quill.js"
+              "node_modules/quill/dist/quill.js",
+              "node_modules/@paypal/paypal-js/dist/paypal.js"
             ],
             "server": "src/main.server.ts",
             "prerender": true,

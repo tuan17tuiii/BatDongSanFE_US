@@ -34,7 +34,7 @@ export class Logincomponet implements OnInit{
           console.log(res);
           if (typeof window !== "undefined" && typeof window.sessionStorage !== "undefined") {
             sessionStorage.setItem('username', this.username);
-            this.router.navigate(['/bds/home']);
+            this.router.navigate(['/home']);
           }
         }else {
           this.msg = 'Username or Password is not correct !';
