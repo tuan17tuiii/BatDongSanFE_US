@@ -16,7 +16,7 @@ import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmationService, MessageService } from "primeng/api";
 import { ImageRealStateAPIService } from './services/image.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, formatDate } from '@angular/common';
 import { eventNames } from 'process';
 @Component({
   selector: 'app-root',
@@ -66,21 +66,26 @@ export class BlogupstoryComponent implements OnInit {
     private imageService: ImageRealStateAPIService
   ) { }
   ngOnInit(): void {
-    
+
     this.formGroup = this.formBuilder.group({
       title: '',
+
       bathrooms: ['', [
-        Validators.required,
+        Validators.min(0),
+        Validators.max(100),
         Validators.pattern('^[0-9]+$')
       ]],
       bedrooms: ['', [
-        Validators.required,
+        Validators.min(0),
+        Validators.max(100),
         Validators.pattern('^[0-9]+$')
       ]],
       describe: '',
       price: ['', [
         Validators.required,
-        Validators.pattern('^[0-9]+$')
+        Validators.pattern('^[0-9]+$'),
+        Validators.max(999000000000),
+        Validators.min(0),
       ]],
       acreage: ['', [
         Validators.required,
@@ -111,11 +116,11 @@ export class BlogupstoryComponent implements OnInit {
 
   }
   selectTab(tab: string): void {
-    
+
     this.selectedTab = tab;
     console.log(this.selectedTab);
   }
-  
+
   find_districts(evt: any) {
     var district_id = evt.target.value;
     this.id = district_id
@@ -167,12 +172,17 @@ export class BlogupstoryComponent implements OnInit {
     this.files = selectedFiles; // Gán mảng vào this.files
 
     for (let i = 0; i < this.files.length; i++) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.images.push(reader.result as string);
-      };
-      reader.readAsDataURL(this.files[i]);
-      this.fileNames[i] = this.files[i].name;
+      if (this.files.length > 4) {
+        this.error("Faild", "Please choose 4 photos")
+        break;
+      } else {
+        const reader = new FileReader();
+        reader.onload = () => {
+          this.images.push(reader.result as string);
+        };
+        reader.readAsDataURL(this.files[i]);
+        this.fileNames[i] = this.files[i].name;
+      }
     }
     console.log(this.files);
 
@@ -182,11 +192,18 @@ export class BlogupstoryComponent implements OnInit {
     console.log(this.files.length)
     if (this.files.length > 0) {
       let realstate: RealState = this.formGroup.value as RealState;
+      if (realstate.bathrooms.toString() == '') {
+        realstate.bathrooms = null
+      } else if (realstate.bedrooms.toString() == '') {
+        realstate.bedrooms = null
+      }
       realstate.city = this.province[0].province_name
       realstate.region = this.district.district_name
       realstate.street = this.ward
       realstate.type = this.type
       realstate.status = false
+      realstate.createdAt = formatDate(new Date(), 'dd/MM/yyyy', 'en-US')
+
       for (let i = 0; i < this.files.length; i++) {
         if (this.files[i].size > 100000000) {
           this.error("Failed", "One or more files exceed the size limit of 15000 bytes.");
@@ -199,6 +216,7 @@ export class BlogupstoryComponent implements OnInit {
           res => {
             if (res['result']) {
               this.show()
+              console.log("Day la created: " + realstate.createdAt)
               this.newrealstate = res['productId']
               console.log(this.newrealstate)
               let formData = new FormData();//tao form data
@@ -206,7 +224,6 @@ export class BlogupstoryComponent implements OnInit {
                 formData.append('files', this.files[i]);
                 console.log(formData)
                 formData.append('id', this.newrealstate.toString())
-
               }
               this.imageService.uploads(formData).then(
                 res => {
@@ -218,15 +235,12 @@ export class BlogupstoryComponent implements OnInit {
                   this.error("Faild", "An error has occurred")
                 }
               )
-
-
-
             } else {
-              this.msg = 'Failed'
+              this.error("Faild", "Created Faild")
             }
           },
           error => {
-            console.log(error)
+            this.error("Faild", "Created Faild")
           }
         )
       } else {
@@ -253,7 +267,9 @@ export class BlogupstoryComponent implements OnInit {
     });
   }
   uploads() {
-    console.log(this.files.length)
+    let realstate: RealState = this.formGroup.value as RealState;
+    realstate.createdAt = formatDate(new Date(), 'dd/MM/yyyy', 'en-US')
+    console.log(realstate.createdAt)
   }
   removeImage(index: number) {
     this.images.splice(index, 1);

@@ -1,0 +1,60 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.wrap {
+    display: flex;
+    gap: 20px;
+}
+
+.container-custom {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.container-custom:hover {
+    transform: translateY(-10px);
+}
+
+h2 {
+    color: #343a40;
+}
+
+.form-group ul {
+    list-style: none;
+    padding: 0;
+}
+
+.form-group li {
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+h3 {
+    color: #28a745;
+    margin-top: 15px;
+}
+
+.subscribe-btn {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.subscribe-btn:hover {
+    background-color: #218838;
+}
