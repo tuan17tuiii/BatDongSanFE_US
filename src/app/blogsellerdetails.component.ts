@@ -5,6 +5,7 @@ import { ImageRealStateAPIService } from './services/image.service';
 import { RealState } from './entities/realstate.entities';
 import { Image } from './entities/image.entities';
 import { BaseUrlService } from './services/baseurl.service';
+import { error } from 'console';
 
 
 
@@ -20,6 +21,7 @@ import { BaseUrlService } from './services/baseurl.service';
 export class BlogsellerdetailsComponent implements OnInit {
   id: any;
   realState : RealState
+  realStateRelateds : RealState[]//bds lien quan
   images : Image[]
   imagechinh : string  
   imageUrl : string 
@@ -49,13 +51,18 @@ export class BlogsellerdetailsComponent implements OnInit {
         console.log(error)
       }
     )
-    
-    
     this.realstateService.findById(this.id).then(
       res => {
         this.realState = res as RealState
          // Gọi phương thức để định dạng giá
-
+         this.realstateService.findByCityRegion(this.realState.city , this.realState.region).then(
+          res=>{
+            this.realStateRelateds = res as RealState[]
+            console.log(this.realStateRelateds)
+          },error=>{
+            console.log("Not Found")
+          }
+        )
       }, error => {
         console.log(error)
       }

@@ -70,54 +70,13 @@
         <!-- Phần phải -->
         <div class="col-md-3">
             <div class="contact-info">
-                <h2>Thông tin liên hệ</h2>
-                <p>Địa chỉ: 123 Đường ABC, Thành phố XYZ</p>
-                <p>Điện thoại: 0123 456 789</p>
-                <p>Email: exampleexample.com</p>
-                <!-- Thêm form liên hệ -->
-                <h2>Gửi tin nhắn</h2>
-                <form>
-                    <div class="form-group">
-                        <label for="name">Họ và tên:</label>
-                        <input type="text" class="form-control" id="name" placeholder="Nhập họ và tên">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email:</label>
-                        <input type="email" class="form-control" id="email" placeholder="Nhập email">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Tin nhắn:</label>
-                        <textarea class="form-control" id="message" rows="3"
-                            placeholder="Nhập tin nhắn của bạn"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Gửi</button>
-                </form>
-            </div>
-            <br>
-
-            <div class="contact-info">
                 <h4>Related Realstate</h4>
-                <p>Địa chỉ: 123 Đường ABC, Thành phố XYZ</p>
-                <p>Điện thoại: 0123 456 789</p>
-                <p>Email: exampleexample.com</p>
-                <!-- Thêm form liên hệ -->
-                <h2>Gửi tin nhắn</h2>
-                <form>
-                    <div class="form-group">
-                        <label for="name">Họ và tên:</label>
-                        <input type="text" class="form-control" id="name" placeholder="Nhập họ và tên">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email:</label>
-                        <input type="email" class="form-control" id="email" placeholder="Nhập email">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Tin nhắn:</label>
-                        <textarea class="form-control" id="message" rows="3"
-                            placeholder="Nhập tin nhắn của bạn"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Gửi</button>
-                </form>
+                @for(realStateRelated of realStateRelateds; track realStateRelated){
+                    <b><a [routerLink]="['/blogsellerdetails',{id:realStateRelated.id}]">{{realStateRelated.title}}</a></b>
+                    <br>
+                }
+                
+                
             </div>
 
 
