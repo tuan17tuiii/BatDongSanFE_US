@@ -26,7 +26,7 @@ import { ConfirmationService, MessageService } from "primeng/api";
 
 
   templateUrl: './selectadv.component.html',
-  styleUrl:'../assets/css/styleblogupstory.css'
+  styleUrl:'../assets/css/selectadv.css'
 
 
 })

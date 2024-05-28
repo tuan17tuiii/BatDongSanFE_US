@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterLink, RouterOutlet,NavigationEnd } from '@angular/router';
+import { Router, RouterLink, RouterOutlet, NavigationEnd } from '@angular/router';
 import { ProvinceAPIService } from "./services/provinceapi.service";
 import { Province } from './entities/province.entities';
 import { error } from 'console';
@@ -14,27 +14,27 @@ import { BaseUrlService } from './services/baseurl.service';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,RouterLink],
+  imports: [RouterOutlet, RouterLink],
   templateUrl: './home.component.html',
   host: { 'collision-id': 'HomeComponent' },
 })
 export class HomeComponent implements OnInit {
-  id : string 
+  id: string
   msg: string
-  imageUrl : string 
-  realstates : RealState[]
-  images : Image[]
-  wards : Ward[]
+  imageUrl: string
+  realstates: RealState[]
+  images: Image[]
+  wards: Ward[]
   provinces: Province[]
   districts: District[]
-  data_input1:string
+  data_input1: string
   constructor(
     private provinceService: ProvinceAPIService,
-    private imageService : ImageRealStateAPIService ,
-    private realstateService : RealStateAPIService , 
-    private baseUrlService : BaseUrlService,
+    private imageService: ImageRealStateAPIService,
+    private realstateService: RealStateAPIService,
+    private baseUrlService: BaseUrlService,
     private http: HttpClient,
-    private router:Router
+    private router: Router
   ) { }
   ngOnInit(): void {
     this.router.events.subscribe((event) => {
@@ -42,63 +42,77 @@ export class HomeComponent implements OnInit {
         window.scrollTo(0, 0);
       }
     });
-    this.imageUrl = this.baseUrlService.ImageUrl ; 
+    this.imageUrl = this.baseUrlService.ImageUrl;
     this.provinceService.findAll().then(
       res => {
         this.provinces = res['results'] as Province[];
-        
+
       },
       error => {
         console.log(error)
       }
     )
     this.imageService.findAll().then(
-      res=>{
+      res => {
         this.images = res as Image[];
-        
-       },
-       error => {
-         console.log(error)
-       }
+
+      },
+      error => {
+        console.log(error)
+      }
     )
     this.realstateService.findAll().then(
-      res=>{
-        this.realstates = res as RealState[];
-        
-       },
-       error => {
-         console.log(error)
-       }
-    )
-  }
-  find_districts(evt: any) {
-
-    var district_id = evt.target.value;
-    this.id = district_id
-    
-    this.provinceService.findDistrict(district_id).then(
       res => {
-        this.districts = res['results'] as District[];
-        
+        this.realstates = res as RealState[];
+
       },
       error => {
         console.log(error)
       }
     )
   }
-  find_ward(evt : any){
-    var ward_id = evt.target.value;
-    this.provinceService.findWard(ward_id).then(
-      res=>{
-        this.wards = res['results'] as Ward[];
-        
+  find_districts(evt: any) {
+
+    var district_id = evt.target.value;
+    this.id = district_id
+
+    this.provinceService.findDistrict(district_id).then(
+      res => {
+        this.districts = res['results'] as District[];
+
       },
-      error=>{
+      error => {
         console.log(error)
       }
     )
   }
-  changeinput(){
+  find_ward(evt: any) {
+    var ward_id = evt.target.value;
+    this.provinceService.findWard(ward_id).then(
+      res => {
+        this.wards = res['results'] as Ward[];
+
+      },
+      error => {
+        console.log(error)
+      }
+    )
+  }
+  changeinput() {
+  }
+  formatPrice(price : string): string {
+    if(Number(price)>1000000000){
+      return( Number(price) / 1000000000).toFixed(1) + ' tỷ'; // Đổi sang tỷ nếu giá lớn hơn hoặc bằng 1 tỷ
+    }else if(Number(price) >= 1000000){
+      const million = (Number(price)) / 1000000;
+      return price = million % 1 === 0 ? million.toString() + ' triệu' : million.toFixed(1) + ' triệu'; // Đổi sang triệu nếu giá lớn hơn hoặc bằng 1 triệu
+    }else if(Number(price) >= 1000){
+      const thousand =(Number(price)) / 1000;
+      return price =  thousand % 1 === 0 ? thousand.toString() + 'k' : thousand.toFixed(1) + 'k'; // Đổi sang k (kilo) nếu giá lớn hơn hoặc bằng 1 nghìn
+    }else {
+      return price
+    }
+    return  price 
   }
 }
 

@@ -12,7 +12,7 @@ export class RealState{
     bedrooms : number  ; 
     bathrooms : number ; 
     status : boolean ; 
-    created : Date;
+    createdAt : string;
     city : string ; 
     street : string ; 
     region : string ; 
