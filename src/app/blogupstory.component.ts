@@ -192,14 +192,15 @@ export class BlogupstoryComponent implements OnInit {
     console.log(this.files.length)
     if (this.files.length > 0) {
       let realstate: RealState = this.formGroup.value as RealState;
-      if (realstate.bathrooms.toString() == '') {
+      if (realstate.bathrooms.toString() == '' && realstate.bedrooms.toString() == '') {
+        realstate.bathrooms = null
+        realstate.bedrooms = null
+      }else if (realstate.bathrooms.toString() == '') {
         realstate.bathrooms = null
       } else if (realstate.bedrooms.toString() == '') {
         realstate.bedrooms = null
-      }else{
-        realstate.bedrooms = null 
-        realstate.bathrooms = null
       }
+      
       realstate.city = this.province[0].province_name
       realstate.region = this.district.district_name
       realstate.street = this.ward
