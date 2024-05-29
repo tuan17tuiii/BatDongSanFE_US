@@ -3,11 +3,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { UserServices } from './services/User.Services';
 import { User } from './entities/User.entities';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+import { ButtonModule } from 'primeng/button';
+import { RippleModule } from 'primeng/ripple';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, FormsModule, ReactiveFormsModule],
+  imports: [RouterOutlet, RouterLink, FormsModule, ReactiveFormsModule, ToastModule, ButtonModule, RippleModule],
+  providers: [MessageService],
   templateUrl: './login.component.html',
 })
 export class Logincomponet implements OnInit{

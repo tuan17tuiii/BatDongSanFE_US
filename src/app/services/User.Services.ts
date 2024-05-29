@@ -50,10 +50,22 @@ export class UserServices{
         return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl + 'account/findById/' + id));
     }
 
+    async AccountExists(username: string, email:string){
+        return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl + 'account/Exists/' + username + '/' + email));
+    }
+
     async Update(user: User){
         return lastValueFrom(this.httpClient.put(this.baseUrlService.BaseUrl + 'account/Update', user));
     }
 
+    async ChangePass(password: string, username: string){
+        return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl + 'account/ChangePass/' + password + '/' + username));
+    }
+
+    async PasswordVerify(password: string, userpass: string){
+        return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl + 'account/PasswordVerify/' + userpass + '/' + password));
+    }
+    
     async Delete(id: number){
         return lastValueFrom(this.httpClient.delete(this.baseUrlService.BaseUrl + 'account/Delete/' + id));
     }

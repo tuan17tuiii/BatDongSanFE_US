@@ -26,6 +26,7 @@ import { UserSecurity } from './services/Security.Services';
 import { RegisterComponent } from './register.component';
 import { VerifyWebComponent } from './VerifyWeb.component';
 import { PaypalButtonComponent } from './paypal-button/paypal-button.component';
+import { ChangePassComponent } from './ChangePass.component';
 
 
 export const routes: Routes = [
@@ -97,6 +98,10 @@ export const routes: Routes = [
                {
                   path: "inforuser",
                   component: InforuserComponent,
+               },
+               {
+                  path: "ChangePass",
+                  component: ChangePassComponent,
                }
             ]
          },
@@ -135,10 +140,10 @@ export const routes: Routes = [
    {
       path: 'verify',
       component: VerifyWebComponent
-  }, 
-  {
-      path : 'paypal',
-      component : PaypalButtonComponent
-  }
+   },
+   {
+      path: 'paypal',
+      component: PaypalButtonComponent
+   }
 ];
 

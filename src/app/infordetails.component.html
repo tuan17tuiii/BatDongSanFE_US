@@ -1,24 +1,55 @@
-
 <div class="profile-container1">
-    <h2>Thông tin cá nhân</h2>
-    <img src="your-image-url.jpg" alt="Hình ảnh của bạn" class="profile-image1">
-    <form id="profile-form">
+    <h2 [align]="['center']">User's Infomation</h2>
+    @if (infoForm != null) {
+    <form id="profile-form" [formGroup]="infoForm" (ngSubmit)="Save()">
         <div class="ip">
-            <label for="fullname">Họ và tên:</label><br>
-            <input type="text" id="fullname" name="fullname" placeholder="Nhập họ và tên của bạn">
+            <label for="fullname"><i class="fa fa-id-card" aria-hidden="true">&nbsp;</i>Full Name:</label><br>
+            <input type="text" id="fullname" name="fullname" placeholder="Full Name"
+                class="form-control form-control-sm" formControlName="name">
+            @if (infoForm.get('name').touched) {
+            @if (infoForm.hasError('required',['name'])) {
+            <span class="error" style="color: red;">Full Name required !</span>
+            }
+            }
         </div>
-        <div>
-            <label for="email">Email:</label><br>
-            <input type="text" id="email" name="email" placeholder="Nhập địa chỉ email của bạn">
+        <div class="ip">
+            <label for="email"><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Email:</label><br>
+            <input type="text" id="email" name="email" placeholder="Email" class="form-control form-control-sm"
+                formControlName="email">
+            @if (infoForm.get('email').touched) {
+            @if (infoForm.hasError('required',['email'])) {
+            <span class="error" style="color: red;">Email required !</span>
+            }
+            }
         </div>
-        <div>
-            <label for="address">Địa chỉ:</label><br>
-            <textarea id="address" name="address" placeholder="Nhập địa chỉ của bạn"></textarea>
+        <div class="ip">
+            <label for="phone"><i class="fa fa-phone-square" aria-hidden="true"></i>&nbsp;Phone Number:</label><br>
+            <input type="text" id="phone" name="phone" placeholder="Phone Number" class="form-control form-control-sm"
+                formControlName="phone">
+            @if (infoForm.get('phone').touched) {
+            @if (infoForm.hasError('required',['phone'])) {
+            <span class="error" style="color: red;">Phone Number required !</span>
+            }
+            }
         </div>
-        <div>
-            <label for="tax-id">Mã số thuế:</label><br>
-            <input type="text" id="tax-id" name="tax-id" placeholder="Nhập mã số thuế của bạn">
+        <div class="ip">
+            <label for="tax-id"><i class="fa fa-id-card" aria-hidden="true"></i>&nbsp;Rental code:</label><br>
+            <input type="text" id="tax-id" name="tax-id" placeholder="Rental code" class="form-control form-control-sm">
         </div>
-        <button type="submit" class="btn-update">Cập nhật</button>
+        <div style="margin-right: 18px;">
+            <input type="hidden" formControlName="username">
+            <input type="hidden" formControlName="roleId">
+            <input type="hidden" formControlName="id">
+            <input type="hidden" formControlName="password">
+            <input type="hidden" formControlName="status">
+            <input type="hidden" formControlName="securityCode">
+            <input type="hidden" formControlName="advertisementId">
+            <p-toast position="bottom-left" key="bl" />
+            <p-button pRipple (click)="Save()" label="Update" styleClass="btn btn-success" [style]="{'width':'45%'}" [disabled]="infoForm.invalid"/>
+            <p-button pRipple [routerLink]="['/information/ChangePass']" label="Change Password"
+                styleClass="btn btn-success" [style]="{'width':'45%', 'margin-left':'92px'}" />
+        </div>
+
     </form>
+    }
 </div>
