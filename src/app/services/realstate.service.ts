@@ -23,5 +23,8 @@ export class RealStateAPIService  {
     async findById(id : number ){
         return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl +  'realstate/findById/'+ id))
     } 
+    async findByCityRegion(city : string , region : string){
+        return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl +  'realstate/findByCityRegion/'+ city + "/" + region))
+    } 
     
 }

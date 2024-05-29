@@ -5,6 +5,7 @@ import { ImageRealStateAPIService } from './services/image.service';
 import { RealState } from './entities/realstate.entities';
 import { Image } from './entities/image.entities';
 import { BaseUrlService } from './services/baseurl.service';
+import { error } from 'console';
 
 
 
@@ -20,6 +21,7 @@ import { BaseUrlService } from './services/baseurl.service';
 export class BlogsellerdetailsComponent implements OnInit {
   id: any;
   realState : RealState
+  realStateRelateds : RealState[]//bds lien quan
   images : Image[]
   imagechinh : string  
   imageUrl : string 
@@ -49,13 +51,18 @@ export class BlogsellerdetailsComponent implements OnInit {
         console.log(error)
       }
     )
-    
-    
     this.realstateService.findById(this.id).then(
       res => {
         this.realState = res as RealState
-        this.formatPrice(); // Gọi phương thức để định dạng giá
-
+         // Gọi phương thức để định dạng giá
+         this.realstateService.findByCityRegion(this.realState.city , this.realState.region).then(
+          res=>{
+            this.realStateRelateds = res as RealState[]
+            console.log(this.realStateRelateds)
+          },error=>{
+            console.log("Not Found")
+          }
+        )
       }, error => {
         console.log(error)
       }
@@ -64,22 +71,7 @@ export class BlogsellerdetailsComponent implements OnInit {
   }
   // Phương thức để định dạng giá
 // Phương thức để định dạng giá
-formatPrice(): void {
-  if (this.realState && this.realState.price) {
-    const price = this.realState.price;
-    if (price >= 1000000000) {
-      this.formattedPrice = (price / 1000000000).toFixed(1) + ' tỷ'; // Đổi sang tỷ nếu giá lớn hơn hoặc bằng 1 tỷ
-    } else if (price >= 1000000) {
-      const million = price / 1000000;
-      this.formattedPrice = million % 1 === 0 ? million.toString() + ' triệu' : million.toFixed(1) + ' triệu'; // Đổi sang triệu nếu giá lớn hơn hoặc bằng 1 triệu
-    } else if (price >= 1000) {
-      const thousand = price / 1000;
-      this.formattedPrice = thousand % 1 === 0 ? thousand.toString() + 'k' : thousand.toFixed(1) + 'k'; // Đổi sang k (kilo) nếu giá lớn hơn hoặc bằng 1 nghìn
-    } else {
-      this.formattedPrice = price.toString(); // Giữ nguyên giá nếu nhỏ hơn 1 nghìn
-    }
-  }
-}
+
 
 
 

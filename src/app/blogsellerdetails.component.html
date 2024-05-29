@@ -1,4 +1,3 @@
-
 <div class="container">
     <div class="row">
         <!-- Phần trái -->
@@ -38,81 +37,49 @@
                 <!-- Đặc điểm và giá cả -->
                 <div class="container features">
                     <div class="row head">
-                        <div class="col-3">Price: {{formattedPrice}}</div>
-                        <div class="col-md-3">Acreage: {{realState.acreage}} m2</div>
-                        <div class="col-md-3">Bathrooms: {{realState.bathrooms}}</div>
+                        <div class="col-3">Price: {{realState.price}}$</div>
+                        <div class="col-md-3">Acreage: {{realState.acreage}}m<sup>2</sup></div>
+
+                        @if(realState.bathrooms!= null){
+                            <div class="col-md-3">Bathrooms: {{realState.bathrooms}}</div>
+                        }@else{
+                            <div class="col-md-3"></div>
+                        }
                     </div>
-                    
+
                 </div>
                 <div>
                     <h2>Information Description</h2>
                     <p></p>
                     <p>-Location: {{realState.city}}, {{realState.region}}, {{realState.street}}</p>
-                    <p class="description">-{{realState.describe}} </p>    
+                    <p class="description">-{{realState.describe}} </p>
                     <p>-Hotline: 0862054327=> số của user</p>
                     @if(realState.bathrooms != null && realState.bedrooms != null){
-                        <p>Acreage apartment: </p>
-                        <p>- {{realState.bathrooms}} bathrooms</p>
-                        <p>- {{realState.bedrooms}} bedrooms</p>
+                    <p>Acreage apartment: </p>
+                    <p>- {{realState.bathrooms}} bathrooms</p>
+                    <p>- {{realState.bedrooms}} bedrooms</p>
                     }
                     <h5>Thank you customers!</h5>
                 </div>
                 }
+
+
             </div>
 
         </div>
         <!-- Phần phải -->
         <div class="col-md-3">
             <div class="contact-info">
-                <h2>Thông tin liên hệ</h2>
-                <p>Địa chỉ: 123 Đường ABC, Thành phố XYZ</p>
-                <p>Điện thoại: 0123 456 789</p>
-                <p>Email: exampleexample.com</p>
-                <!-- Thêm form liên hệ -->
-                <h2>Gửi tin nhắn</h2>
-                <form>
-                    <div class="form-group">
-                        <label for="name">Họ và tên:</label>
-                        <input type="text" class="form-control" id="name" placeholder="Nhập họ và tên">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email:</label>
-                        <input type="email" class="form-control" id="email" placeholder="Nhập email">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Tin nhắn:</label>
-                        <textarea class="form-control" id="message" rows="3"
-                            placeholder="Nhập tin nhắn của bạn"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Gửi</button>
-                </form>
-            </div>
-            <br>
-
-            <div class="contact-info">
                 <h4>Related Realstate</h4>
-                <p>Địa chỉ: 123 Đường ABC, Thành phố XYZ</p>
-                <p>Điện thoại: 0123 456 789</p>
-                <p>Email: exampleexample.com</p>
-                <!-- Thêm form liên hệ -->
-                <h2>Gửi tin nhắn</h2>
-                <form>
-                    <div class="form-group">
-                        <label for="name">Họ và tên:</label>
-                        <input type="text" class="form-control" id="name" placeholder="Nhập họ và tên">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email:</label>
-                        <input type="email" class="form-control" id="email" placeholder="Nhập email">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Tin nhắn:</label>
-                        <textarea class="form-control" id="message" rows="3"
-                            placeholder="Nhập tin nhắn của bạn"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Gửi</button>
-                </form>
+                @for(realStateRelated of realStateRelateds; track realStateRelated){
+                    <b><a [routerLink]="['/blogsellerdetails',{id:realStateRelated.id}]">{{realStateRelated.title}}</a></b>
+                    <br>
+                }
+                
+                
             </div>
+
+
         </div>
     </div>
 </div>

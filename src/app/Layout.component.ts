@@ -18,6 +18,7 @@ export class LayoutComponent implements OnInit {
   username: string;
  
   ngOnInit(){ 
+    
     if (typeof window !== "undefined" && typeof window.sessionStorage !== "undefined") {
       this.userServices.findByUsername(sessionStorage.getItem('username')).then(
         res =>{
