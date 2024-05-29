@@ -196,6 +196,9 @@ export class BlogupstoryComponent implements OnInit {
         realstate.bathrooms = null
       } else if (realstate.bedrooms.toString() == '') {
         realstate.bedrooms = null
+      }else{
+        realstate.bedrooms = null 
+        realstate.bathrooms = null
       }
       realstate.city = this.province[0].province_name
       realstate.region = this.district.district_name
@@ -215,8 +218,7 @@ export class BlogupstoryComponent implements OnInit {
         this.realstateService.create(realstate).then(
           res => {
             if (res['result']) {
-              this.show()
-              console.log("Day la created: " + realstate.createdAt)
+              
               this.newrealstate = res['productId']
               console.log(this.newrealstate)
               let formData = new FormData();//tao form data
