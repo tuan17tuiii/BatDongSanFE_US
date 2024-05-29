@@ -17,7 +17,7 @@ import { RippleModule } from 'primeng/ripple';
 })
 export class Logincomponet implements OnInit{
 
-  constructor(private userServices: UserServices, private router: Router) {
+  constructor(private userServices: UserServices, private router: Router, private messageService:MessageService) {
 
   }
 
@@ -42,7 +42,7 @@ export class Logincomponet implements OnInit{
             this.router.navigate(['/home']);
           }
         }else {
-          this.msg = 'Username or Password is not correct !';
+          this.messageService.add({ severity: 'error', summary: 'Login Failed !', detail: 'Username or Password is not correct !', key: 'tl', life: 2000 });
       }
       },
       err =>{
