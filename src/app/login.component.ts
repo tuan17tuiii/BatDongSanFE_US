@@ -31,12 +31,12 @@ export class Logincomponet implements OnInit{
 
   Login(){
     let user = new User();
+    user
     user.username = this.username;
     user.password = this.password;
     this.userServices.LoginUser(user).then(
       res =>{
         if(res['result']){
-          console.log(res);
           if (typeof window !== "undefined" && typeof window.sessionStorage !== "undefined") {
             sessionStorage.setItem('username', this.username);
             this.router.navigate(['/home']);
