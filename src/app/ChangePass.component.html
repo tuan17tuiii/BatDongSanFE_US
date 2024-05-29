@@ -1,0 +1,44 @@
+<div class="profile-container1">
+    <h2 [align]="['center']">Change Password</h2>
+    @if (PassForm != null) {
+    <form id="profile-form" [formGroup]="PassForm" (ngSubmit)="Save()">
+        <div class="ip">
+            <label for="CurrentPassword"><i class="fa fa-lock" aria-hidden="true"></i>&nbsp;Current
+                Password:</label><br>
+            <input type="password" id="CurrentPassword" name="CurrentPassword" placeholder="Current Password"
+                class="form-control form-control-sm" formControlName="current">
+            @if (PassForm.get('current').touched) {
+            @if (PassForm.hasError('required',['current'])) {
+            <span class="error" style="color: red;">Current Password required !</span>
+            }
+            }
+        </div>
+        <div class="mt-3">
+            <label for="NewPassword"><i class="fa fa-lock" aria-hidden="true"></i>&nbsp;New Password:</label><br>
+            <input type="password" id="NewPassword" name="NewPassword" placeholder="New Password"
+                class="form-control form-control-sm" formControlName="newpass">
+            @if (PassForm.get('newpass').touched) {
+            @if (PassForm.hasError('required',['newpass'])) {
+            <span class="error" style="color: red;">New Password required !</span>
+            }
+            }
+        </div>
+        <div class="mt-3">
+            <label for="Confirm"><i class="fa fa-lock" aria-hidden="true"></i>&nbsp;Confirm new
+                password:</label><br>
+            <input type="password" id="Confirm" name="Confirm" placeholder="Confirm new password"
+                class="form-control form-control-sm" formControlName="confirm">
+            @if (PassForm.get('confirm').touched) {
+            @if (PassForm.hasError('required',['confirm'])) {
+            <span class="error" style="color: red;">Confirm Password required !</span>
+            }
+            }
+        </div>
+        <div class="mt-3">
+            <p-toast position="bottom-left" key="bl" />
+            <p-button pRipple (click)="Save()" label="Change Password" [disabled]="PassForm.invalid" styleClass="btn btn-success" [style]="{'width':'100%'}" />
+        </div>
+
+    </form>
+    }
+</div>

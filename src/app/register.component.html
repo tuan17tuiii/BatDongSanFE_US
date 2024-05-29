@@ -55,15 +55,16 @@
                     }
                   </div>
                   <div class="text-center">
-                    <button type="submit" class="btn btn-primary btn-block enter-btn" [disabled]="registerForm.invalid">Register</button>
+                    <p-toast position="top-right" key="tl" />
+                    <p-button type="ngSubmit" pRipple label="Register" styleClass="btn btn-info btn-block enter-btn" [disabled]="registerForm.invalid" [style]="{'width': '100%'}"/>
                   </div>
-                  <div class="d-flex">
+                  <div class="d-flex mt-3">
                     <button class="btn btn-facebook col mr-2">
                       <i class="mdi mdi-facebook"></i> Facebook </button>
                     <button class="btn btn-google col">
                       <i class="mdi mdi-google-plus"></i> Google plus </button>
                   </div>
-                  <p class="sign-up text-center">Already have an Account?<a href="#"> Sign In</a></p>
+                  <p class="sign-up text-center">Already have an Account?<a [routerLink]="['/Login']"> Sign In</a></p>
                   <p class="terms">By creating an account you are accepting our<a href="#"> Terms & Conditions</a></p>
                 </form>
               </div>

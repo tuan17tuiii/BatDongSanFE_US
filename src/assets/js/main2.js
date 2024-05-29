@@ -25,7 +25,6 @@ document.addEventListener("DOMContentLoaded", function() {
             tabs.forEach(function(tab) {
                 tab.classList.remove("active");
             });
-
             // Add 'active' class to the clicked tab
             event.target.classList.add("active");
         }

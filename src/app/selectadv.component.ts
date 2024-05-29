@@ -23,8 +23,6 @@ import { ConfirmationService, MessageService } from "primeng/api";
     ButtonModule,
     ToastModule],
   providers: [ConfirmationService, MessageService],
-
-
   templateUrl: './selectadv.component.html',
   styleUrl:'../assets/css/selectadv.css'
 

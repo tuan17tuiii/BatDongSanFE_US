@@ -7,6 +7,8 @@ import { HttpClient } from "@angular/common/http";
 import { District } from './entities/district.entities';
 import { Ward } from './entities/ward.entities';
 import { LayoutComponent } from './Layout.component';
+import { User } from './entities/User.entities';
+import { UserServices } from './services/User.Services';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -16,7 +18,7 @@ import { LayoutComponent } from './Layout.component';
 })
 export class InforComponent implements OnInit {
 
-  constructor(private router: Router, private layoutComponent: LayoutComponent){}
+  constructor(private router: Router, private layoutComponent: LayoutComponent, private userServices: UserServices){}
 
   ngOnInit(): void {//khi nhan ve thì là nhận về chuỗi hết nên phải khai báo chuỗi k là lỗi
     
