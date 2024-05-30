@@ -19,7 +19,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 export class InfordetailsComponent implements OnInit {
 
   constructor(private router: Router, private layoutComponent: LayoutComponent, private userServices: UserServices, private formBuilder: FormBuilder, private messageService: MessageService) { }
-
+ 
   infoForm: FormGroup;
   user: User;
 

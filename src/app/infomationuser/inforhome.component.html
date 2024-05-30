@@ -1,15 +1,68 @@
+<style>
+    .tabbar {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
 
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <a [routerLink]="['/information/formrgs']"><div class="bannerh2">Dang Ki Nha Moi Gioi</div></a>   <a [routerLink]="['/post-up']" class="btn btn-primary px-3 d-none d-lg-flex">Đăng Tin</a>
-      </div>
-      <div class="container">
+    .tablink {
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 10px 20px;
+        margin: 0 10px;
+        font-size: 16px;
+        background-color: #ccc;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    .tablink.active {
+        background-color: #333;
+        color: #fff;
+    }
+    
+
+</style>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <a [routerLink]="['/information/formrgs']">
+        <div class="bannerh2">Dang Ki Nha Moi Gioi</div>
+    </a> <a [routerLink]="['/post-up']" class="btn btn-primary px-3 d-none d-lg-flex">Đăng Tin</a>
+</div>
+
+<div class="container">
+    <div class="tabbar">
+        <button class="tablink active" onclick="openTab('approved')">Đã duyệt</button>
+        <button class="tablink" onclick="openTab('unapproved')">Chưa duyệt</button>
+    </div>
+    <div class="tabcontent" id="approved">
+        <div class="row">
+            @if(approvedlists!= null){
+                <ng-container *ngIf="approvedlists">
+                    <div *ngFor="let approvedlist of approvedlists; let i = index" class="col-sm-4">
+                        <div class="post-container">
+                            <h2 class="post-title">{{approvedlist.title}}</h2>
+                            <div class="post-content">
+                                <p>{{approvedlist.describe}}</p>
+                                <img src="http://localhost:5194/images/0744c25ce8a44aaf89133ee8ec67ee37.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            }
+        </div>
+    </div>
+    <div class="tabcontent" id="unapproved">
+
         <div class="row">
             <div class="col-sm-4">
                 <div class="post-container">
-                    <h2 class="post-title">Tiêu đề bài viết 1</h2>
+                    <h2 class="post-title">Tiêu đề bài viết 4</h2>
                     <div class="post-content">
                         <p>
-                            Nội dung bài viết của bạn ở đây. Nội dung có thể được thu gọn khi quá dài bằng cách sử dụng kỹ thuật CSS.
+                            Nội dung bài viết của bạn ở đây. Nội dung có thể được thu gọn khi quá dài bằng cách sử dụng
+                            kỹ
+                            thuật CSS.
                         </p>
                         <img src="link-hinh-anh-1.jpg" alt="Hình ảnh bài viết 1">
                     </div>
@@ -17,10 +70,12 @@
             </div>
             <div class="col-sm-4">
                 <div class="post-container">
-                    <h2 class="post-title">Tiêu đề bài viết 2</h2>
+                    <h2 class="post-title">Tiêu đề bài viết 5</h2>
                     <div class="post-content">
                         <p>
-                            Nội dung bài viết của bạn ở đây. Nội dung có thể được thu gọn khi quá dài bằng cách sử dụng kỹ thuật CSS.
+                            Nội dung bài viết của bạn ở đây. Nội dung có thể được thu gọn khi quá dài bằng cách sử dụng
+                            kỹ
+                            thuật CSS.
                         </p>
                         <img src="link-hinh-anh-2.jpg" alt="Hình ảnh bài viết 2">
                     </div>
@@ -28,78 +83,25 @@
             </div>
             <div class="col-sm-4">
                 <div class="post-container">
-                    <h2 class="post-title">Tiêu đề bài viết 3</h2>
+                    <h2 class="post-title">Tiêu đề bài viết 6</h2>
                     <div class="post-content">
                         <p>
-                            Nội dung bài viết của bạn ở đây. Nội dung có thể được thu gọn khi quá dài bằng cách sử dụng kỹ thuật CSS.
+                            Nội dung bài viết của bạn ở đây. Nội dung có thể được thu gọn khi quá dài bằng cách sử dụng
+                            kỹ
+                            thuật CSS.
                         </p>
                         <img src="link-hinh-anh-3.jpg" alt="Hình ảnh bài viết 3">
                     </div>
                 </div>
             </div>
+
         </div>
-        <div class="row">
-          <div class="col-sm-4">
-              <div class="post-container">
-                  <h2 class="post-title">Tiêu đề bài viết 1</h2>
-                  <div class="post-content">
-                      <p>
-                          Nội dung bài viết của bạn ở đây. Nội dung có thể được thu gọn khi quá dài bằng cách sử dụng kỹ thuật CSS.
-                      </p>
-                      <img src="link-hinh-anh-1.jpg" alt="Hình ảnh bài viết 1">
-                  </div>
-              </div>
-          </div>
-          <div class="col-sm-4">
-              <div class="post-container">
-                  <h2 class="post-title">Tiêu đề bài viết 2</h2>
-                  <div class="post-content">
-                      <p>
-                          Nội dung bài viết của bạn ở đây. Nội dung có thể được thu gọn khi quá dài bằng cách sử dụng kỹ thuật CSS.
-                      </p>
-                      <img src="link-hinh-anh-2.jpg" alt="Hình ảnh bài viết 2">
-                  </div>
-              </div>
-          </div>
-          <div class="col-sm-4">
-              <div class="post-container">
-                  <h2 class="post-title">Tiêu đề bài viết 3</h2>
-                  <div class="post-content">
-                      <p>
-                          Nội dung bài viết của bạn ở đây. Nội dung có thể được thu gọn khi quá dài bằng cách sử dụng kỹ thuật CSS.
-                      </p>
-                      <img src="link-hinh-anh-3.jpg" alt="Hình ảnh bài viết 3">
-                  </div>
-              </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="post-container">
-                <h2 class="post-title">Tiêu đề bài viết 3</h2>
-                <div class="post-content">
-                    <p>
-                        Nội dung bài viết của bạn ở đây. Nội dung có thể được thu gọn khi quá dài bằng cách sử dụng kỹ thuật CSS.
-                    </p>
-                    <img src="link-hinh-anh-3.jpg" alt="Hình ảnh bài viết 3">
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="post-container">
-                <h2 class="post-title">Tiêu đề bài viết 3</h2>
-                <div class="post-content">
-                    <p>
-                        Nội dung bài viết của bạn ở đây. Nội dung có thể được thu gọn khi quá dài bằng cách sử dụng kỹ thuật CSS.
-                    </p>
-                    <img src="link-hinh-anh-3.jpg" alt="Hình ảnh bài viết 3">
-                </div>
-            </div>
-        </div>
-      </div>
     </div>
-    
-      <!-- Nội dung nằm ở đây -->
-      <div class="row">
-        <div class="col">
-          <p>Content here...</p>
-        </div>
-      </div>
+</div>
+
+<!-- Nội dung nằm ở đây -->
+<div class="row">
+    <div class="col">
+        <p>Content here...</p>
+    </div>
+</div>

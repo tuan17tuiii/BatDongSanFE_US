@@ -19,4 +19,5 @@ export class RealState{
     typeRealState : TypeRealState ; 
     nameusersell:string;
     image:Image[]
+    transactionType : string ; 
 }

@@ -29,6 +29,7 @@ import { PaypalButtonComponent } from './paypal-button/paypal-button.component';
 import { ChangePassComponent } from './ChangePass.component';
 import { InfordetailsComponent } from './infomationuser/infordetails.component';
 import { InforComponent } from './infomationuser/infor.component';
+import { ManageNewsComponent } from './infomationuser/manage-news.component';
 
 
 export const routes: Routes = [
@@ -93,6 +94,10 @@ export const routes: Routes = [
                {
                   path: "selectadv",
                   component: SelectadvComponent,
+               },
+               {
+                  path: "manage-news",
+                  component: ManageNewsComponent,
                },
                {
                   path: "inforuser",

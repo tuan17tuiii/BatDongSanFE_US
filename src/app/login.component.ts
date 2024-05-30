@@ -33,6 +33,7 @@ export class Logincomponet implements OnInit{
     let user = new User();
     user.username = this.username;
     user.password = this.password;
+    
     this.userServices.LoginUser(user).then(
       res =>{
         if(res['result']){

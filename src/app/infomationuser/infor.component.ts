@@ -33,6 +33,11 @@ export class InforComponent implements OnInit {
       });
     }
   }
+  managenew(){
+    this.router.navigate(['/information/home']).then(p => {
+      window.location.reload();
+    });
+  }
 
 }
 

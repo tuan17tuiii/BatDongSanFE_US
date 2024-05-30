@@ -2,7 +2,7 @@
   <div class="sidebar-sticky">
     <ul class="nav flex-column">
       <li class="nav-item a">
-        <a class="nav-link active" [routerLink]="['/information/home']" ><i class="pi pi-home">&nbsp;</i>Home</a>
+        <a class="nav-link active" (click)="managenew()" ><i class="pi pi-home">&nbsp;</i>Home</a>
       </li>
       <li class="nav-item a">
         <a class="nav-link"[routerLink]="['/information/inforuser']"><i class="pi pi-user">&nbsp;</i>Mn User</a>
@@ -17,7 +17,7 @@
         <a class="nav-link active"[routerLink]="['selectadv']"><i class="pi pi-home">&nbsp;</i>Advertising Package</a>
       </li>
       <li class="nav-item a">
-        <a class="nav-link active"[routerLink]="['manage-news']"><i class="pi pi-home">&nbsp;</i>Post Management
+        <a class="nav-link active" (click)="managenew()"><i class="pi pi-home">&nbsp;</i>Post Management
         </a>
       </li>
       

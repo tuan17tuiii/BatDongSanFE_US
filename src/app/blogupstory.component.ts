@@ -63,9 +63,11 @@ export class BlogupstoryComponent implements OnInit {
     private messageService: MessageService,
     private confirmService: ConfirmationService,
     private router: Router,
-    private imageService: ImageRealStateAPIService
+    private imageService: ImageRealStateAPIService,
+    
   ) { }
   ngOnInit(): void {
+
 
     this.formGroup = this.formBuilder.group({
       title: '',
@@ -207,7 +209,7 @@ export class BlogupstoryComponent implements OnInit {
       realstate.type = this.type
       realstate.status = false
       realstate.createdAt = formatDate(new Date(), 'dd/MM/yyyy', 'en-US')
-
+      realstate.transactionType = "Sell"
       for (let i = 0; i < this.files.length; i++) {
         if (this.files[i].size > 100000000) {
           this.error("Failed", "One or more files exceed the size limit of 15000 bytes.");
@@ -225,7 +227,6 @@ export class BlogupstoryComponent implements OnInit {
               let formData = new FormData();//tao form data
               for (let i = 0; i < this.files.length; i++) {
                 formData.append('files', this.files[i]);
-                console.log(formData)
                 formData.append('id', this.newrealstate.toString())
               }
               this.imageService.uploads(formData).then(
@@ -272,7 +273,28 @@ export class BlogupstoryComponent implements OnInit {
   uploads() {
     let realstate: RealState = this.formGroup.value as RealState;
     realstate.createdAt = formatDate(new Date(), 'dd/MM/yyyy', 'en-US')
+    console.log("Day la test thu thong tin")
     console.log(realstate.createdAt)
+    console.log(realstate.title)
+    console.log(realstate.describe)
+    console.log(realstate.acreage)
+    console.log(realstate.price)
+    realstate.type = this.type
+    console.log(realstate.type)
+    
+    console.log(realstate.bedrooms)
+    console.log(realstate.bathrooms)
+    console.log(realstate.status)
+    realstate.transactionType = 'Sell'
+
+    realstate.city = this.province[0].province_name
+      realstate.region = this.district.district_name
+      realstate.street = this.ward
+
+      console.log(realstate.city)
+      console.log(realstate.region)
+      console.log(realstate.street)
+      console.log(realstate.transactionType)
   }
   removeImage(index: number) {
     this.images.splice(index, 1);
