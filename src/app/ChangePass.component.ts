@@ -39,7 +39,7 @@ export class ChangePassComponent implements OnInit {
                     if (res) {
                         let user: User = res as User;
                         let form = this.PassForm.value;
-                        this.userServices.PasswordVerify(form.current, user.password).then(
+                        this.userServices.PasswordVerify(form.current, user.username).then(
                             res => {
                                 console.log(res);
                                 if (res) {
@@ -51,6 +51,7 @@ export class ChangePassComponent implements OnInit {
                                         this.userServices.ChangePass(form.newpass, user.username).then(
                                             res => {
                                                 this.messageService.add({ severity: 'success', summary: 'Success !', detail: 'Change Password Success', key: 'bl', life: 2000 });
+                                                this.ngOnInit();
                                             },
                                             err => {
                                                 console.log(err);

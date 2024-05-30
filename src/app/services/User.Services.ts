@@ -62,8 +62,8 @@ export class UserServices{
         return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl + 'account/ChangePass/' + password + '/' + username));
     }
 
-    async PasswordVerify(password: string, userpass: string){
-        return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl + 'account/PasswordVerify/' + userpass + '/' + password));
+    async PasswordVerify(password: string, username: string){
+        return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl + 'account/PasswordVerify/' + password + '/' + username));
     }
     
     async Delete(id: number){
