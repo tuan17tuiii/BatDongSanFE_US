@@ -21,7 +21,76 @@
         background-color: #333;
         color: #fff;
     }
+
+    .post-title,
+    .post-content p {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        /* Số dòng tối đa */
+        -webkit-box-orient: vertical;
+        white-space: normal;
+    }
+
+    .post-container {
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        /* Độ cong của góc */
+        padding: 16px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        box-sizing: border-box;
+        /* đảm bảo padding và border không ảnh hưởng đến kích thước */
+    }
+
+    .post-content img {
+        width: 100%;
+        /* chiều rộng 100% của khung chứa */
+        height: auto;
+        /* chiều cao tự động để giữ tỷ lệ ảnh */
+        max-height: 120px;
+        /* chiều cao tối đa của ảnh */
+        object-fit: cover;
+        /* đảm bảo ảnh được cắt để vừa với khung */
+        border-radius: 10px; /* Bo tròn góc ảnh */
+
+    }
+
+    .tabcontent {
+        background-color: #f9f9f9;
+        /* Màu nền cho nội dung */
+        padding: 20px;
+        /* Thêm khoảng cách giữa nội dung và khung */
+    }
+
+    .tablink {
+        background-color: #ddd;
+        /* Màu nền cho tab */
+    }
+
+    .tablink.active {
+        background-color: #333;
+        /* Màu nền active cho tab */
+        color: #fff;
+        /* Màu chữ cho tab active */
+    }
+
     
+    .post-container {
+    border: 1px solid #ddd; /* Đường viền xung quanh khung */
+    border-radius: 10px; /* Độ cong của góc */
+    padding: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    /* đảm bảo padding và border không ảnh hưởng đến kích thước */
+}
+.post-container {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Đổ bóng */
+}
+.post-container:hover {
+    transform: translateY(-5px); /* Di chuyển khung lên trên khi chuột lướt qua */
+    transition: transform 0.3s ease; /* Hiệu ứng chuyển động mềm mại */
+}
 
 </style>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -38,63 +107,41 @@
     <div class="tabcontent" id="approved">
         <div class="row">
             @if(approvedlists!= null){
-                <ng-container *ngIf="approvedlists">
-                    <div *ngFor="let approvedlist of approvedlists; let i = index" class="col-sm-4">
-                        <div class="post-container">
-                            <h2 class="post-title">{{approvedlist.title}}</h2>
-                            <div class="post-content">
-                                <p>{{approvedlist.describe}}</p>
-                                <img src="http://localhost:5194/images/0744c25ce8a44aaf89133ee8ec67ee37.jpg" alt="">
-                            </div>
+            <ng-container *ngIf="approvedlists">
+                <div *ngFor="let approvedlist of approvedlists; let i = index" class="col-sm-4">
+                    <div class="post-container">
+                        <p>Bài đăng #{{i + 1}}</p>
+
+                        <h2 class="post-title">{{approvedlist.title}}</h2>
+                        <div class="post-content">
+                            <p>{{approvedlist.describe}}</p>
+                            <img src="{{imageUrl}}{{approvedlist.lastImage.urlImage}}" alt=""
+                                style="width: 250px; height: 120px;">
                         </div>
                     </div>
-                </ng-container>
+                </div>
+            </ng-container>
             }
         </div>
     </div>
     <div class="tabcontent" id="unapproved">
-
         <div class="row">
-            <div class="col-sm-4">
-                <div class="post-container">
-                    <h2 class="post-title">Tiêu đề bài viết 4</h2>
-                    <div class="post-content">
-                        <p>
-                            Nội dung bài viết của bạn ở đây. Nội dung có thể được thu gọn khi quá dài bằng cách sử dụng
-                            kỹ
-                            thuật CSS.
-                        </p>
-                        <img src="link-hinh-anh-1.jpg" alt="Hình ảnh bài viết 1">
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="post-container">
-                    <h2 class="post-title">Tiêu đề bài viết 5</h2>
-                    <div class="post-content">
-                        <p>
-                            Nội dung bài viết của bạn ở đây. Nội dung có thể được thu gọn khi quá dài bằng cách sử dụng
-                            kỹ
-                            thuật CSS.
-                        </p>
-                        <img src="link-hinh-anh-2.jpg" alt="Hình ảnh bài viết 2">
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="post-container">
-                    <h2 class="post-title">Tiêu đề bài viết 6</h2>
-                    <div class="post-content">
-                        <p>
-                            Nội dung bài viết của bạn ở đây. Nội dung có thể được thu gọn khi quá dài bằng cách sử dụng
-                            kỹ
-                            thuật CSS.
-                        </p>
-                        <img src="link-hinh-anh-3.jpg" alt="Hình ảnh bài viết 3">
-                    </div>
-                </div>
-            </div>
+            @if(unapprovedlists!= null){
+            <ng-container *ngIf="unapprovedlists">
+                <div *ngFor="let unapprovedlist of unapprovedlists; let i = index" class="col-sm-4">
+                    <div class="post-container">
+                        <p>Bài đăng #{{i + 1}}</p>
 
+                        <h2 class="post-title">{{unapprovedlist.title}}</h2>
+                        <div class="post-content">
+                            <p>{{unapprovedlist.describe}}</p>
+                            <img src="{{imageUrl}}{{unapprovedlist.lastImage.urlImage}}" alt=""
+                                style="width: 250px; height: 120px;">
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            }
         </div>
     </div>
 </div>

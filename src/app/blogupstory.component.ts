@@ -18,6 +18,8 @@ import { ConfirmationService, MessageService } from "primeng/api";
 import { ImageRealStateAPIService } from './services/image.service';
 import { CommonModule, formatDate } from '@angular/common';
 import { eventNames } from 'process';
+import { UserServices } from './services/User.Services';
+import { User } from './entities/User.entities';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -53,7 +55,7 @@ export class BlogupstoryComponent implements OnInit {
   provinces: Province[]
   districts: District[]
   images: string[] = []
-
+  user : User
   constructor(
     private formBuilder: FormBuilder,
     private provinceService: ProvinceAPIService,
@@ -64,10 +66,18 @@ export class BlogupstoryComponent implements OnInit {
     private confirmService: ConfirmationService,
     private router: Router,
     private imageService: ImageRealStateAPIService,
-    
+    private userService : UserServices
   ) { }
   ngOnInit(): void {
-
+    if (typeof window !== "undefined" && typeof window.sessionStorage !== "undefined") {
+      this.userService.findByUsername(sessionStorage.getItem('username')).then(
+        res => {
+          if (res) {
+            this.user = res as User
+          }
+        }
+      )
+    }
 
     this.formGroup = this.formBuilder.group({
       title: '',
@@ -209,7 +219,8 @@ export class BlogupstoryComponent implements OnInit {
       realstate.type = this.type
       realstate.status = false
       realstate.createdAt = formatDate(new Date(), 'dd/MM/yyyy', 'en-US')
-      realstate.transactionType = "Sell"
+      realstate.transactionType = this.selectedTab
+      realstate.usersellId = this.user.id.toString()
       for (let i = 0; i < this.files.length; i++) {
         if (this.files[i].size > 100000000) {
           this.error("Failed", "One or more files exceed the size limit of 15000 bytes.");
@@ -271,31 +282,9 @@ export class BlogupstoryComponent implements OnInit {
     });
   }
   uploads() {
-    let realstate: RealState = this.formGroup.value as RealState;
-    realstate.createdAt = formatDate(new Date(), 'dd/MM/yyyy', 'en-US')
-    console.log("Day la test thu thong tin")
-    console.log(realstate.createdAt)
-    console.log(realstate.title)
-    console.log(realstate.describe)
-    console.log(realstate.acreage)
-    console.log(realstate.price)
-    realstate.type = this.type
-    console.log(realstate.type)
     
-    console.log(realstate.bedrooms)
-    console.log(realstate.bathrooms)
-    console.log(realstate.status)
-    realstate.transactionType = 'Sell'
-
-    realstate.city = this.province[0].province_name
-      realstate.region = this.district.district_name
-      realstate.street = this.ward
-
-      console.log(realstate.city)
-      console.log(realstate.region)
-      console.log(realstate.street)
-      console.log(realstate.transactionType)
-  }
+    console.log("User Id: "+ this.user.id)
+    }
   removeImage(index: number) {
     this.images.splice(index, 1);
     this.files.splice(index, 1);
