@@ -6,10 +6,12 @@ import { RealStateAPIService } from '../services/realstate.service';
 import { RealState } from '../entities/realstate.entities';
 import { CommonModule } from '@angular/common';
 import { BaseUrlService } from '../services/baseurl.service';
+import { TableModule } from 'primeng/table';
+
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, CommonModule],
+  imports: [RouterOutlet, RouterLink, CommonModule,TableModule],
   templateUrl: './inforhome.component.html',
   host: { 'collision-id': 'HomeComponent' },
 })
