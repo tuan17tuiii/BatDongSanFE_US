@@ -1,36 +1,14 @@
-
 <div class="wrap">
-  <div class="container container-custom">
-      <h4>Hội viên cơ bản</h4>
-      <div class="form-group">
-          <ul>
-              <li>Đăng 4 tin</li>
-              <li>Thời hạn 30 ngày</li>
-          </ul>
-      </div>
-      <h3>$199 USD</h3>
-      <button class="subscribe-btn" onclick="subscribe(1)">Đăng ký</button>
-  </div>
-  <div class="container container-custom">
-      <h4>Hội viên Tiêu chuẩn</h4>
-      <div class="form-group">
-          <ul>
-              <li>Đăng 10 tin</li>
-              <li>Thời hạn 90 ngày</li>
-          </ul>
-      </div>
-      <h3>$299 USD</h3>
-      <button class="subscribe-btn" onclick="subscribe(2)">Đăng ký</button>
-  </div>
-  <div class="container container-custom">
-      <h4>Hội viên Cao cấp</h4>
-      <div class="form-group">
-          <ul>
-              <li>Đăng 100 tin</li>
-              <li>Thời hạn 1 năm</li>
-          </ul>
-      </div>
-      <h3>$599 USD</h3>
-      <button class="subscribe-btn" onclick="subscribe(3)">Đăng ký</button>
-  </div>
+    <div *ngFor="let advertisement of advertisements; let i = index" class="container container-custom">
+        <h4>{{advertisement.advertisementName}}</h4>
+        <div class="form-group">
+            <ul>
+                <li>Đăng tối đa {{advertisement.quantityNews}} tin</li>
+                <li>Thời hạn {{advertisement.quantityDates}} ngày</li>
+            </ul>
+        </div>
+        <h3>{{advertisement.price}}$</h3>
+        
+        <div [id]="'paypal-button-container-' + i"></div>
+    </div>
 </div>
