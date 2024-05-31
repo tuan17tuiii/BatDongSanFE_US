@@ -55,7 +55,7 @@ export class Logincomponet implements OnInit {
               this.router.navigate(['/home']);
             }
           } else {
-            this.messageService.add({ severity: 'error', summary: 'Access Denied !', detail: 'You do not have permission to access this website !', key: 'tl', life: 2000 });
+            this.messageService.add({ severity: 'error', summary: 'Access Denied !', detail: 'Username or Password is not correct !', key: 'tl', life: 2000 });
           }
         } else {
           this.messageService.add({ severity: 'error', summary: 'Login Failed !', detail: 'Username or Password is not correct !', key: 'tl', life: 2000 });
