@@ -7,18 +7,18 @@ import { ContacComponent } from './contact.component';
 import { Property_listComponent } from './property_list.component';
 import { Property_typeComponent } from './property_type.component';
 import { Property_agentComponent } from './property_agent.component';
-import { InforComponent } from './infor.component';
+
 import { BlogbuyComponent } from './blogbuy.component';
 import { BlognewComponent } from './blognew.component';
-import { InfordetailsComponent } from './infordetails.component';
-import { InforhomeComponent } from './inforhome.component';
-import { InforupdateComponent } from './inforupdate.component';
-import { InforviewComponent } from './inforview.component';
-import { InforformrgsComponent } from './inforformrgs.component';
+
+import { InforhomeComponent } from './infomationuser/inforhome.component';
+
+import { InforviewComponent } from './infomationuser/inforview.component';
+import { InforformrgsComponent } from './infomationuser/inforformrgs.component';
 import { BlogsellerdetailsComponent } from './blogsellerdetails.component';
 import { BlogupstoryComponent } from './blogupstory.component';
 import { SelectadvComponent } from './selectadv.component';
-import { InforuserComponent } from './inforuser.component';
+import { InforuserComponent } from './infomationuser/inforuser.component';
 import { Logincomponet } from './login.component';
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './Layout.component';
@@ -26,6 +26,10 @@ import { UserSecurity } from './services/Security.Services';
 import { RegisterComponent } from './register.component';
 import { VerifyWebComponent } from './VerifyWeb.component';
 import { PaypalButtonComponent } from './paypal-button/paypal-button.component';
+import { ChangePassComponent } from './ChangePass.component';
+import { InfordetailsComponent } from './infomationuser/infordetails.component';
+import { InforComponent } from './infomationuser/infor.component';
+import { ManageNewsComponent } from './infomationuser/manage-news.component';
 
 
 export const routes: Routes = [
@@ -69,6 +73,9 @@ export const routes: Routes = [
             path: "information",
             component: InforComponent,
             canActivate: [UserSecurity],
+            data: {
+               role: '2'
+           },
             children: [
                {
                   path: "",
@@ -78,10 +85,7 @@ export const routes: Routes = [
                   path: "details",
                   component: InfordetailsComponent,
                },
-               {
-                  path: "update",
-                  component: InforupdateComponent,
-               },
+               
                {
                   path: "home",
                   component: InforhomeComponent,
@@ -95,8 +99,16 @@ export const routes: Routes = [
                   component: SelectadvComponent,
                },
                {
+                  path: "manage-news",
+                  component: ManageNewsComponent,
+               },
+               {
                   path: "inforuser",
                   component: InforuserComponent,
+               },
+               {
+                  path: "ChangePass",
+                  component: ChangePassComponent,
                }
             ]
          },
@@ -135,10 +147,10 @@ export const routes: Routes = [
    {
       path: 'verify',
       component: VerifyWebComponent
-  }, 
-  {
-      path : 'paypal',
-      component : PaypalButtonComponent
-  }
+   },
+   {
+      path: 'paypal',
+      component: PaypalButtonComponent
+   }
 ];
 

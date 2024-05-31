@@ -16,50 +16,41 @@ import { error } from 'console';
   imports: [RouterOutlet, RouterLink],
   templateUrl: 'blogsellerdetails.component.html',
   styleUrl: '../assets/css/styleblogdel.css',
-  
+
 })
 export class BlogsellerdetailsComponent implements OnInit {
   id: any;
-  realState : RealState
-  realStateRelateds : RealState[]//bds lien quan
-  images : Image[]
-  imagechinh : string  
-  imageUrl : string 
+  realState: RealState
+  realStateRelateds: RealState[]//bds lien quan
+  images: Image[]
+  imagechinh: string
+  imageUrl: string
   formattedPrice: string;
 
   constructor(
     private imageService: ImageRealStateAPIService,
     private realstateService: RealStateAPIService,
     private activatedRoute: ActivatedRoute,
-    private baseUrlService : BaseUrlService,
-    
+    private baseUrlService: BaseUrlService,
+
 
   ) { }
   ngOnInit(): void {
-
-    this.imageUrl = this.baseUrlService.ImageUrl ; 
+    this.imageUrl = this.baseUrlService.ImageUrl;
     this.activatedRoute.paramMap.subscribe(p => {
       this.id = p.get('id');
-      
+      this.loadData()
     })
-    this.imageService.findByRealStateId(this.id).then(
-      res => {
-        this.images = res as Image[]
-        
-
-      }, error => {
-        console.log(error)
-      }
-    )
+    
     this.realstateService.findById(this.id).then(
       res => {
         this.realState = res as RealState
-         // Gọi phương thức để định dạng giá
-         this.realstateService.findByCityRegion(this.realState.city , this.realState.region).then(
-          res=>{
+        // Gọi phương thức để định dạng giá
+        this.realstateService.findByCityRegion(this.realState.city, this.realState.region).then(
+          res => {
             this.realStateRelateds = res as RealState[]
             console.log(this.realStateRelateds)
-          },error=>{
+          }, error => {
             console.log("Not Found")
           }
         )
@@ -67,12 +58,26 @@ export class BlogsellerdetailsComponent implements OnInit {
         console.log(error)
       }
     )
-    
   }
-  // Phương thức để định dạng giá
-// Phương thức để định dạng giá
-
-
+  loadData(): void {
+    this.imageService.findByRealStateId(this.id).then(
+      res => {
+        this.images = res as Image[];
+      },
+      error => {
+        console.log(error);
+      }
+    )
+    this.realstateService.findById(this.id).then(
+      res => {
+        this.realState = res as RealState;
+        
+      },
+      error => {
+        console.log(error);
+      }
+    );  
+  }
 
 
 }

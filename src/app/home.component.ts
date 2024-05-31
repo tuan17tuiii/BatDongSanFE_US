@@ -100,19 +100,6 @@ export class HomeComponent implements OnInit {
   }
   changeinput() {
   }
-  formatPrice(price : string): string {
-    if(Number(price)>1000000000){
-      return( Number(price) / 1000000000).toFixed(1) + ' tỷ'; // Đổi sang tỷ nếu giá lớn hơn hoặc bằng 1 tỷ
-    }else if(Number(price) >= 1000000){
-      const million = (Number(price)) / 1000000;
-      return price = million % 1 === 0 ? million.toString() + ' triệu' : million.toFixed(1) + ' triệu'; // Đổi sang triệu nếu giá lớn hơn hoặc bằng 1 triệu
-    }else if(Number(price) >= 1000){
-      const thousand =(Number(price)) / 1000;
-      return price =  thousand % 1 === 0 ? thousand.toString() + 'k' : thousand.toFixed(1) + 'k'; // Đổi sang k (kilo) nếu giá lớn hơn hoặc bằng 1 nghìn
-    }else {
-      return price
-    }
-    return  price 
-  }
+ 
 }
 

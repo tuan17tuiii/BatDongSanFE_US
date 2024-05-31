@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
-import { ProvinceAPIService } from "./services/provinceapi.service";
-import { Province } from './entities/province.entities';
+import { ProvinceAPIService } from "../services/provinceapi.service";
+import { Province } from '../entities/province.entities';
 import { error } from 'console';
 import { HttpClient } from "@angular/common/http";
-import { District } from './entities/district.entities';
-import { Ward } from './entities/ward.entities';
-import { TypeRealState } from './entities/typerealstate.entities';
-import { TypeRealStateAPIService } from './services/typerealstate.service';
+import { District } from '../entities/district.entities';
+import { Ward } from '../entities/ward.entities';
+import { TypeRealState } from '../entities/typerealstate.entities';
+import { TypeRealStateAPIService } from '../services/typerealstate.service';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule,Validators   } from '@angular/forms';
-import { RealStateAPIService } from './services/realstate.service';
-import { RealState } from './entities/realstate.entities';
+import { RealStateAPIService } from '../services/realstate.service';
+import { RealState } from '../entities/realstate.entities';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmationService, MessageService } from "primeng/api";
@@ -26,8 +26,8 @@ import { ConfirmationService, MessageService } from "primeng/api";
 
 
   templateUrl: './inforformrgs.component.html',
-  styleUrl:'../assets/css/style_tt.css',
-
+  styleUrl:'../../assets/css/style_tt.css',
+  
 
 })
 export class InforformrgsComponent implements OnInit {

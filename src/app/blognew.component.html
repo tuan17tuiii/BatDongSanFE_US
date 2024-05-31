@@ -4,8 +4,9 @@
 
 <!-- Phần content bài báo -->
 <div class="contentn">
-  <!-- Bài báo chính -->
+  @if(news!=null){ <!-- Bài báo chính -->
   <div class="article">
+   
     <h2>{{ news[0].title }}</h2>
     <img src="" alt="Hình ảnh bài báo chính">
     <div [innerHTML]="news[3].content"></div>
@@ -21,6 +22,7 @@
 
     </ul>
   </div>
+}
 </div>
 
 <!-- Phần hiển thị các bài báo liên quan -->
