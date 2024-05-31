@@ -30,12 +30,9 @@ export class UserServices{
         return lastValueFrom(this.httpClient.post(this.baseUrlService.BaseUrl + 'account/Register', account));
     }
 
-    async LoginAdmin(account: User){
-        return lastValueFrom(this.httpClient.post(this.baseUrlService.BaseUrl + 'account/loginAdmin', account));
-    }
 
-    async LoginUser(account: User){
-        return lastValueFrom(this.httpClient.post(this.baseUrlService.BaseUrl + 'account/loginUser', account));
+    async Login(account: User){
+        return lastValueFrom(this.httpClient.post(this.baseUrlService.BaseUrl + 'account/login', account));
     }
 
     async Verify(securityCode: string, username: string){
