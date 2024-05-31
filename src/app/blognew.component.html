@@ -1,56 +1,57 @@
 <header>
-    <h1>Báo Mới</h1>
-  </header>
-  
-  <!-- Phần content bài báo -->
-  <div class="contentn">
-    <!-- Bài báo chính -->
-    <div class="article">
-      <h2>Tiêu đề bài báo chính</h2>
-      <img src="main_article_image.jpg" alt="Hình ảnh bài báo chính">
-      <p>Nội dung bài báo chính ở đây...</p>
-    </div>
-  
-    <!-- Phần sidebar -->
-    <div class="sidebarn">
-      <h2>Bài báo khác</h2>
-      <ul>
-        <li><a href="#">Tiêu đề bài báo 1</a></li>
-        <li><a href="#">Tiêu đề bài báo 2</a></li>
-        <li><a href="#">Tiêu đề bài báo 3</a></li>
-      </ul>
-    </div>
+  <h1>Báo Mới</h1>
+</header>
+
+<!-- Phần content bài báo -->
+<div class="contentn">
+  <!-- Bài báo chính -->
+  <div class="article">
+    <h2>{{ news[0].title }}</h2>
+    <img src="" alt="Hình ảnh bài báo chính">
+    <div [innerHTML]="news[3].content"></div>
   </div>
-  
-  <!-- Phần hiển thị các bài báo liên quan -->
-  <h2>Các bài báo liên quan</h2>
-  <div class="related-articles">
-    <!-- Bài báo 1 -->
-    <div class="related-article">
-      <img src="anhderemon.png" alt="Hình ảnh bài báo liên quan 1">
-      <h3>Tiêu đề bài báo liên quan 1</h3>
-    </div>
-    <!-- Bài báo 2 -->
-    <div class="related-article">
-      <img src="anhderemon.png" alt="Hình ảnh bài báo liên quan 2">
-      <h3>Tiêu đề bài báo liên quan 2</h3>
-    </div>
-    <!-- Bài báo 3 -->
-    <div class="related-article">
-      <img src="anhderemon.png" alt="Hình ảnh bài báo liên quan 3">
-      <h3>Tiêu đề bài báo liên quan 3</h3>
-    </div>
-    <!-- Bài báo 4 -->
-    <div class="related-article">
-      <img src="anhderemon.png" alt="Hình ảnh bài báo liên quan 4">
-      <h3>Tiêu đề bài báo liên quan 4</h3>
-    </div>
-    <div class="related-article">
-      <img src="anhderemon.png" alt="Hình ảnh bài báo liên quan 4">
-      <h3>Tiêu đề bài báo liên quan 4</h3>
-    </div>
-    <div class="related-article">
-      <img src="anhderemon.png" alt="Hình ảnh bài báo liên quan 4">
-      <h3>Tiêu đề bài báo liên quan 4</h3>
-    </div>
+
+  <!-- Phần sidebar -->
+  <div class="sidebarn">
+    <h2>Bài báo khác</h2>
+    <ul>
+      @for(newt of news;track newt){
+      <li><a href="#">{{ newt.title }}</a></li>
+     }
+
+    </ul>
   </div>
+</div>
+
+<!-- Phần hiển thị các bài báo liên quan -->
+<h2>Các bài báo liên quan</h2>
+<div class="related-articles">
+  <!-- Bài báo 1 -->
+  <div class="related-article">
+    <img src="anhderemon.png" alt="Hình ảnh bài báo liên quan 1">
+    <h3>Tiêu đề bài báo liên quan 1</h3>
+  </div>
+  <!-- Bài báo 2 -->
+  <div class="related-article">
+    <img src="anhderemon.png" alt="Hình ảnh bài báo liên quan 2">
+    <h3>Tiêu đề bài báo liên quan 2</h3>
+  </div>
+  <!-- Bài báo 3 -->
+  <div class="related-article">
+    <img src="anhderemon.png" alt="Hình ảnh bài báo liên quan 3">
+    <h3>Tiêu đề bài báo liên quan 3</h3>
+  </div>
+  <!-- Bài báo 4 -->
+  <div class="related-article">
+    <img src="anhderemon.png" alt="Hình ảnh bài báo liên quan 4">
+    <h3>Tiêu đề bài báo liên quan 4</h3>
+  </div>
+  <div class="related-article">
+    <img src="anhderemon.png" alt="Hình ảnh bài báo liên quan 4">
+    <h3>Tiêu đề bài báo liên quan 4</h3>
+  </div>
+  <div class="related-article">
+    <img src="anhderemon.png" alt="Hình ảnh bài báo liên quan 4">
+    <h3>Tiêu đề bài báo liên quan 4</h3>
+  </div>
+</div>
