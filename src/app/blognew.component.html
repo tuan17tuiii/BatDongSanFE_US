@@ -6,54 +6,67 @@
 <div class="contentn">
   @if(news!=null){ <!-- Bài báo chính -->
   <div class="article">
-   
-    <h2>{{ news[0].title }}</h2>
-    <img src="" alt="Hình ảnh bài báo chính">
-    <div [innerHTML]="news[3].content"></div>
+
+    <h2>{{ newsst1.title }}</h2>
+    <img src="{{ imgsurl }}{{ newsst1.img[0].urlImage }}" st alt="Hình ảnh bài báo">
+    <div [innerHTML]="newsst1.content"></div>
   </div>
 
   <!-- Phần sidebar -->
   <div class="sidebarn">
     <h2>Bài báo khác</h2>
-    <ul>
-      @for(newt of news;track newt){
-      <li><a href="#">{{ newt.title }}</a></li>
-     }
-
-    </ul>
-  </div>
-}
+    <div class="sidebar-content_1">
+        <ul class="article-list_1">
+            @for(newt of news; track newt) {
+            <li class="article-item_1">
+                <div class="article-thumbnail_1">
+                    <img src="{{ imgsurl }}{{ newt.img[0].urlImage }}" alt="Hình ảnh bài báo">
+                </div>
+                <div class="article-details_1">
+                    <a (click)="update(newt.id)"> {{ newt.title }}</a>
+                    <!-- Thêm thông tin bổ sung nếu cần -->
+                </div>
+            </li>
+            }
+        </ul>
+    </div>
 </div>
+
+  }
+</div>
+
 
 <!-- Phần hiển thị các bài báo liên quan -->
 <h2>Các bài báo liên quan</h2>
-<div class="related-articles">
-  <!-- Bài báo 1 -->
-  <div class="related-article">
-    <img src="anhderemon.png" alt="Hình ảnh bài báo liên quan 1">
-    <h3>Tiêu đề bài báo liên quan 1</h3>
-  </div>
-  <!-- Bài báo 2 -->
-  <div class="related-article">
-    <img src="anhderemon.png" alt="Hình ảnh bài báo liên quan 2">
-    <h3>Tiêu đề bài báo liên quan 2</h3>
-  </div>
-  <!-- Bài báo 3 -->
-  <div class="related-article">
-    <img src="anhderemon.png" alt="Hình ảnh bài báo liên quan 3">
-    <h3>Tiêu đề bài báo liên quan 3</h3>
-  </div>
-  <!-- Bài báo 4 -->
-  <div class="related-article">
-    <img src="anhderemon.png" alt="Hình ảnh bài báo liên quan 4">
-    <h3>Tiêu đề bài báo liên quan 4</h3>
-  </div>
-  <div class="related-article">
-    <img src="anhderemon.png" alt="Hình ảnh bài báo liên quan 4">
-    <h3>Tiêu đề bài báo liên quan 4</h3>
-  </div>
-  <div class="related-article">
-    <img src="anhderemon.png" alt="Hình ảnh bài báo liên quan 4">
-    <h3>Tiêu đề bài báo liên quan 4</h3>
-  </div>
+<div class="footer-m">
+    <!-- Bài báo 1 -->
+    <div class="post-container">
+        <p>Bài đăng #1</p>
+        <p class="post-title">Tiêu đề bài đănmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmg 1</p>
+        <div class="post-content">
+            <img src="image1.jpg" alt="Image 1">
+        </div>
+    </div>
+    <div class="post-container">
+        <p>Bài đăng #2</p>
+        <p class="post-title">Tiêu đề bài đăng 2</p>
+        <div class="post-content">
+            <img src="image2.jpg" alt="Image 2">
+        </div>
+    </div>
+    <div class="post-container">
+        <p>Bài đăng #3</p>
+        <p class="post-title">Tiêu đề bài đăng 3</p>
+        <div class="post-content">
+            <img src="image3.jpg" alt="Image 3">
+        </div>
+    </div>
+    <div class="post-container">
+        <p>Bài đăng #4</p>
+        <p class="post-title">Tiêu đề bài đăng 4</p>
+        <div class="post-content">
+            <img src="image4.jpg" alt="Image 4">
+        </div>
+    </div>
+    <!-- Thêm các bài báo khác nếu cần -->
 </div>

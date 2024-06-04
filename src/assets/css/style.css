@@ -666,7 +666,7 @@
     border-right: 1px solid #313131; /* Thêm border bên phải */
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Thêm box-shadow */
     overflow-y: auto;
-    position: fixed;
+   
     left:auto;
     bottom: 0;
     padding: 48px 0 0; /* padding ở đây là khoảng cách giữa phần đầu và phần nội dung của menu */
@@ -699,8 +699,7 @@
 
 /* Thiết lập chiều rộng và vị trí cho nội dung chính */
 .main {
-    overflow-y: auto;
-    margin-left: 250px; /* Chiều rộng của menu dọc */
+    overflow-y: auto;/* Chiều rộng của menu dọc */
     padding: 5px;
    
 }

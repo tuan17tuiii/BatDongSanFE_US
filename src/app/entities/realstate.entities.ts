@@ -20,6 +20,6 @@ export class RealState{
     nameusersell:string;
     image:Image[]
     lastImage : Image
-    usersellId : string 
+    usersell_Id : string 
     transactionType : string ; 
 }
