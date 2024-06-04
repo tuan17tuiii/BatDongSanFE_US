@@ -35,5 +35,8 @@ export class RealStateAPIService  {
     async MarkExpired(){
         return lastValueFrom(this.httpClient.post(this.baseUrlService.BaseUrl + 'realstate/expire',{}))
     }
+    async totalById(id : number ){
+        return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl +  'realstate/totalById/'+ id))
+    } 
     
 }
