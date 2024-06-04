@@ -37,6 +37,11 @@ export class HomeComponent implements OnInit {
     private router: Router
   ) { }
   ngOnInit(): void {
+    this.realstateService.MarkExpired().then(
+      res => {
+        console.log("update success")
+      }
+    )
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         window.scrollTo(0, 0);
@@ -100,6 +105,6 @@ export class HomeComponent implements OnInit {
   }
   changeinput() {
   }
- 
+
 }
 

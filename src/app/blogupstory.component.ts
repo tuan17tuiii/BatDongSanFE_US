@@ -78,6 +78,8 @@ export class BlogupstoryComponent implements OnInit {
           }
         }
       )
+    }else{
+      
     }
 
     this.formGroup = this.formBuilder.group({
@@ -236,13 +238,22 @@ export class BlogupstoryComponent implements OnInit {
       } else if (realstate.bedrooms.toString() == '') {
         realstate.bedrooms = null
       }
+      realstate.sold = false //trang thai chua ban 
+      realstate.expired = false // trang thai chua het han
 
       realstate.city = this.province[0].province_name
       realstate.region = this.district.district_name
       realstate.street = this.ward
       realstate.type = this.type
       realstate.status = false
-      realstate.createdAt = formatDate(new Date(), 'dd/MM/yyyy', 'en-US')
+      let createdAt =  new Date()
+      realstate.createdAt = formatDate(createdAt, 'dd/MM/yyyy', 'en-US')
+      
+      let createdEnd = new Date()
+      createdEnd.setDate(createdAt.getDate() + this.user.advertisement.quantityDates)
+      realstate.createdEnd = formatDate(createdEnd, 'dd/MM/yyyy', 'en-US'); // định dạng ngày hôm nay
+
+
       realstate.transactionType = this.selectedTab
       realstate.usersellId = this.user.id.toString()
       console.log(realstate.title+"day la titiit")
@@ -305,8 +316,15 @@ export class BlogupstoryComponent implements OnInit {
     });
   }
   uploads() {
-
-    console.log("User Id: " + this.user.id)
+    let realstate: RealState = this.formGroup.value as RealState;
+    realstate.createdAt = formatDate(new Date(), 'dd/MM/yyyy', 'en-US')
+    console.log(realstate.createdAt)
+    let result = new Date()
+    console.log(result)
+    result.setDate(result.getDate()+ 27)
+    console.log(result)
+    //realstate.createdEnd = formatDate(realstate.createdAt + 30, 'dd/MM/yyyy', 'en-US'); 
+    //console.log(realstate.createdEnd)
   }
   removeImage(index: number) {
     this.images.splice(index, 1);

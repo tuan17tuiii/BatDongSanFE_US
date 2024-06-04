@@ -22,4 +22,7 @@ export class RealState{
     lastImage : Image
     usersellId : string 
     transactionType : string ; 
+    sold : boolean ; 
+    expired : boolean ; 
+    createdEnd : string ; 
 }

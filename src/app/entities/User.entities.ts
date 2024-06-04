@@ -1,3 +1,5 @@
+import { Advertisement } from "./advertisement.entities";
+
 export class User{
     id: number;
     username: string;
@@ -9,4 +11,5 @@ export class User{
     advertisement_id: number;
     status: boolean;
     securityCode: string;
+    advertisement : Advertisement
 }
