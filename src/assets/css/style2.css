@@ -62,7 +62,6 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
 }
 
 .container-fluid {
@@ -108,19 +107,23 @@ body {
     margin-left: 10px; /* Khoảng cách giữa tên người dùng và biểu tượng trái tim */
   }
 .img {
+    position: relative;
     width: 100%;
-    height: auto;
-
-  
-    background-color: rgba(0, 0, 0, 0.092); /* Màu đen xám */
+    padding-top: 56.25%; /* Tỷ lệ 16:9 */
+    overflow: hidden;
+    background-color: #f0f0f0; /* Màu nền cho ảnh */
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.cimg {
-    max-width: 100%;
-  height: auto;
+.image-container  img {
+    /* position: absolute; */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Đảm bảo ảnh đầy đủ khung mà không bị méo */
     
 }
 
@@ -134,6 +137,7 @@ body {
     overflow: hidden;
    
 }
+
 
 .content {
 
@@ -273,29 +277,52 @@ body {
   }
   /* CSS cho phần bài báo */
   .article {
-    width: 60%;
+    width: 70%;
     border-radius: 5px;
     padding: 20px;
     box-sizing: border-box;
-    margin-bottom: 20px;
-  }
+    margin: 5px 0px 0px 15px;
+}
+.article h2{
+    width: 100%;
+    border-radius: 5px;
+    padding: 20px;
+    box-sizing: border-box;
+    margin: 5px 0px 0px 15px;
+    font-weight: bold;
+    margin: 10px 0;
+    word-wrap: break-word;
+    overflow: hidden; /* Ẩn phần dư thừa */
+    text-overflow: ellipsis; /* Hiển thị dấu ba chấm (...) nếu tiêu đề quá dài */
+}
   /* CSS cho hình ảnh bài báo */
   .article img {
-    max-width: 100%;
-    height: auto;
+    /* max-width: 100%; */
+    height: 370px;
+    width: 100%;
     display: block;
-    margin: 0 auto 10px;
+    /* margin: 0 auto 10px; */
+    margin: 10px;
   }
   /* CSS cho phần sidebar */
   .sidebarn {
+    float: left; /* Sidebar ở bên trái */
+   /* Khoảng cách với nội dung chính */
     border-radius: 5px;
-    border: 1px solid #ddd;
-    width: 30%;
+    border: 1px solid rgba(0, 0, 0, 0.185);
+    width: 25%;
     border-radius: 5px;
-    padding: 20px;
+    padding: 10px;
     box-sizing: border-box;
     margin-bottom: 20px;
-  }
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+.sidebarnn {
+  
+    display: block;
+    /* align-items: center; */
+    justify-content: center;
+}
   /* CSS cho danh sách các bài báo liên quan */
   .related-articles {
     margin-top: 20px;
@@ -316,6 +343,23 @@ body {
     white-space: normal; /* Khôi phục phong cách xuống dòng cho nội dung */
     box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Đổ bóng */
   }
+  
+  .related-article-left{
+
+    overflow:hidden;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    vertical-align: top; /* Đảm bảo các phần tử hiển thị theo chiều dọc */
+    margin-right: 10px; /* Khoảng cách giữa các phần tử */
+    white-space: normal; /* Khôi phục phong cách xuống dòng cho nội dung */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Đổ bóng */
+  }
+  .related-article-left a{
+    overflow:hidden;
+  }
   /* CSS cho hình ảnh bài báo */
   .related-article img {
     max-width: 100%;
@@ -335,7 +379,6 @@ body {
   
   /* Thay đổi font chữ và kích thước */
   .a .nav-link {
-    font-family: Arial, sans-serif; /* Chọn font chữ */
     font-size: 16px; /* Chọn kích thước font chữ */
     color: #333; /* Màu chữ */
   }
@@ -555,4 +598,77 @@ body {
 .back-button:hover {
     transform: translateX(-5px);
     cursor: pointer;
+}
+.footer-m {
+    display: flex;
+    overflow-x: auto; /* Cho phép cuộn ngang */
+    white-space: nowrap; /* Ngăn chặn xuống hàng */
+    padding: 10px;
+    border: 1px solid #ccc;
+    
+}
+
+.post-container {
+    flex: 0 0 280px;
+    width: 280px;
+    height: 250px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+    border: 1px solid rgba(0, 0, 0, 0.202);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    justify-items: center;
+}
+
+.post-container img {
+    padding:4px ;
+    width: 100%; /* Đặt chiều rộng hình ảnh cố định bằng chiều rộng khung */
+    height: 150px; /* Đặt chiều cao cố định cho hình ảnh */
+    object-fit: cover; /* Giữ tỉ lệ hình ảnh và cắt bớt nếu cần */
+    display: block;
+}
+
+.post-title {
+    font-weight: bold;
+    margin: 10px 0;
+    word-wrap: break-word;
+    overflow: hidden; /* Ẩn phần dư thừa */
+    text-overflow: ellipsis; /* Hiển thị dấu ba chấm (...) nếu tiêu đề quá dài */
+}
+
+
+
+.article-list_1 {
+    list-style: none;
+   
+    margin: 0;
+}
+
+.article-item_1 {
+    padding: 5px;
+    margin-bottom: 10px; /* Khoảng cách giữa các mục */
+    border: 1px solid #00000078;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+
+    .article-thumbnail_1 img {
+        width: 249px;
+        height: 150px;
+        margin-right: 10px;
+    }
+
+
+.article-details_1 a {
+    text-decoration: none;
+    color: #333; /* Màu chữ */
+    font-weight: bold; /* Đậm */
+    word-wrap: break-word;
+    
+}
+
+.article-details_1 a:hover {
+    color: #007bff; /* Màu chữ khi hover */
 }

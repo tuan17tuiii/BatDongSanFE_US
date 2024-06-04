@@ -256,8 +256,10 @@ export class BlogupstoryComponent implements OnInit {
 
 
       realstate.transactionType = this.selectedTab
-      realstate.usersellId = this.user.id.toString()
 
+      realstate.usersellId = this.user.id.toString()
+      
+      
       for (let i = 0; i < this.files.length; i++) {
         if (this.files[i].size > 100000000) {
           this.error("Failed", "One or more files exceed the size limit of 15000 bytes.");

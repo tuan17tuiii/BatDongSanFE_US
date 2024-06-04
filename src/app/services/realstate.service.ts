@@ -31,12 +31,18 @@ export class RealStateAPIService  {
     } 
     async findByUserSellFalse(id : number ){
         return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl +  'realstate/findByUserSellFalse/'+ id))
+    }   
+      async findByUserSell(id : number ){
+        return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl +  'realstate/findByUserSell/'+ id))
     } 
+
     async MarkExpired(){
         return lastValueFrom(this.httpClient.post(this.baseUrlService.BaseUrl + 'realstate/expire',{}))
     }
+
     async totalById(id : number ){
         return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl +  'realstate/totalById/'+ id))
     } 
+
     
 }

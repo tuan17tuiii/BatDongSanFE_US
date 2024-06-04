@@ -81,10 +81,9 @@ h6,
 .h6 {
     margin-top: 0;
     margin-bottom: .5rem;
-    font-family: "Inter", sans-serif;
     font-weight: 700;
     line-height: 1.2;
-    color: #0E2E50
+    color: #0e4f50c6
 }
 
 h1,
@@ -169,7 +168,7 @@ address {
 
 ol,
 ul {
-    padding-left: 2rem
+    padding-left: 0rem
 }
 
 ol,

@@ -298,7 +298,7 @@
                                 @if(realstate.id == image.realestateId){
                                 <a [routerLink]="['/blogsellerdetails',{id:realstate.id}]"><img
                                         style="height: 200px; width: 400px;" class="img-fluid"
-                                        src="{{imageUrl}}{{image.urlImage}}" alt=""></a>
+                                        src="{{imageUrl}}{{realstate.image[0].urlImage}}" alt=""></a>
 
                                 }
                                 }
