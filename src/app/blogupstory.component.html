@@ -74,11 +74,25 @@
 
             <div class="col-md-4">
                 <label for="dt">Dien Tich</label>
-                <input type="text" class="form-control" id="dt" placeholder="VD: 1000 m2" formControlName="acreage">
+                <input type="number" class="form-control" id="dt" placeholder="VD: 1000 m2" formControlName="acreage">
+                <br>
+                @if(formGroup.get('acreage').touched){
+                    @if(formGroup.hasError('pattern',['acreage'])){
+                    <Span style="color: red;">Invalid value
+                    </Span>
+                    }
+                    }
             </div>
             <div class="col-md-4">
                 <label for="tinh-thanh-pho">Muc gia</label>
-                <input type="text" class="form-control" id="dt" placeholder="VD: 1 000 000"  formControlName="price">
+                <input type="number" class="form-control" id="dt" placeholder="VD: 1 000 000"  formControlName="price">
+                <br>
+                @if(formGroup.get('price').touched){
+                    @if(formGroup.hasError('pattern',['price'])){
+                    <Span style="color: red;">Invalid value
+                    </Span>
+                    }
+                    }
             </div>
             <div class="col-md-4">
                 <label for="dt">Bedrooms</label>

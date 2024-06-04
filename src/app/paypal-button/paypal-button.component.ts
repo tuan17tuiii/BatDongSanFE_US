@@ -8,7 +8,9 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class PaypalButtonComponent implements OnInit {
 
-  constructor(private ngZone: NgZone, @Inject(PLATFORM_ID) private platformId: Object) { }
+  constructor(
+    private ngZone: NgZone,
+     @Inject(PLATFORM_ID) private platformId: Object) { }
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {

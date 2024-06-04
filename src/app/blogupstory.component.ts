@@ -38,7 +38,7 @@ import { User } from './entities/User.entities';
 
 })
 export class BlogupstoryComponent implements OnInit {
-  selectedTab: string // Set mặc định cho tab "Cho thuê"
+  selectedTab: string = "rent" // Set mặc định cho tab "Cho thuê"
 
   newrealstate: number
   files: File[]
@@ -55,7 +55,7 @@ export class BlogupstoryComponent implements OnInit {
   provinces: Province[]
   districts: District[]
   images: string[] = []
-  user : User
+  user: User
   constructor(
     private formBuilder: FormBuilder,
     private provinceService: ProvinceAPIService,
@@ -66,9 +66,10 @@ export class BlogupstoryComponent implements OnInit {
     private confirmService: ConfirmationService,
     private router: Router,
     private imageService: ImageRealStateAPIService,
-    private userService : UserServices
+    private userService: UserServices
   ) { }
   ngOnInit(): void {
+
     if (typeof window !== "undefined" && typeof window.sessionStorage !== "undefined") {
       this.userService.findByUsername(sessionStorage.getItem('username')).then(
         res => {
@@ -77,6 +78,8 @@ export class BlogupstoryComponent implements OnInit {
           }
         }
       )
+    }else{
+      
     }
 
     this.formGroup = this.formBuilder.group({
@@ -96,7 +99,6 @@ export class BlogupstoryComponent implements OnInit {
       price: ['', [
         Validators.required,
         Validators.pattern('^[0-9]+$'),
-        Validators.max(999000000000),
         Validators.min(0),
       ]],
       acreage: ['', [
@@ -180,25 +182,49 @@ export class BlogupstoryComponent implements OnInit {
     this.type = evt.target.value;
   }
   selectFiles(event: any) {
-    const selectedFiles: File[] = Array.from(event.target.files) as File[]; // Chuyển FileList thành mảng File[]
-    this.files = selectedFiles; // Gán mảng vào this.files
-
-    for (let i = 0; i < this.files.length; i++) {
-      if (this.files.length > 4) {
-        this.error("Faild", "Please choose 4 photos")
-        break;
-      } else {
-        const reader = new FileReader();
-        reader.onload = () => {
-          this.images.push(reader.result as string);
-        };
-        reader.readAsDataURL(this.files[i]);
-        this.fileNames[i] = this.files[i].name;
-      }
+    if (this.files == null) {
+        // Nếu mảng files chưa được khởi tạo
+        const selectedFiles: File[] = Array.from(event.target.files) as File[]; // Chuyển FileList thành mảng File[]
+        this.files = selectedFiles; // Gán mảng vào this.files
+        if (this.files.length >= 4) {
+            this.error("Faild", "Please choose 4 photos");
+        } else {
+            for (let i = 0; i < this.files.length; i++) {
+                const reader = new FileReader();
+                reader.onload = () => {
+                    this.images.push(reader.result as string);
+                };
+                reader.readAsDataURL(this.files[i]);
+                this.fileNames[i] = this.files[i].name;
+            }
+        }
+        console.log(this.files);
+    } else {
+        // Nếu mảng files đã được khởi tạo
+        const selectedFiles: File[] = Array.from(event.target.files) as File[]; // Chuyển FileList thành mảng File[]
+        if (this.files.length + selectedFiles.length > 4) {
+            this.error("Faild", "You can only choose up to 4 photos");
+        } else {
+            for (const file of selectedFiles) {
+                // Kiểm tra xem file có tồn tại trong mảng files không
+                const existingFile = this.files.find(existingFile => existingFile.name === file.name);
+                if (!existingFile) {
+                    // Nếu file không tồn tại trong mảng files, thêm vào
+                    this.files.push(file);
+                    const reader = new FileReader();
+                    reader.onload = () => {
+                        this.images.push(reader.result as string);
+                    };
+                    reader.readAsDataURL(file);
+                    this.fileNames.push(file.name);
+                }
+            }
+        }
+        console.log(this.files);
     }
-    console.log(this.files);
+}
 
-  }
+
 
   save() {
     console.log(this.files.length)
@@ -207,18 +233,27 @@ export class BlogupstoryComponent implements OnInit {
       if (realstate.bathrooms.toString() == '' && realstate.bedrooms.toString() == '') {
         realstate.bathrooms = null
         realstate.bedrooms = null
-      }else if (realstate.bathrooms.toString() == '') {
+      } else if (realstate.bathrooms.toString() == '') {
         realstate.bathrooms = null
       } else if (realstate.bedrooms.toString() == '') {
         realstate.bedrooms = null
       }
-      
+      realstate.sold = false //trang thai chua ban 
+      realstate.expired = false // trang thai chua het han
+
       realstate.city = this.province[0].province_name
       realstate.region = this.district.district_name
       realstate.street = this.ward
       realstate.type = this.type
       realstate.status = false
-      realstate.createdAt = formatDate(new Date(), 'dd/MM/yyyy', 'en-US')
+      let createdAt =  new Date()
+      realstate.createdAt = formatDate(createdAt, 'dd/MM/yyyy', 'en-US')
+      
+      let createdEnd = new Date()
+      createdEnd.setDate(createdAt.getDate() + this.user.advertisement.quantityDates)
+      realstate.createdEnd = formatDate(createdEnd, 'dd/MM/yyyy', 'en-US'); // định dạng ngày hôm nay
+
+
       realstate.transactionType = this.selectedTab
       realstate.usersell_Id = this.user.id.toString()
       console.log(realstate.title+"day la titiit")
@@ -229,11 +264,9 @@ export class BlogupstoryComponent implements OnInit {
         }
       }
       if (this.files.length <= 4) {
-
         this.realstateService.create(realstate).then(
           res => {
             if (res['result']) {
-              
               this.newrealstate = res['productId']
               console.log(this.newrealstate)
               let formData = new FormData();//tao form data
@@ -283,9 +316,16 @@ export class BlogupstoryComponent implements OnInit {
     });
   }
   uploads() {
-    
-    console.log("User Id: "+ this.user.id)
-    }
+    let realstate: RealState = this.formGroup.value as RealState;
+    realstate.createdAt = formatDate(new Date(), 'dd/MM/yyyy', 'en-US')
+    console.log(realstate.createdAt)
+    let result = new Date()
+    console.log(result)
+    result.setDate(result.getDate()+ 27)
+    console.log(result)
+    //realstate.createdEnd = formatDate(realstate.createdAt + 30, 'dd/MM/yyyy', 'en-US'); 
+    //console.log(realstate.createdEnd)
+  }
   removeImage(index: number) {
     this.images.splice(index, 1);
     this.files.splice(index, 1);
