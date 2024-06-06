@@ -74,8 +74,8 @@ export const routes: Routes = [
             component: InforComponent,
             canActivate: [UserSecurity],
             data: {
-               role: '2'
-           },
+               role: '2, 4'
+            },
             children: [
                {
                   path: "",
@@ -85,7 +85,7 @@ export const routes: Routes = [
                   path: "details",
                   component: InfordetailsComponent,
                },
-               
+
                {
                   path: "home",
                   component: InforhomeComponent,
@@ -133,6 +133,10 @@ export const routes: Routes = [
          }, {
             path: "blogupstory",
             component: BlogupstoryComponent,
+            canActivate: [UserSecurity],
+            data: {
+               role: '2, 4'
+            },
          }
       ]
    },
