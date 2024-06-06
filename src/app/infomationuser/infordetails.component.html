@@ -1,4 +1,4 @@
-<div class="profile-container1">
+<div class="container">
     <h2 [align]="['center']">User's Infomation</h2>
     @if (infoForm != null) {
     <form id="profile-form" [formGroup]="infoForm" (ngSubmit)="Save()">
@@ -36,20 +36,24 @@
             <label for="tax-id"><i class="fa fa-id-card" aria-hidden="true"></i>&nbsp;Rental code:</label><br>
             <input type="text" id="tax-id" name="tax-id" placeholder="Rental code" class="form-control form-control-sm">
         </div>
-        <div style="margin-right: 18px;">
-            <input type="hidden" formControlName="username">
-            <input type="hidden" formControlName="roleId">
-            <input type="hidden" formControlName="id">
-            <input type="hidden" formControlName="password">
-            <input type="hidden" formControlName="status">
-            <input type="hidden" formControlName="securityCode">
-            <input type="hidden" formControlName="advertisementId">
-            <p-toast position="bottom-left" key="bl" />
-            <p-button pRipple (click)="Save()" label="Update" styleClass="btn btn-success" [style]="{'width':'45%'}" [disabled]="infoForm.invalid"/>
-            <p-button pRipple [routerLink]="['/information/ChangePass']" label="Change Password"
-                styleClass="btn btn-success" [style]="{'width':'45%', 'margin-left':'92px'}" />
-        </div>
+        <div style="margin-right: 18px;" class="container">
+            
+            <div class="row"> 
+                <button pRipple (click)="Save()" label="Update" class="btn btn-success col-md-5"
+                 [disabled]="infoForm.invalid">Update</button><div class="col-md-2"></div>
+                <button pRipple [routerLink]="['/information/ChangePass']" label="Change Password"
+                    class="btn btn-success col-md-5">Change Password</button>
+            </div>
 
+        </div>
+        <input type="hidden" formControlName="username">
+        <input type="hidden" formControlName="roleId">
+        <input type="hidden" formControlName="id">
+        <input type="hidden" formControlName="password">
+        <input type="hidden" formControlName="status">
+        <input type="hidden" formControlName="securityCode">
+        <input type="hidden" formControlName="advertisementId">
+        <p-toast position="bottom-left" key="bl" />
     </form>
     }
 </div>

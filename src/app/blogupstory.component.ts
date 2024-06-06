@@ -250,7 +250,7 @@ export class BlogupstoryComponent implements OnInit {
       realstate.createdAt = formatDate(createdAt, 'dd/MM/yyyy', 'en-US')
       
       let createdEnd = new Date()
-      createdEnd.setDate(createdAt.getDate() + this.user.advertisement.quantityDates)
+      createdEnd.setDate(createdAt.getDate())
       realstate.createdEnd = formatDate(createdEnd, 'dd/MM/yyyy', 'en-US'); // định dạng ngày hôm nay
 
 
@@ -274,6 +274,7 @@ export class BlogupstoryComponent implements OnInit {
                 formData.append('files', this.files[i]);
                 formData.append('id', this.newrealstate.toString())
               }
+              formData.append('dataname', "realstate")
               this.imageService.uploads(formData).then(
                 res => {
                   this.fileNames = res['fileNames'];

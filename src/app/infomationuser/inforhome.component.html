@@ -52,7 +52,8 @@
         /* chiều cao tối đa của ảnh */
         object-fit: cover;
         /* đảm bảo ảnh được cắt để vừa với khung */
-        border-radius: 10px; /* Bo tròn góc ảnh */
+        border-radius: 10px;
+        /* Bo tròn góc ảnh */
 
     }
 
@@ -75,29 +76,58 @@
         /* Màu chữ cho tab active */
     }
 
-    
-    .post-container {
-    border: 1px solid #ddd; /* Đường viền xung quanh khung */
-    border-radius: 10px; /* Độ cong của góc */
-    padding: 16px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box;
-    /* đảm bảo padding và border không ảnh hưởng đến kích thước */
-}
-.post-container {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Đổ bóng */
-}
-.post-container:hover {
-    transform: translateY(-5px); /* Di chuyển khung lên trên khi chuột lướt qua */
-    transition: transform 0.3s ease; /* Hiệu ứng chuyển động mềm mại */
-}
 
+    .post-container {
+        border: 1px solid #ddd;
+        /* Đường viền xung quanh khung */
+        border-radius: 10px;
+        /* Độ cong của góc */
+        padding: 16px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        box-sizing: border-box;
+        /* đảm bảo padding và border không ảnh hưởng đến kích thước */
+    }
+
+    .post-container {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        /* Đổ bóng */
+    }
+
+    .post-container:hover {
+        transform: translateY(-5px);
+        /* Di chuyển khung lên trên khi chuột lướt qua */
+        transition: transform 0.3s ease;
+        /* Hiệu ứng chuyển động mềm mại */
+    }
 </style>
+
+@if(user!=null&&user.roleId!=3&&user.statusUpdate==false){
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <a [routerLink]="['/information/formrgs']">
-        <div class="bannerh2">Dang Ki Nha Moi Gioi</div>
-    </a> 
+   
+    <p-button styleClass="bannerh2" (click)="confirm()" label="Dang Ki Nha Moi Gioi" />
+    <p-confirmDialog acceptLabel="Next" rejectLabel="Cansle" acceptButtonStyleClass="p-button-outlined p-button-sm px-2 accept-button" rejectButtonStyleClass="p-button-sm px-2 reject-button">
+    </p-confirmDialog>
 </div>
+}
+@if(user!=null&&user.roleId!=3&&user.statusUpdate==true){
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <p-button styleClass="bannerh2" (click)="showDialog()" label="Dang Ki Nha Moi Gioi" />
+    <p-dialog  header="Dang Cho Duyet ....." [(visible)]="visible" [modal]="true"
+        [breakpoints]="{ '600px': '75vw', '400px': '90vw' }" [style]="{ width: '50vw' }" [draggable]="false"
+        [resizable]="false">
+        <p>ban da gui thong tin dang ki he thong se phan hoi tu 2 - 5 ngay lam viec</p>
+
+    </p-dialog>
+</div>
+}
+@if(user!=null&&user.roleId==3){
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+
+<div class="bannerh3" >  <span style="font-size: 25px;color: hsl(0, 0%, 100%)"><i class="pi pi-home"
+            style="color: hsl(0, 0%, 100%) ;font-size: 2rem"></i> Nha Moi Gioi </span></div>  
+
+</div>
+}
 
 <div class="container">
     <div class="tabbar">

@@ -3,11 +3,11 @@
         <div class="tab" (click)="selectTab('sell')">Bán</div>
         <div class="tab active" (click)="selectTab('rent')">Cho thuê</div>
     </div>
-    
-    
+
+
     <form [formGroup]="formGroup" (ngSubmit)="save()">
         <div class="container container-custom">
-            
+
             <h2>Thong tin co ban</h2>
 
             <div class="form-group">
@@ -71,50 +71,55 @@
         </div>
         <div class="container container-custom">
             <h2>Thong tin BDS</h2>
-
-            <div class="col-md-4">
-                <label for="dt">Dien Tich</label>
-                <input type="number" class="form-control" id="dt" placeholder="VD: 1000 m2" formControlName="acreage">
-                <br>
-                @if(formGroup.get('acreage').touched){
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="dt">Dien Tich</label>
+                    <input type="number" class="form-control" id="dt" placeholder="VD: 1000 m2"
+                        formControlName="acreage">
+                    <br>
+                    @if(formGroup.get('acreage').touched){
                     @if(formGroup.hasError('pattern',['acreage'])){
                     <Span style="color: red;">Invalid value
                     </Span>
                     }
                     }
-            </div>
-            <div class="col-md-4">
-                <label for="tinh-thanh-pho">Muc gia</label>
-                <input type="number" class="form-control" id="dt" placeholder="VD: 1 000 000"  formControlName="price">
-                <br>
-                @if(formGroup.get('price').touched){
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="tinh-thanh-pho">Muc gia</label>
+                    <input type="number" class="form-control" id="dt" placeholder="VD: 1 000 000"
+                        formControlName="price">
+                    <br>
+                    @if(formGroup.get('price').touched){
                     @if(formGroup.hasError('pattern',['price'])){
                     <Span style="color: red;">Invalid value
                     </Span>
                     }
                     }
+                </div>
             </div>
-            <div class="col-md-4">
-                <label for="dt">Bedrooms</label>
-                <input type="number" class="form-control" id="dt" min="0" formControlName="bedrooms" />
-                <br>
-                @if(formGroup.get('bedrooms').touched){
-                @if(formGroup.hasError('pattern',['bedrooms']) || formGroup.hasError('max',['bedrooms'])){
-                <Span style="color: red;">Invalid value
-                </Span>
-                }
-                }
-            </div>
-            <div class="col-md-4">
-                <label for="dt">Bathrooms</label>
-                <input type="number" class="form-control" id="dt" min="0" formControlName="bathrooms" />
-                <br>
-                @if(formGroup.get('bathrooms').touched){
-                @if(formGroup.hasError('pattern',['bathrooms']) || formGroup.hasError('max',['bathrooms'])){
-                <Span style="color: red;">Invalid value
-                </Span>
-                }
-                }
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="dt">Bedrooms</label>
+                    <input type="number" class="form-control" id="dt" min="0" formControlName="bedrooms" />
+                    <br>
+                    @if(formGroup.get('bedrooms').touched){
+                    @if(formGroup.hasError('pattern',['bedrooms']) || formGroup.hasError('max',['bedrooms'])){
+                    <Span style="color: red;">Invalid value
+                    </Span>
+                    }
+                    }
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="dt">Bathrooms</label>
+                    <input type="number" class="form-control" id="dt" min="0" formControlName="bathrooms" />
+                    <br>
+                    @if(formGroup.get('bathrooms').touched){
+                    @if(formGroup.hasError('pattern',['bathrooms']) || formGroup.hasError('max',['bathrooms'])){
+                    <Span style="color: red;">Invalid value
+                    </Span>
+                    }
+                    }
+                </div>
             </div>
 
             <div class="form-group">
@@ -131,7 +136,7 @@
                     <li> <b>Đăng tối thiểu 4 ảnh thường với tin VIP</b></li>
                     <li><b>Hãy dùng ảnh thật, không trùng, không chèn SĐT</b></li>
                     <li><b>Mỗi ảnh kích thước tối thiểu 100x100 px, tối đa 1 MB</b></li>
-                    
+
                 </ul>
             </div>
             <div class="d-flex justify-content-center align-items-center" style="height: 100px;">
@@ -141,12 +146,12 @@
                 </div>
             </div>
             <div class="image-preview" cdkDropList (cdkDropListDropped)="onDrop($event)">
-                <div *ngFor="let image of images; let i = index" class="image-container" cdkDrag>
+                <div *ngFor="let image of images; let i = index" class="image-containerr" cdkDrag>
                     <img [src]="image" width="200px">
                     <button class="close-button" (click)="removeImage(i)">×</button>
                 </div>
             </div>
-            
+
             <div>
                 <button type="button" (click)="uploads()">Upload</button>
             </div>

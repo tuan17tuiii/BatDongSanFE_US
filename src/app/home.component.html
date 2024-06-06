@@ -30,10 +30,10 @@
                     <div id="panel" class="floating-panel">
                         <div class="row">
                             <div class="col-md-12">
-                                <h3 align="center">select address</h3>
+                                <h3 align="center">select addresss</h3>
 
                                 <select class="form-control" id='provinces' (change)="find_districts($event)">
-                                    <option value="" disabled selected hidden>Select City</option>
+                                    <option value="" disabled selected hidden>Select CityY</option>
 
                                     @for(province of provinces ; track province){
                                     <option [value]="province.province_id">{{province.province_name}}</option>

@@ -1,38 +1,40 @@
 <header>
-  <h1>Báo Mới</h1>
+    <h1>Báo Mới</h1>
 </header>
 
 <!-- Phần content bài báo -->
 <div class="contentn">
-  @if(news!=null){ <!-- Bài báo chính -->
-  <div class="article">
+    @if(news!=null){ <!-- Bài báo chính -->
+    <div class="article">
 
-    <h2>{{ newsst1.title }}</h2>
-    <img src="{{ imgsurl }}{{ newsst1.img[0].urlImage }}" st alt="Hình ảnh bài báo">
-    <div [innerHTML]="newsst1.content"></div>
-  </div>
-
-  <!-- Phần sidebar -->
-  <div class="sidebarn">
-    <h2>Bài báo khác</h2>
-    <div class="sidebar-content_1">
-        <ul class="article-list_1">
-            @for(newt of news; track newt) {
-            <li class="article-item_1">
-                <div class="article-thumbnail_1">
-                    <img src="{{ imgsurl }}{{ newt.img[0].urlImage }}" alt="Hình ảnh bài báo">
-                </div>
-                <div class="article-details_1">
-                    <a (click)="update(newt.id)"> {{ newt.title }}</a>
-                    <!-- Thêm thông tin bổ sung nếu cần -->
-                </div>
-            </li>
-            }
-        </ul>
+        <h2>{{ newsst1.title }}</h2>
+        <img src="{{ imgsurl }}{{ newsst1.img[0].urlImage }}" st alt="Hình ảnh bài báo">
+        <div [innerHTML]="newsst1.content"></div>
     </div>
-</div>
 
-  }
+    <!-- Phần sidebar -->
+    <div class="sidebarn">
+        <h2>Bài báo khá<!--[if IE]><![endif]--></h2>
+        <div class="sidebar-content_1">
+            <ul class="article-list_1">
+                @for(newt of news; track newt) {
+                <li class="article-item_1">
+                    <a (click)="update(newt.id)" class="scrollBtn">
+                        <div class="article-thumbnail_1">
+                            <img src="{{ imgsurl }}{{ newt.img[0].urlImage }}" alt="Hình ảnh bài báo">
+                        </div>
+                        <div class="article-details_1">
+                          {{ newt.title }}
+                                <!-- Thêm thông tin bổ sung nếu cần -->
+                        </div>
+                    </a>
+                </li>
+                }
+            </ul>
+        </div>
+    </div>
+
+    }
 </div>
 
 
@@ -68,5 +70,6 @@
             <img src="image4.jpg" alt="Image 4">
         </div>
     </div>
+    <button class="scrollBtn">up</button>
     <!-- Thêm các bài báo khác nếu cần -->
 </div>

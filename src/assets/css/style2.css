@@ -428,7 +428,16 @@ body {
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Đổ bóng */
     border: 2px solid #fff; /* Đường viền trắng */
 }
-
+.bannerh3 {
+    background: linear-gradient(45deg, #ff9900, #ff4c4c); /* Gradient màu nền */
+    color: white; /* Màu chữ */
+    text-align: center; /* Canh giữa văn bản */
+    padding: 15px; /* Khoảng cách giữa lề và nội dung */
+    font-size: 20px; /* Kích thước chữ */
+    border-radius: 10px; /* Bo tròn góc */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Đổ bóng */
+    border: 2px solid #fff; /* Đường viền trắng */
+}
 /* Hiệu ứng hover */
 .bannerh2:hover {
     transform: scale(1.05); /* Phóng to khi rê chuột vào */
