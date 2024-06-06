@@ -1,7 +1,7 @@
 
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home.component';
-import { PostUpComponent } from './postup.component';
+
 import { AboutComponent } from './about.component';
 import { ContacComponent } from './contact.component';
 import { Property_listComponent } from './property_list.component';
@@ -45,10 +45,7 @@ export const routes: Routes = [
             path: 'home',
             component: HomeComponent,
          },
-         {
-            path: 'post-up',
-            component: PostUpComponent,
-         },
+         
          {
             path: "about",
             component: AboutComponent,
