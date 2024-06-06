@@ -162,7 +162,7 @@ export class BlogupstoryComponent implements OnInit {
     );
 }
 
-  find_ward(evt: any) {
+  find_ward(evt: Event) {
     const target = evt.target as HTMLSelectElement;
     const selectedOption = target.options[target.selectedIndex];
     const districtId = selectedOption.value;
@@ -193,8 +193,9 @@ export class BlogupstoryComponent implements OnInit {
       // Nếu mảng files chưa được khởi tạo
       const selectedFiles: File[] = Array.from(event.target.files) as File[]; // Chuyển FileList thành mảng File[]
       this.files = selectedFiles; // Gán mảng vào this.files
-      if (this.files.length >= 6) {
-        this.error("Faild", "Please choose 4 photos");
+      if (this.files.length > 6) {
+        this.error("Faild", "Please choose 66 photos");
+        this.files = null
       } else {
         for (let i = 0; i < this.files.length; i++) {
           const reader = new FileReader();

@@ -19,10 +19,13 @@ export class ProvinceAPIService {
     return lastValueFrom(this.httpClient.get('https://esgoo.net/api-tinhthanh/1/0.htm'))
   }
   async findDistrict(id: number) {
-    return lastValueFrom(this.httpClient.get('https://esgoo.net/api-tinhthanh/2/'+id+'.htm'))
+    const formattedId = id.toString().padStart(2, '0');
+
+    return lastValueFrom(this.httpClient.get('https://esgoo.net/api-tinhthanh/2/'+formattedId+'.htm'))
   }
   async findWard(id: number) {
-    return lastValueFrom(this.httpClient.get('https://esgoo.net/api-tinhthanh/3/'+id+'.htm'))
+    const formattedId = id.toString().padStart(3, '0');
+    return lastValueFrom(this.httpClient.get('https://esgoo.net/api-tinhthanh/3/'+formattedId+'.htm'))
   }
   async find_Name_Province(id: string) {
     let provinces: Province[]; // Định nghĩa biến provinces với kiểu Province[]

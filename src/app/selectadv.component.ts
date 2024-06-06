@@ -6,6 +6,8 @@ import { ConfirmationService, MessageService } from "primeng/api";
 import { Advertisement } from './entities/advertisement.entities';
 import { AdvertisementAPIService } from './services/advertisement.service';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { User } from './entities/User.entities';
+import { UserServices } from './services/User.Services';
 
 declare var paypal: any;
 
@@ -26,15 +28,28 @@ declare var paypal: any;
 export class SelectadvComponent implements OnInit, AfterViewInit {
   advertisements: Advertisement[] = [];
   advertisement: Advertisement;
-
+  user : User
   constructor(
     private advertisementService: AdvertisementAPIService,
     private ngZone: NgZone,
     private renderer: Renderer2,
+    private userService : UserServices,
     @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
   ngOnInit(): void {
+    if (typeof window !== "undefined" && typeof window.sessionStorage !== "undefined") {
+      this.userService.findByUsername(sessionStorage.getItem('username')).then(
+        res => {
+          if (res) {
+            this.user = res as User
+            console.log(this.user)
+          }
+        }
+      )
+    } else {
+
+    }
     if (isPlatformBrowser(this.platformId)) {
       this.loadPaypalScript();
     }
@@ -79,7 +94,10 @@ export class SelectadvComponent implements OnInit, AfterViewInit {
       document.body.appendChild(script);
     });
   }
-
+  selectPackage(id : any){
+    var number = id.target.value
+    console.log(number)
+  }
   initializePaypalButtons() {
     this.advertisements.forEach((advertisement, index) => {
       this.ngZone.runOutsideAngular(() => {
@@ -96,6 +114,13 @@ export class SelectadvComponent implements OnInit, AfterViewInit {
           onApprove: (data, actions) => {
             return actions.order.capture().then(details => {
               this.ngZone.run(() => {
+                this.user.advertisementId = Number(advertisement.id )
+                console.log(this.user)
+                this.userService.Update(this.user).then(
+                  res=>{
+                    console.log('Nguoi dung da mua goi adv ' + advertisement.id + ' thanh cong')
+                  }
+                )
                 alert('Transaction completed by ' + details.payer.name.given_name);
               });
             });
