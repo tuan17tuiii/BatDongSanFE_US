@@ -39,7 +39,7 @@ export class InfordetailsComponent implements OnInit {
               password: user.password,
               status: user.status,
               securityCode: user.securityCode,
-              advertisementId: user.advertisement_id
+              advertisementId: user.advertisementId
             });
           };
         },

@@ -116,15 +116,15 @@ export class BlogupstoryComponent implements OnInit {
 
     })
 
-    /*this.provinceService.findAll().then(
+    this.provinceService.findAll().then(
       res => {
-        this.provinces = res['results'] as Province[];
-
+        this.provinces = res['data'] as Province[]
+        console.log(this.provinces)
       },
       error => {
         console.log(error)
       }
-    )*/
+    )
     this.typeRealStateService.findAll().then(
       res => {
         this.typerealstates = res as TypeRealState[]
@@ -142,50 +142,49 @@ export class BlogupstoryComponent implements OnInit {
     this.selectedTab = tab;
     console.log(this.selectedTab);
   }
-  /*
-    find_districts(evt: any) {
-      var district_id = evt.target.value;
-      this.id = district_id
-      this.provinceService.find_Name_Province(this.id).then(
-        res => {
-          this.province = res as Province[];
-        }
-      )
-      this.provinceService.findDistrict(district_id).then(
-        res => {
-          this.districts = res['results'] as District[];
+  find_districts(evt: Event) {
+    const target = evt.target as HTMLSelectElement;
+    const selectedOption = target.options[target.selectedIndex];
+    const provinceId = selectedOption.value;
+    const provinceName = selectedOption.getAttribute('data-name');
+    this.province = provinceName
+
+    console.log('Province ID:', provinceId);
+    console.log('Province Name:', provinceName);
+    
+    this.provinceService.findDistrict(Number(provinceId)).then(
+      res => {
+        this.districts = res['data'] as District[];
+      },
+      error => {
+        console.log(error);
+      }
+    );
+}
+
+  find_ward(evt: Event) {
+    const target = evt.target as HTMLSelectElement;
+    const selectedOption = target.options[target.selectedIndex];
+    const districtId = selectedOption.value;
+    const districtName = selectedOption.getAttribute('data-name');
+    console.log('District ID:', districtId);
+    console.log('District Name:', districtName);
+    this.district = districtName
+    
+    this.provinceService.findWard(Number(districtId)).then(
+      res => {
+        this.wards = res['data'] as Ward[];
+      },
+      error => {
+        console.log(error)
+      }
+    )
+  }
+  onWardChange(evt : any){
+    var wardName = evt.target.value;
+    this.ward = wardName
+  }
   
-        },
-        error => {
-          console.log(error)
-        }
-      )
-    }
-    find_ward(evt: any) {
-      var ward_id = evt.target.value;
-  
-      this.provinceService.find_Name_District(this.districts, ward_id).then(
-        res => {
-          this.district = res as District
-  
-        }, error => {
-          console.log(error)
-        }
-      )
-  
-      this.provinceService.findWard(ward_id).then(
-        res => {
-          this.wards = res['results'] as Ward[];
-  
-        },
-        error => {
-          console.log(error)
-        }
-      )
-    }
-    find_Name_Ward(evt: any) {
-      this.ward = evt.target.value;
-    }*/
   selectType(evt: any) {
     this.type = evt.target.value;
   }
@@ -194,8 +193,9 @@ export class BlogupstoryComponent implements OnInit {
       // Nếu mảng files chưa được khởi tạo
       const selectedFiles: File[] = Array.from(event.target.files) as File[]; // Chuyển FileList thành mảng File[]
       this.files = selectedFiles; // Gán mảng vào this.files
-      if (this.files.length >= 6) {
-        this.error("Faild", "Please choose 4 photos");
+      if (this.files.length > 6) {
+        this.error("Faild", "Please choose 66 photos");
+        this.files = null
       } else {
         for (let i = 0; i < this.files.length; i++) {
           const reader = new FileReader();
@@ -211,7 +211,7 @@ export class BlogupstoryComponent implements OnInit {
       // Nếu mảng files đã được khởi tạo
       const selectedFiles: File[] = Array.from(event.target.files) as File[]; // Chuyển FileList thành mảng File[]
       if (this.files.length + selectedFiles.length > 6) {
-        this.error("Faild", "You can only choose up to 4 photos");
+        this.error("Faild", "You can only choose up to 6 photos");
       } else {
         for (const file of selectedFiles) {
           // Kiểm tra xem file có tồn tại trong mảng files không
@@ -231,8 +231,6 @@ export class BlogupstoryComponent implements OnInit {
       console.log(this.files);
     }
   }
-
-
 
   save() {
     console.log(this.files.length)
@@ -254,12 +252,14 @@ export class BlogupstoryComponent implements OnInit {
       realstate.status = false
 
 
-
+      realstate.city = this.province 
+      realstate.region = this.district 
+      realstate.street = this.ward
       realstate.transactionType = this.selectedTab
 
       realstate.usersellId = this.user.id.toString()
-      
-      
+
+
       for (let i = 0; i < this.files.length; i++) {
         if (this.files[i].size > 100000000) {
           this.error("Failed", "One or more files exceed the size limit of 15000 bytes.");
@@ -348,7 +348,7 @@ export class BlogupstoryComponent implements OnInit {
               }
             )
           } else {
-            this.error("Faild", "Please choose 4 photos!")
+            this.error("Faild", "Please choose 6 photos!")
           }
         } else {
           this.error("Faild", "Vui long mua them goi adv")
@@ -374,7 +374,9 @@ export class BlogupstoryComponent implements OnInit {
     });
   }
   uploads() {
-    console.log(this.user.id)
+    console.log(this.province)
+    console.log(this.district)
+    console.log(this.ward)
 
   }
   removeImage(index: number) {
