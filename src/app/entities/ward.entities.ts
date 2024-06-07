@@ -1,8 +1,6 @@
 
 
 export class Ward{
-    district_id: string 
-    ward_id: string
-    ward_name: string
-    ward_type: string
+    id : string 
+    full_name :string
 }

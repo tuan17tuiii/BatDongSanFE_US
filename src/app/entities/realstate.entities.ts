@@ -20,7 +20,7 @@ export class RealState{
     nameusersell:string;
     image:Image[]
     lastImage : Image
-    usersell_Id : string 
+    usersellId : string 
     transactionType : string ; 
     sold : boolean ; 
     expired : boolean ; 

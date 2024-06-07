@@ -109,20 +109,20 @@ body {
 .img {
     position: relative;
     width: 100%;
-    padding-top: 56.25%; /* Tỷ lệ 16:9 */
+    /* padding-top: 56.25%; Tỷ lệ 16:9 */
     overflow: hidden;
     background-color: #f0f0f0; /* Màu nền cho ảnh */
-    display: flex;
+    /* display: flex; */
     justify-content: center;
     align-items: center;
 }
 
 .image-container  img {
-    position: absolute;
+    /* position: absolute; */
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 400px;
     object-fit: cover; /* Đảm bảo ảnh đầy đủ khung mà không bị méo */
     
 }

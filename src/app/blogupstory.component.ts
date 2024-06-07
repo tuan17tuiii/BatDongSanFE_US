@@ -56,6 +56,8 @@ export class BlogupstoryComponent implements OnInit {
   districts: District[]
   images: string[] = []
   user: User
+  realstate: RealState[]
+  maximumnews: number
   constructor(
     private formBuilder: FormBuilder,
     private provinceService: ProvinceAPIService,
@@ -69,17 +71,23 @@ export class BlogupstoryComponent implements OnInit {
     private userService: UserServices
   ) { }
   ngOnInit(): void {
-
     if (typeof window !== "undefined" && typeof window.sessionStorage !== "undefined") {
       this.userService.findByUsername(sessionStorage.getItem('username')).then(
         res => {
           if (res) {
             this.user = res as User
+            this.realstateService.totalById(this.user.id).then(
+              res => {
+                this.realstate = res as RealState[]
+                this.maximumnews = this.realstate.length
+                console.log(this.maximumnews)
+              }
+            )
           }
         }
       )
-    }else{
-      
+    } else {
+
     }
 
     this.formGroup = this.formBuilder.group({
@@ -110,8 +118,8 @@ export class BlogupstoryComponent implements OnInit {
 
     this.provinceService.findAll().then(
       res => {
-        this.provinces = res['results'] as Province[];
-
+        this.provinces = res['data'] as Province[]
+        console.log(this.provinces)
       },
       error => {
         console.log(error)
@@ -134,97 +142,95 @@ export class BlogupstoryComponent implements OnInit {
     this.selectedTab = tab;
     console.log(this.selectedTab);
   }
+  find_districts(evt: Event) {
+    const target = evt.target as HTMLSelectElement;
+    const selectedOption = target.options[target.selectedIndex];
+    const provinceId = selectedOption.value;
+    const provinceName = selectedOption.getAttribute('data-name');
+    this.province = provinceName
 
-  find_districts(evt: any) {
-    var district_id = evt.target.value;
-    this.id = district_id
-    this.provinceService.find_Name_Province(this.id).then(
+    console.log('Province ID:', provinceId);
+    console.log('Province Name:', provinceName);
+    
+    this.provinceService.findDistrict(Number(provinceId)).then(
       res => {
-        this.province = res as Province[];
+        this.districts = res['data'] as District[];
+      },
+      error => {
+        console.log(error);
       }
-    )
-    this.provinceService.findDistrict(district_id).then(
-      res => {
-        this.districts = res['results'] as District[];
+    );
+}
 
+  find_ward(evt: Event) {
+    const target = evt.target as HTMLSelectElement;
+    const selectedOption = target.options[target.selectedIndex];
+    const districtId = selectedOption.value;
+    const districtName = selectedOption.getAttribute('data-name');
+    console.log('District ID:', districtId);
+    console.log('District Name:', districtName);
+    this.district = districtName
+    
+    this.provinceService.findWard(Number(districtId)).then(
+      res => {
+        this.wards = res['data'] as Ward[];
       },
       error => {
         console.log(error)
       }
     )
   }
-  find_ward(evt: any) {
-    var ward_id = evt.target.value;
-
-    this.provinceService.find_Name_District(this.districts, ward_id).then(
-      res => {
-        this.district = res as District
-
-      }, error => {
-        console.log(error)
-      }
-    )
-
-    this.provinceService.findWard(ward_id).then(
-      res => {
-        this.wards = res['results'] as Ward[];
-
-      },
-      error => {
-        console.log(error)
-      }
-    )
+  onWardChange(evt : any){
+    var wardName = evt.target.value;
+    this.ward = wardName
   }
-  find_Name_Ward(evt: any) {
-    this.ward = evt.target.value;
-  }
+  
   selectType(evt: any) {
     this.type = evt.target.value;
   }
   selectFiles(event: any) {
     if (this.files == null) {
-        // Nếu mảng files chưa được khởi tạo
-        const selectedFiles: File[] = Array.from(event.target.files) as File[]; // Chuyển FileList thành mảng File[]
-        this.files = selectedFiles; // Gán mảng vào this.files
-        if (this.files.length >= 4) {
-            this.error("Faild", "Please choose 4 photos");
-        } else {
-            for (let i = 0; i < this.files.length; i++) {
-                const reader = new FileReader();
-                reader.onload = () => {
-                    this.images.push(reader.result as string);
-                };
-                reader.readAsDataURL(this.files[i]);
-                this.fileNames[i] = this.files[i].name;
-            }
+      // Nếu mảng files chưa được khởi tạo
+      const selectedFiles: File[] = Array.from(event.target.files) as File[]; // Chuyển FileList thành mảng File[]
+      this.files = selectedFiles; // Gán mảng vào this.files
+      if (this.files.length > 6) {
+        this.error("Faild", "Please choose 66 photos");
+        this.files = null
+      } else {
+        for (let i = 0; i < this.files.length; i++) {
+          const reader = new FileReader();
+          reader.onload = () => {
+            this.images.push(reader.result as string);
+          };
+          reader.readAsDataURL(this.files[i]);
+          this.fileNames[i] = this.files[i].name;
         }
-        console.log(this.files);
+      }
+      console.log(this.files);
     } else {
-        // Nếu mảng files đã được khởi tạo
-        const selectedFiles: File[] = Array.from(event.target.files) as File[]; // Chuyển FileList thành mảng File[]
-        if (this.files.length + selectedFiles.length > 4) {
-            this.error("Faild", "You can only choose up to 4 photos");
-        } else {
-            for (const file of selectedFiles) {
-                // Kiểm tra xem file có tồn tại trong mảng files không
-                const existingFile = this.files.find(existingFile => existingFile.name === file.name);
-                if (!existingFile) {
-                    // Nếu file không tồn tại trong mảng files, thêm vào
-                    this.files.push(file);
-                    const reader = new FileReader();
-                    reader.onload = () => {
-                        this.images.push(reader.result as string);
-                    };
-                    reader.readAsDataURL(file);
-                    this.fileNames.push(file.name);
-                }
-            }
+      // Nếu mảng files đã được khởi tạo
+      const selectedFiles: File[] = Array.from(event.target.files) as File[]; // Chuyển FileList thành mảng File[]
+      if (this.files.length + selectedFiles.length > 6) {
+        this.error("Faild", "You can only choose up to 6 photos");
+      } else {
+        for (const file of selectedFiles) {
+          // Kiểm tra xem file có tồn tại trong mảng files không
+          const existingFile = this.files.find(existingFile => existingFile.name === file.name);
+          if (!existingFile) {
+            // Nếu file không tồn tại trong mảng files, thêm vào
+            this.files.push(file);
+            const reader = new FileReader();
+            reader.onload = () => {
+              this.images.push(reader.result as string);
+            };
+            reader.readAsDataURL(file);
+            this.fileNames.push(file.name);
+          }
         }
-        console.log(this.files);
+      }
+      console.log(this.files);
     }
-}
-
-
+  }
 
   save() {
     console.log(this.files.length)
@@ -241,22 +247,24 @@ export class BlogupstoryComponent implements OnInit {
       realstate.sold = false //trang thai chua ban 
       realstate.expired = false // trang thai chua het han
 
-      realstate.city = this.province[0].province_name
-      realstate.region = this.district.district_name
-      realstate.street = this.ward
+
       realstate.type = this.type
       realstate.status = false
       let createdAt =  new Date()
       realstate.createdAt = formatDate(createdAt, 'dd/MM/yyyy', 'en-US')
       
       let createdEnd = new Date()
-      createdEnd.setDate(createdAt.getDate())
+      createdEnd.setDate(createdAt.getDate() + this.user.advertisement.quantityDates)
       realstate.createdEnd = formatDate(createdEnd, 'dd/MM/yyyy', 'en-US'); // định dạng ngày hôm nay
 
-
+      realstate.city = this.province 
+      realstate.region = this.district 
+      realstate.street = this.ward
       realstate.transactionType = this.selectedTab
-      realstate.usersell_Id = this.user.id.toString()
-      console.log(realstate.title+"day la titiit")
+
+      realstate.usersellId = this.user.id.toString()
+
+
       for (let i = 0; i < this.files.length; i++) {
         if (this.files[i].size > 100000000) {
           this.error("Failed", "One or more files exceed the size limit of 15000 bytes.");
@@ -274,7 +282,6 @@ export class BlogupstoryComponent implements OnInit {
                 formData.append('files', this.files[i]);
                 formData.append('id', this.newrealstate.toString())
               }
-              formData.append('dataname', "realstate")
               this.imageService.uploads(formData).then(
                 res => {
                   this.fileNames = res['fileNames'];
@@ -299,7 +306,6 @@ export class BlogupstoryComponent implements OnInit {
     } else {
       this.error("Faild", "No Image")
     }
-
   }
   show() {
     this.messageService.add({
@@ -317,21 +323,16 @@ export class BlogupstoryComponent implements OnInit {
     });
   }
   uploads() {
-    let realstate: RealState = this.formGroup.value as RealState;
-    realstate.createdAt = formatDate(new Date(), 'dd/MM/yyyy', 'en-US')
-    console.log(realstate.createdAt)
-    let result = new Date()
-    console.log(result)
-    result.setDate(result.getDate()+ 27)
-    console.log(result)
-    //realstate.createdEnd = formatDate(realstate.createdAt + 30, 'dd/MM/yyyy', 'en-US'); 
-    //console.log(realstate.createdEnd)
+    console.log(this.province)
+    console.log(this.district)
+    console.log(this.ward)
+
   }
   removeImage(index: number) {
     this.images.splice(index, 1);
     this.files.splice(index, 1);
     this.fileNames.splice(index, 1);
-    console.log(this.files);
+
   }
   onDrop(event: CdkDragDrop<string[]>) {
 

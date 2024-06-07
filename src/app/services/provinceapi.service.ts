@@ -16,13 +16,16 @@ export class ProvinceAPIService {
 
   }
   async findAll() {
-    return lastValueFrom(this.httpClient.get('https://vapi.vnappmob.com/api/province'))
+    return lastValueFrom(this.httpClient.get('https://esgoo.net/api-tinhthanh/1/0.htm'))
   }
   async findDistrict(id: number) {
-    return lastValueFrom(this.httpClient.get('https://vapi.vnappmob.com/api/province/district/' + id))
+    const formattedId = id.toString().padStart(2, '0');
+
+    return lastValueFrom(this.httpClient.get('https://esgoo.net/api-tinhthanh/2/'+formattedId+'.htm'))
   }
   async findWard(id: number) {
-    return lastValueFrom(this.httpClient.get('https://vapi.vnappmob.com/api/province/ward/' + id))
+    const formattedId = id.toString().padStart(3, '0');
+    return lastValueFrom(this.httpClient.get('https://esgoo.net/api-tinhthanh/3/'+formattedId+'.htm'))
   }
   async find_Name_Province(id: string) {
     let provinces: Province[]; // Định nghĩa biến provinces với kiểu Province[]
@@ -31,7 +34,7 @@ export class ProvinceAPIService {
       provinces = response.results as Province[]; // Ép kiểu response.results thành một mảng các đối tượng Province
 
       let abc = provinces.filter(province => {
-        return province.province_id === id;
+        return province.id === id;
       });
       return abc;
     } catch (error) {
@@ -41,7 +44,7 @@ export class ProvinceAPIService {
   }
   async find_Name_District(districts : District[], id : string) {
     for(var i = 0 ; i < districts.length ; i ++){
-      if(districts[i].district_id==id){
+      if(districts[i].id==id){
         return districts[i]
       }
     }

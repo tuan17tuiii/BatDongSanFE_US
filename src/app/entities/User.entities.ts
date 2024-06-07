@@ -8,7 +8,7 @@ export class User{
     email: string;
     phone: string;
     roleId: number;
-    advertisement_id: number;
+    advertisementId: number;
     status: boolean;
     securityCode: string;
     advertisement : Advertisement

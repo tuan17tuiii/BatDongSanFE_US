@@ -1,7 +1,7 @@
 
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home.component';
-import { PostUpComponent } from './postup.component';
+
 import { AboutComponent } from './about.component';
 import { ContacComponent } from './contact.component';
 import { Property_listComponent } from './property_list.component';
@@ -45,10 +45,7 @@ export const routes: Routes = [
             path: 'home',
             component: HomeComponent,
          },
-         {
-            path: 'post-up',
-            component: PostUpComponent,
-         },
+         
          {
             path: "about",
             component: AboutComponent,
@@ -74,8 +71,8 @@ export const routes: Routes = [
             component: InforComponent,
             canActivate: [UserSecurity],
             data: {
-               role: '2'
-           },
+               role: '2, 4'
+            },
             children: [
                {
                   path: "",
@@ -85,7 +82,7 @@ export const routes: Routes = [
                   path: "details",
                   component: InfordetailsComponent,
                },
-               
+
                {
                   path: "home",
                   component: InforhomeComponent,
@@ -133,6 +130,10 @@ export const routes: Routes = [
          }, {
             path: "blogupstory",
             component: BlogupstoryComponent,
+            canActivate: [UserSecurity],
+            data: {
+               role: '2, 4'
+            },
          }
       ]
    },
