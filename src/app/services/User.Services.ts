@@ -55,6 +55,10 @@ export class UserServices{
         return lastValueFrom(this.httpClient.put(this.baseUrlService.BaseUrl + 'account/Update', user));
     }
 
+    async Upload(formData: FormData){
+        return lastValueFrom(this.httpClient.post(this.baseUrlService.BaseUrl + 'account/Upload', formData));
+    }
+
     async ChangePass(password: string, username: string){
         return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl + 'account/ChangePass/' + password + '/' + username));
     }

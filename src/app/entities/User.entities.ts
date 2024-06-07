@@ -11,6 +11,7 @@ export class User{
     advertisementId: number;
     status: boolean;
     securityCode: string;
-    advertisement : Advertisement
+    advertisement : Advertisement;
+    avatar: string
     statusUpdate:boolean
 }

@@ -4,10 +4,18 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { UserServices } from './services/User.Services';
 import { User } from './entities/User.entities';
 
+
+
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,RouterLink, FormsModule, ReactiveFormsModule],
+  imports: [
+    RouterOutlet,
+    RouterLink,
+    FormsModule,
+    ReactiveFormsModule,
+   
+  ],
   templateUrl: './layout.component.html',
   styleUrl: './app.component.css'
 })
@@ -16,6 +24,7 @@ export class LayoutComponent implements OnInit {
   constructor(private router: Router, private userServices: UserServices){}
 
   username: string;
+  avatar: string;
  
   ngOnInit(){ 
     
@@ -24,6 +33,7 @@ export class LayoutComponent implements OnInit {
         res =>{
           let user : User = res as User;
           this.username = user.username;
+          this.avatar = user.avatar;
         },
         err =>{
           console.log(err);

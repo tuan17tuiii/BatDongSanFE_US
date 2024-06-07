@@ -1,4 +1,38 @@
 <style>
+    .image-overlay {
+    position: relative;
+    display: inline-block;
+    width: 50%; /* Độ rộng của ảnh trong container */
+}
+
+.image-overlay img {
+    display: block;
+    width: 100%; /* Ảnh sẽ chiếm toàn bộ width của .image-overlay */
+    height: auto;
+    border-radius: 10px;
+}
+
+.overlay-content {
+    position: absolute;
+    top: 50%; /* Đưa overlay lên giữa theo chiều cao */
+    left: 50%; /* Đưa overlay lên giữa theo chiều rộng */
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    width: 80%; /* Độ rộng của overlay so với ảnh */
+}
+
+
+.overlay-content .title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.overlay-content .description {
+    font-size: 18px;
+}
+
     .tabbar {
         display: flex;
         justify-content: center;
@@ -91,6 +125,9 @@
     .post-container {
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         /* Đổ bóng */
+
+        height: 290px;
+
     }
 
     .post-container:hover {
@@ -99,20 +136,75 @@
         transition: transform 0.3s ease;
         /* Hiệu ứng chuyển động mềm mại */
     }
+
+
+    .post-content {
+        position: relative;
+
+    }
+
+    .button-container {
+        display: flex;
+        /* Sử dụng flexbox để các nút nằm ngang hàng */
+        justify-content: center;
+        /* Canh giữa nút theo chiều ngang */
+    }
+
+    .edit-button,
+    .delete-button {
+        /* Xóa thuộc tính position và các thuộc tính liên quan */
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        /* Chỉ cần transition cho opacity */
+    }
+
+    .edit-button {
+        background-color: #4CAF50;
+        color: white;
+        margin-right: 5px;
+        /* Thêm khoảng cách giữa hai nút */
+    }
+
+    .delete-button {
+        background-color: #f44336;
+        color: white;
+        margin-left: 5px;
+        /* Thêm khoảng cách giữa hai nút */
+    }
+
+    .post-container:hover .edit-button,
+    .post-container:hover .delete-button {
+        opacity: 1;
+        /* Hiển thị nút khi hover */
+    }
+
+    .post-image {
+        border-radius: 10px;
+        transition: transform 0.3s ease;
+    }
+
+    .post-container:hover .post-image {
+        transform: scale(1.05);
+    }
 </style>
 
 @if(user!=null&&user.roleId!=3&&user.statusUpdate==false){
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-   
-    <p-button styleClass="bannerh2" (click)="confirm()" label="Dang Ki Nha Moi Gioi" />
-    <p-confirmDialog acceptLabel="Next" rejectLabel="Cansle" acceptButtonStyleClass="p-button-outlined p-button-sm px-2 accept-button" rejectButtonStyleClass="p-button-sm px-2 reject-button">
-    </p-confirmDialog>
+
+    <a [routerLink]="['/information/formrgs']">
+        <div class="bannerh2">Dang Ki Nha Moi Gioi</div>
+    </a>
+
 </div>
 }
 @if(user!=null&&user.roleId!=3&&user.statusUpdate==true){
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <p-button styleClass="bannerh2" (click)="showDialog()" label="Dang Ki Nha Moi Gioi" />
-    <p-dialog  header="Dang Cho Duyet ....." [(visible)]="visible" [modal]="true"
+    <p-dialog header="Dang Cho Duyet ....." [(visible)]="visible" [modal]="true"
         [breakpoints]="{ '600px': '75vw', '400px': '90vw' }" [style]="{ width: '50vw' }" [draggable]="false"
         [resizable]="false">
         <p>ban da gui thong tin dang ki he thong se phan hoi tu 2 - 5 ngay lam viec</p>
@@ -123,8 +215,8 @@
 @if(user!=null&&user.roleId==3){
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 
-<div class="bannerh3" >  <span style="font-size: 25px;color: hsl(0, 0%, 100%)"><i class="pi pi-home"
-            style="color: hsl(0, 0%, 100%) ;font-size: 2rem"></i> Nha Moi Gioi </span></div>  
+    <div class="bannerh3"> <span style="font-size: 25px;color: hsl(0, 0%, 100%)"><i class="pi pi-home"
+                style="color: hsl(0, 0%, 100%) ;font-size: 2rem"></i> Nha Moi Gioi </span></div>
 
 </div>
 }
@@ -167,6 +259,12 @@
                             <p>{{unapprovedlist.describe}}</p>
                             <img src="{{imageUrl}}{{unapprovedlist.lastImage.urlImage}}" alt=""
                                 style="width: 250px; height: 120px;">
+                            <div class="button-container">
+                                <button class="edit-button">Edit</button>
+                                <button class="delete-button">Delete</button>
+                            </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -177,8 +275,26 @@
 </div>
 
 <!-- Nội dung nằm ở đây -->
-<div class="row">
-    <div class="col">
-        <p>Content here...</p>
+<div *ngIf="approvedlists && approvedlists.length > 0; else noContent">
+    <div class="row">
+        <div class="col">
+            <p>Content here...</p>
+        </div>
     </div>
 </div>
+
+<ng-template #noContent>
+    <div class="row">
+        <div class="image-overlay">
+            <img src="https://batdongsan.com.vn/sellernet/static/media/welcome_new_user.dcf416a4.png" alt="Welcome Image">
+            <div class="overlay-content">
+                <div class="title">Quà tặng cho khách hàng mới</div>
+                <div class="description">Miễn phí 1 tin thường 5 ngày</div>
+            </div>
+        </div>
+        <div>
+            Tin đăng của bạn sẽ được tiếp cận hơn 6 triệu người tìm mua/thuê bất động sản mỗi tháng
+        </div>
+        
+    </div>
+</ng-template>

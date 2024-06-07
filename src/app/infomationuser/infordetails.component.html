@@ -1,7 +1,28 @@
-<div class="container">
+<style>
+    input[type="text"] {
+        border-radius: 20px;
+        /* Adjust the value to your desired border radius */
+    }
+</style>
+
+<div class="profile-container1">
     <h2 [align]="['center']">User's Infomation</h2>
     @if (infoForm != null) {
     <form id="profile-form" [formGroup]="infoForm" (ngSubmit)="Save()">
+        <div class="ip container">
+            <div class="row">
+                <div class="col-md-5"></div>
+                <div class="col-md-2">
+                    <input type="file" (change)="SelectFile($event)" id="fileInput" style="display: none;">
+                    <label for="fileInput">
+                        <a style="cursor: pointer;">
+                            <img style="width: 80px; height: 80px; border-radius: 50%;" src="{{avatar}}">
+                        </a>
+                    </label>
+                </div>
+                <div class="col-md-5"></div>
+            </div>
+        </div>
         <div class="ip">
             <label for="fullname"><i class="fa fa-id-card" aria-hidden="true">&nbsp;</i>Full Name:</label><br>
             <input type="text" id="fullname" name="fullname" placeholder="Full Name"
@@ -25,7 +46,7 @@
         <div class="ip">
             <label for="phone"><i class="fa fa-phone-square" aria-hidden="true"></i>&nbsp;Phone Number:</label><br>
             <input type="text" id="phone" name="phone" placeholder="Phone Number" class="form-control form-control-sm"
-                formControlName="phone">
+                formControlName="phone" pattern="[0-9]*" inputmode="numeric">
             @if (infoForm.get('phone').touched) {
             @if (infoForm.hasError('required',['phone'])) {
             <span class="error" style="color: red;">Phone Number required !</span>
@@ -36,24 +57,21 @@
             <label for="tax-id"><i class="fa fa-id-card" aria-hidden="true"></i>&nbsp;Rental code:</label><br>
             <input type="text" id="tax-id" name="tax-id" placeholder="Rental code" class="form-control form-control-sm">
         </div>
-        <div style="margin-right: 18px;" class="container">
-            
-            <div class="row"> 
-                <button pRipple (click)="Save()" label="Update" class="btn btn-success col-md-5"
-                 [disabled]="infoForm.invalid">Update</button><div class="col-md-2"></div>
-                <button pRipple [routerLink]="['/information/ChangePass']" label="Change Password"
-                    class="btn btn-success col-md-5">Change Password</button>
-            </div>
-
+        <div style="margin-right: 18px;">
+            <input type="hidden" formControlName="username">
+            <input type="hidden" formControlName="roleId">
+            <input type="hidden" formControlName="id">
+            <input type="hidden" formControlName="password">
+            <input type="hidden" formControlName="status">
+            <input type="hidden" formControlName="securityCode">
+            <input type="hidden" formControlName="advertisementId">
+            <p-toast position="bottom-left" key="bl" />
+            <p-button pRipple (click)="Save()" label="Update" styleClass="btn btn-success" [style]="{'width':'45%'}"
+                [disabled]="infoForm.invalid" />
+            <p-button pRipple [routerLink]="['/information/ChangePass']" label="Change Password"
+                styleClass="btn btn-success" [style]="{'width':'45%', 'margin-left':'92px'}" />
         </div>
-        <input type="hidden" formControlName="username">
-        <input type="hidden" formControlName="roleId">
-        <input type="hidden" formControlName="id">
-        <input type="hidden" formControlName="password">
-        <input type="hidden" formControlName="status">
-        <input type="hidden" formControlName="securityCode">
-        <input type="hidden" formControlName="advertisementId">
-        <p-toast position="bottom-left" key="bl" />
+
     </form>
     }
 </div>
