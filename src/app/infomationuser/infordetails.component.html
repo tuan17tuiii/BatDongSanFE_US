@@ -51,10 +51,8 @@
             <input type="hidden" formControlName="status">
             <input type="hidden" formControlName="securityCode">
             <input type="hidden" formControlName="advertisementId">
-            <input type="hidden" formControlName="avatar">
             <p-toast position="bottom-left" key="bl" />
-            <p-button pRipple (click)="Save()" label="Update" styleClass="btn btn-success" [style]="{'width':'45%'}"
-                [disabled]="infoForm.invalid" />
+            <p-button pRipple (click)="Save()" label="Update" styleClass="btn btn-success" [style]="{'width':'45%'}" [disabled]="infoForm.invalid"/>
             <p-button pRipple [routerLink]="['/information/ChangePass']" label="Change Password"
                 styleClass="btn btn-success" [style]="{'width':'45%', 'margin-left':'92px'}" />
         </div>

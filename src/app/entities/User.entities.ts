@@ -13,4 +13,5 @@ export class User{
     securityCode: string;
     advertisement : Advertisement;
     avatar: string
+    statusUpdate:boolean
 }

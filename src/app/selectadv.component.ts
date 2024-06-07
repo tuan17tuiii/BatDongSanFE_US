@@ -8,6 +8,9 @@ import { AdvertisementAPIService } from './services/advertisement.service';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { User } from './entities/User.entities';
 import { UserServices } from './services/User.Services';
+import { RemainService } from './services/remain.service';
+import { Remain } from './entities/remain.entities';
+import { error } from 'console';
 
 declare var paypal: any;
 
@@ -28,16 +31,20 @@ declare var paypal: any;
 export class SelectadvComponent implements OnInit, AfterViewInit {
   advertisements: Advertisement[] = [];
   advertisement: Advertisement;
-  user : User
+  user: User
+
+  
   constructor(
     private advertisementService: AdvertisementAPIService,
     private ngZone: NgZone,
     private renderer: Renderer2,
-    private userService : UserServices,
+    private userService: UserServices,
+    private remainService: RemainService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
   ngOnInit(): void {
+
     if (typeof window !== "undefined" && typeof window.sessionStorage !== "undefined") {
       this.userService.findByUsername(sessionStorage.getItem('username')).then(
         res => {
@@ -48,7 +55,6 @@ export class SelectadvComponent implements OnInit, AfterViewInit {
         }
       )
     } else {
-
     }
     if (isPlatformBrowser(this.platformId)) {
       this.loadPaypalScript();
@@ -65,6 +71,10 @@ export class SelectadvComponent implements OnInit, AfterViewInit {
         console.log(error);
       }
     );
+
+
+
+
   }
 
   subscribe(id: string) {
@@ -77,7 +87,6 @@ export class SelectadvComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // PayPal buttons initialization has been moved to ngOnInit after advertisements are loaded.
   }
 
   loadPaypalScript() {
@@ -94,7 +103,7 @@ export class SelectadvComponent implements OnInit, AfterViewInit {
       document.body.appendChild(script);
     });
   }
-  selectPackage(id : any){
+  selectPackage(id: any) {
     var number = id.target.value
     console.log(number)
   }
@@ -114,13 +123,34 @@ export class SelectadvComponent implements OnInit, AfterViewInit {
           onApprove: (data, actions) => {
             return actions.order.capture().then(details => {
               this.ngZone.run(() => {
-                this.user.advertisementId = Number(advertisement.id )
+                this.user.advertisementId = Number(advertisement.id)
                 console.log(this.user)
                 this.userService.Update(this.user).then(
-                  res=>{
+                  res => {
                     console.log('Nguoi dung da mua goi adv ' + advertisement.id + ' thanh cong')
+                    this.remainService.findById(this.user.id.toString()).then(
+                      res => {
+                        console.log(res)
+                        let remain : Remain = res as Remain
+                        
+                        remain.idAdv = advertisement.id
+                        remain.remaining = advertisement.quantityNews.toString()
+                        this.remainService.Update(remain).then(
+                          res => {
+                            console.log("Update remain thanh cong")
+                          }, err => {
+                            console.log("loi 2")
+                          }
+                        )
+                      }, err => {
+                        console.log("Khong tim thay Id")
+                      }
+                    )
+                  }, err => {
+                    console.log("Loi 1")
                   }
                 )
+
                 alert('Transaction completed by ' + details.payer.name.given_name);
               });
             });
@@ -129,4 +159,5 @@ export class SelectadvComponent implements OnInit, AfterViewInit {
       });
     });
   }
+
 }

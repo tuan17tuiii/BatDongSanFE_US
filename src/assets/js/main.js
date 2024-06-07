@@ -1,3 +1,5 @@
+
+
 (function ($) {
     "use strict";
 
@@ -195,9 +197,10 @@
 
     $(document).ready(function () {
         $('.toggleButton2').click(function (event) {
-            var mouseX = event.pageX;
+            var mouseX = event.mouseX;
             console.log("day la x" + mouseX);
-            var mouseY = event.pageY;
+            var mouseY = event.mouseX;
+            
 
             $('#panel2').css({
                 top: mouseY,

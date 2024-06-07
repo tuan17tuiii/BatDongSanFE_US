@@ -1,39 +1,85 @@
-<div class="container">
-    <h1>Nhập thông tin nhà moi gioi</h1>
-    <form enctype="multipart/form-data" id="uploadForm">
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" required>
+
+<div class="profile-container1">
+    <h2 [align]="['center']"> Nhập thông tin nhà moi gioi</h2>
+  
+    @if (infoForm != null) {
+        <form id="profile-form" [formGroup]="infoForm" (ngSubmit)="Save()">
+            <div class="ip">
+                <label for="fullname"><i class="fa fa-id-card" aria-hidden="true">&nbsp;</i>Full Name: </label><br>
+                <input type="text" id="fullname" name="fullname" placeholder="Full Name"
+                    class="form-control form-control-sm" formControlName="name">
+                @if (infoForm.get('name').touched) {
+                @if (infoForm.hasError('required',['name'])) {
+                <span class="error" style="color: red;">Full Name required !</span>
+                }
+                }
+            </div>
+            <div class="ip">
+                <label for="email"><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;Email:</label><br>
+                <input type="text" id="email" name="email" placeholder="Email" class="form-control form-control-sm"
+                    formControlName="email">
+                @if (infoForm.get('email').touched) {
+                @if (infoForm.hasError('required',['email'])) {
+                <span class="error" style="color: red;">Email required !</span>
+                }
+                }
+            </div>
+            <div class="ip">
+                <label for="phone"><i class="fa fa-phone-square" aria-hidden="true"></i>&nbsp;Phone Number:</label><br>
+                <input type="text" id="phone" name="phone" placeholder="Phone Number" class="form-control form-control-sm"
+                    formControlName="phone">
+                @if (infoForm.get('phone').touched) {
+                @if (infoForm.hasError('required',['phone'])) {
+                <span class="error" style="color: red;">Phone Number required !</span>
+                }
+                }
+            </div>
+            <div class="ip">
+                <label for="tax-id"><i class="fa fa-id-card" aria-hidden="true"></i>&nbsp;Rental code:</label><br>
+                <input type="text" id="tax-id" name="tax-id" placeholder="Rental code" class="form-control form-control-sm">
+               
+            </div>
+            <div class="ip">
+                <label for="portrait">Ảnh chân dung:</label>
+                <input type="file" id="portrait" name="portrait" accept="image/*" required (change)="selectFiles1($event)">
+                @if(images1==null){  <span class="error" style="color: red;">Photo null !</span>}
+               <div class="img_fg"><img id="portraitPreview" [src]="images1" alt="Preview Image" class="preview-image " max-height="200px"></div> 
+            </div>
+        <div class="ip">
+            <label for="cccd">Ảnh mat truoc Chứng minh nhân dân hoặc Thẻ căn cước công dân:</label>
+            <input type="file" id="cccd" name="cccd" accept="image/*" required  (change)="selectFiles2($event)">
+            @if(images2==null){  <span class="error" style="color: red;">Photo null !</span>}
+            <div class="img_fg"><img id="cccdPreview" [src]="images2" alt="Preview Image" class="preview-image" max-height="200px" ></div> 
         </div>
-        <div class="form-group">
-            <label for="phone">Phone</label>
-            <input type="tel" id="phone" name="phone" required>
+        <div class="ip">
+            <label for="cccd">Ảnh mat sau Chứng minh nhân dân hoặc Thẻ căn cước công dân:</label>
+            <input type="file" id="cccd" name="cccd" accept="image/*" required (change)="selectFiles3($event)">
+          @if(images3==null){  <span class="error" style="color: red;">Photo null !</span>}
+            <div class="img_fg"><img id="cccdPreview" [src]="images3" alt="Preview Image" class="preview-image" max-height="200px"></div> 
         </div>
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-        </div>
-        <div class="form-group">
-            <label for="address">Address</label>
-            <input type="text" id="address" name="address" required>
-        </div>
-        <div class="form-group">
-            <label for="cccd">Ảnh Chứng minh nhân dân hoặc Thẻ căn cước công dân:</label>
-            <input type="file" id="cccd" name="cccd" accept="image/*" required onchange="previewImage(this, 'cccdPreview')">
-            <div class="img_fg"><img id="cccdPreview" src="#" alt="Preview Image" class="preview-image" max-height="200px"></div> 
-        </div>
-        <div class="form-group">
-            <label for="portrait">Ảnh chân dung:</label>
-            <input type="file" id="portrait" name="portrait" accept="image/*" required onchange="previewImage(this, 'portraitPreview')">
-           <div class="img_fg"><img id="portraitPreview" src="#" alt="Preview Image" class="preview-image " max-height="200px"></div> 
-        </div>
-        <div class="form-group">
+        <div class="ip">
             <label for="otherDocs">Các giấy tờ liên quan khác:</label>
-            <input type="file" id="otherDocs" name="otherDocs[]" accept="image/*" multiple required onchange="previewImage(this, 'otherDocsPreview')">
-            <div id="otherDocsPreview" class="other-docs-preview"></div>
+            <input type="file" id="otherDocs" name="otherDocs[]" accept="image/*" multiple required (change)="selectFiles($event)">
+            <div class="image-preview" cdkDropList >
+                <div *ngFor="let image of images; let i = index" class="image-containerr" cdkDrag>
+                    <img [src]="image" width="200px">
+                    <button class="close-button" (click)="removeImage(i)">×</button>
+                </div>
+            </div>
         </div>
-        <button type="submit">Gửi thông tin</button>
+        <div class="card flex justify-content-center">
+            <p-confirmDialog>
+                <ng-template pTemplate="message" let-message>
+                    <div class="flex flex-column align-items-center w-full gap-3 border-bottom-1 surface-border">
+                        <i class="pi pi-exclamation-circle text-6xl text-primary-500"></i>
+                        <p>{{ message.message }}</p>
+                    </div>
+                </ng-template>
+            </p-confirmDialog>
+            <p-button styleClass="btn btn-success" (click)="confirm()" label="Save" />
+        </div>
     </form>
+}
 </div>
 
 
