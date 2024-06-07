@@ -4,10 +4,18 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { UserServices } from './services/User.Services';
 import { User } from './entities/User.entities';
 
+
+
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,RouterLink, FormsModule, ReactiveFormsModule],
+  imports: [
+    RouterOutlet,
+    RouterLink,
+    FormsModule,
+    ReactiveFormsModule,
+   
+  ],
   templateUrl: './layout.component.html',
   styleUrl: './app.component.css'
 })
