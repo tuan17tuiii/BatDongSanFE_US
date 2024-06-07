@@ -15,21 +15,21 @@ function previewImage(file, previewId) {
 }
 
 
-document.addEventListener("DOMContentLoaded", function() {
-    var tabContainer = document.querySelector(".tabs");
+// document.addEventListener("DOMContentLoaded", function() {
+//     var tabContainer = document.querySelector(".tabs");
     
-    tabContainer.addEventListener("click", function(event) {
-        if (event.target.classList.contains("tab")) {
-            // Remove 'active' class from all tabs
-            var tabs = document.querySelectorAll(".tab");
-            tabs.forEach(function(tab) {
-                tab.classList.remove("active");
-            });
-            // Add 'active' class to the clicked tab
-            event.target.classList.add("active");
-        }
-    });
-});
+//     tabContainer.addEventListener("click", function(event) {
+//         if (event.target.classList.contains("tab")) {
+//             // Remove 'active' class from all tabs
+//             var tabs = document.querySelectorAll(".tab");
+//             tabs.forEach(function(tab) {
+//                 tab.classList.remove("active");
+//             });
+//             // Add 'active' class to the clicked tab
+//             event.target.classList.add("active");
+//         }
+//     });
+// });
     
 // Function mở tab
 // js cũ
@@ -68,7 +68,20 @@ function openTab(tabName) {
     // Thêm lớp active cho tab được chọn
     event.currentTarget.classList.add("active");
 }
-
+ 
+ document.querySelector('.scrollBtn').addEventListener('click', function() {
+    console.log("ok r dc")
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth' // Add smooth scrolling effect
+    });
+    document.querySelector('.scrollBtn').classList.add('scroll-up'); // Add scroll-up class
+    setTimeout(function() {
+        document.querySelector('.scrollBtn').classList.remove('scroll-up'); // Remove scroll-up class after animation
+    }, 500); // Adjust animation duration if needed
+ });
+ 
+ 
 
 
 
