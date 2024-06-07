@@ -20,6 +20,8 @@ import { CommonModule, formatDate } from '@angular/common';
 import { eventNames } from 'process';
 import { UserServices } from './services/User.Services';
 import { User } from './entities/User.entities';
+import { Remain } from './entities/remain.entities';
+import { RemainService } from './services/remain.service';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -58,6 +60,8 @@ export class BlogupstoryComponent implements OnInit {
   user: User
   realstate: RealState[]
   maximumnews: number
+
+  remain: Remain
   constructor(
     private formBuilder: FormBuilder,
     private provinceService: ProvinceAPIService,
@@ -68,7 +72,8 @@ export class BlogupstoryComponent implements OnInit {
     private confirmService: ConfirmationService,
     private router: Router,
     private imageService: ImageRealStateAPIService,
-    private userService: UserServices
+    private userService: UserServices,
+    private remainService: RemainService
   ) { }
   ngOnInit(): void {
     if (typeof window !== "undefined" && typeof window.sessionStorage !== "undefined") {
@@ -76,11 +81,16 @@ export class BlogupstoryComponent implements OnInit {
         res => {
           if (res) {
             this.user = res as User
+            this.remainService.findById(this.user.id.toString()).then(
+              res => {
+                this.remain = res as Remain
+                console.log(this.remain)
+              }
+            )
             this.realstateService.totalById(this.user.id).then(
               res => {
                 this.realstate = res as RealState[]
-                this.maximumnews = this.realstate.length
-                console.log(this.maximumnews)
+
               }
             )
           }
@@ -148,10 +158,6 @@ export class BlogupstoryComponent implements OnInit {
     const provinceId = selectedOption.value;
     const provinceName = selectedOption.getAttribute('data-name');
     this.province = provinceName
-
-    console.log('Province ID:', provinceId);
-    console.log('Province Name:', provinceName);
-    
     this.provinceService.findDistrict(Number(provinceId)).then(
       res => {
         this.districts = res['data'] as District[];
@@ -160,7 +166,7 @@ export class BlogupstoryComponent implements OnInit {
         console.log(error);
       }
     );
-}
+  }
 
   find_ward(evt: Event) {
     const target = evt.target as HTMLSelectElement;
@@ -170,7 +176,7 @@ export class BlogupstoryComponent implements OnInit {
     console.log('District ID:', districtId);
     console.log('District Name:', districtName);
     this.district = districtName
-    
+
     this.provinceService.findWard(Number(districtId)).then(
       res => {
         this.wards = res['data'] as Ward[];
@@ -180,11 +186,11 @@ export class BlogupstoryComponent implements OnInit {
       }
     )
   }
-  onWardChange(evt : any){
+  onWardChange(evt: any) {
     var wardName = evt.target.value;
     this.ward = wardName
   }
-  
+
   selectType(evt: any) {
     this.type = evt.target.value;
   }
@@ -245,18 +251,13 @@ export class BlogupstoryComponent implements OnInit {
         realstate.bedrooms = null
       }
       realstate.sold = false //trang thai chua ban 
-      realstate.expired = false // trang thai chua het han
-
-
+      realstate.expired = false
       realstate.type = this.type
       realstate.status = false
-
-
-      realstate.city = this.province 
-      realstate.region = this.district 
+      realstate.city = this.province
+      realstate.region = this.district
       realstate.street = this.ward
       realstate.transactionType = this.selectedTab
-
       realstate.usersellId = this.user.id.toString()
 
 
@@ -274,11 +275,19 @@ export class BlogupstoryComponent implements OnInit {
         let createdEnd = new Date()
         createdEnd.setDate(createdAt.getDate() + 1)
         realstate.createdEnd = formatDate(createdEnd, 'dd/MM/yyyy', 'en-US'); // định dạng ngày hôm nay
-        if (this.maximumnews <= 1) {
+        if (Number(this.remain.remaining) > 0) {
           if (this.files.length <= 6) {
             this.realstateService.create(realstate).then(
               res => {
                 if (res['result']) {
+                  this.remain.remaining = (Number(this.remain.remaining) - 1).toString()
+                  this.remainService.Update(this.remain).then(
+                    res => {
+                      console.log("Tru remain thanh cong")
+                    }, err => {
+                      console.log(err)
+                    }
+                  )
                   this.newrealstate = res['productId']
                   console.log(this.newrealstate)
                   let formData = new FormData();//tao form data
@@ -307,9 +316,10 @@ export class BlogupstoryComponent implements OnInit {
           } else {
             this.error("Faild", "Please choose 6 photos!")
           }
-        } else {
-          this.error("Faild", "Vui long mua them goi adv")
+        }else{
+          this.error("Faild","Vui long mua them goi adv")
         }
+
       } else {
         let createdAt = new Date()
         realstate.createdAt = formatDate(createdAt, 'dd/MM/yyyy', 'en-US')
@@ -317,11 +327,19 @@ export class BlogupstoryComponent implements OnInit {
         let createdEnd = new Date()
         createdEnd.setDate(createdAt.getDate() + this.user.advertisement.quantityDates)
         realstate.createdEnd = formatDate(createdEnd, 'dd/MM/yyyy', 'en-US'); // định dạng ngày hôm nay
-        if (this.maximumnews <= this.user.advertisement.quantityNews) {
+        if (Number(this.remain.remaining) > 0) {
           if (this.files.length <= 6) {
             this.realstateService.create(realstate).then(
               res => {
                 if (res['result']) {
+                  this.remain.remaining = (Number(this.remain.remaining) - 1).toString()
+                  this.remainService.Update(this.remain).then(
+                    res => {
+                      console.log("Tru remain thanh cong")
+                    }, err => {
+                      console.log(err)
+                    }
+                  )
                   this.newrealstate = res['productId']
                   console.log(this.newrealstate)
                   let formData = new FormData();//tao form data
@@ -374,10 +392,16 @@ export class BlogupstoryComponent implements OnInit {
     });
   }
   uploads() {
-    console.log(this.province)
-    console.log(this.district)
-    console.log(this.ward)
-
+    this.remain.idAdv = "2",
+      this.remain.idUser = "90",
+      this.remain.remaining = "10",
+      this.remainService.create(this.remain).then(
+        res => {
+          console.log(res)
+        }, error => {
+          console.log(error)
+        }
+      )
   }
   removeImage(index: number) {
     this.images.splice(index, 1);

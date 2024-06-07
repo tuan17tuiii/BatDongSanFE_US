@@ -7,6 +7,8 @@ import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
+import { Remain } from './entities/remain.entities';
+import { RemainService } from './services/remain.service';
 
 @Component({
   selector: 'app-root',
@@ -18,13 +20,19 @@ import { RippleModule } from 'primeng/ripple';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder, private userServices: UserServices, private router: Router, private messageService: MessageService) { }
+  constructor(private formBuilder: FormBuilder,
+    private userServices: UserServices,
+    private router: Router,
+    private messageService: MessageService,
+    private remainService : RemainService
+  ) { }
 
   registerForm: FormGroup;
   username: string;
   email: string;
   password: string;
-
+  users : User[];
+  remain : Remain = new Remain()
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
       username: ['', [Validators.required]],
@@ -46,6 +54,23 @@ export class RegisterComponent implements OnInit {
             res => {
               if (res) {
                 this.messageService.add({ severity: 'success', summary: 'Register Success !', detail: 'Register Successful! Please go to your Email and Verify the account !', key: 'tl', life: 2000 });
+                this.userServices.FindAll().then(
+                  res=>{
+                    this.users = res as User[]
+                    console.log(this.users)
+                    let latestUser = this.users.sort((a, b) => b.id - a.id)[0];
+                    console.log('Latest User:', latestUser);
+                    this.remain.idUser = latestUser.id.toString()
+                    this.remain.remaining = '1'
+                    this.remainService.create(this.remain).then(
+                      res=>{
+                        console.log('Setup remain success')
+                      },err=>{
+                        console.log(err)
+                      }
+                    )
+                  }
+                )
               }
             },
             err => {

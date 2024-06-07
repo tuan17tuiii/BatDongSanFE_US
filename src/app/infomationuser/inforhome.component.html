@@ -52,7 +52,8 @@
         /* chiều cao tối đa của ảnh */
         object-fit: cover;
         /* đảm bảo ảnh được cắt để vừa với khung */
-        border-radius: 10px; /* Bo tròn góc ảnh */
+        border-radius: 10px;
+        /* Bo tròn góc ảnh */
 
     }
 
@@ -75,29 +76,88 @@
         /* Màu chữ cho tab active */
     }
 
-    
-    .post-container {
-    border: 1px solid #ddd; /* Đường viền xung quanh khung */
-    border-radius: 10px; /* Độ cong của góc */
-    padding: 16px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box;
-    /* đảm bảo padding và border không ảnh hưởng đến kích thước */
-}
-.post-container {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Đổ bóng */
-    height: 290px;
-}
-.post-container:hover {
-    transform: translateY(-5px); /* Di chuyển khung lên trên khi chuột lướt qua */
-    transition: transform 0.3s ease; /* Hiệu ứng chuyển động mềm mại */
-}
 
+    .post-container {
+        border: 1px solid #ddd;
+        /* Đường viền xung quanh khung */
+        border-radius: 10px;
+        /* Độ cong của góc */
+        padding: 16px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        box-sizing: border-box;
+        /* đảm bảo padding và border không ảnh hưởng đến kích thước */
+    }
+
+    .post-container {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        /* Đổ bóng */
+        height: 290px;
+    }
+
+    .post-container:hover {
+        transform: translateY(-5px);
+        /* Di chuyển khung lên trên khi chuột lướt qua */
+        transition: transform 0.3s ease;
+        /* Hiệu ứng chuyển động mềm mại */
+    }
+
+    .post-content {
+        position: relative;
+
+    }
+
+    .button-container {
+        display: flex;
+        /* Sử dụng flexbox để các nút nằm ngang hàng */
+        justify-content: center;
+        /* Canh giữa nút theo chiều ngang */
+    }
+
+    .edit-button,
+    .delete-button {
+        /* Xóa thuộc tính position và các thuộc tính liên quan */
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        /* Chỉ cần transition cho opacity */
+    }
+
+    .edit-button {
+        background-color: #4CAF50;
+        color: white;
+        margin-right: 5px;
+        /* Thêm khoảng cách giữa hai nút */
+    }
+
+    .delete-button {
+        background-color: #f44336;
+        color: white;
+        margin-left: 5px;
+        /* Thêm khoảng cách giữa hai nút */
+    }
+
+    .post-container:hover .edit-button,
+    .post-container:hover .delete-button {
+        opacity: 1;
+        /* Hiển thị nút khi hover */
+    }
+
+    .post-image {
+        border-radius: 10px;
+        transition: transform 0.3s ease;
+    }
+
+    .post-container:hover .post-image {
+        transform: scale(1.05);
+    }
 </style>
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <a [routerLink]="['/information/formrgs']">
         <div class="bannerh2">Dang Ki Nha Moi Gioi</div>
-    </a> 
+    </a>
 </div>
 
 <div class="container">
@@ -138,6 +198,12 @@
                             <p>{{unapprovedlist.describe}}</p>
                             <img src="{{imageUrl}}{{unapprovedlist.lastImage.urlImage}}" alt=""
                                 style="width: 250px; height: 120px;">
+                            <div class="button-container">
+                                <button class="edit-button">Edit</button>
+                                <button class="delete-button">Delete</button>
+                            </div>
+
+
                         </div>
                     </div>
                 </div>
