@@ -16,6 +16,7 @@ export class LayoutComponent implements OnInit {
   constructor(private router: Router, private userServices: UserServices){}
 
   username: string;
+  avatar: string;
  
   ngOnInit(){ 
     
@@ -24,6 +25,7 @@ export class LayoutComponent implements OnInit {
         res =>{
           let user : User = res as User;
           this.username = user.username;
+          this.avatar = user.avatar;
         },
         err =>{
           console.log(err);

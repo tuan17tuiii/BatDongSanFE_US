@@ -19,9 +19,12 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 export class InfordetailsComponent implements OnInit {
 
   constructor(private router: Router, private layoutComponent: LayoutComponent, private userServices: UserServices, private formBuilder: FormBuilder, private messageService: MessageService) { }
- 
+
   infoForm: FormGroup;
   user: User;
+  avatar: string;
+  url: string;
+  id: number;
 
   ngOnInit(): void {
     if (typeof window !== "undefined" && typeof window.sessionStorage !== "undefined") {
@@ -29,6 +32,8 @@ export class InfordetailsComponent implements OnInit {
         res => {
           if (res) {
             let user: User = res as User;
+            this.id = user.id;
+            this.avatar = user.avatar;
             this.infoForm = this.formBuilder.group({
               id: user.id,
               username: user.username,
@@ -49,6 +54,26 @@ export class InfordetailsComponent implements OnInit {
         }
       );
     }
+  }
+
+  SelectFile(Event: any) {
+    const file: File = Event.target.files[0];
+    this.Upload(file);
+  }
+
+  Upload(file: File) {
+    let formData = new FormData();
+    formData.append('file', file);
+    formData.append('id', String(this.id));
+    this.userServices.Upload(formData).then(
+      res => {
+        this.messageService.add({ severity: 'success', summary: 'Success !', detail: 'Update Avatar Success', key: 'tl', life: 2000 });
+        location.reload();
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   Save() {

@@ -2233,7 +2233,7 @@ progress {
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color: #fff;
+    color: #666565;
     background-color: #fff;
     background-clip: padding-box;
     border: 1px solid #ced4da;
@@ -2258,6 +2258,14 @@ progress {
 
 .form-control:focus {
     color: #666565;
+    background-color: #fff;
+    border-color: #80dcc7;
+    outline: 0;
+    box-shadow: 0 0 0 .25rem rgba(0, 185, 142, 0.25)
+}
+
+.form-control-cus:focus {
+    color: #fff;
     background-color: #2A3038;
     border-color: #80dcc7;
     outline: 0;
