@@ -289,11 +289,13 @@ export class BlogupstoryComponent implements OnInit {
                     }
                   )
                   this.newrealstate = res['productId']
-                  console.log(this.newrealstate)
+                  
                   let formData = new FormData();//tao form data
+                  
+                  formData.append('id', this.newrealstate.toString())
                   for (let i = 0; i < this.files.length; i++) {
                     formData.append('files', this.files[i]);
-                    formData.append('id', this.newrealstate.toString())
+                    formData.append('dataname', "realstate");
                   }
                   this.imageService.uploads(formData).then(
                     res => {
