@@ -7,11 +7,14 @@ import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
+import { PasswordModule } from 'primeng/password';
+import { DividerModule } from 'primeng/divider';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [RouterOutlet, RouterLink, FormsModule, ReactiveFormsModule, ToastModule, ButtonModule, RippleModule],
+    imports: [RouterOutlet, RouterLink, FormsModule, ReactiveFormsModule, ToastModule, ButtonModule, RippleModule, PasswordModule, DividerModule],
     providers: [MessageService],
     templateUrl: './ChangePass.component.html',
 
@@ -26,7 +29,7 @@ export class ChangePassComponent implements OnInit {
     ngOnInit(): void {
         this.PassForm = this.formBuilder.group({
             current: ['', [Validators.required]],
-            newpass: ['', [Validators.required]],
+            newpass: ['', [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/), Validators.minLength(8)]],
             confirm: ['', [Validators.required]]
         });
     }

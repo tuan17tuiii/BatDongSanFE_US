@@ -1,3 +1,18 @@
+<style>
+    ::ng-deep .p-password input {
+        border: 1px solid #ced4da;
+        /* Change to your desired border color */
+        border-radius: 20px;
+        /* Optional: Add border radius */
+        padding: 0.375rem 0.75rem;
+        /* Optional: Add padding */
+        width: 100%;
+        /* Optional: Ensure the input takes the full width */
+        box-sizing: border-box;
+        /* Optional: Adjust box-sizing for padding and border */
+    }
+</style>
+
 <div class="profile-container1">
     <h2 [align]="['center']">Change Password</h2>
     @if (PassForm != null) {
@@ -5,8 +20,9 @@
         <div class="ip">
             <label for="CurrentPassword"><i class="fa fa-lock" aria-hidden="true"></i>&nbsp;Current
                 Password:</label><br>
-            <input type="password" id="CurrentPassword" name="CurrentPassword" placeholder="Current Password"
-                class="form-control form-control-sm" formControlName="current">
+            <p-password formControlName="current" id="CurrentPassword" name="CurrentPassword" [toggleMask]="true"
+                placeholder="Current Password" inputStyleClass="form-control p_input" placeholder="Password"
+                [style]="{'width':'100%'}" [feedback]="false" />
             @if (PassForm.get('current').touched) {
             @if (PassForm.hasError('required',['current'])) {
             <span class="error" style="color: red;">Current Password required !</span>
@@ -15,8 +31,26 @@
         </div>
         <div class="mt-3">
             <label for="NewPassword"><i class="fa fa-lock" aria-hidden="true"></i>&nbsp;New Password:</label><br>
-            <input type="password" id="NewPassword" name="NewPassword" placeholder="New Password"
-                class="form-control form-control-sm" formControlName="newpass">
+            <p-password formControlName="newpass" id="NewPassword" name="NewPassword" [toggleMask]="true"
+                placeholder="New Password" inputStyleClass="form-control p_input" placeholder="Password"
+                [style]="{'width':'100%'}">
+
+                <ng-template pTemplate="header">
+                    <h6>Pick a password</h6>
+                </ng-template>
+
+                <ng-template pTemplate="footer">
+                    <p-divider />
+                    <p class="mt-2">Suggestions</p>
+                    <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+                        <li>At least one lowercase</li>
+                        <li>At least one uppercase</li>
+                        <li>At least one numeric</li>
+                        <li>Minimum 8 characters</li>
+                    </ul>
+                </ng-template>
+
+            </p-password>
             @if (PassForm.get('newpass').touched) {
             @if (PassForm.hasError('required',['newpass'])) {
             <span class="error" style="color: red;">New Password required !</span>
@@ -26,8 +60,9 @@
         <div class="mt-3">
             <label for="Confirm"><i class="fa fa-lock" aria-hidden="true"></i>&nbsp;Confirm new
                 password:</label><br>
-            <input type="password" id="Confirm" name="Confirm" placeholder="Confirm new password"
-                class="form-control form-control-sm" formControlName="confirm">
+            <p-password formControlName="confirm" id="Confirm" name="Confirm" [toggleMask]="true"
+                placeholder="Confirm new password" inputStyleClass="form-control p_input" placeholder="Password"
+                [style]="{'width':'100%'}" [feedback]="false" />
             @if (PassForm.get('confirm').touched) {
             @if (PassForm.hasError('required',['confirm'])) {
             <span class="error" style="color: red;">Confirm Password required !</span>
@@ -36,7 +71,8 @@
         </div>
         <div class="mt-3">
             <p-toast position="bottom-left" key="bl" />
-            <p-button pRipple (click)="Save()" label="Change Password" [disabled]="PassForm.invalid" styleClass="btn btn-success" [style]="{'width':'100%'}" />
+            <p-button pRipple (click)="Save()" label="Change Password" [disabled]="PassForm.invalid"
+                styleClass="btn btn-success" [style]="{'width':'100%'}" />
         </div>
 
     </form>

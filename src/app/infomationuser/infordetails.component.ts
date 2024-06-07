@@ -33,13 +33,14 @@ export class InfordetailsComponent implements OnInit {
               id: user.id,
               username: user.username,
               name: [user.name, [Validators.required]],
-              email: [user.email, [Validators.required]],
-              phone: [user.phone, [Validators.required]],
+              email: [user.email, [Validators.required, Validators.pattern(/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/)]],
+              phone: [user.phone, [Validators.required, Validators.minLength(10), Validators.maxLength(11)]],
               roleId: user.roleId,
               password: user.password,
               status: user.status,
               securityCode: user.securityCode,
-              advertisementId: user.advertisementId
+              advertisementId: user.advertisementId,
+              avatar: user.avatar
             });
           };
         },
@@ -52,7 +53,9 @@ export class InfordetailsComponent implements OnInit {
 
   Save() {
     let user: User = this.infoForm.value as User;
-
+    let avartarurl = user.avatar;
+    let avatar = avartarurl.lastIndexOf('/');
+    user.avatar = avartarurl.slice(avatar + 1);
     this.userServices.Update(user).then(
       res => {
         this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Update Success', key: 'bl', life: 1500 });
