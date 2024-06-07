@@ -70,7 +70,7 @@ export class InforhomeComponent implements OnInit {
               res => {
                 if (res) {
                   this.approvedlists = res as RealState[]//list dc phe duyet
-
+                  console.log(this.approvedlists)
                 }
               }
             )
