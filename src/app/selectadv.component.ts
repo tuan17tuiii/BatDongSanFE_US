@@ -66,7 +66,7 @@ export class SelectadvComponent implements OnInit, AfterViewInit {
                     }
                   )
 
-                  this.user.advertisementId = null
+                  this.user.advertisement = null
                   this.userService.Update(this.user).then(
                     res => {
                       console.log("Update User Success")
