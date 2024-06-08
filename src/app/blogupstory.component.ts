@@ -96,9 +96,7 @@ export class BlogupstoryComponent implements OnInit {
           }
         }
       )
-    } else {
-
-    }
+    } 
 
     this.formGroup = this.formBuilder.group({
       title: '',
@@ -262,12 +260,15 @@ export class BlogupstoryComponent implements OnInit {
 
 
       for (let i = 0; i < this.files.length; i++) {
-        if (this.files[i].size > 100000000) {
+        if (this.files[i].size >10000000) {
           this.error("Failed", "One or more files exceed the size limit of 15000 bytes.");
           return; // Ngăn chặn việc tiếp tục nếu có file lớn hơn 15000 byte
         }
       }
-
+      let createdendString = this.remain.createdend; // assuming format is 'dd/MM/yyyy'
+      let [day, month, year] = createdendString.split('/').map(part => parseInt(part, 10));
+      let createdendDate = new Date(year, month - 1, day);
+      let today = new Date()
       if (this.user.advertisement == null) {
         let createdAt = new Date()
         realstate.createdAt = formatDate(createdAt, 'dd/MM/yyyy', 'en-US')
@@ -289,64 +290,13 @@ export class BlogupstoryComponent implements OnInit {
                     }
                   )
                   this.newrealstate = res['productId']
-                  
+
                   let formData = new FormData();//tao form data
+
                   
-                  formData.append('id', this.newrealstate.toString())
                   for (let i = 0; i < this.files.length; i++) {
                     formData.append('files', this.files[i]);
                     formData.append('dataname', "realstate");
-                  }
-                  this.imageService.uploads(formData).then(
-                    res => {
-                      this.fileNames = res['fileNames'];
-                      this.show()
-                      this.router.navigate([''])//quay ve trang home
-                    },
-                    err => {
-                      this.error("Faild", "An error has occurred")
-                    }
-                  )
-                } else {
-                  this.error("Faild", "Created Faild")
-                }
-              },
-              error => {
-                this.error("Faild", "Created Faild")
-              }
-            )
-          } else {
-            this.error("Faild", "Please choose 6 photos!")
-          }
-        }else{
-          this.error("Faild","Vui long mua them goi adv")
-        }
-
-      } else {
-        let createdAt = new Date()
-        realstate.createdAt = formatDate(createdAt, 'dd/MM/yyyy', 'en-US')
-
-        let createdEnd = new Date()
-        createdEnd.setDate(createdAt.getDate() + this.user.advertisement.quantityDates)
-        realstate.createdEnd = formatDate(createdEnd, 'dd/MM/yyyy', 'en-US'); // định dạng ngày hôm nay
-        if (Number(this.remain.remaining) > 0) {
-          if (this.files.length <= 6) {
-            this.realstateService.create(realstate).then(
-              res => {
-                if (res['result']) {
-                  this.remain.remaining = (Number(this.remain.remaining) - 1).toString()
-                  this.remainService.Update(this.remain).then(
-                    res => {
-                      console.log("Tru remain thanh cong")
-                    }, err => {
-                      console.log(err)
-                    }
-                  )
-                  this.newrealstate = res['productId']
-                  console.log(this.newrealstate)
-                  let formData = new FormData();//tao form data
-                  for (let i = 0; i < this.files.length; i++) {
-                    formData.append('files', this.files[i]);
                     formData.append('id', this.newrealstate.toString())
                   }
                   this.imageService.uploads(formData).then(
@@ -372,6 +322,66 @@ export class BlogupstoryComponent implements OnInit {
           }
         } else {
           this.error("Faild", "Vui long mua them goi adv")
+          setTimeout(() => {
+            this.router.navigate(['/information/selectadv']);
+          }, 3000); // 5000 milliseconds = 5 seconds
+        }
+
+      }
+      else {
+        if (today > createdendDate) {
+          this.error("Faild","The advertising package has expired !")
+        }else{
+          let createdAt = new Date()
+          realstate.createdAt = formatDate(createdAt, 'dd/MM/yyyy', 'en-US')
+          let createdEnd = new Date()
+          createdEnd.setDate(createdAt.getDate() + this.user.advertisement.quantityDates)
+          realstate.createdEnd = formatDate(createdEnd, 'dd/MM/yyyy', 'en-US'); // định dạng ngày hôm nay
+          if (Number(this.remain.remaining) > 0) {
+            if (this.files.length <= 6) {
+              this.realstateService.create(realstate).then(
+                res => {
+                  if (res['result']) {
+                    this.remain.remaining = (Number(this.remain.remaining) - 1).toString()
+                    this.remainService.Update(this.remain).then(
+                      res => {
+                        console.log("Tru remain thanh cong")
+                      }, err => {
+                        console.log(err)
+                      }
+                    )
+                    this.newrealstate = res['productId']
+                    console.log(this.newrealstate)
+                    let formData = new FormData();//tao form data
+                    for (let i = 0; i < this.files.length; i++) {
+                      formData.append('files', this.files[i]);
+                      formData.append('id', this.newrealstate.toString())
+                      formData.append('dataname', "realstate");
+                    }
+                    this.imageService.uploads(formData).then(
+                      res => {
+                        this.fileNames = res['fileNames'];
+                        this.show()
+                        this.router.navigate([''])//quay ve trang home
+                      },
+                      err => {
+                        this.error("Faild", "An error has occurred")
+                      }
+                    )
+                  } else {
+                    this.error("Faild", "Created Faild")
+                  }
+                },
+                error => {
+                  this.error("Faild", "Created Faild")
+                }
+              )
+            } else {
+              this.error("Faild", "Please choose 6 photos!")
+            }
+          } else {
+            this.error("Faild", "Vui long mua them goi adv")
+          }
         }
       }
     } else {
@@ -394,16 +404,19 @@ export class BlogupstoryComponent implements OnInit {
     });
   }
   uploads() {
-    this.remain.idAdv = "2",
-      this.remain.idUser = "90",
-      this.remain.remaining = "10",
-      this.remainService.create(this.remain).then(
-        res => {
-          console.log(res)
-        }, error => {
-          console.log(error)
-        }
-      )
+
+    let createdendString = this.remain.createdend; // assuming format is 'dd/MM/yyyy'
+    let [day, month, year] = createdendString.split('/').map(part => parseInt(part, 10));
+    let createdendDate = new Date(year, month - 1, day); // month is 0-based in Date constructor
+
+    console.log(createdendDate);
+    let today = new Date()
+    console.log(today)
+    if (today > createdendDate) {
+      console.log("Da het han")
+    } else {
+      console.log("Chua het han")
+    }
   }
   removeImage(index: number) {
     this.images.splice(index, 1);

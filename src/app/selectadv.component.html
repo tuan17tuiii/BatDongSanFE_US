@@ -1,4 +1,5 @@
 <div class="wrap">
+    <p-toast></p-toast>
     <div *ngFor="let advertisement of advertisements; let i = index" class="container container-custom">
         <h4>{{advertisement.advertisementName}}</h4>
         <div class="form-group">
@@ -12,5 +13,6 @@
         <div  [id]="'paypal-button-container-' + i">
             
         </div>
+        
     </div>
 </div>
