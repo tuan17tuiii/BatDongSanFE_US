@@ -9,6 +9,7 @@ import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
 import { Remain } from './entities/remain.entities';
 import { RemainService } from './services/remain.service';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -24,15 +25,15 @@ export class RegisterComponent implements OnInit {
     private userServices: UserServices,
     private router: Router,
     private messageService: MessageService,
-    private remainService : RemainService
+    private remainService: RemainService
   ) { }
 
   registerForm: FormGroup;
   username: string;
   email: string;
   password: string;
-  users : User[];
-  remain : Remain = new Remain()
+  users: User[];
+  remain: Remain = new Remain()
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
       username: ['', [Validators.required]],
@@ -55,17 +56,22 @@ export class RegisterComponent implements OnInit {
               if (res) {
                 this.messageService.add({ severity: 'success', summary: 'Register Success !', detail: 'Register Successful! Please go to your Email and Verify the account !', key: 'tl', life: 2000 });
                 this.userServices.FindAll().then(
-                  res=>{
+                  res => {
                     this.users = res as User[]
                     console.log(this.users)
                     let latestUser = this.users.sort((a, b) => b.id - a.id)[0];
                     console.log('Latest User:', latestUser);
                     this.remain.idUser = latestUser.id.toString()
                     this.remain.remaining = '1'
+                    
+                    let createdEnd = new Date()
+                    createdEnd.setDate(createdEnd.getDate() + 30)
+                    this.remain.createdend = formatDate(createdEnd, 'dd/MM/yyyy', 'en-US');
+
                     this.remainService.create(this.remain).then(
-                      res=>{
+                      res => {
                         console.log('Setup remain success')
-                      },err=>{
+                      }, err => {
                         console.log(err)
                       }
                     )
