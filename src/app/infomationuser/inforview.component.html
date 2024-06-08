@@ -15,11 +15,13 @@
         <div class="featured-posts">
            @if(realState!=null){
             @for(item of realState;track item){
+                <a [routerLink]="['/blogsellerdetails',{id:item.id}]">
             <div class="post">
                 <img class="img-dt" src="{{ imageUrl }}{{ item.image[0].urlImage }}" alt="as">
                 <h4>{{ item.title }}</h4>
                
             </div>
+        </a>
         }
         }
         </div>

@@ -75,7 +75,6 @@
     border: none;
     outline: none;
     font-size: 16px;
-    border-radius:15px 0 0 15px;
 }
 
 .p-inputgroup-addon {
@@ -99,12 +98,21 @@
     display: flex;
     justify-content: center; /* Căn giữa theo chiều ngang */
 }
-.seach_task4{
+.seach_task4{ 
     border-radius: 10px;
-    width: 304px;
+    width: 285px;
     margin: 5px;
     display: flex;
-    justify-content: center; /* Căn giữa theo chiều ngang */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 50px;
+}
+
+
+.seach_task4 p-dropdown{  
+    width: 310px;
+  
 }
 .index {
     border-radius: 10px;

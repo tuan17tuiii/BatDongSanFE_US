@@ -20,9 +20,28 @@ export class RealStateAPIService  {
     async create(realstate : RealState){
         return lastValueFrom(this.httpClient.post(this.baseUrlService.BaseUrl + 'realstate/create' , realstate))
     }
+    async searchfilter( key:string,address:string,pricemin:string,pricemax:string,areamin:string,areamax:string ){
+      let string:string=""
+        if(key!=null){
+            string+="&key="+key
+        }
+        if(address!=null){
+            string+="&address="+address
+        }
+        if(pricemin!=null){
+            string+="&pricemin="+pricemin
+        }if(pricemax!=null){
+            string+="&pricemax="+pricemax
+        }
+        if(areamin!=null){
+            string+="&areamin="+areamin
+        }
+        console.log(this.baseUrlService.BaseUrl +  'realstate/searchfilter?no=n'+string)
+        return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl +  'realstate/searchfilter?no=n'+string ))
+    }
     async findById(id : number ){
         return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl +  'realstate/findById/'+ id))
-    } 
+    }  
     async findByCityRegion(city : string , region : string){
         return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl +  'realstate/findByCityRegion/'+ city + "/" + region))
     } 

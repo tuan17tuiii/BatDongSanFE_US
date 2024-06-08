@@ -66,6 +66,7 @@ export class InforhomeComponent implements OnInit {
         res => {
           if (res) {
             this.user = res as User
+            console.log(this.user)
             this.realStateService.findByUserSellTrue(this.user.id).then(
               res => {
                 if (res) {

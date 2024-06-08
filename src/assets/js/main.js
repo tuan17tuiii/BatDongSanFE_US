@@ -34,6 +34,9 @@
                 $('#spaner').text(selectedValue);
                 // Cập nhật giá trị của input có ID là 'ress'
                 $('#ress').val(selectedValue);
+                $('#b').val(selectedValue);
+              
+
                 // Lưu giá trị đã chọn vào localStorage
                 localStorage.setItem('selectedNumber', selectedValue);
             });
@@ -50,6 +53,7 @@
                 $('#spaner').text(savedValue);
                 // Cập nhật giá trị của input có ID là 'ress'
                 $('#ress').val(savedValue);
+                $('#b').val(savedValue);
             }
         }
         $('#ress').val('price');
@@ -73,6 +77,7 @@
                 $('#spaner2').text(selectedValue);
                 // Cập nhật giá trị của input có ID là 'ress'
                 $('#resss').val(selectedValue);
+                $('#c').val(selectedValue);
                 // Lưu giá trị đã chọn vào localStorage
                 localStorage.setItem('selectedNumber2', selectedValue);
             });
@@ -85,13 +90,16 @@
             if (selectedItem.length > 0) {
                 selectedItem.addClass('selected2');
                 $('#selected-value2').text(savedValue);
+           
                 // In giá trị đã chọn vào thẻ span có ID là 'spaner'
 
                 // Cập nhật giá trị của input có ID là 'ress'
                 $('#resss').val(savedValue);
+                $('#c').val(savedValue);
             }
         }
         $('#resss').val('area');
+        console.log("day area");
     });
 
 
@@ -122,6 +130,7 @@
 
                     // Ghi giá trị của slider vào input có id là "inputt"
                     $("#ress").val(ui.values.join(" - "));
+                    $("#b").val(ui.values.join(" - "));
                 }
             });
         });
@@ -154,6 +163,7 @@
 
                     // Ghi giá trị của slider vào input có id là "inputt"
                     $("#resss").val(ui.values.join(" - "));
+                    $("#c").val(ui.values.join(" - "));
                 }
             });
         });
@@ -161,56 +171,82 @@
 
 
     $(document).ready(function () {
+        var isPanelVisible = false;
+    
         $('.toggleButton').click(function (event) {
             var mouseX = event.pageX;
             var mouseY = event.pageY;
-
-            $('#panel').css({
-                top: mouseY - 240,
-                left: mouseX - 300
-            }).fadeToggle();
-
+    
+            // Nếu panel đang mở, thì đóng nó
+            if (isPanelVisible) {
+                $('#panel').fadeOut();
+                isPanelVisible = false;
+            } else {
+                // Nếu panel đang đóng, thì mở nó
+                $('#panel').css({
+                    top: mouseY - 240,
+                    left: mouseX - 300
+                }).fadeIn();
+                isPanelVisible = true;
+            }
+    
+            // Đảm bảo rằng các panel khác đều đóng khi mở một panel mới
             $('#panel1').fadeOut();
             $('#panel2').fadeOut();
         });
     });
+    
 
     $(document).ready(function () {
         $('.toggleButton1').click(function (event) {
             // Lấy vị trí của chuột
             var mouseX = event.pageX;
             var mouseY = event.pageY;
-
-
-            // Thiết lập vị trí và hiển thị #panel1
-            $('#panel1').css({
-                top: mouseY - 360,
-                left: mouseX - 400
-            }).fadeToggle();
-
+    
+            // Kiểm tra trạng thái hiện tại của #panel1
+            var panel1 = $('#panel1');
+            var isPanel1Visible = panel1.is(':visible');
+    
+            // Thiết lập vị trí và hiển thị hoặc ẩn #panel1
+            if (isPanel1Visible) {
+                panel1.fadeOut();
+            } else {
+                panel1.css({
+                    top: mouseY - 240,
+                    left: mouseX - 300
+                }).fadeIn();
+            }
+    
             // Ẩn các panel khác
             $('#panel').fadeOut();
             $('#panel2').fadeOut();
         });
     });
-
+    
 
     $(document).ready(function () {
         $('.toggleButton2').click(function (event) {
-            var mouseX = event.mouseX;
-            console.log("day la x" + mouseX);
-            var mouseY = event.mouseX;
-            
-
-            $('#panel2').css({
-                top: mouseY,
-                left: mouseX
-            }).fadeToggle();
-
+            var mouseX = event.pageX;
+            var mouseY = event.pageY;
+            var panel1 = $('#panel2');
+            var isPanel1Visible = panel1.is(':visible');
+    
+            // Thiết lập vị trí và hiển thị hoặc ẩn #panel1
+            if (isPanel1Visible) {
+                panel1.fadeOut();
+            } else {
+                panel1.css({
+                    top: mouseY - 240,
+                    left: mouseX - 300
+                }).fadeIn();
+            }
+    
+            // Ẩn các panel khác
             $('#panel1').fadeOut();
             $('#panel').fadeOut();
         });
     });
+    
     // Initiate the wowjs
     new WOW().init();
 
@@ -261,14 +297,14 @@
             if ($('#provinces').val() && $('#districts').val() && $('#wards').val()) {
                 // Lấy giá trị của các select box đã chọn
                 var provinceName = $('#provinces option:selected').text();
-                var districtName = $('#districts option:selected').text();
-                var wardName = $('#wards option:selected').text();
+            
 
                 // Tạo địa chỉ từ các giá trị đã chọn
-                var address = provinceName + ", " + districtName + ", " + wardName;
+                var address = provinceName
 
                 // Gán địa chỉ vào input có id là "ress"
                 $('#ress1').val(address);
+                $('#a').val(address);
             }
         });
     });
