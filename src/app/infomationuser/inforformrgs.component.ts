@@ -24,11 +24,11 @@ import { CommonModule } from '@angular/common';
 
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
-    
+
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ConfirmDialogModule,RouterOutlet, RouterLink, FormsModule, ReactiveFormsModule, ToastModule, ButtonModule, RippleModule, CommonModule],
+  imports: [ConfirmDialogModule, RouterOutlet, RouterLink, FormsModule, ReactiveFormsModule, ToastModule, ButtonModule, RippleModule, CommonModule],
   providers: [ConfirmationService, MessageService],
 
 
@@ -39,7 +39,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 })
 export class InforformrgsComponent implements OnInit {
 
-  constructor(private imgservices: ImageRealStateAPIService, private router: Router, private userServices: UserServices, private formBuilder: FormBuilder, private messageService: MessageService,private confirmationService: ConfirmationService) { }
+  constructor(private imgservices: ImageRealStateAPIService, private router: Router, private userServices: UserServices, private formBuilder: FormBuilder, private messageService: MessageService, private confirmationService: ConfirmationService) { }
   filesall: File[] = []
   files: File[] = []
   file1: File
@@ -81,26 +81,26 @@ export class InforformrgsComponent implements OnInit {
   }
   confirm() {
     this.confirmationService.confirm({
-        header: 'Confirmation',
-        message: 'Please confirm to proceed moving forward.',
-        acceptIcon: 'pi pi-check mr-2',
-        rejectIcon: 'pi pi-times mr-2',
-        rejectButtonStyleClass: 'p-button-sm',
-        acceptButtonStyleClass: 'p-button-outlined p-button-sm',
-        accept: () => {
-            this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted', life: 3000 });
-      this.Save();
-          },
-        reject: () => {
-            this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
-        }
+      header: 'Confirmation',
+      message: 'Please confirm to proceed moving forward.',
+      acceptIcon: 'pi pi-check mr-2',
+      rejectIcon: 'pi pi-times mr-2',
+      rejectButtonStyleClass: 'p-button-sm',
+      acceptButtonStyleClass: 'p-button-outlined p-button-sm',
+      accept: () => {
+        this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted', life: 3000 });
+        this.Save();
+      },
+      reject: () => {
+        this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
+      }
     });
-}
+  }
   Save() {
-   
+
     if (this.file1 != null && this.file2 != null && this.file3 != null) {
       let user: User = this.infoForm.value as User;
-      
+
       this.filesall.push(this.file1)
       this.filesall.push(this.file2)
       this.filesall.push(this.file3)
@@ -109,24 +109,27 @@ export class InforformrgsComponent implements OnInit {
           this.filesall.push(this.files[i])
         }
       }
-      user.statusUpdate=true;
+      let avartarurl = user.avatar;
+      let avatar = avartarurl.lastIndexOf('/');
+      user.avatar = avartarurl.slice(avatar + 1);
+      user.statusUpdate = true;
       console.log(user)
       console.log(this.filesall)
       console.log(this.file1 + "toi ress nef")
-      
+
       this.userServices.Update(user).then(
         res => {
           console.log(res)
-         
+
 
           let formData = new FormData();//tao form data
 
           for (let i = 0; i < this.filesall.length; i++) {
             formData.append('files', this.filesall[i]);
             formData.append('id', (user.id).toString())
-            formData.append('dataname','user')
+            formData.append('dataname', 'user')
           }
-      
+
           this.imgservices.uploads(formData).then(
             ress => {
               this.router.navigate(['/information/home'])
