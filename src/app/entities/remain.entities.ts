@@ -3,4 +3,5 @@ export class Remain{
     idUser : string 
     idAdv : string 
     remaining : string
+    createdend : string
 }
