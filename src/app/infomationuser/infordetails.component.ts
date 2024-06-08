@@ -47,7 +47,9 @@ export class InfordetailsComponent implements OnInit {
               advertisementId: user.advertisementId,
               avatar: user.avatar
             });
+            console.log(res)
           };
+        
         },
         err => {
           console.log(err);

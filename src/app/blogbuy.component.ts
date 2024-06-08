@@ -4,16 +4,30 @@ import { RealStateAPIService } from './services/realstate.service';
 import { RealState } from './entities/realstate.entities';
 import { BaseUrlService } from './services/baseurl.service';
 import { ImageRealStateAPIService } from './services/image.service';
-
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms'; // Import FormsModule and NgModel
+import { SelectItem } from 'primeng/api';
+import { DropdownModule } from 'primeng/dropdown';
+import { SliderModule } from 'primeng/slider';
+import { BrowserModule } from '@angular/platform-browser';
+import { InputTextModule } from 'primeng/inputtext';
+import { Image } from './entities/image.entities';
+import { Ward } from './entities/ward.entities';
+import { Province } from './entities/province.entities';
+import { ProvinceAPIService } from './services/provinceapi.service';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink],
+  imports: [RouterOutlet, RouterLink,InputTextModule,SliderModule,DropdownModule,FormsModule],
   templateUrl: 'blogbuy.component.html',
 
 })
 export class BlogbuyComponent implements OnInit {
   realstates: RealState[];
+  rangeValues: number[] = [0,100];
+  value: number[] = [1,50];
+  id: string
+  items: SelectItem[];
   adv: string[]
   imgsvs: string;
   key: string = null
@@ -22,11 +36,20 @@ export class BlogbuyComponent implements OnInit {
   areamin: string = null
   pricemax: string = null
   areamax: string = null
+  msg: string
+  imageUrl: string
+  images: Image[]
+  provinces: Province[]
+  data_input1: string
+  price:string= null
+  area:string="0"
+
   constructor(
     private realstatesv: RealStateAPIService,
     private imgsv: BaseUrlService,
     private imgsvv: ImageRealStateAPIService,
     private activatedRoute: ActivatedRoute,
+    private provinceService: ProvinceAPIService,
   ) {
   }
   ngOnInit(): void {
@@ -59,6 +82,12 @@ export class BlogbuyComponent implements OnInit {
     });
   }
 
+  find_districts(evt: any) {
+
+    var district_id = evt.target.value;
+    this.id = district_id
+
+  }
   performSearch() {
     // Kiểm tra xem có bất kỳ tham số nào đã được truyền qua URL hay không
     if (this.key != null || this.city != null || this.pricemin != null || this.pricemax != null || this.areamin != null || this.areamax != null) {
@@ -92,4 +121,13 @@ export class BlogbuyComponent implements OnInit {
     console.log('Max Price:', this.pricemax);
 
   }
+  chang(){
+    console.log("co cc nef")
+    this.price=(this.rangeValues[0]*10000).toString()+" $ - "+(this.rangeValues[1]*10000).toString()+" $";
+    this.pricemin=(this.rangeValues[0]*10000).toString();
+    this.pricemax=(this.rangeValues[1]*10000).toString();
+    console.log( this.pricemax+"-"+this.pricemin)
+console.log(this.area)
+console.log(this.key)
+   }
 }

@@ -43,34 +43,15 @@
 <h2>Các bài báo liên quan</h2>
 <div class="footer-m">
     <!-- Bài báo 1 -->
+     @for(res of real; track res){
     <div class="post-container">
-        <p>Bài đăng #1</p>
-        <p class="post-title">Tiêu đề bài đănmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmg 1</p>
+       <a  [routerLink]="['/blogsellerdetails',{id:res.id}]">
+        <p class="post-title">{{ res.title }}</p>
+        <p>Type : {{ res.typeRealState }}</p>
         <div class="post-content">
-            <img src="image1.jpg" alt="Image 1">
+            <img src="{{ imgsurl }}{{ res.image[0].urlImage }}" alt="Image 1">
         </div>
+    </a>
     </div>
-    <div class="post-container">
-        <p>Bài đăng #2</p>
-        <p class="post-title">Tiêu đề bài đăng 2</p>
-        <div class="post-content">
-            <img src="image2.jpg" alt="Image 2">
-        </div>
-    </div>
-    <div class="post-container">
-        <p>Bài đăng #3</p>
-        <p class="post-title">Tiêu đề bài đăng 3</p>
-        <div class="post-content">
-            <img src="image3.jpg" alt="Image 3">
-        </div>
-    </div>
-    <div class="post-container">
-        <p>Bài đăng #4</p>
-        <p class="post-title">Tiêu đề bài đăng 4</p>
-        <div class="post-content">
-            <img src="image4.jpg" alt="Image 4">
-        </div>
-    </div>
-    <button class="scrollBtn">up</button>
-    <!-- Thêm các bài báo khác nếu cần -->
+     }
 </div>

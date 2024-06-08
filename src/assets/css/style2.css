@@ -316,6 +316,7 @@ body {
     box-sizing: border-box;
     margin-bottom: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    max-height: 1450px;
 }
 .sidebarnn {
   
@@ -471,14 +472,12 @@ body {
 .search-bar button {
     padding: 8px 12px;
     border: none;
-    background-color: #007bff;
-    color: white;
     border-radius: 0 4px 4px 0;
     cursor: pointer;
 }
 
 .search-bar button:hover {
-    background-color: #0056b3;
+    background-color: #11473d;
 }
 
 .select-filters {
@@ -575,7 +574,7 @@ body {
 /* CSS từ trước */
 .container {
     /* CSS từ trước */
-    padding-bottom: 20px; /* Thêm padding dưới để tránh việc bị che mất phần nội dung */
+    /* padding-bottom: 20px; Thêm padding dưới để tránh việc bị che mất phần nội dung */
 }
 
 .featured-posts {
@@ -585,15 +584,17 @@ body {
 }
 
 .post {
-    /* CSS từ trước */
-    display: inline-block; /* Hiển thị các bài viết theo hàng ngang */
-    margin-right: 20px; /* Tạo khoảng cách giữa các bài viết */
+    display: inline-block;
+    /* margin-right: 20px; */
+    width: 250px;
+    margin: 5PX 10PX;
+
 }
 .img-dt {
-    width:100%; /* Đảm bảo hình ảnh không vượt quá kích thước của khung chứa */
-    height:200px ;/* Giữ tỷ lệ khung hình khi thay đổi kích thước */
-    border-radius: 8px; /* Bo tròn góc cho hình ảnh */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Đổ bóng cho hình ảnh */
+    width: 100%;
+    height: 120px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 .back-button {
     display: inline-block;

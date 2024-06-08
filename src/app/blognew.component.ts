@@ -4,6 +4,8 @@ import { NewsService } from './services/News.Services';
 import { News } from './entities/News.entities';
 import { BaseUrlService } from './services/baseurl.service';
 import { ImageRealStateAPIService } from './services/image.service';
+import { RealState } from './entities/realstate.entities';
+import { RealStateAPIService } from './services/realstate.service';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +15,7 @@ import { ImageRealStateAPIService } from './services/image.service';
   
 })
 export class BlognewComponent implements OnInit{
+  real: RealState[]
 index:number=6
 news:News[]
 newsfull:News[]
@@ -23,6 +26,7 @@ id:string
     private imgsv:BaseUrlService,
     private imgsvv:ImageRealStateAPIService,
     private activatedRoute: ActivatedRoute,
+    private realsv: RealStateAPIService
   ){
 
   }  
@@ -35,7 +39,9 @@ id:string
 }
 async Renderr() :Promise<void>{
   try {
+    
     this.newsfull = await this.newsSv.FindAllNews() as News[];
+    
     this.news =  this.newsfull.slice(0, 7);
     this.newsst1 = this.news[0];
 console.log(this.news)
@@ -55,6 +61,8 @@ console.log(this.news)
         this.newsst1 = this.news[0];
       }
     });
+    this.real =await this.realsv.findAll2() as RealState [];
+    this.real =this.real .splice(0,10)
   } catch (error) {
     console.error('Error fetching all news:', error);
     // Handle error (e.g., show a message to the user)

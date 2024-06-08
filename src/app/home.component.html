@@ -32,7 +32,7 @@
                         <div class="col-md-4 md4">
                             <div class="seach_task4" style="margin-top:10px ;">
                                 <div>
-                                    <input style="text-align: center;" type="text" pInputText [(ngModel)]="price" [ngModelOptions]="{standalone: true}" class="w-full mb-3"/>
+                                    <input style="text-align: center;" type="text" pInputText [(ngModel)]="price" [ngModelOptions]="{standalone: true}" placeholder="filter price"  class="w-full mb-3"/>
                                     <p-slider (click)="chang()" [(ngModel)]="rangeValues" [range]="true" [ngModelOptions]="{standalone: true}" />
                                 </div>
                             </div>
@@ -41,7 +41,8 @@
                         </div>
                         <div class="col-md-4 md4 mm5">
                             <select [(ngModel)]="area" class="form-control seach_task4" [ngModelOptions]="{standalone: true}" (change)="find_districts($event)">
-                                <option value="" disabled selected hidden>Filter Area</option>
+                                <option value="0" disabled selected hidden>Filter Area</option>
+                                <option value="0">Filter Area</option>
                                 <option value="20">~ 20 m2</option>
                                 <option value="50">> 50 m2</option>
                                 <option value="100">> 100 m2</option>
@@ -49,9 +50,6 @@
                                 <option value="500">> 500 m2</option>
                                 <option value="1000">> 1000 m2</option>
                             </select>
-                            
-                           
-
                         </div>
                         <!-- <input class="seach_task4" id="resss" type="button" value="area" name="area" [(ngModel)]="area"> -->
                     </div>

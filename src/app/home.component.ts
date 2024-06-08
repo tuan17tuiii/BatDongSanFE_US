@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit {
   key: string = null
   city: string = null
   price:string= null
-  area:string= null
+  area:string= "0"
   pricemin: string = null
   areamin: string = null
   pricemax: string = null

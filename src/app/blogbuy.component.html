@@ -51,22 +51,26 @@
             <div class="menu-filter">
                 <div class="search-bar">
                     <input type="text" placeholder="Tìm kiếm...">
-                    <button type="submit"><i class="fas fa-search"></i></button>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
                 </div>
                 <div class="select-filters">
-                    <select>
-                        <option value="" disabled selected>Chọn giá</option>
-                        <option value="low">Thấp</option>
-                        <option value="medium">Trung bình</option>
-                        <option value="high">Cao</option>
-                    </select>
+                    <div class="seach_task4" style="margin-top:10px ;">
+                        <div>
+                            <input style="text-align: center;" type="text" pInputText [(ngModel)]="price" [ngModelOptions]="{standalone: true}" placeholder="filter price"  class="w-full mb-3"/>
+                            <p-slider (click)="chang()" [(ngModel)]="rangeValues" [range]="true" [ngModelOptions]="{standalone: true}" />
+                        </div>
+                    </div>
                 </div>
                 <div class="select-filters">
-                    <select>
-                        <option value="" disabled selected>Chọn khu vực</option>
-                        <option value="north">Miền Bắc</option>
-                        <option value="central">Miền Trung</option>
-                        <option value="south">Miền Nam</option>
+                    <select [(ngModel)]="area" class="form-control seach_task4" [ngModelOptions]="{standalone: true}" (change)="find_districts($event)">
+                        <option value="0" disabled selected hidden>Filter Area</option>
+                        <option value="0">Filter Area</option>
+                        <option value="20">~ 20 m2</option>
+                        <option value="50">> 50 m2</option>
+                        <option value="100">> 100 m2</option>
+                        <option value="200">> 200 m2</option>
+                        <option value="500">> 500 m2</option>
+                        <option value="1000">> 1000 m2</option>
                     </select>
                 </div>
                 <div class="checkbox-filters">
@@ -74,7 +78,7 @@
                     <label><input type="checkbox" value="criteria2"> Tiêu chí 2</label>
                     <label><input type="checkbox" value="criteria3"> Tiêu chí 3</label>
                 </div>
-                <button class="btn btn-secondary" (click)="load()"> test</button>
+                <button class="btn btn-primary" (click)="load()"> test</button>
             </div>
             <!-- Add more menu divs as needed -->
         </div>
