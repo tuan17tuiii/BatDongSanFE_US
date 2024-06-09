@@ -1,37 +1,42 @@
 <style>
     .image-overlay {
-    position: relative;
-    display: inline-block;
-    width: 50%; /* Độ rộng của ảnh trong container */
-}
+        position: relative;
+        display: inline-block;
+        width: 50%;
+        /* Độ rộng của ảnh trong container */
+    }
 
-.image-overlay img {
-    display: block;
-    width: 100%; /* Ảnh sẽ chiếm toàn bộ width của .image-overlay */
-    height: auto;
-    border-radius: 10px;
-}
+    .image-overlay img {
+        display: block;
+        width: 100%;
+        /* Ảnh sẽ chiếm toàn bộ width của .image-overlay */
+        height: auto;
+        border-radius: 10px;
+    }
 
-.overlay-content {
-    position: absolute;
-    top: 50%; /* Đưa overlay lên giữa theo chiều cao */
-    left: 50%; /* Đưa overlay lên giữa theo chiều rộng */
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: white;
-    width: 80%; /* Độ rộng của overlay so với ảnh */
-}
+    .overlay-content {
+        position: absolute;
+        top: 50%;
+        /* Đưa overlay lên giữa theo chiều cao */
+        left: 50%;
+        /* Đưa overlay lên giữa theo chiều rộng */
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: white;
+        width: 80%;
+        /* Độ rộng của overlay so với ảnh */
+    }
 
 
-.overlay-content .title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
+    .overlay-content .title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
 
-.overlay-content .description {
-    font-size: 18px;
-}
+    .overlay-content .description {
+        font-size: 18px;
+    }
 
     .tabbar {
         display: flex;
@@ -223,10 +228,12 @@
 
 <div class="container">
     <div class="tabbar">
-        <button class="tablink active" onclick="openTab('approved')">Đã duyệt</button>
-        <button class="tablink" onclick="openTab('unapproved')">Chưa duyệt</button>
+        <button class="tablink active" onclick="openTab('approved')" (click)="opentrue()">Đã
+            duyệt</button>
+        <button class="tablink " onclick="openTab('unapproved')" (click)="openfalse()">Chưa
+            duyệt</button>
     </div>
-    <div class="tabcontent" id="approved">
+    <div class="">
         <div class="row">
             @if(approvedlists!= null){
             <ng-container *ngIf="approvedlists">
@@ -239,32 +246,17 @@
                             <p>{{approvedlist.describe}}</p>
                             <img src="{{imageUrl}}{{approvedlist.lastImage.urlImage}}" alt=""
                                 style="width: 250px; height: 120px;">
-                        </div>
-                    </div>
-                </div>
-            </ng-container>
-            }
-        </div>
-    </div>
-    <div class="tabcontent" id="unapproved">
-        <div class="row">
-            @if(unapprovedlists!= null){
-            <ng-container *ngIf="unapprovedlists">
-                <div *ngFor="let unapprovedlist of unapprovedlists; let i = index" class="col-sm-4">
-                    <div class="post-container">
-                        <p>Bài đăng #{{i + 1}}</p>
-
-                        <h2 class="post-title">{{unapprovedlist.title}}</h2>
-                        <div class="post-content">
-                            <p>{{unapprovedlist.describe}}</p>
-                            <img src="{{imageUrl}}{{unapprovedlist.lastImage.urlImage}}" alt=""
-                                style="width: 250px; height: 120px;">
                             <div class="button-container">
+                                <p-toast />
+                                <p-confirmPopup />
+                                <p-button  label="Save" [outlined]="true" />
+                                <p-button styleClass="delete-button"  label="Delete" severity="danger"
+                                    [outlined]="true" />
+
                                 <button class="edit-button">Edit</button>
-                                <button class="delete-button">Delete</button>
+                                <button type="button" (click)="delete(approvedlist.id)"
+                                    class="delete-button">Delete</button>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
@@ -275,26 +267,3 @@
 </div>
 
 <!-- Nội dung nằm ở đây -->
-<div *ngIf="approvedlists && approvedlists.length > 0; else noContent">
-    <div class="row">
-        <div class="col">
-            <p>Content here...</p>
-        </div>
-    </div>
-</div>
-
-<ng-template #noContent>
-    <div class="row">
-        <div class="image-overlay">
-            <img src="https://batdongsan.com.vn/sellernet/static/media/welcome_new_user.dcf416a4.png" alt="Welcome Image">
-            <div class="overlay-content">
-                <div class="title">Quà tặng cho khách hàng mới</div>
-                <div class="description">Miễn phí 1 tin thường 5 ngày</div>
-            </div>
-        </div>
-        <div>
-            Tin đăng của bạn sẽ được tiếp cận hơn 6 triệu người tìm mua/thuê bất động sản mỗi tháng
-        </div>
-        
-    </div>
-</ng-template>

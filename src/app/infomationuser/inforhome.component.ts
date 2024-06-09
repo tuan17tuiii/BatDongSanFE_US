@@ -10,12 +10,15 @@ import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
+import { RemainService } from '../services/remain.service';
+import { Remain } from '../entities/remain.entities';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ConfirmDialogModule, ToastModule, RouterOutlet, RouterLink, CommonModule, TableModule, DialogModule, ButtonModule],
+  imports: [ConfirmPopupModule,ConfirmDialogModule, ToastModule, RouterOutlet, RouterLink, CommonModule, TableModule, DialogModule, ButtonModule],
   templateUrl: './inforhome.component.html',
   host: { 'collision-id': 'HomeComponent' },
   providers: [ConfirmationService, MessageService]
@@ -23,11 +26,13 @@ import { ButtonModule } from 'primeng/button';
 export class InforhomeComponent implements OnInit {
   constructor(
     private userService: UserServices,
+    private remainService : RemainService,
     private realStateService: RealStateAPIService,
     private baseUrl: BaseUrlService,
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
-    private router: Router
+    private router: Router,
+    
   ) {
 
   }
@@ -59,7 +64,6 @@ export class InforhomeComponent implements OnInit {
     this.visible = true;
   }
   ngOnInit(): void {
-
     this.imageUrl = this.baseUrl.ImageUrl
     if (typeof window !== "undefined" && typeof window.sessionStorage !== "undefined") {
       this.userService.findByUsername(sessionStorage.getItem('username')).then(
@@ -67,26 +71,36 @@ export class InforhomeComponent implements OnInit {
           if (res) {
             this.user = res as User
             console.log(this.user)
-            this.realStateService.findByUserSellTrue(this.user.id).then(
-              res => {
-                if (res) {
-                  this.approvedlists = res as RealState[]//list dc phe duyet
-                  console.log(this.approvedlists)
-                }
-              }
-            )
-            this.realStateService.findByUserSellFalse(this.user.id).then(
-              res => {
-                if (res) {
-                  this.unapprovedlists = res as RealState[]
-                  console.log(this.unapprovedlists)
-                }
-              }
-            )
+            this.find_realStateService_true(this.user.id)
           }
         }
       )
     }
+  }
+  find_realStateService_true(id: number) {
+    this.realStateService.findByUserSellTrue(id).then(
+      res => {
+        if (res) {
+          this.approvedlists = res as RealState[]//list dc phe duyet
+          console.log(this.approvedlists)
+        }
+      }
+    )
+  }
+  find_realStateService_false(id: number) {
+    this.realStateService.findByUserSellFalse(id).then(
+      res => {
+        if (res) {
+          this.approvedlists = res as RealState[]
+        }
+      }
+    )
+  }
+  opentrue() {
+    this.find_realStateService_true(this.user.id)
+  }
+  openfalse() {
+    this.find_realStateService_false(this.user.id);
   }
   truncateText(text: string, length: number): string {
     if (text.length > length) {
@@ -94,7 +108,49 @@ export class InforhomeComponent implements OnInit {
     }
     return text;
   }
+  delete(id: string) {
+    let flag : boolean 
+    this.realStateService.findById(Number(id)).then(
+      res=>{
+        let realstate = res as RealState
+        flag = realstate.status
+      }
+    )
+    
+    this.remainService.findById(this.user.id.toString()).then(
+      res=>{
+        let remain = res as Remain
+        this.realStateService.delete(Number(id)).then(
+          res => {
+            if (res['result']) {
+              console.log("Xoa thanh cong")
+              if(flag == false){
+                remain.remaining += 1 
+                this.remainService.Update(remain).then(
+                  res=>{
+                    console.log("vat pham chua duoc duyet , + remaining thanh cong")
+                  }
+                )
+              }else{
+                console.log("Vat pham da duoc duyet, ko dc +  ")
+              }
+              const currentUrl = this.router.url;
+              this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+                this.router.navigate([currentUrl]);
+              });
+    
+            } else {
+              console.log("Xoa that bai")
+            }
+          },
+          err => {
+            console.log(err);
+          }
+        )
+      }
+    )
 
-
+    
+  }
 }
 
