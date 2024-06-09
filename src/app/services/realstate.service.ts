@@ -62,6 +62,9 @@ export class RealStateAPIService  {
     async totalById(id : number ){
         return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl +  'realstate/totalById/'+ id))
     } 
+    async delete(id: number){
+        return lastValueFrom(this.httpClient.delete(this.baseUrlService.BaseUrl + 'realstate/Delete/' + id));
+    }
 
     
 }
