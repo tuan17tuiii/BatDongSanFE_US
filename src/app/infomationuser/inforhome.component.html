@@ -247,13 +247,7 @@
                             <img src="{{imageUrl}}{{approvedlist.lastImage.urlImage}}" alt=""
                                 style="width: 250px; height: 120px;">
                             <div class="button-container">
-                                <p-toast />
-                                <p-confirmPopup />
-                                <p-button  label="Save" [outlined]="true" />
-                                <p-button styleClass="delete-button"  label="Delete" severity="danger"
-                                    [outlined]="true" />
-
-                                <button class="edit-button">Edit</button>
+                                <a class="edit-button" [routerLink]="['/information/edit',{id:approvedlist.id}]">Edit</a>
                                 <button type="button" (click)="delete(approvedlist.id)"
                                     class="delete-button">Delete</button>
                             </div>

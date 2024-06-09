@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './home.component';
 
 import { AboutComponent } from './about.component';
-import { ContacComponent } from './contact.component';
+import { ContactComponent } from './contact.component';
 import { Property_listComponent } from './property_list.component';
 import { Property_typeComponent } from './property_type.component';
 import { Property_agentComponent } from './property_agent.component';
@@ -30,6 +30,7 @@ import { ChangePassComponent } from './ChangePass.component';
 import { InfordetailsComponent } from './infomationuser/infordetails.component';
 import { InforComponent } from './infomationuser/infor.component';
 import { ManageNewsComponent } from './infomationuser/manage-news.component';
+import { EditComponent } from './edit.component';
 
 
 export const routes: Routes = [
@@ -52,7 +53,7 @@ export const routes: Routes = [
          },
          {
             path: "contact",
-            component: ContacComponent,
+            component: ContactComponent,
          },
          {
             path: "property_list",
@@ -82,10 +83,13 @@ export const routes: Routes = [
                   path: "details",
                   component: InfordetailsComponent,
                },
-
                {
                   path: "home",
                   component: InforhomeComponent,
+               },
+               {
+                  path: "edit",
+                  component: EditComponent,
                },
                {
                   path: "formrgs",

@@ -8,7 +8,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   templateUrl: 'contact.component.html',
   
 })
-export class ContacComponent implements OnInit{
+export class ContactComponent implements OnInit{
   ngOnInit(): void {
 
   }

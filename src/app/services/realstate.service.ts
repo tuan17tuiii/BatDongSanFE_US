@@ -65,6 +65,9 @@ export class RealStateAPIService  {
     async delete(id: number){
         return lastValueFrom(this.httpClient.delete(this.baseUrlService.BaseUrl + 'realstate/Delete/' + id));
     }
+    async Update(realstate : RealState){
+        return lastValueFrom(this.httpClient.put(this.baseUrlService.BaseUrl + 'realstate/update', realstate));
+    }
 
     
 }

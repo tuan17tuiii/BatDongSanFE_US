@@ -16,7 +16,7 @@ export class RealState{
     city : string ; 
     street : string ; 
     region : string ; 
-    typeRealState : TypeRealState ; 
+    typeRealState : string ; 
     nameusersell:string;
     image:Image[]
     lastImage : Image

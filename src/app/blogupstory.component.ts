@@ -96,7 +96,7 @@ export class BlogupstoryComponent implements OnInit {
           }
         }
       )
-    } 
+    }
 
     this.formGroup = this.formBuilder.group({
       title: '',
@@ -260,7 +260,7 @@ export class BlogupstoryComponent implements OnInit {
 
 
       for (let i = 0; i < this.files.length; i++) {
-        if (this.files[i].size >10000000) {
+        if (this.files[i].size > 10000000) {
           this.error("Failed", "One or more files exceed the size limit of 15000 bytes.");
           return; // Ngăn chặn việc tiếp tục nếu có file lớn hơn 15000 byte
         }
@@ -292,8 +292,6 @@ export class BlogupstoryComponent implements OnInit {
                   this.newrealstate = res['productId']
 
                   let formData = new FormData();//tao form data
-
-                  
                   for (let i = 0; i < this.files.length; i++) {
                     formData.append('files', this.files[i]);
                     formData.append('dataname', "realstate");
@@ -330,8 +328,8 @@ export class BlogupstoryComponent implements OnInit {
       }
       else {
         if (today > createdendDate) {
-          this.error("Faild","The advertising package has expired !")
-        }else{
+          this.error("Faild", "The advertising package has expired !")
+        } else {
           let createdAt = new Date()
           realstate.createdAt = formatDate(createdAt, 'dd/MM/yyyy', 'en-US')
           let createdEnd = new Date()

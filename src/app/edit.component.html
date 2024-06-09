@@ -1,0 +1,169 @@
+<div class="wrap">
+    <div class="tabs container container-custom">
+        <div class="tab" (click)="selectTab('sell')">Bán</div>
+        <div class="tab active" (click)="selectTab('rent')">Cho thuê</div>
+    </div>
+
+
+    <form [formGroup]="formGroup" (ngSubmit)="save()">
+        <div class="container container-custom">
+            
+            <h2>Thong tin co ban</h2>
+            
+            <div class="form-group">
+                
+                <label for="loai-bds">Loại bất động sản *</label>
+                <select formControlName="type"  class="form-control" (change)="selectType($event)" >
+                    
+                    @for(typerealstate of typerealstates ; track typerealstate){
+                    <option [value]="typerealstate.id">{{typerealstate.type}}</option>
+                    }
+                    <!-- Thêm các loại BĐS khác nếu cần -->
+                </select>
+            </div>
+            
+           <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="tinh-thanh-pho">Tỉnh, thành phố *</label>
+                    <select formControlName="city"  class="form-control" id='provinces' (change)="find_districts($event)">
+                        
+                        @for(province of provinces ; track province){
+                            <option [value]="province.full_name" [attr.data-name]="province.id">{{province.full_name}}</option>
+                        }
+                    </select>   
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="quan-huyen">Quận, huyện *</label>
+                    <select formControlName="region" class="form-control"(change)="find_ward($event)" >
+                        
+                        @for(district of districts ; track district){
+                        <option [value]="district.full_name" [attr.data-name]="district.id">{{district.full_name}}</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="phuong-xa">Phường, xã *</label>
+                    <select formControlName="street" class="form-control" (change)="onWardChange($event)" >
+                        
+                        @for(ward of wards ; track ward){
+                        <option [value]="ward.full_name">{{ward.full_name}}</option>
+                        }
+                    </select>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="container container-custom">
+            <h2>Thong tin bai viet</h2>
+            <div class="form-group">
+                <label for="loai-bds">Tieu de</label>
+                <input type="text" class="form-control" id="loai-bds" formControlName="title"
+                    placeholder="VD: Nhà riêng">
+                
+            </div>
+            <div class="form-group">
+                <label for="Nd">noi dung</label>
+                <textarea name="" id="Nd" class="form-control" cols="30" rows="10" placeholder="tieu de"
+                    formControlName="describe"></textarea>
+            </div>
+
+        </div>
+        <div class="container container-custom">
+            <h2>Thong tin BDS</h2>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="dt">Dien Tich</label>
+                    <input type="number" class="form-control" id="dt" placeholder="VD: 1000 m2"
+                        formControlName="acreage">
+                    <br>
+                    @if(formGroup.get('acreage').touched){
+                    @if(formGroup.hasError('pattern',['acreage'])){
+                    <Span style="color: red;">Invalid value
+                    </Span>
+                    }
+                    }
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="tinh-thanh-pho">Muc gia</label>
+                    <input type="number" class="form-control" id="dt" placeholder="VD: 1 000 000"
+                        formControlName="price">
+                    <br>
+                    @if(formGroup.get('price').touched){
+                    @if(formGroup.hasError('pattern',['price'])){
+                    <Span style="color: red;">Invalid value
+                    </Span>
+                    }
+                    }
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="dt">Bedrooms</label>
+                    <input type="number" class="form-control" id="dt" min="0" formControlName="bedrooms" />
+                    <br>
+                    @if(formGroup.get('bedrooms').touched){
+                    @if(formGroup.hasError('pattern',['bedrooms']) || formGroup.hasError('max',['bedrooms'])){
+                    <Span style="color: red;">Invalid value
+                    </Span>
+                    }
+                    }
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="dt">Bathrooms</label>
+                    <input type="number" class="form-control" id="dt" min="0" formControlName="bathrooms" />
+                    <br>
+                    @if(formGroup.get('bathrooms').touched){
+                    @if(formGroup.hasError('pattern',['bathrooms']) || formGroup.hasError('max',['bathrooms'])){
+                    <Span style="color: red;">Invalid value
+                    </Span>
+                    }
+                    }
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-preview">Xem trước giao diện</button>
+                <button class="btn btn-custom">Tiếp tục</button>
+            </div>
+        </div>
+
+        <div class="container container-custom">
+            <h2>Pictures</h2>
+            <div>
+                <ul>
+                    <li><b>Vui lòng để ảnh đại diện ở cuối cùng</b></li>
+                    <li> <b>Đăng tối thiểu 4 ảnh thường với tin VIP</b></li>
+                    <li><b>Hãy dùng ảnh thật, không trùng, không chèn SĐT</b></li>
+                    <li><b>Mỗi ảnh kích thước tối thiểu 100x100 px, tối đa 1 MB</b></li>
+
+                </ul>
+            </div>
+            <div class="d-flex justify-content-center align-items-center" style="height: 100px;">
+                <div class="file-input-wrapper">
+                    <i class="pi pi-upload file-input-label"></i>
+                    <input type="file" class="file-input" (change)="selectFiles($event)" multiple>
+                </div>
+            </div>
+            <div class="image-preview" cdkDropList (cdkDropListDropped)="onDrop($event)">
+                <div *ngFor="let image of images; let i = index" class="image-containerr" cdkDrag>
+                    <img [src]="image" width="200px">
+                    <button class="close-button" (click)="removeImage(i)">×</button>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" (click)="uploads()">Upload</button>
+            </div>
+            <div class="row g-2">
+                <div class="col-md-2 offset-md-10">
+                    <button [disabled]="formGroup.invalid || images.length === 0"
+                        class="btn btn-dark border-0 w-100 py-3">Đăng Tin</button>
+                    <p-toast />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
