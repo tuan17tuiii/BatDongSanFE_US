@@ -11,6 +11,7 @@ import { Remain } from './entities/remain.entities';
 import { RemainService } from './services/remain.service';
 import { PasswordModule } from 'primeng/password';
 import { DividerModule } from 'primeng/divider';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -64,6 +65,11 @@ export class RegisterComponent implements OnInit {
                     console.log('Latest User:', latestUser);
                     this.remain.idUser = latestUser.id.toString()
                     this.remain.remaining = '1'
+                    
+                    let createdEnd = new Date()
+                    createdEnd.setDate(createdEnd.getDate() + 30)
+                    this.remain.createdend = formatDate(createdEnd, 'dd/MM/yyyy', 'en-US');
+
                     this.remainService.create(this.remain).then(
                       res => {
                         console.log('Setup remain success')

@@ -52,20 +52,23 @@ export class SelectadvComponent implements OnInit, AfterViewInit {
         res => {
           if (res) {
             this.user = res as User
+            let avartarurl = this.user.avatar;
+            let avatar = avartarurl.lastIndexOf('/');
+            this.user.avatar = avartarurl.slice(avatar + 1);
             this.remainService.findById(this.user.id.toString()).then(
               res => {
                 this.remain = res as Remain
-                if(Number(this.remain.remaining) == 0){
-                  this.remain.idAdv = null 
+                if (Number(this.remain.remaining) == 0) {
+                  this.remain.idAdv = null
                   this.remainService.Update(this.remain).then(
-                    res=>{
+                    res => {
                       console.log("Update remain thanh cong")
                     }
                   )
 
-                  this.user.advertisementId = null
+                  this.user.advertisement = null
                   this.userService.Update(this.user).then(
-                    res=>{
+                    res => {
                       console.log("Update User Success")
                     }
                   )
