@@ -9,11 +9,13 @@ import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
 import { Remain } from './entities/remain.entities';
 import { RemainService } from './services/remain.service';
+import { PasswordModule } from 'primeng/password';
+import { DividerModule } from 'primeng/divider';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, FormsModule, ReactiveFormsModule, ToastModule, ButtonModule, RippleModule],
+  imports: [RouterOutlet, RouterLink, FormsModule, ReactiveFormsModule, ToastModule, ButtonModule, RippleModule, PasswordModule, DividerModule],
   templateUrl: 'register.component.html',
   providers: [MessageService],
   host: { 'collision-id': 'RegisterComponent' },
@@ -24,20 +26,20 @@ export class RegisterComponent implements OnInit {
     private userServices: UserServices,
     private router: Router,
     private messageService: MessageService,
-    private remainService : RemainService
+    private remainService: RemainService
   ) { }
 
   registerForm: FormGroup;
   username: string;
   email: string;
   password: string;
-  users : User[];
-  remain : Remain = new Remain()
+  users: User[];
+  remain: Remain = new Remain()
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
       username: ['', [Validators.required]],
-      password: ['', [Validators.required]],
-      email: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/), Validators.minLength(8)]],
+      email: ['', [Validators.required, Validators.pattern(/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/)]],
       roleId: 2,
     });
   }
@@ -55,7 +57,7 @@ export class RegisterComponent implements OnInit {
               if (res) {
                 this.messageService.add({ severity: 'success', summary: 'Register Success !', detail: 'Register Successful! Please go to your Email and Verify the account !', key: 'tl', life: 2000 });
                 this.userServices.FindAll().then(
-                  res=>{
+                  res => {
                     this.users = res as User[]
                     console.log(this.users)
                     let latestUser = this.users.sort((a, b) => b.id - a.id)[0];
@@ -63,9 +65,9 @@ export class RegisterComponent implements OnInit {
                     this.remain.idUser = latestUser.id.toString()
                     this.remain.remaining = '1'
                     this.remainService.create(this.remain).then(
-                      res=>{
+                      res => {
                         console.log('Setup remain success')
-                      },err=>{
+                      }, err => {
                         console.log(err)
                       }
                     )
