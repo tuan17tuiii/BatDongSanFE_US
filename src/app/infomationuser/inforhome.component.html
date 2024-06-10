@@ -1,37 +1,42 @@
 <style>
     .image-overlay {
-    position: relative;
-    display: inline-block;
-    width: 50%; /* Độ rộng của ảnh trong container */
-}
+        position: relative;
+        display: inline-block;
+        width: 50%;
+        /* Độ rộng của ảnh trong container */
+    }
 
-.image-overlay img {
-    display: block;
-    width: 100%; /* Ảnh sẽ chiếm toàn bộ width của .image-overlay */
-    height: auto;
-    border-radius: 10px;
-}
+    .image-overlay img {
+        display: block;
+        width: 100%;
+        /* Ảnh sẽ chiếm toàn bộ width của .image-overlay */
+        height: auto;
+        border-radius: 10px;
+    }
 
-.overlay-content {
-    position: absolute;
-    top: 50%; /* Đưa overlay lên giữa theo chiều cao */
-    left: 50%; /* Đưa overlay lên giữa theo chiều rộng */
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: white;
-    width: 80%; /* Độ rộng của overlay so với ảnh */
-}
+    .overlay-content {
+        position: absolute;
+        top: 50%;
+        /* Đưa overlay lên giữa theo chiều cao */
+        left: 50%;
+        /* Đưa overlay lên giữa theo chiều rộng */
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: white;
+        width: 80%;
+        /* Độ rộng của overlay so với ảnh */
+    }
 
 
-.overlay-content .title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
+    .overlay-content .title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
 
-.overlay-content .description {
-    font-size: 18px;
-}
+    .overlay-content .description {
+        font-size: 18px;
+    }
 
     .tabbar {
         display: flex;
@@ -196,7 +201,7 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 
     <a [routerLink]="['/information/formrgs']">
-        <div class="bannerh2">Dang Ki Nha Moi Gioi</div>
+        <div class="bannerh2">Dang Ki Nha Moi Gioii</div>
     </a>
 
 </div>
@@ -223,8 +228,10 @@
 
 <div class="container">
     <div class="tabbar">
-        <button class="tablink active"  id="approved"  onclick="opentapp('approved')" (click)="opentrue()">Đã duyệt</button>
-        <button class="tablink" id="unapproved" onclick="opentapp('unapproved')" (click)="openfalse()">Chưa duyệt</button>
+        <button class="tablink active" style="" id="approved" onclick="openTab('approved')" (click)="opentrue()">Đã
+            duyệt</button>
+        <button class="tablink " style="" id="unapproved" onclick="openTab('unapproved')" (click)="openfalse()">Chưa
+            duyệt</button>
     </div>
     <div class="">
         <div class="row">
@@ -234,11 +241,16 @@
                     <div class="post-container">
                         <p>Bài đăng #{{i + 1}}</p>
 
-                        <h2 class="post-title">{{approvedlist.title}}</h2>
+                        <h5 class="post-title">{{approvedlist.title}}</h5>
                         <div class="post-content">
                             <p>{{approvedlist.describe}}</p>
                             <img src="{{imageUrl}}{{approvedlist.lastImage.urlImage}}" alt=""
                                 style="width: 250px; height: 120px;">
+                            <div class="button-container">
+                                <a class="edit-button" [routerLink]="['/information/edit',{id:approvedlist.id}]">Edit</a>
+                                <button type="button" (click)="delete(approvedlist.id)"
+                                    class="delete-button">Delete</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -246,30 +258,6 @@
             }
         </div>
     </div>
-
 </div>
 
 <!-- Nội dung nằm ở đây -->
-<div *ngIf="approvedlists && approvedlists.length > 0; else noContent">
-    <div class="row">
-        <div class="col">
-            <p>Content here...</p>
-        </div>
-    </div>
-</div>
-
-<ng-template #noContent>
-    <div class="row">
-        <div class="image-overlay">
-            <img src="https://batdongsan.com.vn/sellernet/static/media/welcome_new_user.dcf416a4.png" alt="Welcome Image">
-            <div class="overlay-content">
-                <div class="title">Quà tặng cho khách hàng mới</div>
-                <div class="description">Miễn phí 1 tin thường 5 ngày</div>
-            </div>
-        </div>
-        <div>
-            Tin đăng của bạn sẽ được tiếp cận hơn 6 triệu người tìm mua/thuê bất động sản mỗi tháng
-        </div>
-        
-    </div>
-</ng-template>

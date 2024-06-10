@@ -181,9 +181,9 @@ export class SelectadvComponent implements OnInit, AfterViewInit {
                           createdEnd.setDate(createdEnd.getDate() + 30)
                           remain.createdend = formatDate(createdEnd, 'dd/MM/yyyy', 'en-US');
 
-
                           this.remainService.Update(remain).then(
                             res => {
+                              
                               this.show("Success", "Successful transaction !")
                               setTimeout(() => {
                                 this.router.navigate(['/information/home']);

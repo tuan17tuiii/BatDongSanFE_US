@@ -26,5 +26,8 @@ export class ImageRealStateAPIService  {
       async findByRealStateId(id : number){
         return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl +  'image/findByRealstateId/' + id))
     }
+    async delete(id: number){
+        return lastValueFrom(this.httpClient.delete(this.baseUrlService.BaseUrl + 'image/Delete/' + id));
+    }
     
 }

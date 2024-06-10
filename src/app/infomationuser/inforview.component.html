@@ -3,15 +3,18 @@
         <br>
         @if(user!=null){
         <div class="user-info">
-            <img src="../assets/img/carousel-2.jpg" alt="User Avatar" class="user-avatar">
+            <img src="{{ user.avatar }}" alt="User Avatar" class="user-avatar">
            <h2>{{ user.name }}</h2>
+           @if(user.roleId==4){
+          &nbsp; <img src="../../assets/img/award.png" alt="" style="height:30px ;width: 30px">
+        }
         </div>
         <div>
           <p>Email : {{ user.email }}</p>
             <p>Phone : {{ user.phone }}</p>
          </div>
         }
-        <h2>Bài viết nổi bậtttt</h2>
+        <h2>Bài viết nổi bậtttt</h2>&nbsp;
         <div class="featured-posts">
            @if(realState!=null){
             @for(item of realState;track item){
@@ -19,8 +22,8 @@
             <div class="post">
                 <img class="img-dt" src="{{ imageUrl }}{{ item.image[0].urlImage }}" alt="as">
                 <h4>{{ item.title }}</h4>
-                <span style="color:rgb(16, 13, 13);" >Type :</span><p>{{item.transactionType}}</p>
-               
+                <span style="color:rgb(255, 0, 0) ;" ><i class="pi pi-map-marker"></i> &nbsp;&nbsp;{{item.city}}  <p><i class="pi pi-money-bill"></i>  &nbsp; &nbsp;{{item.price}}&nbsp;$</p></span>
+              
             </div>
         </a>
         }

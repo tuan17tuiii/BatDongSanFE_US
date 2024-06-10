@@ -17,7 +17,7 @@ export class RealState{
     city : string ; 
     street : string ; 
     region : string ; 
-    typeRealState : TypeRealState ; 
+    typeRealState : string ; 
     nameusersell:string;
     image:Image[]
     lastImage : Image
@@ -26,5 +26,6 @@ export class RealState{
     sold : boolean ; 
     expired : boolean ; 
     createdEnd : string ; 
-    users :string
+    users :string;
+    userrole:string;
 }

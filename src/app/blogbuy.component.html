@@ -5,45 +5,48 @@
             <!-- Main content -->
             <div class="main-content">
                 @for(realstate of realstates;track realstate ){
-                <div class="content-frame">
-                    <div class="content">
-                        <div class="img">
-                            <div class="image-container">
-                                <a [routerLink]="['/blogsellerdetails',{id:realstate.id}]"><img class="cimg"
-                                        styles="width: 100%;height: 300px;"
-                                        src="{{ imgsvs + realstate.image[0].urlImage }}" alt="Ảnh"> </a>
+                    <div class="content-frame">
+                        <div class="content">
+                            <div class="img">
+                                <div class="image-container">
+                                    <a [routerLink]="['/blogsellerdetails',{id:realstate.id}]"><img class="cimg"
+                                            styles="width: 100%;height: 300px;"
+                                            src="{{ imgsvs + realstate.image[0].urlImage }}" alt="Ảnh"> </a>
+                                </div>
                             </div>
+                            <div class="scrollable-content" id="scrollable-content">
+    
+                                <h2>
+                                    <p style="max-height: 150px;overflow: hidden;"> {{ realstate.title }} </p>
+                                </h2>
+                                <h5>
+                                    <p> <span class="menustyle"> Gia </span> : $ {{realstate.price }} USD| 
+                                        <span  class="menustyle"> Vi tri </span> : {{realstate.city }}</p>
+                                </h5>
+                                <div class="name1"> <p> <span style="font-weight: bold;">Mo ta :</span>  {{ realstate.describe }} </p></div>
+    
+    
+                            </div>
+                            <div class="name">
+                                <a [routerLink]="['/inforview',{id:realstate.usersellId}]">
+                                    <img src="{{ imgsvs + realstate.users }}" alt="Profile Image"
+                                        class="profile-img">
+                                    <span class="user-name">{{
+                                        realstate.nameusersell }}</span> 
+                                </a>
+                                <span class="heart-icon">
+                                    @if(realstate.userrole=="4"){
+                                    <img src="../assets/img/award.png" alt="" srcset="" style="height: 30px;width: 30px;">
+                                    }
+                                </span>
+                                    
+                            </div>
+    
+    
+    
                         </div>
-                        <div class="scrollable-content" id="scrollable-content">
-
-                            <h2>
-                                <p> {{ realstate.title }} </p>
-                            </h2>
-                            <h6>
-                                <p> <span class="menustyle"> Loai </span> : {{realstate.city }} | <span
-                                        class="menustyle"> Gia </span> : $ {{realstate.price }} USD| <span
-                                        class="menustyle"> Vi tri </span> : {{realstate.city }}</p>
-                            </h6>
-                            <p></p>
-
-                        </div>
-                        <div class="name">
-                            <a [routerLink]="['/inforview',{id:realstate.usersellId}]">
-                                <img src="{{ imgsvs + realstate.users }}" alt="Profile Image"
-                                    class="profile-img">
-                                <span class="user-name">{{
-                                    realstate.nameusersell }}abc</span> 
-                            </a>
-                            <span class="heart-icon"><button type="button" class="btn btn-default"> <i
-                                        class="pi pi-heart" icon=""></i></button></span>
-
-                        </div>
-
-
-
                     </div>
-                </div>
-                }
+                    }
             </div>
         </div>
         <div class="col-3 sidebar_rig">
@@ -54,23 +57,28 @@
                     <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
                 </div>
                 <div class="select-filters">
-                    <select [(ngModel)]="city" class="form-control seach_task4" [ngModelOptions]="{standalone: true}" (change)="find_districts($event)">
-                        <option value="" >Select City</option>
+                    <select [(ngModel)]="city" class="form-control seach_task4" [ngModelOptions]="{standalone: true}"
+                        (change)="find_districts($event)">
+                        <option value="">Select City</option>
                         @for(province of provinces ; track province){
-                            <option [value]="province.full_name" [attr.data-name]="province.full_name">{{province.full_name}}</option>
+                        <option [value]="province.full_name" [attr.data-name]="province.full_name">
+                            {{province.full_name}}</option>
                         }
                     </select>
                 </div>
                 <div class="select-filters">
                     <div class="seach_task4" style="margin-top:10px ;">
                         <div>
-                            <input style="text-align: center;" type="text" pInputText [(ngModel)]="price" [ngModelOptions]="{standalone: true}" placeholder="filter price"  class="w-full mb-3"/>
-                            <p-slider (click)="chang()" [(ngModel)]="rangeValues" [range]="true" [ngModelOptions]="{standalone: true}" />
+                            <input style="text-align: center;" type="text" pInputText [(ngModel)]="price"
+                                [ngModelOptions]="{standalone: true}" placeholder="filter price" class="w-full mb-3" />
+                            <p-slider (click)="chang()" [(ngModel)]="rangeValues" [range]="true"
+                                [ngModelOptions]="{standalone: true}" />
                         </div>
                     </div>
                 </div>
                 <div class="select-filters">
-                    <select [(ngModel)]="area" class="form-control seach_task4" [ngModelOptions]="{standalone: true}" (change)="find_districts($event)">
+                    <select [(ngModel)]="area" class="form-control seach_task4" [ngModelOptions]="{standalone: true}"
+                        (change)="find_districts($event)">
                         <option value="0" disabled selected hidden>Filter Area</option>
                         <option value="0">Filter Area</option>
                         <option value="20">~ 20 m2</option>
@@ -81,16 +89,11 @@
                         <option value="1000">> 1000 m2</option>
                     </select>
                 </div>
-              
+
                 <div class="checkbox-filters">
                     <div style=" ">
-                        <p-selectButton 
-                            [options]="stateOptions" 
-                            [(ngModel)]="value" 
-                            optionLabel="label" 
-                            optionValue="value" 
-                            class="ng-dirty"
-                            />
+                        <p-selectButton [options]="stateOptions" [(ngModel)]="value" optionLabel="label"
+                            optionValue="value" class="ng-dirty" />
                     </div>
                 </div>
                 <button class="btn btn-primary" (click)="load()"> test</button>

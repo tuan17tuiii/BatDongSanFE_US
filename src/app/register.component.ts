@@ -9,12 +9,14 @@ import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
 import { Remain } from './entities/remain.entities';
 import { RemainService } from './services/remain.service';
+import { PasswordModule } from 'primeng/password';
+import { DividerModule } from 'primeng/divider';
 import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, FormsModule, ReactiveFormsModule, ToastModule, ButtonModule, RippleModule],
+  imports: [RouterOutlet, RouterLink, FormsModule, ReactiveFormsModule, ToastModule, ButtonModule, RippleModule, PasswordModule, DividerModule],
   templateUrl: 'register.component.html',
   providers: [MessageService],
   host: { 'collision-id': 'RegisterComponent' },
@@ -37,8 +39,8 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
       username: ['', [Validators.required]],
-      password: ['', [Validators.required]],
-      email: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/), Validators.minLength(8)]],
+      email: ['', [Validators.required, Validators.pattern(/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/)]],
       roleId: 2,
     });
   }
@@ -55,6 +57,7 @@ export class RegisterComponent implements OnInit {
             res => {
               if (res) {
                 this.messageService.add({ severity: 'success', summary: 'Register Success !', detail: 'Register Successful! Please go to your Email and Verify the account !', key: 'tl', life: 2000 });
+                this.ngOnInit();
                 this.userServices.FindAll().then(
                   res => {
                     this.users = res as User[]
