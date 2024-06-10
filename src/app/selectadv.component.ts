@@ -12,6 +12,8 @@ import { RemainService } from './services/remain.service';
 import { Remain } from './entities/remain.entities';
 import { error } from 'console';
 import { Router } from '@angular/router';
+import { TransactionService } from './services/transaction.service';
+import { Transaction } from './entities/transaction.entities';
 
 declare var paypal: any;
 
@@ -43,6 +45,7 @@ export class SelectadvComponent implements OnInit, AfterViewInit {
     private remainService: RemainService,
     private messageService: MessageService,
     private router: Router,
+    private transactionService : TransactionService,
     @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
@@ -183,11 +186,24 @@ export class SelectadvComponent implements OnInit, AfterViewInit {
 
                           this.remainService.Update(remain).then(
                             res => {
-                              
-                              this.show("Success", "Successful transaction !")
+                              let transaction = new Transaction()
+                              transaction.idAdv = advertisement.id
+                              transaction.idUser = this.user.id.toString()
+                              let create = new Date()
+                              transaction.createdAt = formatDate(create, 'dd/MM/yyyy', 'en-US')
+                              transaction.price = advertisement.price.toString()
+                              this.transactionService.create(transaction).then(
+                                res=>{
+                                  console.log("Tao transaction thanhcong")
+                                  this.show("Success", "Successful transaction !")
                               setTimeout(() => {
                                 this.router.navigate(['/information/home']);
                               }, 3000); // 5000 milliseconds = 5 seconds
+                                },err=>{
+                                  console.log("Tao khong thanh cong")
+                                }
+                              )
+                              
                             }, err => {
                               console.log("loi 2")
                             }
@@ -219,11 +235,24 @@ export class SelectadvComponent implements OnInit, AfterViewInit {
                           console.log(remain)
                           this.remainService.Update(remain).then(
                             res => {
-
-                              this.show("Success", "Successful transaction !")
+                              let transaction = new Transaction()
+                              transaction.idAdv = advertisement.id
+                              transaction.idUser = this.user.id.toString()
+                              let create = new Date()
+                              transaction.createdAt = formatDate(create, 'dd/MM/yyyy', 'en-US')
+                              transaction.price = advertisement.price.toString()
+                              this.transactionService.create(transaction).then(
+                                res=>{
+                                  console.log("tao transaction thanh cong")
+                                  this.show("Success", "Successful transaction !")
                               setTimeout(() => {
                                 this.router.navigate(['/information/home']);
                               }, 3000); // 5000 milliseconds = 5 seconds
+                                },err=>{
+                                  console.log("Tao khong thanh cong")
+                                }
+                              )
+                               
                             }, err => {
                               console.log(err)
                             }
