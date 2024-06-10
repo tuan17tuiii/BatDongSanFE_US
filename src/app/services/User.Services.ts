@@ -70,4 +70,8 @@ export class UserServices{
     async Delete(id: number){
         return lastValueFrom(this.httpClient.delete(this.baseUrlService.BaseUrl + 'account/Delete/' + id));
     }
+
+    async ForgetPassword(email: string){
+        return lastValueFrom(this.httpClient.get(this.baseUrlService.BaseUrl + 'account/ForgetPassword/' + email));
+    }
 }

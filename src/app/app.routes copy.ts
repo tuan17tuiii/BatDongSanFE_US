@@ -30,10 +30,7 @@ import { ChangePassComponent } from './ChangePass.component';
 import { InfordetailsComponent } from './infomationuser/infordetails.component';
 import { InforComponent } from './infomationuser/infor.component';
 import { ManageNewsComponent } from './infomationuser/manage-news.component';
-import { BlogrentComponent } from './blogrent.component';
 import { EditComponent } from './edit.component';
-import { ForgetPasswordComponent } from './ForgetPassword.component';
-import { ChangeForgetComponent } from './ChangeForget.component';
 
 
 export const routes: Routes = [
@@ -129,10 +126,6 @@ export const routes: Routes = [
             component: BlogbuyComponent,
          },
          {
-            path: "blogrent",
-            component: BlogrentComponent,
-         },
-         {
             path: "blognew",
             component: BlognewComponent,
          }, {
@@ -170,7 +163,7 @@ export const routes: Routes = [
   },
   {
       path: 'resetpassword',
-      component: ChangeForgetComponent,
+      component: ChangeForgetComponent
   },
 ];
 
