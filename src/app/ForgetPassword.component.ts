@@ -40,6 +40,7 @@ export class ForgetPasswordComponent implements OnInit {
     this.userServices.ForgetPassword(this.email).then(
         res =>{
             this.messageService.add({ severity: 'success', summary: 'Send Email Success !', detail: 'Send Email Successful! Please check your Email !', key: 'tl', life: 2000 });
+            this.ForgetForm.reset();
         },
         err =>{
             console.log(err);
