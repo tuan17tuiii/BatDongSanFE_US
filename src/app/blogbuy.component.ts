@@ -120,7 +120,7 @@ export class BlogbuyComponent implements OnInit {
       );
     } else {
       // Nếu không có tham số nào, thực hiện cuộc gọi hàm findAll để lấy tất cả dữ liệu
-      this.realstatesv.findAll2().then(
+      this.realstatesv.findAll().then(
         res => {
           this.realstates = res as RealState[]; // Gán mảng dữ liệu vào this.realstates
           console.log(this.realstates);

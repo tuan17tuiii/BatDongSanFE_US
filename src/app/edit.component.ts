@@ -63,6 +63,9 @@ export class EditComponent implements OnInit {
     remain: Remain
 
     iduser: string
+
+    provincename : string
+    districtname : string 
     constructor(
         private formBuilder: FormBuilder,
         private provinceService: ProvinceAPIService,
@@ -83,15 +86,34 @@ export class EditComponent implements OnInit {
             this.realstateService.findById(Number(this.iduser)).then(
                 res => {
                     let realstate: RealState = res as RealState;
+                    this.provincename = realstate.city
+                    this.districtname = realstate.region
                     console.log(realstate)
                     this.formGroup = this.formBuilder.group({
                         id: realstate.id,
-                        acreage: realstate.acreage,
+                        acreage: [realstate.acreage, [
+                            Validators.required,
+                            Validators.pattern('^[0-9]+$')
+                        ]] ,
+                        
                         title: realstate.title,
                         describe: realstate.describe,
-                        price: realstate.price,
-                        bathrooms: realstate.bathrooms,
-                        bedrooms: realstate.bedrooms,
+                        price: [realstate.price, [
+                            Validators.required,
+                            Validators.pattern('^[0-9]+$')
+                        ]] ,
+                        
+                        bathrooms: 
+                        [realstate.bathrooms, [
+                            Validators.min(0),
+                            Validators.max(100),
+                            Validators.pattern('^[0-9]+$')
+                        ]],
+                        bedrooms: [realstate.bedrooms, [
+                            Validators.min(0),
+                            Validators.max(100),
+                            Validators.pattern('^[0-9]+$')
+                        ]],
                         type: realstate.type,
                         city: realstate.city,
                         street: realstate.street,
@@ -102,7 +124,8 @@ export class EditComponent implements OnInit {
                         sold: realstate.sold,
                         expired: realstate.expired,
                         createdEnd: realstate.createdEnd,
-                        createdAt: realstate.createdAt
+                        createdAt: realstate.createdAt,
+                        statusupdate : realstate.statusupdate
                     })
                 },
                 err => {
@@ -166,12 +189,38 @@ export class EditComponent implements OnInit {
             expired: [''],
             createdEnd: [''],
             createdAt: [''],
+            statusupdate : [''],
         })
 
         this.provinceService.findAll().then(
             res => {
                 this.provinces = res['data'] as Province[]
-                console.log(this.provinces)
+                if(this.provincename!=null){
+                    for(var i = 0 ; i < this.provinces.length ; i ++){
+                        if(this.provinces[i].full_name == this.provincename){
+                            this.provinceService.findDistrict(Number(this.provinces[i].id)).then(
+                                res=>{
+                                    console.log(res)
+                                    this.districts = res['data'] as District[];
+                                    if(this.districtname != null){
+                                        for(var i = 0 ; i < this.districts.length; i++){
+                                            if(this.districts[i].full_name==this.districtname){
+                                                this.provinceService.findWard(Number(this.districts[i].id)).then(
+                                                    res=>{
+                                                        this.wards = res['data'] as Ward[]
+                                                    }
+                                                )
+                                            }
+                                        }
+                                    }
+                                }
+                            )
+                        }
+                    }
+                }else{
+                    console.log("chua tim thay")
+                }
+                
             },
             error => {
                 console.log(error)
@@ -286,7 +335,13 @@ export class EditComponent implements OnInit {
             let realstate: RealState = this.formGroup.value as RealState;
             realstate.sold = false //trang thai chua ban 
             realstate.transactionType = this.selectedTab
-            
+            if(realstate.status){
+                realstate.statusupdate = true 
+                realstate.status = false 
+            }else{
+                realstate.statusupdate = false 
+            }
+
             this.realstateService.Update(realstate).then(
                 res => {
                     console.log("Update thanh cong")
@@ -314,7 +369,9 @@ export class EditComponent implements OnInit {
                                     console.log("Update image thanh cong")
                                     this.fileNames = res['fileNames'];
                                     this.show()
-                                    this.router.navigate(['/information/home'])
+                                    setTimeout(() => {
+                                        this.router.navigate(['/information/home']);
+                                      }, 1000);
                                 },
                                 err => {
                                     this.error("Faild", "An error has occurred")

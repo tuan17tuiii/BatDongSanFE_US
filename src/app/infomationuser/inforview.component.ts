@@ -58,9 +58,10 @@ export class InforviewComponent implements OnInit {
   }
   loadData(): void {
    
-    this.realstateService.findByUserSell(this.id).then(
+    this.realstateService.findAll().then(
       res => {
         this.realState = res as RealState[];
+        this.realState = this.realState.filter(x=>x.usersellId==this.id)
         console.log(this.realState)
       },
       error => {

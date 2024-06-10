@@ -109,7 +109,7 @@ console.log(this.key)
         console.log(error)
       }
     )
-    this.realstateService.findAll2().then(
+    this.realstateService.findAll().then(
       res => {
         this.realstates = res as RealState[];
 

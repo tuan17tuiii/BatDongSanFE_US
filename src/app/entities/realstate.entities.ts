@@ -28,4 +28,5 @@ export class RealState{
     createdEnd : string ; 
     users :string;
     userrole:string;
+    statusupdate:boolean
 }
