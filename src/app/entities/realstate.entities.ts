@@ -1,3 +1,4 @@
+import { User } from "./User.entities";
 import { Image } from "./image.entities";
 import { TypeRealState } from "./typerealstate.entities";
 
@@ -25,4 +26,5 @@ export class RealState{
     sold : boolean ; 
     expired : boolean ; 
     createdEnd : string ; 
+    users :string
 }

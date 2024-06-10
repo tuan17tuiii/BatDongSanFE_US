@@ -18,17 +18,21 @@ import { DropdownModule } from 'primeng/dropdown';
 import { SliderModule } from 'primeng/slider';
 import { BrowserModule } from '@angular/platform-browser';
 import { InputTextModule } from 'primeng/inputtext';
+import { SelectButtonModule } from 'primeng/selectbutton';
+     
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, RouterLink,
-    FormsModule, DropdownModule,SliderModule,InputTextModule],
+    FormsModule, DropdownModule,SliderModule,InputTextModule,SelectButtonModule],
   templateUrl: './home.component.html',
   host: { 'collision-id': 'HomeComponent' },
 })
 export class HomeComponent implements OnInit {
+  stateOptions: any[] = [{label: 'Rent', value: 'rent' }, {label: 'Sell', value: 'sell'}];
+typerealstates:string="sell";
+ 
   rangeValues: number[] = [0,100];
-  value: number[] = [1,50];
   id: string
   items: SelectItem[];
   msg: string
@@ -40,7 +44,7 @@ export class HomeComponent implements OnInit {
   districts: District[]
   data_input1: string
   key: string = null
-  city: string = null
+  city: string =""
   price:string= null
   area:string= "0"
   pricemin: string = null
@@ -105,7 +109,7 @@ console.log(this.key)
         console.log(error)
       }
     )
-    this.realstateService.findAll().then(
+    this.realstateService.findAll2().then(
       res => {
         this.realstates = res as RealState[];
 
@@ -147,10 +151,12 @@ console.log(this.key)
   click(){
   }
   clickSearch(){
+    if(this.typerealstates=="sell"){
     this.router.navigate(['/blogbuy'], { queryParams: { key: this.key,city: this.city,pricemin: this.pricemin,pricemax: this.pricemax,areamin: this.area } });
+  }else if(this.typerealstates=="rent"){
+    this.router.navigate(['/blogrent'], { queryParams: { key: this.key,city: this.city,pricemin: this.pricemin,pricemax: this.pricemax,areamin: this.area } });
 
-
-  }
+  }}
 
 }
 

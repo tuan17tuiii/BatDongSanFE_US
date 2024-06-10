@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avatar VIP</title>
+<link rel="stylesheet" href="styles.css"> <!-- Liên kết với tệp CSS -->
+</head>
+<style>
+    /* Thiết lập định dạng cho khung avatar */
+.avatar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Đặt chiều cao của khung để trung tâm hoặc điều chỉnh theo nhu cầu */
+}
+
+.avatar {
+    position: relative;
+    display: inline-block;
+}
+
+.avatar-img {
+    width: 150px; /* Đặt kích thước của hình ảnh avatar */
+    height: 150px;
+    border-radius: 50%; /* Làm cho avatar trở thành hình tròn */
+}
+
+/* Tạo hiệu ứng hào quang bên ngoài */
+.avatar::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border: 3px solid gold; /* Định dạng màu sắc và kích thước của hiệu ứng hào quang */
+    border-radius: 50%;
+    z-index: -1;
+}
+
+</style>
+<body>
+
+<div class="avatar-container">
+    <div class="avatar">
+        <img src="avatar.jpg" alt="Avatar" class="avatar-img">
+    </div>
+</div>
+
+</body>
+</html>

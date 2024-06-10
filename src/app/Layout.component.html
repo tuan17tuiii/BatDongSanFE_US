@@ -15,34 +15,41 @@
                 </div>
                 <h1 class="m-0 text-primary">Makaan</h1>
             </a>
+            
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto">
-                    <a [routerLink]="['/home']" class="nav-item nav-link active">Home</a>
-                    <a [routerLink]="['/about']" class="nav-item nav-link">About</a>
-
-                    <a [routerLink]="['/blogbuy']" class="nav-item nav-link">BlogBuy</a>
-
-                    <a [routerLink]="['/blogbuy']" class="nav-item nav-link">BlogBuy2</a>
-                    <a [routerLink]="['/blognew',{id:0}]" class="nav-item nav-link">Blog</a>
+                    <a id="homeLink" [routerLink]="['/home']" class="nav-item nav-link tablink active" onclick="navbar(this)">Home</a>
+                    <a id="aboutLink" [routerLink]="['/about']" class="nav-item nav-link tablink" onclick="navbar(this)">About</a>
+                    <a id="blogRentLink" [routerLink]="['/blogrent']" class="nav-item nav-link tablink" onclick="navbar(this)">BlogRent</a>
+                    <a id="blogBuyLink" [routerLink]="['/blogbuy']" class="nav-item nav-link tablink" onclick="navbar(this)">BlogSell</a>
+                    <a id="newsLink" [routerLink]="['/blognew',{id:0}]" class="nav-item nav-link tablink" onclick="navbar(this)">News</a>
                 </div>
+                
                 &nbsp;
 
                 @if(username != null){
-                <div class="name"> <a [routerLink]="['/information']"> <img src="{{avatar}}" alt="Profile Image"
-                            class="profile-img">{{username}}</a></div>
+                <div class="name"> <a [routerLink]="['/information']"> 
+                    <div class="avatar-container"><div  class="avatarvip"><img src="{{avatar}}" alt="Profile Image"
+                       style="width: 40px;height: 40px;border-radius: 50%;"></div></div>
+
+                    
+                    {{username}}</a></div>
                 &nbsp;&nbsp;
                 }@else {
-                <div class="name"> <button type="button" (click)="reload()" class="btn btn-primary"><i class="pi pi-sign-in"></i>&nbsp;Login</button>
+                <div class="name"> <button type="button" (click)="reload()" class="btn btn-primary"><i
+                            class="pi pi-sign-in"></i>&nbsp;Login</button>
                 </div>
                 &nbsp;&nbsp;
                 }
 
                 &nbsp;
-                <div class="name"><a class="btn btn-primary px-3 d-none d-lg-flex">Đăng Tin</a>
+
+                <div class="name"> <a (click)="reload()" class="btn btn-primary px-3 d-none d-lg-flex">Đăng Tin</a>
                 </div>
+
             </div>
         </nav>
     </div>

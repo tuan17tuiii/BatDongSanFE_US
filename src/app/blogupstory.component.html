@@ -1,7 +1,7 @@
 <div class="wrap">
     <div class="tabs container container-custom">
-        <div class="tab" (click)="selectTab('sell')">Bán</div>
-        <div class="tab active" (click)="selectTab('rent')">Cho thuê</div>
+        <div class="tab" id="approved"  onclick="opentapp('approved')" (click)="selectTab('sell')">Bán</div>
+        <div class="tab active"  id="unapproved" onclick="opentapp('unapproved')" (click)="selectTab('rent')">Cho thuê</div>
     </div>
 
 

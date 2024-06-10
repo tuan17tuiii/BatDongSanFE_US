@@ -71,10 +71,25 @@
         <div class="col-md-3">
             <div class="contact-info">
                 <h4>Related Realstate</h4>
+                <ul class="article-list_1 ">
                 @for(realStateRelated of realStateRelateds; track realStateRelated){
-                    <b><a [routerLink]="['/blogsellerdetails',{id:realStateRelated.id}]">{{realStateRelated.title}}</a></b>
-                    <br>
+                   
+                                <li class="article-item_1">
+                                    <a (click)="update(realStateRelated.id)" class="scrollBtn">
+                                        <div class="article-thumbnail_2 details">
+                                            <img src="{{ imageUrl }}{{ realStateRelated.image[0].urlImage}}" alt="Hình ảnh bài báo">
+                                        </div>
+                                        <div class="article-details_1"  style="overflow-y: hidden;max-height: 93px;">
+                                          {{ realStateRelated.title }}
+                                                <!-- Thêm thông tin bổ sung nếu cần -->
+                                        </div>
+                                    </a>
+                                </li>
+                             
+                    
+                  
                 }
+            </ul>
             </div>
         </div>
     </div>

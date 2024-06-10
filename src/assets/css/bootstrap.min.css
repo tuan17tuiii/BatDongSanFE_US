@@ -615,7 +615,44 @@ progress {
     max-width: 100%;
     height: auto
 }
-
+.btnsv{
+    width: 950px;
+        background-color: #38c199;
+        color: white;
+    }
+/* Thay đổi nền của hộp thoại xác nhận */
+.ui-dialog .ui-dialog-content .ui-widget-content {
+    background-color: #f8f9fa; /* Màu nền mới */
+  }
+  
+  /* Thay đổi màu chữ của tiêu đề của hộp thoại xác nhận */
+  .ui-dialog .ui-dialog-title {
+    color: #00ff33; /* Màu chữ mới */
+  }
+  
+  /* Thay đổi màu của biên nút "Cancel" */
+  .ui-dialog .ui-dialog-footer .ui-button.ui-button-secondary {
+    color: #dc3545; /* Màu chữ mới */
+    border-color: #dc3545; /* Màu biên mới */
+  }
+  
+  /* Thay đổi màu của biên nút "OK" */
+  .ui-dialog .ui-dialog-footer .ui-button.ui-button-primary {
+    color: #28a745; /* Màu chữ mới */
+    border-color: #28a745; /* Màu biên mới */
+  }
+  
+  /* Thay đổi màu chữ khi hover qua nút "Cancel" */
+  .ui-dialog .ui-dialog-footer .ui-button.ui-button-secondary:hover {
+    color: #fff; /* Màu chữ mới */
+    background-color: #dc3545; /* Màu nền mới */
+  }
+  
+  /* Thay đổi màu chữ khi hover qua nút "OK" */
+  .ui-dialog .ui-dialog-footer .ui-button.ui-button-primary:hover {
+    color: #fff; /* Màu chữ mới */
+    background-color: #28a745; /* Màu nền mới */
+  }
 .figure {
     display: inline-block
 }

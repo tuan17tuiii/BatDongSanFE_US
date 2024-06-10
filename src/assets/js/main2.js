@@ -1,4 +1,16 @@
-
+function opentapp(tabName){
+    var tablinks = document.getElementsByClassName("tablink");
+    for (var i = 0; i < tablinks.length; i++) {
+        tablinks[i].classList.remove("active");
+    }
+    tablinks = document.getElementsByClassName("tab");
+    for (var i = 0; i < tablinks.length; i++) {
+        tablinks[i].classList.remove("active");
+    }
+    // Hiển thị tab hiện tại và thêm lớp "active" cho nút được nhấp
+    document.getElementById(tabName).style.display = "block";
+    document.getElementById(tabName).classList.add("active");
+}
 function previewImage(file, previewId) {
     const preview = document.getElementById(previewId);
     const reader = new FileReader();
@@ -79,10 +91,27 @@ function openTab(tabName) {
     setTimeout(function() {
         document.querySelector('.scrollBtn').classList.remove('scroll-up'); // Remove scroll-up class after animation
     }, 500); // Adjust animation duration if needed
- });
- 
- 
+ });  
+ function navbar(clickedLink) {
+    // Lấy tất cả các liên kết điều hướng
+    var tablinks = document.getElementsByClassName("tablink");
 
+    // Xóa lớp "active" khỏi tất cả các liên kết
+    for (var i = 0; i < tablinks.length; i++) {
+      tablinks[i].classList.remove("active");
+    }
+
+    // Thêm lớp "active" vào liên kết được nhấp
+    clickedLink.classList.add("active");
+  }
+
+  function toggleEffects() {
+    console.log("tathieu ung");
+    const avatar = document.getElementById('avatarvip');
+    console.log(avatar)
+    avatar.classList.toggle('glow'); // Bật/tắt hiệu ứng hào quang
+    avatar.classList.toggle('crown'); // Bật/tắt biểu tượng vuông miên
+}
 
 
 

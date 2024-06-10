@@ -58,6 +58,32 @@ export class InforhomeComponent implements OnInit {
   showDialog() {
     this.visible = true;
   }
+  find_realStateService_true(id:number){
+    this.realStateService.findByUserSellTrue(id).then(
+      res => {
+        if (res) {
+          this.approvedlists = res as RealState[]//list dc phe duyet
+          console.log(this.approvedlists)
+        }
+      }
+    )
+  }
+  find_realStateService_false(id:number){
+    this.realStateService.findByUserSellFalse(id).then(
+      res => {
+        if (res) {
+          this.approvedlists = res as RealState[]
+         
+        }
+      }
+    )
+  }
+  opentrue(){
+this.find_realStateService_true(this.user.id)
+  }
+  openfalse(){
+    this.find_realStateService_false(this.user.id);
+  }
   ngOnInit(): void {
 
     this.imageUrl = this.baseUrl.ImageUrl
@@ -67,22 +93,8 @@ export class InforhomeComponent implements OnInit {
           if (res) {
             this.user = res as User
             console.log(this.user)
-            this.realStateService.findByUserSellTrue(this.user.id).then(
-              res => {
-                if (res) {
-                  this.approvedlists = res as RealState[]//list dc phe duyet
-                  console.log(this.approvedlists)
-                }
-              }
-            )
-            this.realStateService.findByUserSellFalse(this.user.id).then(
-              res => {
-                if (res) {
-                  this.unapprovedlists = res as RealState[]
-                  console.log(this.unapprovedlists)
-                }
-              }
-            )
+            this.find_realStateService_true(this.user.id)
+           
           }
         }
       )

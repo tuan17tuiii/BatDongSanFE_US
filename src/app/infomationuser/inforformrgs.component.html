@@ -41,21 +41,21 @@
             </div>
             <div class="ip">
                 <label for="portrait">Ảnh chân dung:</label>
-                <input type="file" id="portrait" name="portrait" accept="image/*" required (change)="selectFiles1($event)">
+                <input type="file" name="images1" formControlName="images1" id="portrait" name="portrait" accept="image/*" required (change)="selectFiles1($event)">
                 @if(images1==null){  <span class="error" style="color: red;">Photo null !</span>}
                <div class="img_fg"><img id="portraitPreview" [src]="images1" alt="Preview Image" class="preview-image " max-height="200px"></div> 
             </div>
         <div class="ip">
             <label for="cccd">Ảnh mat truoc Chứng minh nhân dân hoặc Thẻ căn cước công dân:</label>
-            <input type="file" id="cccd" name="cccd" accept="image/*" required  (change)="selectFiles2($event)">
+            <input type="file" id="cccd" name="images2" formControlName="images2"  name="cccd" accept="image/*" required  (change)="selectFiles2($event)">
             @if(images2==null){  <span class="error" style="color: red;">Photo null !</span>}
-            <div class="img_fg"><img id="cccdPreview" [src]="images2" alt="Preview Image" class="preview-image" max-height="200px" ></div> 
+            <div class="img_fg"><img id="cccdPreview"  [src]="images2" alt="Preview Image" class="preview-image" max-height="200px" ></div> 
         </div>
         <div class="ip">
             <label for="cccd">Ảnh mat sau Chứng minh nhân dân hoặc Thẻ căn cước công dân:</label>
-            <input type="file" id="cccd" name="cccd" accept="image/*" required (change)="selectFiles3($event)">
+            <input type="file" name="images3" formControlName="images3" id="cccd" name="cccd" accept="image/*" required (change)="selectFiles3($event)">
           @if(images3==null){  <span class="error" style="color: red;">Photo null !</span>}
-            <div class="img_fg"><img id="cccdPreview" [src]="images3" alt="Preview Image" class="preview-image" max-height="200px"></div> 
+            <div class="img_fg"><img id="cccdPreview"  [src]="images3" alt="Preview Image" class="preview-image" max-height="200px"></div> 
         </div>
         <div class="ip">
             <label for="otherDocs">Các giấy tờ liên quan khác:</label>
@@ -67,17 +67,12 @@
                 </div>
             </div>
         </div>
-        <div class="card flex justify-content-center">
-            <p-confirmDialog>
-                <ng-template pTemplate="message" let-message>
-                    <div class="flex flex-column align-items-center w-full gap-3 border-bottom-1 surface-border">
-                        <i class="pi pi-exclamation-circle text-6xl text-primary-500"></i>
-                        <p>{{ message.message }}</p>
-                    </div>
-                </ng-template>
-            </p-confirmDialog>
-            <p-button styleClass="btn btn-success" (click)="confirm()" label="Save" />
-        </div>
+        <div class="ip">
+            <p-toast />
+            <p-confirmDialog />
+            <p-button (click)="confirm($event)" label="Save" [outlined]="true" [disabled]="infoForm.invalid"  styleClass="btn btn-success btnsv" />
+           
+         </div>
     </form>
 }
 </div>

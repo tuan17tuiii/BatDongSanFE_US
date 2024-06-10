@@ -34,6 +34,7 @@ export class InfordetailsComponent implements OnInit {
             let user: User = res as User;
             this.id = user.id;
             this.avatar = user.avatar;
+            console.log(this.avatar);
             this.infoForm = this.formBuilder.group({
               id: user.id,
               username: user.username,
@@ -45,7 +46,8 @@ export class InfordetailsComponent implements OnInit {
               status: user.status,
               securityCode: user.securityCode,
               advertisementId: user.advertisementId,
-              avatar: user.avatar
+              avatar: user.avatar,
+        
             });
             console.log(res)
           };

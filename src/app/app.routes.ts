@@ -30,6 +30,7 @@ import { ChangePassComponent } from './ChangePass.component';
 import { InfordetailsComponent } from './infomationuser/infordetails.component';
 import { InforComponent } from './infomationuser/infor.component';
 import { ManageNewsComponent } from './infomationuser/manage-news.component';
+import { BlogrentComponent } from './blogrent.component';
 
 
 export const routes: Routes = [
@@ -120,6 +121,10 @@ export const routes: Routes = [
          , {
             path: "blogbuy",
             component: BlogbuyComponent,
+         },
+         {
+            path: "blogrent",
+            component: BlogrentComponent,
          },
          {
             path: "blognew",

@@ -72,3 +72,9 @@ margin-top: 10px;
 width: auto;
 max-height: 200px;
 }
+
+.btnsv{
+width: 950px;
+    background-color: #38c199;
+    color: white;
+}

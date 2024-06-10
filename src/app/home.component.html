@@ -1,10 +1,14 @@
+
+<style>.custom-selected {
+    background-color: rgba(255, 104, 104, 0.761); /* Replace with your desired color */
+}</style>
 <div class="container-fluid header bg-white p-0 fadeInn">
     <div class="banner-container">
         <div class="banner-slide banner1">
-            <img src="assets/img/carousel-1.jpg" alt="Image 1">
+            <img src="assets/img/bg-bds-2.jpg" alt="Image 1">
         </div>
         <div class="banner-slide banner2">
-            <img src="assets/img/carousel-2.jpg" alt="Image 2">
+            <img src="assets/img/bds-6.jpg" alt="Image 2">
         </div>
     </div>
 </div>
@@ -24,12 +28,36 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row g-2 bo">
-                        <div class="col-md-4 md4">
-                            <input name="price" [(ngModel)]="city" class="toggleButton seach_task4" id="ress1"
-                                type="button" value="address">
+
+                    <div class="row g-2 bo">               
+                        <div class="col-md-3 md4">
+                            <div style="    display: flex;
+                            flex-direction: row-reverse;
+                            align-items: center;
+                            /* margin: revert; */
+                            /* margin-right: 50px; */
+                            margin: 0px 50px 0px 0px;">
+                                
+                                    <p-selectButton 
+                                    [ngModelOptions]="{standalone: true}"
+                                        [options]="stateOptions" 
+                                        [(ngModel)]="typerealstates" 
+                                        optionLabel="label" 
+                                        optionValue="value" 
+                                        class="ng-dirty"
+                                        />
+                                
+                            </div>
                        </div>
-                        <div class="col-md-4 md4">
+                        <div class="col-md-3 md4">
+                            <select [(ngModel)]="city" class="form-control seach_task4" [ngModelOptions]="{standalone: true}" (change)="find_districts($event)">
+                                <option value="" >Select City</option>
+                                @for(province of provinces ; track province){
+                                    <option [value]="province.full_name" [attr.data-name]="province.full_name">{{province.full_name}}</option>
+                                }
+                            </select>
+                       </div>
+                        <div class="col-md-3 md4">
                             <div class="seach_task4" style="margin-top:10px ;">
                                 <div>
                                     <input style="text-align: center;" type="text" pInputText [(ngModel)]="price" [ngModelOptions]="{standalone: true}" placeholder="filter price"  class="w-full mb-3"/>
@@ -39,7 +67,7 @@
                             
                             <!-- <input class="seach_task4" type="button" id="ress" value="select price " name="price" [(ngModel)]="price" #priceInput> -->
                         </div>
-                        <div class="col-md-4 md4 mm5">
+                        <div class="col-md-3 md4 mm5">
                             <select [(ngModel)]="area" class="form-control seach_task4" [ngModelOptions]="{standalone: true}" (change)="find_districts($event)">
                                 <option value="0" disabled selected hidden>Filter Area</option>
                                 <option value="0">Filter Area</option>
@@ -603,20 +631,6 @@
     </div>
 </div>
 <!-- Property List End -->
-<div class="box">
-    <div class="values">
-        <div>$<span id="first">1800</span></div> - <div>$<span id="second">7800</span>
-        </div>
-    </div>
-    <div id="slider" class="slider" data-value-0="#first" data-value-1="#second"
-        data-range="#third"></div>
-    <ul id="number-list">
-        <li data-value="1000">1000</li>
-        <li data-value="100">100</li>
-        <li data-value="222">222</li>
-        <li data-value="3455">3455</li>
-    </ul>
-</div>
 <!-- Testimonial End -->
 <!-- Testimonial End -->
 <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">

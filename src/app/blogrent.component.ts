@@ -22,14 +22,14 @@ import { SelectButtonModule } from 'primeng/selectbutton';
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, RouterLink,InputTextModule,SelectButtonModule,SliderModule,DropdownModule,FormsModule],
-  templateUrl: 'blogbuy.component.html',
+  templateUrl: 'blogrent.component.html',
 
 })
-export class BlogbuyComponent implements OnInit {
+export class BlogrentComponent implements OnInit {
   stateOptions: any[] = [{label: 'Rent', value: 'rent'}, {label: 'Sell', value: 'sell'}];
   realstates: RealState[];
   rangeValues: number[] = [0,100];
-  value: string = 'sell';
+  value: string = 'rent';
   id: string
   items: SelectItem[];
   adv: string[]
@@ -111,8 +111,8 @@ export class BlogbuyComponent implements OnInit {
         res => {
           this.realstates = res as RealState[]; // Gán mảng dữ liệu vào this.realstates
           console.log(this.realstates);
-          this.realstates = this.realstates.filter(x=>x.transactionType=="sell")
-          console.log(this.realstates);
+          this.realstates = this.realstates.filter(x=>x.transactionType=="rent")
+        
         },
         err => {
           console.log("Đã xảy ra lỗi khi tải dữ liệu", err);
@@ -123,8 +123,7 @@ export class BlogbuyComponent implements OnInit {
       this.realstatesv.findAll2().then(
         res => {
           this.realstates = res as RealState[]; // Gán mảng dữ liệu vào this.realstates
-          console.log(this.realstates);
-          this.realstates = this.realstates.filter(x=>x.transactionType=="sell")
+          this.realstates = this.realstates.filter(x=>x.transactionType=="rent")
           console.log(this.realstates);
         },
         err => {
@@ -137,16 +136,15 @@ export class BlogbuyComponent implements OnInit {
     console.log('Key:', this.key);
     console.log('City:', this.city);
     console.log('Min Price:', this.pricemin);
-    console.log('Min Area:', this.area);
+    console.log('Min Area:', this.areamin);
     console.log('Max Price:', this.pricemax);
-    console.log('type:', this.value);
-
-      if(this.value=="sell"){
+    if(this.value=="sell"){
       this.router.navigate(['/blogbuy'], { queryParams: { key: this.key,city: this.city,pricemin: this.pricemin,pricemax: this.pricemax,areamin: this.area } });
     }else if(this.value=="rent"){
       this.router.navigate(['/blogrent'], { queryParams: { key: this.key,city: this.city,pricemin: this.pricemin,pricemax: this.pricemax,areamin: this.area } });
   
     }
+
   }
   chang(){
     console.log("co cc nef")

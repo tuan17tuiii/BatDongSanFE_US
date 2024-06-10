@@ -81,7 +81,7 @@ body {
 }
 
 .nav-link {
-    color: #000000 !important;
+    /* color: #000000 !important; */
 }
 
 .profile-img {
@@ -184,7 +184,7 @@ body {
 }
 
 .main-content {
-    max-height: calc(100vh - 20vh);
+    max-height:600px;
     /* Đặt chiều cao tối đa cho main content, trừ đi chiều cao của navbar */
     overflow-y: auto;
     /* Tạo thanh cuộn dọc chỉ cho main content */
@@ -572,11 +572,6 @@ body {
     margin: 0;
 }
 /* CSS từ trước */
-.container {
-    /* CSS từ trước */
-    /* padding-bottom: 20px; Thêm padding dưới để tránh việc bị che mất phần nội dung */
-}
-
 .featured-posts {
     /* CSS từ trước */
     overflow-x: auto; /* Thêm thanh cuộn ngang khi nội dung vượt quá chiều rộng */
@@ -669,7 +664,11 @@ body {
         height: 150px;
         margin-right: 10px;
     }
-
+    .article-thumbnail_2 img {
+        width: 206px;
+        height: 123px;
+        margin-right: 10px;
+    }
 
 .article-details_1 a {
     text-decoration: none;

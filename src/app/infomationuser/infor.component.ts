@@ -38,6 +38,11 @@ export class InforComponent implements OnInit {
       window.location.reload();
     });
   }
+  adv(){
+    this.router.navigate(['/information/selectadv']).then(p => {
+      window.location.reload();
+    });
+  }
 
 }
 

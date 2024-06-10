@@ -192,7 +192,7 @@
     }
 </style>
 
-@if(user!=null&&user.roleId!=3&&user.statusUpdate==false){
+@if(user!=null&&user.roleId!=4&&user.statusUpdate==false){
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 
     <a [routerLink]="['/information/formrgs']">
@@ -201,7 +201,7 @@
 
 </div>
 }
-@if(user!=null&&user.roleId!=3&&user.statusUpdate==true){
+@if(user!=null&&user.roleId!=4&&user.statusUpdate==true){
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <p-button styleClass="bannerh2" (click)="showDialog()" label="Dang Ki Nha Moi Gioi" />
     <p-dialog header="Dang Cho Duyet ....." [(visible)]="visible" [modal]="true"
@@ -212,7 +212,7 @@
     </p-dialog>
 </div>
 }
-@if(user!=null&&user.roleId==3){
+@if(user!=null&&user.roleId==4){
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 
     <div class="bannerh3"> <span style="font-size: 25px;color: hsl(0, 0%, 100%)"><i class="pi pi-home"
@@ -223,10 +223,10 @@
 
 <div class="container">
     <div class="tabbar">
-        <button class="tablink active" onclick="openTab('approved')">Đã duyệt</button>
-        <button class="tablink" onclick="openTab('unapproved')">Chưa duyệt</button>
+        <button class="tablink active"  id="approved"  onclick="opentapp('approved')" (click)="opentrue()">Đã duyệt</button>
+        <button class="tablink" id="unapproved" onclick="opentapp('unapproved')" (click)="openfalse()">Chưa duyệt</button>
     </div>
-    <div class="tabcontent" id="approved">
+    <div class="">
         <div class="row">
             @if(approvedlists!= null){
             <ng-container *ngIf="approvedlists">
@@ -246,32 +246,7 @@
             }
         </div>
     </div>
-    <div class="tabcontent" id="unapproved">
-        <div class="row">
-            @if(unapprovedlists!= null){
-            <ng-container *ngIf="unapprovedlists">
-                <div *ngFor="let unapprovedlist of unapprovedlists; let i = index" class="col-sm-4">
-                    <div class="post-container">
-                        <p>Bài đăng #{{i + 1}}</p>
 
-                        <h2 class="post-title">{{unapprovedlist.title}}</h2>
-                        <div class="post-content">
-                            <p>{{unapprovedlist.describe}}</p>
-                            <img src="{{imageUrl}}{{unapprovedlist.lastImage.urlImage}}" alt=""
-                                style="width: 250px; height: 120px;">
-                            <div class="button-container">
-                                <button class="edit-button">Edit</button>
-                                <button class="delete-button">Delete</button>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-            </ng-container>
-            }
-        </div>
-    </div>
 </div>
 
 <!-- Nội dung nằm ở đây -->
