@@ -31,8 +31,6 @@ import { InfordetailsComponent } from './infomationuser/infordetails.component';
 import { InforComponent } from './infomationuser/infor.component';
 import { ManageNewsComponent } from './infomationuser/manage-news.component';
 import { EditComponent } from './edit.component';
-import { ForgetPasswordComponent } from './ForgetPassword.component';
-import { ChangeForgetComponent } from './ChangeForget.component';
 
 
 export const routes: Routes = [
@@ -165,7 +163,7 @@ export const routes: Routes = [
   },
   {
       path: 'resetpassword',
-      component: ChangeForgetComponent,
+      component: ChangeForgetComponent
   },
 ];
 

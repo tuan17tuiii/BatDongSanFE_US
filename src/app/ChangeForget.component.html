@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Corona Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="assets/images/favicon.png" />
+
+    <style>
+        ::ng-deep .p-password input {
+            background-color: #2A3038;
+            border-radius: 2px;
+        }
+
+        ::ng-deep .forn-control:focus{
+            background-color: #2A3038;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container-scroller">
+        <div class="container-fluid page-body-wrapper full-page-wrapper">
+            <div class="row w-100 m-0">
+                <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
+                    <div class="card col-lg-4 mx-auto">
+                        <div class="card-body px-5 py-5">
+                            <h3 class="card-title text-left mb-3">Change Password</h3>
+                            @if (ChangeForm != null) {
+                            <form [formGroup]="ChangeForm" (ngSubmit)="Retrieve(email, code, id)">
+                                <div class="form-group">
+                                    <label for="NewPassword"><i class="fa fa-lock" aria-hidden="true"></i>&nbsp;New
+                                        Password:</label><br>
+
+                                    <p-password formControlName="newpass" id="NewPassword" name="NewPassword"
+                                        [toggleMask]="true" placeholder="New Password"
+                                        inputStyleClass="form-control form-control-cus p_input" placeholder="Password"
+                                        [style]="{'width':'100%'}">
+
+                                        <ng-template pTemplate="header">
+                                            <h6>Pick a password</h6>
+                                        </ng-template>
+
+                                        <ng-template pTemplate="footer">
+                                            <p-divider />
+                                            <p class="mt-2">Suggestions</p>
+                                            <ul class="pl-2 ml-2 mt-0" style="line-height: 1.5">
+                                                <li>At least one lowercase</li>
+                                                <li>At least one uppercase</li>
+                                                <li>At least one numeric</li>
+                                                <li>Minimum 8 characters</li>
+                                            </ul>
+                                        </ng-template>
+
+                                    </p-password>
+                                    @if (ChangeForm.get('newpass').touched) {
+                                    @if (ChangeForm.hasError('required',['newpass'])) {
+                                    <span class="error" style="color: red;">New Password required !</span>
+                                    }
+                                    }
+                                </div>
+                                <div class="form-group">
+                                    <label for="Confirm"><i class="fa fa-lock" aria-hidden="true"></i>&nbsp;Confirm new
+                                        password:</label><br>
+                                    <p-password formControlName="confirm" id="Confirm" name="Confirm"
+                                        [toggleMask]="true" placeholder="Confirm new password"
+                                        inputStyleClass="form-control form-control-cus p_input" placeholder="Password"
+                                        [style]="{'width':'100%'}" [feedback]="false" />
+
+                                    @if (ChangeForm.get('confirm').touched) {
+                                    @if (ChangeForm.hasError('required',['confirm'])) {
+                                    <span class="error" style="color: red;">Confirm Password required !</span>
+                                    }
+                                    }
+                                </div>
+                                <div class="form-group">
+                                    <p-toast position="bottom-left" key="bl" />
+                                    <div class="text-center">
+                                        <p-toast position="top-right" key="tl" />
+                                        <p-button pRipple type="submit" label="Change Password"
+                                            styleClass="btn btn-primary btn-block enter-btn"
+                                            [disabled]="ChangeForm.invalid" [style]="{'width': '100%'}" />
+                                    </div>
+                                </div>
+                            </form>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <!-- content-wrapper ends -->
+            </div>
+            <!-- row ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="assets/js/off-canvas.js"></script>
+    <script src="assets/js/hoverable-collapse.js"></script>
+    <script src="assets/js/misc.js"></script>
+    <script src="assets/js/settings.js"></script>
+    <script src="assets/js/todolist.js"></script>
+    <!-- endinject -->
+</body>
+
+</html>
+
+
+<!-- container-scroller -->
